@@ -4,7 +4,11 @@ import * as THREE from 'three';
 interface Ripple {
   position: THREE.Vector2;
   time: number;
-  strength: number;
+  strength: number;    // Range: 0.5 to 2.0 (higher values cause extreme distortion)
+  velocity: number;    // Range: 5 to 15 (above 15 causes choppy animation, below 5 feels unresponsive)
+  frequency: number;   // Range: 0.8 to 2.0 (lower causes merged waves, higher causes noisy patterns)
+  wavelength: number;  // Range: 8 to 25 (below 8 creates tight ripples, above 25 loses detail)
+  damping: number;     // Range: 0.01 to 0.1 (below 0.01 causes infinite ripples, above 0.1 dies too fast)
 }
 
 export function ThreeHero() {
@@ -25,31 +29,34 @@ export function ThreeHero() {
     sceneRef.current = scene;
     
     // Reduce FOV for flatter perspective
-    const camera = new THREE.PerspectiveCamera(5, window.innerWidth / window.innerHeight, 0.1, 2000);
+    const camera = new THREE.PerspectiveCamera(3, window.innerWidth / window.innerHeight, 0.1, 2000);
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
-      alpha: false
+      alpha: false,
+      powerPreference: 'high-performance',
+      precision: 'mediump'
     });
     
     cameraRef.current = camera;
     rendererRef.current = renderer;
     
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    // Grid setup
-    const gridSize = 100; // Increased from 60 for more grid lines
-    const spacing = 1.5; // Reduced spacing for tighter grid
+    // Grid setup with optimized geometries
+    const gridSize = 80;
+    const spacing = 2.0;
     const lines: THREE.Line[] = [];
 
     // Create a group to hold all grid lines
     const gridGroup = new THREE.Group();
     scene.add(gridGroup);
 
-    // Custom shader material for gradient effect
+    // Optimize shader for performance
     const gradientMaterial = new THREE.ShaderMaterial({
       uniforms: {
-        color: { value: new THREE.Color(0xD5ECE2) }, // mint
+        color: { value: new THREE.Color(0xD5ECE2) },
         mousePos: { value: new THREE.Vector2(0, 0) },
         time: { value: 0 }
       },
@@ -61,8 +68,7 @@ export function ThreeHero() {
         void main() {
           vUv = uv;
           vPosition = position;
-          vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-          gl_Position = projectionMatrix * modelViewPosition;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
       fragmentShader: `
@@ -75,50 +81,47 @@ export function ThreeHero() {
         void main() {
           float dist = length(vPosition.xy - mousePos * 25.0);
           float glow = smoothstep(25.0, 2.0, dist);
-          vec3 finalColor = color;
           float opacity = mix(0.15, 0.95, glow);
-          gl_FragColor = vec4(finalColor, opacity);
+          gl_FragColor = vec4(color, opacity);
         }
       `,
       transparent: true,
       side: THREE.DoubleSide,
     });
 
-    // Create horizontal lines with enhanced curve interpolation
+    // Pre-allocate buffers for better performance
+    const positions = new Float32Array(gridSize * 3);
+    const tempPoints: THREE.Vector3[] = [];
+    
+    // Create horizontal and vertical lines with shared geometry
     for (let j = 0; j < gridSize; j++) {
-      const points: THREE.Vector3[] = [];
+      tempPoints.length = 0;
       for (let i = 0; i < gridSize; i++) {
-        points.push(new THREE.Vector3(
+        tempPoints.push(new THREE.Vector3(
           (i - gridSize / 2) * spacing,
           (j - gridSize / 2) * spacing,
           0
         ));
       }
-      // Create a smooth curve from the points with increased smoothness
-      const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.5);
-      const smoothPoints = curve.getPoints(gridSize * 4); // Quadruple the points for even smoother curves
-      
-      const geometry = new THREE.BufferGeometry().setFromPoints(smoothPoints);
+      const curve = new THREE.CatmullRomCurve3(tempPoints, false, 'catmullrom', 0.5);
+      const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(gridSize * 2));
       const line = new THREE.Line(geometry, gradientMaterial);
       gridGroup.add(line);
       lines.push(line);
     }
 
-    // Create vertical lines with enhanced curve interpolation
+    // Vertical lines with shared geometry
     for (let i = 0; i < gridSize; i++) {
-      const points: THREE.Vector3[] = [];
+      tempPoints.length = 0;
       for (let j = 0; j < gridSize; j++) {
-        points.push(new THREE.Vector3(
+        tempPoints.push(new THREE.Vector3(
           (i - gridSize / 2) * spacing,
           (j - gridSize / 2) * spacing,
           0
         ));
       }
-      // Create a smooth curve from the points with increased smoothness
-      const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.5);
-      const smoothPoints = curve.getPoints(gridSize * 4); // Quadruple the points for even smoother curves
-      
-      const geometry = new THREE.BufferGeometry().setFromPoints(smoothPoints);
+      const curve = new THREE.CatmullRomCurve3(tempPoints, false, 'catmullrom', 0.5);
+      const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(gridSize * 2));
       const line = new THREE.Line(geometry, gradientMaterial);
       gridGroup.add(line);
       lines.push(line);
@@ -175,81 +178,98 @@ export function ThreeHero() {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
       
-      // Add new ripple
+      // Create new ripple with physics-based parameters
       ripplesRef.current.push({
         position: new THREE.Vector2(x, y),
         time: 0,
-        strength: 1.0
+        strength: 1.2,     // Sweet spot for visible but controlled waves
+        velocity: 12,      // Balanced speed for smooth propagation
+        frequency: 1.2,    // Creates clear, distinct wave patterns
+        wavelength: 18,    // Good spread without losing definition
+        damping: 0.035     // Long-lasting but eventually fades (about 3-4 seconds)
       });
     };
 
-    // Animation
+    // Animation with optimized performance
     const animate = (currentTime: number) => {
-      requestAnimationFrame(animate);
+      const id = requestAnimationFrame(animate);
 
-      // Calculate delta time in seconds
-      const deltaTime = (currentTime - lastTimeRef.current) / 1000;
+      const deltaTime = Math.min((currentTime - lastTimeRef.current) / 1000, 0.1);
       lastTimeRef.current = currentTime;
 
       // Update time uniform for subtle animation
       gradientMaterial.uniforms.time.value += deltaTime * 0.5;
 
-      // Update ripples with delta time
+      // Update ripples with wave physics
       ripplesRef.current = ripplesRef.current.filter(ripple => {
-        ripple.time += 0.015 * deltaTime * 60; // Faster animation
-        ripple.strength *= 0.98; // Faster decay
-        return ripple.strength > 0.01;
+        ripple.time += deltaTime * 0.24; // Time scale: 0.2 to 0.8 (below 0.2 is too slow, above 0.8 too fast)
+        
+        // Apply gentler energy loss over time and distance
+        ripple.strength *= Math.exp(-ripple.damping * ripple.time);
+        
+        return ripple.strength > 0.001; // Threshold: 0.0005 to 0.002 (lower values keep waves longer but impact performance)
       });
 
-      // Update grid based on mouse position and ripples
+      // Optimize grid updates
+      const mouseX = mousePosition.current.x * 25;
+      const mouseY = mousePosition.current.y * 25;
+
       lines.forEach((line) => {
         const positions = line.geometry.attributes.position;
-        const count = positions.count;
+        const array = positions.array;
+        let needsUpdate = false;
 
-        for (let i = 0; i < count; i++) {
-          const x = positions.getX(i);
-          const y = positions.getY(i);
+        for (let i = 0; i < positions.count; i++) {
+          const idx = i * 3;
+          const x = array[idx];
+          const y = array[idx + 1];
           
-          // Mouse hover effect - wider area of influence
-          const distX = mousePosition.current.x * 25 - x;
-          const distY = mousePosition.current.y * 25 - y;
+          const distX = mouseX - x;
+          const distY = mouseY - y;
           const mouseDistance = Math.sqrt(distX * distX + distY * distY);
-          // Wider Gaussian falloff
-          const peakInfluence = 35 * Math.exp(-Math.pow(mouseDistance * 0.15, 2));
+          const peakInfluence = 15 * Math.exp(-Math.pow(mouseDistance * 0.15, 2));
           
           let targetZ = peakInfluence;
 
-          // Add ripple effects
-          ripplesRef.current.forEach(ripple => {
+          // Calculate wave interference pattern
+          for (const ripple of ripplesRef.current) {
             const rippleX = ripple.position.x * 25;
             const rippleY = ripple.position.y * 25;
-            const rippleDist = Math.sqrt(
-              Math.pow(rippleX - x, 2) + 
-              Math.pow(rippleY - y, 2)
+            const distance = Math.hypot(rippleX - x, rippleY - y);
+            
+            // Wave equation components
+            const phase = (distance / ripple.wavelength) - (ripple.time * ripple.velocity);
+            const amplitude = ripple.strength * Math.exp(-distance * 0.002); // Distance falloff: 0.001 to 0.004 (lower spreads further)
+            
+            // Combine multiple wave components with more pronounced sub-harmonics
+            const waveform = (
+              Math.sin(phase * ripple.frequency * Math.PI) +                    // Primary wave
+              Math.sin(phase * ripple.frequency * 0.3 * Math.PI) * 0.7 +       // Sub-harmonic (ratio 0.2 to 0.4)
+              Math.sin(phase * ripple.frequency * 0.15 * Math.PI) * 0.4        // Second sub-harmonic (ratio 0.1 to 0.2)
             );
+
+            // Wavefront focusing factor
+            const focusFactor = Math.exp(-Math.pow(distance - ripple.velocity * ripple.time, 2) * 0.0002); // Range: 0.0001 to 0.0004
             
-            // Maintain smooth wave propagation
-            const time = ripple.time;
-            const primaryWave = Math.sin(rippleDist * 0.12 - time * 3.0);
-            const secondaryWave = Math.sin(rippleDist * 0.06 - time * 2.5) * 0.5;
-            const tertiaryWave = Math.sin(rippleDist * 0.18 - time * 3.5) * 0.3;
-            
-            const wave = (primaryWave + secondaryWave + tertiaryWave) * 
-                        ripple.strength * 
-                        Math.exp(-rippleDist * 0.015);
-            
-            targetZ += wave * 35;
-          });
+            // Final amplitude scaling
+            targetZ += waveform * amplitude * focusFactor * 35; // Scale: 20 to 50 (above 50 causes extreme displacement)
+          }
           
-          const currentZ = positions.getZ(i);
-          // Smooth interpolation
-          const springFactor = 0.4; // Increased for closer cursor following
-          const dampingFactor = 0.7; // Balanced for smoothness
-          const velocity = (targetZ - currentZ) * springFactor;
-          positions.setZ(i, currentZ + velocity * dampingFactor);
+          const currentZ = array[idx + 2];
+          // Motion control parameters - Range: 0.1 to 0.3 (lower = smoother but slower)
+          const dampingFactor = Math.abs(targetZ - currentZ) > 1 ? 0.10 : 0.18;
+          const velocity = (targetZ - currentZ) * dampingFactor;
+          const newZ = currentZ + velocity;
+          
+          if (Math.abs(newZ - currentZ) > 0.001) {
+            array[idx + 2] = newZ;
+            needsUpdate = true;
+          }
         }
         
-        positions.needsUpdate = true;
+        if (needsUpdate) {
+          positions.needsUpdate = true;
+        }
       });
 
       renderer.render(scene, camera);
