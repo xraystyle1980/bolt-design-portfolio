@@ -38,8 +38,8 @@ export function ThreeHero() {
     containerRef.current.appendChild(renderer.domElement);
 
     // Grid setup
-    const gridSize = 60; // Reduced for more visible distortion
-    const spacing = 2.0; // Increased spacing for more dramatic effect
+    const gridSize = 100; // Increased from 60 for more grid lines
+    const spacing = 1.5; // Reduced spacing for tighter grid
     const lines: THREE.Line[] = [];
 
     // Create a group to hold all grid lines
@@ -74,7 +74,7 @@ export function ThreeHero() {
 
         void main() {
           float dist = length(vPosition.xy - mousePos * 25.0);
-          float glow = smoothstep(35.0, 5.0, dist);
+          float glow = smoothstep(25.0, 2.0, dist);
           vec3 finalColor = color;
           float opacity = mix(0.15, 0.95, glow);
           gl_FragColor = vec4(finalColor, opacity);
@@ -124,8 +124,8 @@ export function ThreeHero() {
       lines.push(line);
     }
 
-    // Adjust camera position for top-down view
-    camera.position.set(0, 0, 100);
+    // Adjust camera position for wider view
+    camera.position.set(0, 0, 150);
     camera.lookAt(0, 0, 0);
 
     // Window resize handler
@@ -196,8 +196,8 @@ export function ThreeHero() {
 
       // Update ripples with delta time
       ripplesRef.current = ripplesRef.current.filter(ripple => {
-        ripple.time += 0.005 * deltaTime * 60;
-        ripple.strength *= 0.997;
+        ripple.time += 0.015 * deltaTime * 60; // Faster animation
+        ripple.strength *= 0.98; // Faster decay
         return ripple.strength > 0.01;
       });
 
@@ -210,11 +210,12 @@ export function ThreeHero() {
           const x = positions.getX(i);
           const y = positions.getY(i);
           
-          // Mouse hover effect - creates higher peaks with wider influence
+          // Mouse hover effect - wider area of influence
           const distX = mousePosition.current.x * 25 - x;
           const distY = mousePosition.current.y * 25 - y;
           const mouseDistance = Math.sqrt(distX * distX + distY * distY);
-          const peakInfluence = Math.exp(-mouseDistance * 0.02) * 35; // Much higher peaks, wider spread
+          // Wider Gaussian falloff
+          const peakInfluence = 35 * Math.exp(-Math.pow(mouseDistance * 0.15, 2));
           
           let targetZ = peakInfluence;
 
@@ -227,16 +228,25 @@ export function ThreeHero() {
               Math.pow(rippleY - y, 2)
             );
             
-            // Slower, wider ripples with more organic movement
-            const wave = Math.sin(rippleDist * 0.04 - ripple.time * 1.2) * 
+            // Maintain smooth wave propagation
+            const time = ripple.time;
+            const primaryWave = Math.sin(rippleDist * 0.12 - time * 3.0);
+            const secondaryWave = Math.sin(rippleDist * 0.06 - time * 2.5) * 0.5;
+            const tertiaryWave = Math.sin(rippleDist * 0.18 - time * 3.5) * 0.3;
+            
+            const wave = (primaryWave + secondaryWave + tertiaryWave) * 
                         ripple.strength * 
                         Math.exp(-rippleDist * 0.015);
             
-            targetZ += wave * 25;
+            targetZ += wave * 35;
           });
           
           const currentZ = positions.getZ(i);
-          positions.setZ(i, currentZ + (targetZ - currentZ) * 0.05);
+          // Smooth interpolation
+          const springFactor = 0.4; // Increased for closer cursor following
+          const dampingFactor = 0.7; // Balanced for smoothness
+          const velocity = (targetZ - currentZ) * springFactor;
+          positions.setZ(i, currentZ + velocity * dampingFactor);
         }
         
         positions.needsUpdate = true;
