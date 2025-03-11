@@ -25,7 +25,7 @@ export function ThreeHero() {
     sceneRef.current = scene;
     
     // Reduce FOV for flatter perspective
-    const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 2000);
+    const camera = new THREE.PerspectiveCamera(5, window.innerWidth / window.innerHeight, 0.1, 2000);
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
       alpha: false
@@ -36,6 +36,15 @@ export function ThreeHero() {
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
+
+    // Grid setup
+    const gridSize = 60; // Reduced for more visible distortion
+    const spacing = 2.0; // Increased spacing for more dramatic effect
+    const lines: THREE.Line[] = [];
+
+    // Create a group to hold all grid lines
+    const gridGroup = new THREE.Group();
+    scene.add(gridGroup);
 
     // Custom shader material for gradient effect
     const gradientMaterial = new THREE.ShaderMaterial({
@@ -64,10 +73,10 @@ export function ThreeHero() {
         uniform float time;
 
         void main() {
-          float dist = length(vPosition.xy - mousePos * 15.0);
-          float glow = smoothstep(20.0, 12.0, dist);
+          float dist = length(vPosition.xy - mousePos * 25.0);
+          float glow = smoothstep(35.0, 5.0, dist);
           vec3 finalColor = color;
-          float opacity = mix(0.2, 0.9, glow);
+          float opacity = mix(0.15, 0.95, glow);
           gl_FragColor = vec4(finalColor, opacity);
         }
       `,
@@ -75,16 +84,7 @@ export function ThreeHero() {
       side: THREE.DoubleSide,
     });
 
-    // Grid setup
-    const gridSize = 50;
-    const spacing = 1;
-    const lines: THREE.Line[] = [];
-
-    // Create a group to hold all grid lines
-    const gridGroup = new THREE.Group();
-    scene.add(gridGroup);
-
-    // Create horizontal lines with curve interpolation
+    // Create horizontal lines with enhanced curve interpolation
     for (let j = 0; j < gridSize; j++) {
       const points: THREE.Vector3[] = [];
       for (let i = 0; i < gridSize; i++) {
@@ -94,9 +94,9 @@ export function ThreeHero() {
           0
         ));
       }
-      // Create a smooth curve from the points
-      const curve = new THREE.CatmullRomCurve3(points);
-      const smoothPoints = curve.getPoints(gridSize * 2); // Double the points for smoother curve
+      // Create a smooth curve from the points with increased smoothness
+      const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.5);
+      const smoothPoints = curve.getPoints(gridSize * 4); // Quadruple the points for even smoother curves
       
       const geometry = new THREE.BufferGeometry().setFromPoints(smoothPoints);
       const line = new THREE.Line(geometry, gradientMaterial);
@@ -104,7 +104,7 @@ export function ThreeHero() {
       lines.push(line);
     }
 
-    // Create vertical lines with curve interpolation
+    // Create vertical lines with enhanced curve interpolation
     for (let i = 0; i < gridSize; i++) {
       const points: THREE.Vector3[] = [];
       for (let j = 0; j < gridSize; j++) {
@@ -114,9 +114,9 @@ export function ThreeHero() {
           0
         ));
       }
-      // Create a smooth curve from the points
-      const curve = new THREE.CatmullRomCurve3(points);
-      const smoothPoints = curve.getPoints(gridSize * 2); // Double the points for smoother curve
+      // Create a smooth curve from the points with increased smoothness
+      const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.5);
+      const smoothPoints = curve.getPoints(gridSize * 4); // Quadruple the points for even smoother curves
       
       const geometry = new THREE.BufferGeometry().setFromPoints(smoothPoints);
       const line = new THREE.Line(geometry, gradientMaterial);
@@ -124,9 +124,9 @@ export function ThreeHero() {
       lines.push(line);
     }
 
-    // Adjust camera position for flatter perspective
-    camera.position.set(0, -35, 50);
-    camera.lookAt(0, 5, 0);
+    // Adjust camera position for top-down view
+    camera.position.set(0, 0, 100);
+    camera.lookAt(0, 0, 0);
 
     // Window resize handler
     const handleResize = () => {
@@ -210,29 +210,29 @@ export function ThreeHero() {
           const x = positions.getX(i);
           const y = positions.getY(i);
           
-          // Mouse hover effect - creates higher peaks
-          const distX = mousePosition.current.x * 15 - x;
-          const distY = mousePosition.current.y * 15 - y;
+          // Mouse hover effect - creates higher peaks with wider influence
+          const distX = mousePosition.current.x * 25 - x;
+          const distY = mousePosition.current.y * 25 - y;
           const mouseDistance = Math.sqrt(distX * distX + distY * distY);
-          const peakInfluence = Math.exp(-mouseDistance * 0.04) * 12; // Higher peaks, wider spread
+          const peakInfluence = Math.exp(-mouseDistance * 0.02) * 35; // Much higher peaks, wider spread
           
           let targetZ = peakInfluence;
 
           // Add ripple effects
           ripplesRef.current.forEach(ripple => {
-            const rippleX = ripple.position.x * 15;
-            const rippleY = ripple.position.y * 15;
+            const rippleX = ripple.position.x * 25;
+            const rippleY = ripple.position.y * 25;
             const rippleDist = Math.sqrt(
               Math.pow(rippleX - x, 2) + 
               Math.pow(rippleY - y, 2)
             );
             
-            // Slower, wider ripples
-            const wave = Math.sin(rippleDist * 0.08 - ripple.time * 1.5) * 
+            // Slower, wider ripples with more organic movement
+            const wave = Math.sin(rippleDist * 0.04 - ripple.time * 1.2) * 
                         ripple.strength * 
-                        Math.exp(-rippleDist * 0.03);
+                        Math.exp(-rippleDist * 0.015);
             
-            targetZ += wave * 12;
+            targetZ += wave * 25;
           });
           
           const currentZ = positions.getZ(i);

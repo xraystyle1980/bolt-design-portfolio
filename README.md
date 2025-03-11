@@ -2,7 +2,7 @@
 
 A modern, interactive portfolio website built with React, Three.js, and Tailwind CSS. Features a dynamic 3D hero section, case studies, and a responsive design.
 
-![Bolt Design Portfolio](https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=2000)
+<!-- ![Bolt Design Portfolio](https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=2000) -->
 
 ## Features
 
