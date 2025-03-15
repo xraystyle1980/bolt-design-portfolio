@@ -1,11 +1,14 @@
 import { ThreeHero } from '../components/ThreeHero';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from '@/components/icons/arrow-right';
 import { CaseStudies } from '../components/CaseStudies';
 import { Insights } from '../components/Insights';
 import { Footer } from '../components/Footer';
 import { MobileMenu } from '../components/MobileMenu';
 import { Link } from 'react-router-dom';
+import { GltfLogo } from '../components/GltfLogo';
+import { LottieLogo } from '@/components/LottieLogo';
+import { Container } from '@/components/ui/container';
 
 export function HomePage() {
   return (
@@ -13,44 +16,85 @@ export function HomePage() {
       {/* Hero Section */}
       <section className="relative min-h-screen">
         <ThreeHero />
-        <div className="relative z-10 flex flex-col items-start justify-center min-h-screen px-8 md:px-16 lg:px-24">
-          <nav className="fixed top-0 left-0 right-0 flex justify-between items-center p-8 md:p-16 lg:p-24">
-            <Link to="/" className="text-xl font-bold tracking-tight">BOLT DESIGN</Link>
-            <div className="flex items-center gap-4">
-              <Button variant="outline" className="rounded-full hidden md:flex">
-                Let's Talk <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <MobileMenu />
+        <div className="relative z-10 flex min-h-screen flex-col">
+          <Container>
+            <nav className="fixed left-0 right-0 top-0 flex items-center justify-between p-8">
+              <Link to="/" className="flex items-center">
+                <LottieLogo />
+              </Link>
+              <div className="flex items-center gap-4">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="hidden md:inline-flex group"
+                >
+                  Let's Talk
+                  <ArrowRight size="sm" />
+                </Button>
+                <MobileMenu />
+              </div>
+            </nav>
+          </Container>
+
+          <Container className="flex flex-1 items-center">
+            <div className="flex w-full flex-col gap-4 pb-[72px] pt-48">
+              <div className="text-body-xl text-muted-foreground">
+                👋 Hello, I'm Matt Trice.
+              </div>
+              <div className="text-display-3xl text-foreground leading-none max-w-4xl">
+                I am a Senior Product Designer connecting UX, design systems, and front-end.
+              </div>
+              <div className="flex items-end pt-12">
+                <Button 
+                  variant="default"
+                  size="lg"
+                  className="group"
+                >
+                  Let's Talk
+                  <ArrowRight size="lg" />
+                </Button>
+              </div>
             </div>
-          </nav>
-          <h2 className="text-xl font-medium text-neutral-600 mb-4">
-            Hello, I'm Bolt
-          </h2>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-neutral-900 max-w-4xl mb-6">
-            I am a Senior Product Designer connecting UX, design systems, and front-end.
-          </h1>
-          <div className="mt-8">
-            <Button variant="outline" className="rounded-full group">
-              View All Works
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </div>
+          </Container>
         </div>
       </section>
 
       {/* Case Studies Section */}
-      <CaseStudies />
+      <Container>
+        <CaseStudies />
+      </Container>
 
       {/* Insights Section */}
-      <Insights />
+      <Container>
+        <Insights />
+      </Container>
 
       {/* Contact Section */}
-      <section className="py-24 px-8 md:px-16 lg:px-24 text-center">
-        <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">Let's rock <span className="text-neutral-400">with me</span></h2>
-      </section>
+      <Container>
+        <section className="py-24 text-center">
+          <h2 className="text-display-3xl md:text-display-4xl lg:text-display-5xl font-normal mb-8">
+            Let's rock <span className="text-muted-foreground">with me</span>
+          </h2>
+          <Button 
+            variant="outline"
+            size="lg"
+            className="group mx-auto"
+          >
+            Let's Talk
+            <ArrowRight size="lg" />
+          </Button>
+        </section>
+      </Container>
 
       {/* Footer */}
-      <Footer />
+      <footer className="bg-neutral-800 text-white">
+        <Container>
+          <Footer />
+        </Container>
+      </footer>
     </div>
   );
 }
+
+
+

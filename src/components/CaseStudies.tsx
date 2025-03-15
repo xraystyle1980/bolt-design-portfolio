@@ -1,38 +1,63 @@
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { projects } from '../data/projects';
+import { Button } from './ui/button';
+import { ArrowRight } from './icons/arrow-right';
+
+interface CaseStudy {
+  id: string;
+  title: string;
+  description: string;
+  backgroundClass: string;
+}
+
+const caseStudies: CaseStudy[] = [
+  {
+    id: 'decent-app',
+    title: 'Decent App',
+    description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
+    backgroundClass: 'bg-[url(/images/decent-app-hero-1.png)] [background-size:104%_161%] [background-position:-20.76px_-30.5px]'
+  },
+  {
+    id: 'blockset-docs',
+    title: 'Blockset Docs by BRD',
+    description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
+    backgroundClass: 'bg-[url(/images/blockset-docs-hero.png)] [background-size:104%_161%] [background-position:-22.2px_-144.84px]'
+  },
+  {
+    id: 'decent-design-system',
+    title: 'Decent Design System',
+    description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
+    backgroundClass: 'bg-[url(/images/decent-design-system-hero-collage.png)] [background-size:100%_155%] [background-position:0px_-216.56px]'
+  }
+];
 
 export function CaseStudies() {
   return (
-    <section className="py-24 px-8 md:px-16 lg:px-24">
-      <div className="flex justify-between items-center mb-12">
-        <h2 className="text-2xl font-bold">CASE STUDIES</h2>
-        <Button variant="outline" className="rounded-full">
-          View All Works <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </div>
-      
-      <div className="space-y-12">
-        {projects.map((project) => (
-          <Link to={`/case-study/${project.id}`} key={project.id}>
-            <div className="group relative overflow-hidden rounded-3xl bg-neutral-100 hover:bg-neutral-200 transition-colors">
-              <div className="p-8 md:p-12">
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                <p className="text-neutral-600 mb-8">{project.summary}</p>
-                <img
-                  src={project.heroImage}
-                  alt={project.title}
-                  className="rounded-2xl w-full object-cover"
-                  style={{ height: '400px' }}
-                />
+    <section className="py-24">
+      <h2 className="text-4xl font-bold leading-none text-neutral-500 mb-10">
+        Case Studies
+      </h2>
+      <div className="flex flex-grow flex-col gap-10 text-lg leading-normal text-neutral-800">
+        {caseStudies.map((study) => (
+          <Link 
+            key={study.id}
+            to={`/case-study/${study.id}`}
+            className="group flex flex-col gap-6"
+          >
+            <div className="flex flex-col items-center overflow-clip rounded-3xl bg-neutral-200">
+              <div className={`h-[512px] max-h-full w-full bg-no-repeat ${study.backgroundClass}`} />
+            </div>
+            <div className="flex flex-wrap items-start justify-between gap-x-20 gap-y-7 min-[1190px]:flex-nowrap">
+              <div className="flex w-[524px] flex-col gap-2">
+                <h3 className="text-[22px] font-bold leading-[1.3] text-neutral-500">
+                  {study.title}
+                </h3>
+                <div className="flex items-start">
+                  <p>{study.description}</p>
+                </div>
               </div>
-              <Button
-                variant="outline"
-                className="absolute bottom-8 right-8 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </Button>
+              <div className="flex items-center justify-center rounded-[100px] border border-solid border-gray-950 px-7 py-[15px] transition-colors group-hover:bg-neutral-800 group-hover:text-white">
+                <ArrowRight className="h-6 w-6" />
+              </div>
             </div>
           </Link>
         ))}

@@ -9,6 +9,44 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Domine', 'serif'],
+        body: ['Domine', 'serif'],
+        display: ['Domine', 'serif'],
+      },
+      fontSize: {
+        // Display scale
+        'display-5xl': ['96px', { lineHeight: '100%', letterSpacing: '-1.92px', fontWeight: '400' }],
+        'display-4xl': ['80px', { lineHeight: '100%', letterSpacing: '-1.6px', fontWeight: '400' }],
+        'display-3xl': ['64px', { lineHeight: '100%', letterSpacing: '-1.28px', fontWeight: '400' }],
+        'display-2xl': ['56px', { lineHeight: '100%', letterSpacing: '-1.12px', fontWeight: '400' }],
+        'display-xl': ['48px', { lineHeight: '100%', letterSpacing: '-0.48px', fontWeight: '700' }],
+        'display-lg': ['36px', { lineHeight: '100%', letterSpacing: '-0.36px', fontWeight: '700' }],
+        'display-md': ['30px', { lineHeight: '100%', fontWeight: '700' }],
+        'display-sm': ['24px', { lineHeight: '100%', fontWeight: '700' }],
+        'display-xs': ['20px', { lineHeight: '100%', fontWeight: '700' }],
+        'display-xxs': ['16px', { lineHeight: '100%', fontWeight: '700' }],
+        // Body scale
+        'body-xxl': ['28px', { lineHeight: '120%', fontWeight: '400' }],
+        'body-xl': ['22px', { lineHeight: '130%', letterSpacing: '0.44px', fontWeight: '400' }],
+        'body-lg': ['18px', { lineHeight: '150%', letterSpacing: '0.36px', fontWeight: '400' }],
+        'body-md': ['16px', { lineHeight: '150%', letterSpacing: '0.32px', fontWeight: '400' }],
+        'body-sm': ['14px', { lineHeight: '150%', letterSpacing: '0.14px', fontWeight: '400' }],
+        'body-caption': ['12px', { lineHeight: '150%', letterSpacing: '0.12px', fontWeight: '400' }],
+      },
+      letterSpacing: {
+        tighter: '-1.92px',
+        tight: '-1.6px',
+        normal: '0px',
+        wide: '0.32px',
+        wider: '0.44px',
+      },
+      lineHeight: {
+        none: '100%',
+        tight: '120%',
+        normal: '130%',
+        relaxed: '150%',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

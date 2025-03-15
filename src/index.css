@@ -1,50 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --ring: 0 0% 3.9%;
-  --radius: 0.5rem;
-}
+@layer base {
+  html {
+    font-family: 'Domine', serif;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.32px;
+    font-weight: 400;
+    color: #000;
+  }
 
-.dark {
-  --background: 0 0% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 0 0% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 0 0% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 0 0% 9%;
-  --secondary: 0 0% 14.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 0 0% 63.9%;
-  --accent: 0 0% 14.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --ring: 0 0% 83.1%;
+  body {
+    font-family: 'Domine', serif;
+  }
+
+  /* Display Typography */
+  h1 {
+    @apply text-display-3xl;
+    margin-bottom: 0.5em;
+  }
+
+  h2 {
+    @apply text-display-xl;
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    @apply text-display-lg;
+    margin-bottom: 0.5em;
+  }
+
+  h4 {
+    @apply text-display-md;
+    margin-bottom: 0.5em;
+  }
+
+  h5 {
+    @apply text-display-sm;
+    margin-bottom: 0.5em;
+  }
+
+  h6 {
+    @apply text-display-xs;
+    margin-bottom: 0.5em;
+  }
+
+  /* Body Typography */
+  p {
+    @apply text-body-md;
+    margin-bottom: 1em;
+  }
+
+  small {
+    @apply text-body-sm;
+  }
+
+  .caption {
+    @apply text-body-caption;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 15% 11%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 4%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 4%;
+    
+    --primary: 157 4% 12%;
+    --primary-foreground: 147 13% 91%;
+    
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    
+    --muted: 147 9% 84%;
+    --muted-foreground: 157 4% 45%;
+    
+    --accent: 347 89% 61%;
+    --accent-foreground: 240 6% 10%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 240 6% 4%;
+    
+    --border: 240 5% 90%;
+    --input: 240 5% 90%;
+    --ring: 240 5% 64%;
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 6% 4%;
+    --foreground: 0 0% 98%;
+    
+    --card: 240 6% 4%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 6% 4%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 147 13% 91%;
+    --primary-foreground: 157 4% 12%;
+    
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 157 4% 12%;
+    --muted-foreground: 147 3% 64%;
+    
+    --accent: 347 89% 61%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 86% 97%;
+    
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 240 4% 16%;
+  }
 }
 
 * {

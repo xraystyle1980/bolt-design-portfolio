@@ -47,7 +47,7 @@ export function CaseStudiesPage() {
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 flex justify-between items-center p-8 md:p-16 lg:p-24 bg-white z-50">
-        <Link to="/" className="text-xl font-bold tracking-tight">BOLT DESIGN</Link>
+        <Link to="/" className="text-display-sm font-normal tracking-tight">BOLT DESIGN</Link>
         <div className="flex items-center gap-4">
           <Button variant="outline" className="rounded-full hidden md:flex">
             Let's Talk <ArrowRight className="ml-2 h-4 w-4" />
@@ -58,14 +58,14 @@ export function CaseStudiesPage() {
 
       {/* Header */}
       <header className="pt-48 pb-24 px-8 md:px-16 lg:px-24">
-        <Link to="/" className="inline-flex items-center text-sm text-neutral-600 hover:text-neutral-900 mb-8">
+        <Link to="/" className="inline-flex items-center text-body-sm text-neutral-600 hover:text-neutral-900 mb-8">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Home
         </Link>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+        <h1 className="text-display-3xl md:text-display-4xl lg:text-display-5xl font-normal tracking-tight mb-6">
           Case Studies
         </h1>
-        <p className="text-xl text-neutral-600 max-w-2xl">
+        <p className="text-body-xl text-neutral-600 max-w-2xl">
           Explore our latest work and discover how we help businesses transform their digital presence.
         </p>
       </header>
@@ -87,12 +87,12 @@ export function CaseStudiesPage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-2xl font-bold">{project.title}</h3>
-                    <p className="text-neutral-600">{project.category}</p>
+                    <h3 className="text-display-lg font-normal">{project.title}</h3>
+                    <p className="text-body-md text-neutral-600">{project.category}</p>
                   </div>
-                  <span className="text-neutral-400">{project.year}</span>
+                  <span className="text-body-md text-neutral-400">{project.year}</span>
                 </div>
-                <p className="text-neutral-600">{project.description}</p>
+                <p className="text-body-md text-neutral-600">{project.description}</p>
                 
                 {/* Gallery Grid */}
                 <div className="grid grid-cols-3 gap-4 mt-6">

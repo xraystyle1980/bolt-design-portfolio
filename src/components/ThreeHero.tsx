@@ -56,7 +56,7 @@ export function ThreeHero() {
     // Optimize shader for performance
     const gradientMaterial = new THREE.ShaderMaterial({
       uniforms: {
-        color: { value: new THREE.Color(0xD5ECE2) },
+        color: { value: new THREE.Color(0xE5ECE9) },
         mousePos: { value: new THREE.Vector2(0, 0) },
         time: { value: 0 }
       },
@@ -81,7 +81,7 @@ export function ThreeHero() {
         void main() {
           float dist = length(vPosition.xy - mousePos * 25.0);
           float glow = smoothstep(25.0, 2.0, dist);
-          float opacity = mix(0.15, 0.95, glow);
+          float opacity = mix(0.35, 1.00, glow);
           gl_FragColor = vec4(color, opacity);
         }
       `,
@@ -227,7 +227,7 @@ export function ThreeHero() {
           const distX = mouseX - x;
           const distY = mouseY - y;
           const mouseDistance = Math.sqrt(distX * distX + distY * distY);
-          const peakInfluence = 15 * Math.exp(-Math.pow(mouseDistance * 0.15, 2));
+          const peakInfluence = 25 * Math.exp(-Math.pow(mouseDistance * 0.15, 2));
           
           let targetZ = peakInfluence;
 
@@ -301,7 +301,7 @@ export function ThreeHero() {
   return (
     <div 
       ref={containerRef} 
-      className="absolute top-0 left-0 w-full h-screen -z-10 bg-white"
+      className="absolute top-0 left-0 w-full h-screen -z-10 bg-white pointer-events-none"
     />
   );
 }

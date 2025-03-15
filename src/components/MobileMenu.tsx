@@ -19,13 +19,13 @@ export function MobileMenu() {
         </Button>
       </SheetTrigger>
       <SheetContent className="w-full sm:w-[540px] bg-white">
-        <SheetTitle className="text-xl font-bold">Navigation Menu</SheetTitle>
+        <SheetTitle className="text-xl font-semibold">Navigation Menu</SheetTitle>
         <nav className="flex flex-col gap-8 mt-16">
           {menuItems.map((item) => (
             <Link
               key={item.label}
               to={item.href}
-              className="text-4xl font-bold tracking-tight hover:text-neutral-400 transition-colors"
+              className="text-4xl font-semibold tracking-tight hover:text-neutral-400 transition-colors"
             >
               {item.label}
             </Link>

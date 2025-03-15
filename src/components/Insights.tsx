@@ -23,7 +23,7 @@ export function Insights() {
   return (
     <section className="py-24 px-8 md:px-16 lg:px-24 bg-neutral-100">
       <div className="flex justify-between items-center mb-12">
-        <h2 className="text-2xl font-bold">INSIGHTS</h2>
+        <h2 className="text-display-lg font-normal">INSIGHTS</h2>
         <Button variant="outline" className="rounded-full">
           View All Insights <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
@@ -40,8 +40,8 @@ export function Insights() {
               />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">{insight.title}</h3>
-              <p className="text-neutral-600 text-sm">{insight.description}</p>
+              <h3 className="text-display-sm font-normal mb-2">{insight.title}</h3>
+              <p className="text-body-sm text-neutral-600">{insight.description}</p>
             </div>
             <Button
               variant="outline"
