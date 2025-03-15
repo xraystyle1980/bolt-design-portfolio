@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { GltfLogo } from '../components/GltfLogo';
 import { LottieLogo } from '@/components/LottieLogo';
 import { Container } from '@/components/ui/container';
+import { CTA } from '@/components/CTA';
 
 export function HomePage() {
   return (
@@ -69,21 +70,9 @@ export function HomePage() {
         <Insights />
       </Container>
 
-      {/* Contact Section */}
+      {/* CTA Section */}
       <Container>
-        <section className="py-24 text-center">
-          <h2 className="text-display-3xl md:text-display-4xl lg:text-display-5xl font-normal mb-8">
-            Let's rock <span className="text-muted-foreground">with me</span>
-          </h2>
-          <Button 
-            variant="outline"
-            size="lg"
-            className="group mx-auto"
-          >
-            Let's Talk
-            <ArrowRight size="lg" />
-          </Button>
-        </section>
+        <CTA />
       </Container>
 
       {/* Footer */}

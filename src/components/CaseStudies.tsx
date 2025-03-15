@@ -52,7 +52,7 @@ export function CaseStudies() {
                   {study.title}
                 </h3>
                 <div className="flex items-start">
-                  <p>{study.description}</p>
+                  <p className="text-body-lg">{study.description}</p>
                 </div>
               </div>
               <div className="flex items-center justify-center rounded-[100px] border border-solid border-gray-950 px-7 py-[15px] transition-colors group-hover:bg-neutral-800 group-hover:text-white">
