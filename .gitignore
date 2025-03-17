@@ -1,27 +1,18 @@
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
 .npmrc
 
-# testing
+# Testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
-# production
+# Build output
 /build
 /dist
 /dist-ssr
 
-# misc
-.DS_Store
-*.pem
-*.local
-
-# debug
+# Debug logs
 logs
 *.log
 npm-debug.log*
@@ -30,22 +21,20 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# local env files
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# Editor directories and files
+# Editor and system files
 .vscode/*
 !.vscode/extensions.json
 .idea
+.DS_Store
+*.pem
+*.local
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+gsap-bonus.tgz
