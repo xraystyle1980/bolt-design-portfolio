@@ -4,6 +4,8 @@ export const projects = [
     title: 'Decent App',
     category: 'Mobile Development',
     year: '2024',
+    description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
+    backgroundClass: 'bg-[url(/images/decent-app-hero-1.png)] [background-size:104%_161%] [background-position:-20.76px_-30.5px]',
     heroImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2000',
     summary: 'Revolutionizing mobile sport apps to drive growth and engagement through a compelling startup.',
     challenge: 'The sports industry faced a significant challenge in engaging younger audiences through traditional platforms. Users wanted more interactive and personalized experiences that traditional apps were not providing.',
@@ -33,36 +35,63 @@ export const projects = [
     }
   },
   {
-    id: 'payrate',
-    title: 'Payrate',
-    category: 'Analytics Platform',
+    id: 'blockset-docs',
+    title: 'Blockset Docs by BRD',
+    category: 'Documentation',
     year: '2023',
+    description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
+    backgroundClass: 'bg-[url(/images/blockset-docs-hero.png)] [background-size:104%_161%] [background-position:-22.2px_-144.84px]',
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
-    summary: 'A sophisticated analytics platform that provides real-time insights and data visualization for financial institutions.',
-    challenge: 'Financial institutions struggled with fragmented data sources and delayed insights, making it difficult to make timely decisions based on market trends and customer behavior.',
-    solution: 'We created a unified analytics platform that aggregates multiple data sources and provides real-time visualization and analysis tools. The platform includes predictive modeling and automated reporting features.',
+    summary: 'Creating a developer-first documentation platform that makes blockchain integration simple and intuitive.',
+    challenge: 'Developers struggled with complex blockchain integration documentation that was fragmented and difficult to navigate.',
+    solution: 'We created a unified documentation platform with interactive examples, clear navigation, and comprehensive API references.',
     sections: [
       {
-        title: 'Data Integration Architecture',
-        content: 'We developed a scalable architecture that can handle multiple data sources and process them in real-time. The system uses advanced ETL processes and maintains data integrity across all sources.',
+        title: 'Developer Experience',
+        content: 'Through user research with developers, we identified key pain points in the documentation process and created a more intuitive structure.',
         image: 'https://images.unsplash.com/photo-1551288049-a22ae9c54e50?auto=format&fit=crop&q=80&w=2000'
       },
       {
-        title: 'Interactive Dashboards',
-        content: 'Custom-built dashboards provide intuitive access to complex financial data. Users can create personalized views and receive automated alerts based on custom triggers.',
+        title: 'Interactive Examples',
+        content: 'We implemented live code examples and API playgrounds that allow developers to test endpoints directly in the documentation.',
         image: 'https://images.unsplash.com/photo-1551288049-48572a22b179?auto=format&fit=crop&q=80&w=2000'
-      },
-      {
-        title: 'Security & Compliance',
-        content: 'The platform implements bank-grade security measures and ensures compliance with financial regulations. All data is encrypted and access is strictly controlled through role-based permissions.',
-        image: 'https://images.unsplash.com/photo-1551288049-49b7fcba9736?auto=format&fit=crop&q=80&w=2000'
       }
     ],
-    technologies: ['React', 'D3.js', 'GraphQL', 'AWS', 'Python'],
+    technologies: ['Next.js', 'MDX', 'TypeScript', 'Tailwind CSS'],
     testimonial: {
-      quote: 'Payrate has revolutionized how we handle data analytics. The real-time insights have become invaluable to our decision-making process.',
-      author: 'Michael Roberts',
-      role: 'CTO, Global Financial Services'
+      quote: 'The new documentation platform has significantly reduced our support tickets and improved developer onboarding time.',
+      author: 'Michael Wong',
+      role: 'Developer Relations, BRD'
+    }
+  },
+  {
+    id: 'decent-design-system',
+    title: 'Decent Design System',
+    category: 'Design Systems',
+    year: '2023',
+    description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
+    backgroundClass: 'bg-[url(/images/decent-design-system-hero-collage.png)] [background-size:100%_155%] [background-position:0px_-216.56px]',
+    heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
+    summary: 'Building a comprehensive design system that bridges the gap between design and development.',
+    challenge: 'The team struggled with inconsistent UI implementations and slow development cycles due to lack of standardization.',
+    solution: 'We developed a unified design system with automated token management, component library, and documentation.',
+    sections: [
+      {
+        title: 'Token Management',
+        content: 'Implemented automated design token synchronization between Figma and code, ensuring perfect consistency.',
+        image: 'https://images.unsplash.com/photo-1551288049-a22ae9c54e50?auto=format&fit=crop&q=80&w=2000'
+      },
+      {
+        title: 'Component Library',
+        content: 'Built a comprehensive React component library with TypeScript, storybook documentation, and automated testing.',
+        image: 'https://images.unsplash.com/photo-1551288049-48572a22b179?auto=format&fit=crop&q=80&w=2000'
+      }
+    ],
+    technologies: ['React', 'TypeScript', 'Storybook', 'Figma API'],
+    testimonial: {
+      quote: 'The design system has transformed how our team works, making us significantly more efficient and consistent.',
+      author: 'Emily Chen',
+      role: 'Design Lead, Decent'
     }
   }
 ];
