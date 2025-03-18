@@ -4,6 +4,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Core layout fixes - prevent any horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: white;
+}
+
+/* Force all top-level containers to stretch to viewport width */
+div#root,
+div[class*="flex-col"],
+div[class*="min-h-screen"],
+main,
+footer {
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
+/* Ensure backgrounds extend to edge on every page */
+div[class*="bg-white"],
+div[class*="bg-neutral-"],
+div[class*="bg-black"],
+footer {
+  margin-left: 0;
+  margin-right: 0;
+  width: 100vw;
+}
+
+/* Completely hide vertical scrollbar but keep functionality */
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -27,6 +69,4 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
   }
-}
-
-// ... existing code ... 
+} 
