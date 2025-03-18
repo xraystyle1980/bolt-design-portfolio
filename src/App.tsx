@@ -1,27 +1,44 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigationType } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { CaseStudyPage } from './pages/CaseStudyPage';
 import { Navigation } from '@/components/Navigation';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
+
+// ScrollRestoration component
+function ScrollRestoration() {
+  const { pathname } = useLocation();
+  const navigationType = useNavigationType();
+  
+  useLayoutEffect(() => {
+    // Force scroll to top on all route changes
+    console.log('ScrollRestoration: Route changed to', pathname);
+    
+    // Reset scroll position
+    window.scrollTo(0, 0);
+    
+    // Try with location hash
+    if (document.getElementById('top')) {
+      document.getElementById('top')?.scrollIntoView();
+    }
+    
+    // Use a sequence of attempts to ensure it works
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 50);
+    });
+  }, [pathname, navigationType]);
+  
+  return null;
+}
 
 export default function App() {
-  console.log('App component rendering');
   const location = useLocation();
-  
-  // Reset scroll position on route changes
-  useEffect(() => {
-    console.log('Route changed, resetting scroll');
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
-  // Debug logging for app mounting
-  useEffect(() => {
-    console.log('App mounted');
-    return () => console.log('App unmounted');
-  }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollRestoration />
       <Navigation variant="light" />
       <main className="flex-1">
         <Routes>

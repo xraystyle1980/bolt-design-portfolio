@@ -3,17 +3,21 @@ import { ArrowLeft } from 'lucide-react';
 import { Footer } from '../components/Footer';
 import { Container } from '@/components/ui/container';
 import { projects } from '../data/projects';
+import { useScrollToTop } from '../hooks/useScrollToTop';
 
 export function CaseStudyPage() {
   const { id } = useParams();
   const project = projects.find(p => p.id === id);
+  
+  // Use our custom hook to scroll to top
+  useScrollToTop([id]);
 
   if (!project) {
     return <div>Project not found</div>;
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div id="top" className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-screen pt-24 md:pt-24">
         <div className="absolute inset-0">
@@ -26,7 +30,14 @@ export function CaseStudyPage() {
         </div>
         
         <Container className="relative text-white">
-          <Link to="/" className="inline-flex items-center text-body-sm hover:text-neutral-200 mb-6 md:mb-8">
+          <Link 
+            to="/#top" 
+            className="inline-flex items-center text-body-sm hover:text-neutral-200 mb-6 md:mb-8"
+            onClick={() => {
+              // Force immediate scroll to top when clicking back to home
+              window.scrollTo(0, 0);
+            }}
+          >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
           </Link>

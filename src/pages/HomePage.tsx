@@ -4,10 +4,17 @@ import { Insights } from '../components/Insights';
 import { Footer } from '../components/Footer';
 import { Container } from '@/components/ui/container';
 import { CTA } from '@/components/CTA';
+import { useScrollToTop } from '../hooks/useScrollToTop';
+import { useLocation } from 'react-router-dom';
 
 export function HomePage() {
+  const location = useLocation();
+  
+  // Use our custom hook to scroll to top when navigating to home
+  useScrollToTop([location.pathname]);
+  
   return (
-    <div className="relative pt-24 md:pt-32">
+    <div id="top" className="relative pt-24 md:pt-32">
       {/* Hero Section */}
       <section className="relative min-h-screen">
         <ThreeHero />
