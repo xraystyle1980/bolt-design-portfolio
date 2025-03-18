@@ -8,6 +8,7 @@ import { LottieLogo } from './LottieLogo';
 import { cn } from '@/lib/utils';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTheme } from './ThemeProvider';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -22,46 +23,43 @@ export function Navigation({ variant = 'light', className }: NavigationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme } = useTheme();
 
   // Handle scroll detection for nav appearance
   useEffect(() => {
-    // Kill any existing ScrollTriggers first
-    ScrollTrigger.getAll().forEach(st => st.kill());
-
-    // Create a single ScrollTrigger for the entire page
-    const st = ScrollTrigger.create({
-      start: "top+=0",
-      end: "max",
-      onUpdate: (self) => {
-        if (self.progress > 0) {
-          setIsScrolled(true);
-        } else {
-          setIsScrolled(false);
-        }
-      }
-    });
-
-    return () => {
-      st.kill();
+    // Function to check scroll position
+    const checkScroll = () => {
+      setIsScrolled(window.scrollY > 0);
     };
-  }, [location.pathname]);
+
+    // Check initial scroll position
+    checkScroll();
+
+    // Add scroll listener
+    window.addEventListener('scroll', checkScroll, { passive: true });
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
+  }, []);
 
   // Handle nav animations
   useLayoutEffect(() => {
     if (!navRef.current) return;
 
-    // Set initial padding
+    // Set initial padding based on scroll position
     gsap.set(navRef.current, {
-      paddingTop: '1.5rem',
-      paddingBottom: '1.5rem'
+      paddingTop: window.scrollY > 0 ? '0.75rem' : '1.5rem',
+      paddingBottom: window.scrollY > 0 ? '0.75rem' : '1.5rem'
     });
 
     // Create padding animation
     const tl = gsap.timeline({
       scrollTrigger: {
-        start: "top+=0",
+        start: "top",
         end: "+=100",
-        scrub: true
+        scrub: 0.5
       }
     });
 
@@ -72,17 +70,6 @@ export function Navigation({ variant = 'light', className }: NavigationProps) {
       ease: 'none'
     });
 
-    // Check initial scroll position and apply scrolled state if needed
-    requestAnimationFrame(() => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-        gsap.set(navRef.current, {
-          paddingTop: '0.75rem',
-          paddingBottom: '0.75rem'
-        });
-      }
-    });
-
     return () => {
       tl.kill();
     };
@@ -90,16 +77,15 @@ export function Navigation({ variant = 'light', className }: NavigationProps) {
 
   const navClasses = cn(
     'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-    variant === 'light' ? 'text-neutral-900' : 'text-white',
+    theme === 'dark' ? 'text-white' : 'text-neutral-900',
     {
-      'bg-white/40 backdrop-blur-md shadow-sm': isScrolled
+      'bg-background/40 backdrop-blur-md shadow-sm': isScrolled
     },
     className
   );
 
   const containerClasses = cn(
-    'nav-container mx-auto w-full max-w-screen-xl flex items-center justify-between px-6',
-    variant === 'light' ? 'hover:bg-white/10' : 'hover:bg-black/10'
+    'nav-container mx-auto w-full max-w-screen-xl flex items-center justify-between px-6'
   );
 
   const logoClasses = cn(
@@ -130,7 +116,7 @@ export function Navigation({ variant = 'light', className }: NavigationProps) {
             </div>
           ) : (
             <span className={cn(logoClasses, 'text-display-sm font-normal tracking-tight')}>
-              BOLT DESIGN
+              TRICE DESIGN
             </span>
           )}
         </Link>

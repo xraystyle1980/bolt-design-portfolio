@@ -3,6 +3,9 @@ import { HomePage } from './pages/HomePage';
 import { CaseStudyPage } from './pages/CaseStudyPage';
 import { Navigation } from '@/components/Navigation';
 import { useLayoutEffect } from 'react';
+import { SmoothScroll } from '@/components/SmoothScroll';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 // ScrollRestoration component
 function ScrollRestoration() {
@@ -34,18 +37,22 @@ function ScrollRestoration() {
 }
 
 export default function App() {
-  const location = useLocation();
-
   return (
-    <div className="flex flex-col min-h-screen">
-      <ScrollRestoration />
+    <ThemeProvider>
       <Navigation variant="light" />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/case-study/:id" element={<CaseStudyPage />} />
-        </Routes>
-      </main>
-    </div>
+      <SmoothScroll>
+        <div id="top"></div>
+        <ScrollRestoration />
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/case-study/:id" element={<CaseStudyPage />} />
+            </Routes>
+          </main>
+        </div>
+      </SmoothScroll>
+      <ThemeToggle />
+    </ThemeProvider>
   );
 }

@@ -1,8 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap');
+@import '../styles/tokens.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* GSAP ScrollSmoother styles */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+/* Ensure fixed nav stays above smooth scroll content */
+nav[class*="fixed"] {
+  z-index: 50;
+}
+
+#smooth-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  contain: content;
+  z-index: 1;
+}
+
+#smooth-content {
+  min-height: 100vh;
+  width: 100%;
+}
 
 /* Core layout fixes - prevent any horizontal overflow */
 html, body {
@@ -11,7 +37,6 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: white;
 }
 
 /* Force all top-level containers to stretch to viewport width */
@@ -48,25 +73,103 @@ html::-webkit-scrollbar {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Map design tokens to semantic variables */
+    
+    /* Surface colors */
+    --surface-background: var(--color-background-100);
+    --surface-foreground: var(--color-foreground-100);
+    --surface-card: var(--color-card-100);
+    --surface-card-foreground: var(--color-card-foreground-100);
+    --surface-popover: var(--color-popover-100);
+    --surface-popover-foreground: var(--color-popover-foreground-100);
+    --surface-muted: var(--color-muted-100);
+    --surface-muted-foreground: var(--color-muted-foreground-100);
+
+    /* Interactive colors */
+    --interactive-primary: var(--color-primary-100);
+    --interactive-primary-foreground: var(--color-primary-foreground-100);
+    --interactive-secondary: var(--color-secondary-100);
+    --interactive-secondary-foreground: var(--color-secondary-foreground-100);
+    --interactive-accent: var(--color-accent-100);
+    --interactive-accent-foreground: var(--color-accent-foreground-100);
+    --interactive-destructive: var(--color-destructive-100);
+    --interactive-destructive-foreground: var(--color-destructive-foreground-100);
+
+    /* Content colors */
+    --content-primary: var(--mint-cream-mint-cream-900);
+    --content-secondary: var(--mint-cream-mint-cream-700);
+    --content-muted: var(--mint-cream-mint-cream-500);
+    --content-inverse: var(--mint-cream-mint-cream-50);
+
+    /* Border and focus colors */
+    --border: var(--color-border-100);
+    --input: var(--color-input-100);
+    --ring: var(--color-ring-100);
+
+    /* Misc */
     --radius: 0.5rem;
+
+    /* Shadcn compatibility */
+    --background: var(--surface-background);
+    --foreground: var(--surface-foreground);
+    --card: var(--surface-card);
+    --card-foreground: var(--surface-card-foreground);
+    --popover: var(--surface-popover);
+    --popover-foreground: var(--surface-popover-foreground);
+    --primary: var(--interactive-primary);
+    --primary-foreground: var(--interactive-primary-foreground);
+    --secondary: var(--interactive-secondary);
+    --secondary-foreground: var(--interactive-secondary-foreground);
+    --muted: var(--surface-muted);
+    --muted-foreground: var(--surface-muted-foreground);
+    --accent: var(--interactive-accent);
+    --accent-foreground: var(--interactive-accent-foreground);
+    --destructive: var(--interactive-destructive);
+    --destructive-foreground: var(--interactive-destructive-foreground);
+  }
+
+  .dark {
+    /* Surface colors */
+    --surface-background: var(--primitives-dark-color-background-100);
+    --surface-foreground: var(--primitives-dark-color-foreground-100);
+    --surface-card: var(--primitives-dark-color-card-100);
+    --surface-card-foreground: var(--primitives-dark-color-card-foreground-100);
+    --surface-popover: var(--primitives-dark-color-popover-100);
+    --surface-popover-foreground: var(--primitives-dark-color-popover-foreground-100);
+    --surface-muted: var(--primitives-dark-color-muted-100);
+    --surface-muted-foreground: var(--primitives-dark-color-muted-foreground-100);
+
+    /* Interactive colors */
+    --interactive-primary: var(--primitives-dark-color-primary-100);
+    --interactive-primary-foreground: var(--primitives-dark-color-primary-foreground-100);
+    --interactive-secondary: var(--primitives-dark-color-secondary-100);
+    --interactive-secondary-foreground: var(--primitives-dark-color-secondary-foreground-100);
+    --interactive-accent: var(--primitives-dark-color-accent-100);
+    --interactive-accent-foreground: var(--primitives-dark-color-accent-foreground-100);
+    --interactive-destructive: var(--primitives-dark-color-destructive-100);
+    --interactive-destructive-foreground: var(--primitives-dark-color-destructive-foreground-100);
+
+    /* Border and focus colors */
+    --border: var(--primitives-dark-color-border-100);
+    --input: var(--primitives-dark-color-input-100);
+    --ring: var(--primitives-dark-color-ring-100);
+
+    /* Shadcn compatibility */
+    --background: var(--surface-background);
+    --foreground: var(--surface-foreground);
+    --card: var(--surface-card);
+    --card-foreground: var(--surface-card-foreground);
+    --popover: var(--surface-popover);
+    --popover-foreground: var(--surface-popover-foreground);
+    --primary: var(--interactive-primary);
+    --primary-foreground: var(--interactive-primary-foreground);
+    --secondary: var(--interactive-secondary);
+    --secondary-foreground: var(--interactive-secondary-foreground);
+    --muted: var(--surface-muted);
+    --muted-foreground: var(--surface-muted-foreground);
+    --accent: var(--interactive-accent);
+    --accent-foreground: var(--interactive-accent-foreground);
+    --destructive: var(--interactive-destructive);
+    --destructive-foreground: var(--interactive-destructive-foreground);
   }
 } 

@@ -14,7 +14,7 @@ export function HomePage() {
   useScrollToTop([location.pathname]);
   
   return (
-    <div id="top" className="relative pt-24 md:pt-32">
+    <div id="top" className="relative">
       {/* Hero Section */}
       <section className="relative min-h-screen">
         <ThreeHero />
@@ -48,7 +48,7 @@ export function HomePage() {
       </Container>
 
       {/* Footer */}
-      <footer className="bg-neutral-800 text-white">
+      <footer>
         <Container>
           <Footer />
         </Container>
