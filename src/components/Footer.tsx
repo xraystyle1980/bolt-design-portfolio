@@ -69,8 +69,6 @@ export function Footer({ className }: FooterProps) {
         </div>
       </div>
 
-      
-
       <div className="pt-16 max-w-xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[88px] gap-y-[51px]">
           {footerSections.map((section) => (

@@ -6,12 +6,19 @@ import { Container } from '@/components/ui/container';
 import { CTA } from '@/components/CTA';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 import { useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from '@/components/icons/arrow-right';
+import { cn } from '@/lib/utils';
 
 export function HomePage() {
   const location = useLocation();
   
   // Use our custom hook to scroll to top when navigating to home
   useScrollToTop([location.pathname]);
+  
+  const buttonClasses = cn(
+    'max-w-fit rounded-full group transition-all duration-300'
+  );
   
   return (
     <div id="top" className="relative">
@@ -20,13 +27,23 @@ export function HomePage() {
         <ThreeHero />
         <div className="relative z-10 flex min-h-screen flex-col">
           <Container className="flex flex-1 items-center">
-            <div className="flex w-full flex-col gap-4 pb-[72px] pt-48">
-              <div className="text-body-xl text-muted-foreground">
-                👋 Hello, I'm Matt Trice.
+            <div className="flex w-full flex-col gap-4">
+              <div className="flex flex-col gap-4 max-w-4xl">
+                <h1 className="text-body-lg md:text-body-xl text-muted-foreground">
+                  👋 Hello, I'm Matt Trice.
+                  <span className="block text-display-xl md:text-display-3xl text-foreground leading-none pt-3 md:pt-4">
+                    I am a Senior Product Designer connecting UX, design systems, and front-end.
+                  </span>
+                </h1>
               </div>
-              <div className="text-display-3xl text-foreground leading-none max-w-4xl">
-                I am a Senior Product Designer connecting UX, design systems, and front-end.
-              </div>
+              <Button 
+                variant="default"
+                size="lg"
+                className={buttonClasses}
+              >
+                Let's Talk
+                <ArrowRight size="sm" />
+              </Button>
             </div>
           </Container>
         </div>
@@ -43,16 +60,16 @@ export function HomePage() {
       </Container>
 
       {/* CTA Section */}
-      <Container>
-        <CTA />
-      </Container>
+      <section className="border-t border-solid border-neutral-300">
+        <Container>
+          <CTA />
+        </Container>
+      </section>
 
       {/* Footer */}
-      <footer>
-        <Container>
-          <Footer />
-        </Container>
-      </footer>
+      <Container>
+        <Footer />
+      </Container>
     </div>
   );
 }

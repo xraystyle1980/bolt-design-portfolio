@@ -1,7 +1,5 @@
 import { useLayoutEffect, useRef, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from '@/components/icons/arrow-right';
 import { MobileMenu } from './MobileMenu';
 import { Container } from '@/components/ui/container';
 import { LottieLogo } from './LottieLogo';
@@ -14,11 +12,10 @@ import { useTheme } from './ThemeProvider';
 gsap.registerPlugin(ScrollTrigger);
 
 interface NavigationProps {
-  variant?: 'light' | 'dark';
   className?: string;
 }
 
-export function Navigation({ variant = 'light', className }: NavigationProps) {
+export function Navigation({ className }: NavigationProps) {
   const navRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
@@ -44,42 +41,12 @@ export function Navigation({ variant = 'light', className }: NavigationProps) {
     };
   }, []);
 
-  // Handle nav animations
-  useLayoutEffect(() => {
-    if (!navRef.current) return;
-
-    // Set initial padding based on scroll position
-    gsap.set(navRef.current, {
-      paddingTop: window.scrollY > 0 ? '0.75rem' : '1.5rem',
-      paddingBottom: window.scrollY > 0 ? '0.75rem' : '1.5rem'
-    });
-
-    // Create padding animation
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        start: "top",
-        end: "+=100",
-        scrub: 0.5
-      }
-    });
-
-    // Animate nav padding
-    tl.to(navRef.current, {
-      paddingTop: '0.75rem',
-      paddingBottom: '0.75rem',
-      ease: 'none'
-    });
-
-    return () => {
-      tl.kill();
-    };
-  }, [location.pathname]);
-
   const navClasses = cn(
     'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
     theme === 'dark' ? 'text-white' : 'text-neutral-900',
     {
-      'bg-background/40 backdrop-blur-md shadow-sm': isScrolled
+      'bg-background/40 backdrop-blur-md shadow-sm py-3': isScrolled,
+      'py-6': !isScrolled
     },
     className
   );
@@ -110,7 +77,7 @@ export function Navigation({ variant = 'light', className }: NavigationProps) {
             window.scrollTo(0, 0);
           }}
         >
-          {variant === 'light' ? (
+          {theme === 'light' ? (
             <div className={logoClasses}>
               <LottieLogo />
             </div>
@@ -121,14 +88,6 @@ export function Navigation({ variant = 'light', className }: NavigationProps) {
           )}
         </Link>
         <div className="flex items-center gap-4">
-          <Button 
-            variant="default"
-            size="lg"
-            className={buttonClasses}
-          >
-            Let's Talk
-            <ArrowRight size="sm" />
-          </Button>
           <MobileMenu />
         </div>
       </Container>

@@ -25,14 +25,14 @@ export function ThreeHero() {
 
     // Scene setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+    scene.background = null; // Remove background for transparency
     sceneRef.current = scene;
     
     // Reduce FOV for flatter perspective
     const camera = new THREE.PerspectiveCamera(3, window.innerWidth / window.innerHeight, 0.1, 2000);
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
-      alpha: false,
+      alpha: true, // Enable transparency
       powerPreference: 'high-performance',
       precision: 'mediump'
     });
@@ -301,7 +301,7 @@ export function ThreeHero() {
   return (
     <div 
       ref={containerRef} 
-      className="absolute top-0 left-0 w-full h-screen -z-10 bg-white pointer-events-none"
+      className="absolute top-0 left-0 w-full h-screen -z-10 pointer-events-none"
     />
   );
 }

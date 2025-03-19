@@ -39,7 +39,7 @@ function ScrollRestoration() {
 export default function App() {
   return (
     <ThemeProvider>
-      <Navigation variant="light" />
+      <Navigation />
       <SmoothScroll>
         <div id="top"></div>
         <ScrollRestoration />
