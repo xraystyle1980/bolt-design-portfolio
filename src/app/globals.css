@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap');
-@import '../styles/tokens.css';
 
 @tailwind base;
 @tailwind components;
@@ -73,103 +72,64 @@ html::-webkit-scrollbar {
 
 @layer base {
   :root {
-    /* Map design tokens to semantic variables */
-    
-    /* Surface colors */
-    --surface-background: var(--color-background-100);
-    --surface-foreground: var(--color-foreground-100);
-    --surface-card: var(--color-card-100);
-    --surface-card-foreground: var(--color-card-foreground-100);
-    --surface-popover: var(--color-popover-100);
-    --surface-popover-foreground: var(--color-popover-foreground-100);
-    --surface-muted: var(--color-muted-100);
-    --surface-muted-foreground: var(--color-muted-foreground-100);
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
 
-    /* Interactive colors */
-    --interactive-primary: var(--color-primary-100);
-    --interactive-primary-foreground: var(--color-primary-foreground-100);
-    --interactive-secondary: var(--color-secondary-100);
-    --interactive-secondary-foreground: var(--color-secondary-foreground-100);
-    --interactive-accent: var(--color-accent-100);
-    --interactive-accent-foreground: var(--color-accent-foreground-100);
-    --interactive-destructive: var(--color-destructive-100);
-    --interactive-destructive-foreground: var(--color-destructive-foreground-100);
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+ 
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+ 
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+ 
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+ 
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    /* Content colors */
-    --content-primary: var(--mint-cream-mint-cream-900);
-    --content-secondary: var(--mint-cream-mint-cream-700);
-    --content-muted: var(--mint-cream-mint-cream-500);
-    --content-inverse: var(--mint-cream-mint-cream-50);
-
-    /* Border and focus colors */
-    --border: var(--color-border-100);
-    --input: var(--color-input-100);
-    --ring: var(--color-ring-100);
-
-    /* Misc */
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142.1 76.2% 36.3%;
+ 
     --radius: 0.5rem;
-
-    /* Shadcn compatibility */
-    --background: var(--surface-background);
-    --foreground: var(--surface-foreground);
-    --card: var(--surface-card);
-    --card-foreground: var(--surface-card-foreground);
-    --popover: var(--surface-popover);
-    --popover-foreground: var(--surface-popover-foreground);
-    --primary: var(--interactive-primary);
-    --primary-foreground: var(--interactive-primary-foreground);
-    --secondary: var(--interactive-secondary);
-    --secondary-foreground: var(--interactive-secondary-foreground);
-    --muted: var(--surface-muted);
-    --muted-foreground: var(--surface-muted-foreground);
-    --accent: var(--interactive-accent);
-    --accent-foreground: var(--interactive-accent-foreground);
-    --destructive: var(--interactive-destructive);
-    --destructive-foreground: var(--interactive-destructive-foreground);
   }
-
+ 
   .dark {
-    /* Surface colors */
-    --surface-background: var(--primitives-dark-color-background-100);
-    --surface-foreground: var(--primitives-dark-color-foreground-100);
-    --surface-card: var(--primitives-dark-color-card-100);
-    --surface-card-foreground: var(--primitives-dark-color-card-foreground-100);
-    --surface-popover: var(--primitives-dark-color-popover-100);
-    --surface-popover-foreground: var(--primitives-dark-color-popover-foreground-100);
-    --surface-muted: var(--primitives-dark-color-muted-100);
-    --surface-muted-foreground: var(--primitives-dark-color-muted-foreground-100);
-
-    /* Interactive colors */
-    --interactive-primary: var(--primitives-dark-color-primary-100);
-    --interactive-primary-foreground: var(--primitives-dark-color-primary-foreground-100);
-    --interactive-secondary: var(--primitives-dark-color-secondary-100);
-    --interactive-secondary-foreground: var(--primitives-dark-color-secondary-foreground-100);
-    --interactive-accent: var(--primitives-dark-color-accent-100);
-    --interactive-accent-foreground: var(--primitives-dark-color-accent-foreground-100);
-    --interactive-destructive: var(--primitives-dark-color-destructive-100);
-    --interactive-destructive-foreground: var(--primitives-dark-color-destructive-foreground-100);
-
-    /* Border and focus colors */
-    --border: var(--primitives-dark-color-border-100);
-    --input: var(--primitives-dark-color-input-100);
-    --ring: var(--primitives-dark-color-ring-100);
-
-    /* Shadcn compatibility */
-    --background: var(--surface-background);
-    --foreground: var(--surface-foreground);
-    --card: var(--surface-card);
-    --card-foreground: var(--surface-card-foreground);
-    --popover: var(--surface-popover);
-    --popover-foreground: var(--surface-popover-foreground);
-    --primary: var(--interactive-primary);
-    --primary-foreground: var(--interactive-primary-foreground);
-    --secondary: var(--interactive-secondary);
-    --secondary-foreground: var(--interactive-secondary-foreground);
-    --muted: var(--surface-muted);
-    --muted-foreground: var(--surface-muted-foreground);
-    --accent: var(--interactive-accent);
-    --accent-foreground: var(--interactive-accent-foreground);
-    --destructive: var(--interactive-destructive);
-    --destructive-foreground: var(--interactive-destructive-foreground);
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+ 
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+ 
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+ 
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+ 
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+ 
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+ 
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142.4 71.8% 29.2%;
   }
 } 

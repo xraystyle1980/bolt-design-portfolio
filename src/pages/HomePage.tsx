@@ -29,9 +29,11 @@ export function HomePage() {
           <Container className="flex flex-1 items-center">
             <div className="flex w-full flex-col gap-4">
               <div className="flex flex-col gap-4 max-w-4xl">
-                <h1 className="text-body-lg md:text-body-xl text-muted-foreground">
-                  👋 Hello, I'm Matt Trice.
-                  <span className="block text-display-xl md:text-display-3xl text-foreground leading-none pt-3 md:pt-4">
+                <h1>
+                  <span className="block text-body-lg md:text-body-xl text-muted-foreground">
+                    👋 Hello, I'm Matt Trice.
+                  </span>
+                  <span className="block text-display-xl md:text-display-3xl text-foreground leading-[1.1] pt-3 md:pt-4">
                     I am a Senior Product Designer connecting UX, design systems, and front-end.
                   </span>
                 </h1>
@@ -60,7 +62,7 @@ export function HomePage() {
       </Container>
 
       {/* CTA Section */}
-      <section className="border-t border-solid border-neutral-300">
+      <section className="border-t border-solid border-border">
         <Container>
           <CTA />
         </Container>

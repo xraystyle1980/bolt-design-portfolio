@@ -11,7 +11,7 @@
     line-height: 150%;
     letter-spacing: 0.32px;
     font-weight: 400;
-    color: #000;
+    @apply text-foreground;
   }
 
   body {
@@ -20,47 +20,47 @@
 
   /* Display Typography */
   h1 {
-    @apply text-display-3xl;
+    @apply text-display-3xl text-foreground;
     margin-bottom: 0.5em;
   }
 
   h2 {
-    @apply text-display-xl;
+    @apply text-display-xl text-foreground;
     margin-bottom: 0.5em;
   }
 
   h3 {
-    @apply text-display-lg;
+    @apply text-display-lg text-foreground;
     margin-bottom: 0.5em;
   }
 
   h4 {
-    @apply text-display-md;
+    @apply text-display-md text-foreground;
     margin-bottom: 0.5em;
   }
 
   h5 {
-    @apply text-display-sm;
+    @apply text-display-sm text-foreground;
     margin-bottom: 0.5em;
   }
 
   h6 {
-    @apply text-display-xs;
+    @apply text-display-xs text-foreground;
     margin-bottom: 0.5em;
   }
 
   /* Body Typography */
   p {
-    @apply text-body-md;
+    @apply text-body-md text-foreground;
     margin-bottom: 1em;
   }
 
   small {
-    @apply text-body-sm;
+    @apply text-body-sm text-foreground;
   }
 
   .caption {
-    @apply text-body-caption;
+    @apply text-body-caption text-foreground;
   }
 
   @media (min-width: 768px) {
@@ -71,81 +71,81 @@
 
   :root {
     --background: 0 0% 100%;
-    --foreground: 222 15% 11%;
-    
+    --foreground: 240 10% 3.9%;
+
     --card: 0 0% 100%;
-    --card-foreground: 240 6% 4%;
-    
+    --card-foreground: 240 10% 3.9%;
+ 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 6% 4%;
-    
-    --primary: 157 4% 12%;
-    --primary-foreground: 147 13% 91%;
-    
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    
-    --muted: 147 9% 84%;
-    --muted-foreground: 157 4% 45%;
-    
-    --accent: 347 89% 61%;
-    --accent-foreground: 240 6% 10%;
-    
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 240 6% 4%;
-    
-    --border: 240 5% 90%;
-    --input: 240 5% 90%;
-    --ring: 240 5% 64%;
-    
+    --popover-foreground: 240 10% 3.9%;
+ 
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+ 
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+ 
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+ 
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142.1 76.2% 36.3%;
+ 
     --radius: 0.5rem;
   }
-
+ 
   .dark {
-    --background: 240 6% 4%;
-    --foreground: 0 0% 98%;
-    
-    --card: 240 6% 4%;
-    --card-foreground: 0 0% 98%;
-    
-    --popover: 240 6% 4%;
-    --popover-foreground: 0 0% 98%;
-    
-    --primary: 147 13% 91%;
-    --primary-foreground: 157 4% 12%;
-    
-    --secondary: 217 33% 17%;
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+ 
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+ 
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+ 
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+ 
+    --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-    
-    --muted: 157 4% 12%;
-    --muted-foreground: 147 3% 64%;
-    
-    --accent: 347 89% 61%;
+ 
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+ 
+    --accent: 12 6.5% 15.1%;
     --accent-foreground: 0 0% 98%;
-    
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 86% 97%;
-    
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 240 4% 16%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+ 
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142.4 71.8% 29.2%;
   }
-}
 
-* {
-  @apply border-border;
-}
+  * {
+    @apply border-border;
+  }
 
-body {
-  @apply bg-background text-foreground antialiased;
-}
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
 }
 
 /* Custom Scrollbar styles have been moved to globals.css */
