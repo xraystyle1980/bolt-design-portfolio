@@ -1,11 +1,37 @@
-export const projects = [
+export interface Project {
+  id: string;
+  title: string;
+  category: string;
+  year: string;
+  description: string;
+  backgroundClass: string;
+  heroImage: string;
+  link: string;
+  summary: string;
+  challenge: string;
+  solution: string;
+  sections: {
+    title: string;
+    content: string;
+    image: string;
+  }[];
+  technologies: string[];
+  testimonial: {
+    quote: string;
+    author: string;
+    role: string;
+  };
+}
+
+export const projects: Project[] = [
   {
     id: 'decent-app',
     title: 'Decent App',
     category: 'Mobile Development',
     year: '2024',
+    link: '/case-study/decent-app',
     description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
-    backgroundClass: 'bg-[url(/images/decent-app-hero-1.png)] [background-size:104%_161%] [background-position:-20.76px_-30.5px]',
+    backgroundClass: 'bg-[url(/images/decent-app-hero-1.png)]',
     heroImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2000',
     summary: 'Revolutionizing mobile sport apps to drive growth and engagement through a compelling startup.',
     challenge: 'The sports industry faced a significant challenge in engaging younger audiences through traditional platforms. Users wanted more interactive and personalized experiences that traditional apps were not providing.',
@@ -39,8 +65,9 @@ export const projects = [
     title: 'Blockset Docs by BRD',
     category: 'Documentation',
     year: '2023',
+    link: '/case-study/blockset-docs',
     description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
-    backgroundClass: 'bg-[url(/images/blockset-docs-hero.png)] [background-size:104%_161%] [background-position:-22.2px_-144.84px]',
+    backgroundClass: 'bg-[url(/images/blockset-docs-hero.png)]',
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
     summary: 'Creating a developer-first documentation platform that makes blockchain integration simple and intuitive.',
     challenge: 'Developers struggled with complex blockchain integration documentation that was fragmented and difficult to navigate.',
@@ -69,8 +96,9 @@ export const projects = [
     title: 'Decent Design System',
     category: 'Design Systems',
     year: '2023',
+    link: '/case-study/decent-design-system',
     description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
-    backgroundClass: 'bg-[url(/images/decent-design-system-hero-collage.png)] [background-size:100%_155%] [background-position:0px_-216.56px]',
+    backgroundClass: 'bg-[url(/images/decent-design-system-hero-collage.png)]',
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
     summary: 'Building a comprehensive design system that bridges the gap between design and development.',
     challenge: 'The team struggled with inconsistent UI implementations and slow development cycles due to lack of standardization.',

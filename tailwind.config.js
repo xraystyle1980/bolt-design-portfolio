@@ -8,6 +8,13 @@ export default {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['Domine', 'serif'],
@@ -115,6 +122,9 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      transitionTimingFunction: {
+        'custom-spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
     },
   },

@@ -33,7 +33,7 @@ export function HomePage() {
                   <span className="block text-body-lg md:text-body-xl text-muted-foreground">
                     👋 Hello, I'm Matt Trice.
                   </span>
-                  <span className="block text-display-xl md:text-display-3xl text-foreground leading-[1.1] pt-3 md:pt-4">
+                  <span className="block text-display-xl md:text-display-3xl text-foreground leading-[1.1] pt-3 md:pt-4 break-words overflow-hidden">
                     I am a Senior Product Designer connecting UX, design systems, and front-end.
                   </span>
                 </h1>
