@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Button } from './button';
 
 import { cn } from '@/lib/utils';
 
@@ -62,9 +63,15 @@ const SheetContent = React.forwardRef<
       className={cn(sheetVariants({ side }), className)}
       {...props}
     >
-      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-        <Cross2Icon className="h-4 w-4" />
-        <span className="sr-only">Close</span>
+      <SheetPrimitive.Close asChild>
+        <Button
+          variant="outline"
+          size="icon" 
+          className="absolute right-10 top-6 rounded-full w-10 h-10"
+        >
+          <Cross2Icon className="h-6 w-6" />
+          <span className="sr-only">Close</span>
+        </Button>
       </SheetPrimitive.Close>
       {children}
     </SheetPrimitive.Content>

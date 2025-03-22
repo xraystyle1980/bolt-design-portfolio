@@ -4,7 +4,7 @@ export interface Project {
   category: string;
   year: string;
   description: string;
-  backgroundClass: string;
+  imageUrl: string;
   heroImage: string;
   link: string;
   summary: string;
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     year: '2024',
     link: '/case-study/decent-app',
     description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
-    backgroundClass: 'bg-[url(/images/decent-app-hero-1.png)]',
+    imageUrl: '/images/decent-app-hero-1.png',
     heroImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2000',
     summary: 'Revolutionizing mobile sport apps to drive growth and engagement through a compelling startup.',
     challenge: 'The sports industry faced a significant challenge in engaging younger audiences through traditional platforms. Users wanted more interactive and personalized experiences that traditional apps were not providing.',
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     year: '2023',
     link: '/case-study/blockset-docs',
     description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
-    backgroundClass: 'bg-[url(/images/blockset-docs-hero.png)]',
+    imageUrl: '/images/blockset-docs-hero.png',
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
     summary: 'Creating a developer-first documentation platform that makes blockchain integration simple and intuitive.',
     challenge: 'Developers struggled with complex blockchain integration documentation that was fragmented and difficult to navigate.',
@@ -98,7 +98,7 @@ export const projects: Project[] = [
     year: '2023',
     link: '/case-study/decent-design-system',
     description: 'Redesigning a failing legacy app to drive growth and capture market share for a struggling startup.',
-    backgroundClass: 'bg-[url(/images/decent-design-system-hero-collage.png)]',
+    imageUrl: '/images/decent-design-system-hero-collage.png',
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
     summary: 'Building a comprehensive design system that bridges the gap between design and development.',
     challenge: 'The team struggled with inconsistent UI implementations and slow development cycles due to lack of standardization.',

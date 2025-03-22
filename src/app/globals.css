@@ -47,16 +47,18 @@ footer {
   width: 100%;
   max-width: 100vw;
   box-sizing: border-box;
-  overflow-x: clip;
+}
+
+/* Handle text wrapping */
+* {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 /* Handle large text wrapping */
 h1, h2, h3,
 [class*="text-display-"] {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
   max-width: 100%;
 }
 
@@ -83,7 +85,6 @@ picture,
 .case-study-content {
   width: 100%;
   max-width: 100%;
-  overflow-x: clip;
 }
 
 /* Completely hide vertical scrollbar but keep functionality */
@@ -110,7 +111,7 @@ html::-webkit-scrollbar {
 .image-loading::after {
   content: "";
   @apply absolute inset-0;
-  animation: shimmer 2s infinite;
+  animation: shimmer 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   background: linear-gradient(
     90deg,
     hsl(var(--muted)) 0%,
@@ -119,14 +120,15 @@ html::-webkit-scrollbar {
   );
   background-size: 200% 100%;
   z-index: 1;
+  opacity: 0.5;
 }
 
 @keyframes shimmer {
   0% {
-    background-position: -200% 0;
+    background-position: -100% 0;
   }
   100% {
-    background-position: 200% 0;
+    background-position: 100% 0;
   }
 }
 
@@ -199,13 +201,13 @@ html::-webkit-scrollbar {
 
   /* Theme Variables - Light Mode */
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 98%;
     --foreground: 240 10% 3.9%;
 
-    --card: 0 0% 100%;
+    --card: 0 0% 98%;
     --card-foreground: 240 10% 3.9%;
  
-    --popover: 0 0% 100%;
+    --popover: 0 0% 98%;
     --popover-foreground: 240 10% 3.9%;
  
     --primary: 0 0% 10%;
@@ -217,7 +219,7 @@ html::-webkit-scrollbar {
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
  
-    --accent: 240 4.8% 95.9%;
+    --accent: 215 20% 65%;
     --accent-foreground: 240 5.9% 10%;
  
     --destructive: 0 84.2% 60.2%;
@@ -250,7 +252,7 @@ html::-webkit-scrollbar {
     --muted: 0 0% 15%;
     --muted-foreground: 240 5% 64.9%;
  
-    --accent: 12 6.5% 15.1%;
+    --accent: 215 16% 47%;
     --accent-foreground: 0 0% 98%;
  
     --destructive: 0 62.8% 30.6%;

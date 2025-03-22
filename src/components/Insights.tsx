@@ -13,14 +13,14 @@ const insights: Insight[] = [
     id: 'threejs-experiments',
     title: 'Three.js experiments',
     description: "Playing with web and 3D—because the internet shouldn't be boring. These are my experiments with Three.js, shaders, and interactive visuals. Click around, drag stuff, break it—go wild.",
-    imageUrl: '/images/threejs-experiments.jpg',
+    imageUrl: '/images/playground-3dtoken.png',
     link: '/playground/threejs'
   },
   {
     id: 'design-system-demo',
     title: 'Design System Demo',
     description: 'Bridging the gap between design and dev. This is a live demo of a design system workflow, where Figma tokens sync to real code. See how changes update in real-time, tweak components, and explore the system in action.',
-    imageUrl: '/images/design-system-demo.jpg',
+    imageUrl: '/images/decent-design-system-hero-collage.png',
     link: '/playground/design-system'
   }
 ];

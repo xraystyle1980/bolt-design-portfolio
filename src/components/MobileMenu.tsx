@@ -19,9 +19,9 @@ export function MobileMenu() {
     <Sheet>
       <SheetTrigger asChild>
         <Button 
-          variant="ghost" 
+          variant="outline" 
           size="icon" 
-          className="rounded-full w-12 h-12 hover:bg-accent"
+          className="rounded-full w-10 h-10"
         >
           <Menu className="h-6 w-6" />
         </Button>

@@ -27,10 +27,10 @@ export function HomePage() {
         <ThreeHero />
         <div className="relative z-10 flex min-h-screen flex-col">
           <Container className="flex flex-1 items-center">
-            <div className="flex w-full flex-col gap-4">
+            <div className="flex w-full flex-col gap-4 overflow-visible">
               <div className="flex flex-col gap-4 max-w-4xl">
                 <h1>
-                  <span className="block text-body-lg md:text-body-xl text-muted-foreground">
+                  <span className="block text-body-lg md:text-body-xl text-accent">
                     👋 Hello, I'm Matt Trice.
                   </span>
                   <span className="block text-display-xl md:text-display-3xl text-foreground leading-[1.1] pt-3 md:pt-4 break-words overflow-hidden">

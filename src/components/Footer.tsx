@@ -39,7 +39,7 @@ const footerSections: FooterSection[] = [
 ]
 
 const socialLinks = [
-  { icon: DribbbleIcon, href: "https://dribbble.com", label: "Dribbble" },
+  // { icon: DribbbleIcon, href: "https://dribbble.com", label: "Dribbble" },
   { icon: LinkedInIcon, href: "https://linkedin.com", label: "LinkedIn" },
   { icon: GitHubIcon, href: "https://github.com", label: "GitHub" },
 ]
@@ -73,14 +73,14 @@ export function Footer({ className }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[88px] gap-y-[51px]">
           {footerSections.map((section) => (
             <div key={section.title} className="flex flex-col gap-4">
-              <h3 className="text-body-sm font-bold text-neutral-500">
+              <h3 className="text-body-sm font-bold text-accent">
                 {section.title}
               </h3>
               {section.links.map((link) => (
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="text-body-md text-neutral-800 hover:text-accent transition-colors"
+                  className="text-body-md hover:text-accent transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -91,7 +91,7 @@ export function Footer({ className }: FooterProps) {
       </div>
 
       <div className="flex pt-16">
-        <p className="text-body-caption text-neutral-500">
+        <p className="text-body-sm">
           ©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit. Designed despite of tyrannical 🐈
         </p>
       </div>

@@ -77,15 +77,9 @@ export function Navigation({ className }: NavigationProps) {
             window.scrollTo(0, 0);
           }}
         >
-          {theme === 'light' ? (
-            <div className={logoClasses}>
-              <LottieLogo />
-            </div>
-          ) : (
-            <span className={cn(logoClasses, 'text-display-sm font-normal tracking-tight')}>
-              TRICE DESIGN
-            </span>
-          )}
+          <div className={logoClasses}>
+            <LottieLogo />
+          </div>
         </Link>
         <div className="flex items-center gap-4">
           <MobileMenu />

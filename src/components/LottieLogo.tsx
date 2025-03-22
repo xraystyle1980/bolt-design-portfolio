@@ -1,5 +1,6 @@
 import Lottie, { LottieRefCurrentProps } from 'lottie-react';
 import { useEffect, useState, useRef } from 'react';
+import { useTheme } from './ThemeProvider';
 
 export function LottieLogo() {
   const [logoData, setLogoData] = useState<any>(null);
@@ -8,25 +9,31 @@ export function LottieLogo() {
   const [hasPlayedInitialAnimation, setHasPlayedInitialAnimation] = useState(false);
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const blinkRef = useRef<LottieRefCurrentProps>(null);
+  const { theme } = useTheme();
 
+  // Load blink animation once
   useEffect(() => {
-    // Fetch logo animation
-    fetch('/animations/logo.json')
-      .then(response => response.json())
-      .then(data => {
-        setLogoData(data);
-        // Don't set isPlaying here, let the autoplay handle initial animation
-      })
-      .catch(error => console.error('Error loading logo animation:', error));
-
-    // Fetch blink animation
     fetch('/animations/blink.json')
       .then(response => response.json())
       .then(data => {
         setBlinkData(data);
       })
       .catch(error => console.error('Error loading blink animation:', error));
-  }, []);
+  }, []); // Only run once on mount
+
+  // Load and update logo animation based on theme
+  useEffect(() => {
+    const logoFile = theme === 'dark' ? '/animations/logo-inverted.json' : '/animations/logo.json';
+    fetch(logoFile)
+      .then(response => response.json())
+      .then(data => {
+        setLogoData(data);
+        // Reset animation state when logo changes
+        setIsPlaying(false);
+        setHasPlayedInitialAnimation(false);
+      })
+      .catch(error => console.error('Error loading logo animation:', error));
+  }, [theme]); // Re-run when theme changes
 
   // Set animation speeds when refs are available
   useEffect(() => {
@@ -77,7 +84,7 @@ export function LottieLogo() {
       onMouseEnter={handleMouseEnter}
       className="cursor-pointer flex items-center"
     >
-        {blinkData && (
+      {blinkData && (
         <Lottie
           lottieRef={blinkRef}
           animationData={blinkData}
@@ -86,14 +93,16 @@ export function LottieLogo() {
           autoplay={true}
         />
       )}
-      <Lottie
-        lottieRef={lottieRef}
-        animationData={logoData}
-        className="h-8 w-auto"
-        loop={false}
-        autoplay={true}
-        onComplete={handleComplete}
-      />
+      {logoData && (
+        <Lottie
+          lottieRef={lottieRef}
+          animationData={logoData}
+          className="h-8 w-auto"
+          loop={false}
+          autoplay={true}
+          onComplete={handleComplete}
+        />
+      )}
     </div>
   );
 }

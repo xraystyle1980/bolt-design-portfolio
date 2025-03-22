@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ArrowRight } from './icons/arrow-right';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 interface PlaygroundCardProps {
   imageUrl: string;
@@ -10,24 +12,38 @@ interface PlaygroundCardProps {
 }
 
 export function PlaygroundCard({ imageUrl, title, description, link }: PlaygroundCardProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
-    <Link to={link} className="group flex flex-col gap-6">
-      <div className="aspect-[4/3] w-full overflow-hidden rounded-3xl bg-neutral-200">
-        <img 
-          src={imageUrl} 
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+    <div className="flex flex-col gap-6">
+      <div className="group aspect-[4/3] w-full overflow-hidden rounded-3xl bg-muted">
+        <div className={cn(
+          "relative h-full w-full",
+          !imageLoaded && "image-loading"
+        )}>
+          <img 
+            src={imageUrl} 
+            alt={title}
+            className={cn(
+              "h-full w-full object-cover transition-transform duration-300",
+              imageLoaded && "group-hover:scale-105"
+            )}
+            onLoad={() => setImageLoaded(true)}
+          />
+        </div>
       </div>
       <div className="flex items-start justify-between gap-8">
         <div className="flex flex-col gap-2">
-          <h3 className="text-display-sm text-neutral-500">{title}</h3>
-          <p className="text-body-lg text-neutral-800 max-w-xl">{description}</p>
+          <h3 className="text-display-sm text-accent">{title}</h3>
+          <p className="text-body-lg max-w-xl">{description}</p>
         </div>
-        <div className="flex items-center justify-center rounded-[100px] border border-solid border-gray-950 px-7 py-[15px] transition-colors group-hover:bg-neutral-800 group-hover:text-white">
+        <Link
+          to={link}
+          className="flex items-center justify-center rounded-[100px] border border-solid border-foreground px-7 py-[15px] transition-colors hover:bg-foreground hover:text-background"
+        >
           <ArrowRight className="h-6 w-6" />
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 } 
