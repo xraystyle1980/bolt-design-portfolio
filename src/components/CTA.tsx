@@ -1,5 +1,6 @@
 import { Button } from "./ui/button"
 import { ArrowRight } from "./icons/arrow-right"
+import { Mail } from "lucide-react"
 
 interface CTAProps {
   className?: string
@@ -8,17 +9,22 @@ interface CTAProps {
 export function CTA({ className }: CTAProps) {
   return (
       <div className="flex flex-col items-center gap-8 py-24">
-        <h4 className="text-display-lg text-neutral-500">
+        <h4 className="text-display-lg">
           Have an idea?
         </h4>
-        <h5 className="text-display-5xl">
-          <span className="text-foreground">hello</span>
-          <span className="text-accent">@trice.design</span>
-        </h5>
-        <div className="pt-10">
+        <div className="flex flex-row items-center justify-center gap-2">
+          <Mail className="text-accent h-8 w-8" />
+          <h5 className="mb-0 text-display-xl sm:text-display-2xl md:text-display-4xl lg:text-display-5xl">
+            <a href="mailto:hello@trice.design" className="text-accent hover:opacity-80 transition-opacity">
+              <span className="text-foreground">hello</span>@trice.design
+            </a>
+          </h5>
+        </div>
+        
+        <div className="pt-8">
           <Button 
             variant="outline" 
-            size="sm"
+            size="lg"
             className="group"
           >
             Book a Call

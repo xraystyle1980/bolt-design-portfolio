@@ -3,6 +3,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "./icons/arrow-right";
+import { DribbbleIcon, GitHubIcon, LinkedInIcon } from "./icons/social";
 import { cn } from "@/lib/utils";
 
 const menuItems = [
@@ -12,6 +13,12 @@ const menuItems = [
   { label: "Decent Design System", href: "/case-study/decent-design-system" },
   { label: "3D Experiments", href: "/playground/threejs" },
   { label: "Design System Demo", href: "/playground/design-system" },
+];
+
+const socialLinks = [
+  { icon: DribbbleIcon, href: "https://dribbble.com/trice" },
+  { icon: GitHubIcon, href: "https://github.com/trice" },
+  { icon: LinkedInIcon, href: "https://linkedin.com/in/trice" },
 ];
 
 export function MobileMenu() {
@@ -32,7 +39,22 @@ export function MobileMenu() {
           "flex flex-col"
         )}
       >
-        <nav className="flex flex-col gap-8 mt-16">
+        {/* Social Links */}
+        <div className="flex gap-6 mb-8">
+          {socialLinks.map(({ icon: Icon, href }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/60 hover:text-foreground transition-colors"
+            >
+              <Icon className="h-6 w-6" />
+            </a>
+          ))}
+        </div>
+
+        <nav className="flex flex-col gap-8">
           {menuItems.map((item) => (
             <Link
               key={item.label}

@@ -79,9 +79,23 @@ export function ThreeHero() {
         uniform float time;
 
         void main() {
-          float dist = length(vPosition.xy - mousePos * 25.0);
-          float glow = smoothstep(25.0, 2.0, dist);
-          float opacity = mix(0.35, 1.00, glow);
+          // Calculate distance from center
+          float centerDist = length(vPosition.xy);
+          
+          // Calculate distance from mouse
+          float mouseDist = length(vPosition.xy - mousePos * 25.0);
+          
+          // Create radial fade effect
+          float fadeStart = 35.0; // Distance where fade begins
+          float fadeEnd = 45.0;   // Distance where fade ends
+          float radialFade = smoothstep(fadeEnd, fadeStart, centerDist);
+          
+          // Mouse glow effect
+          float glow = smoothstep(25.0, 2.0, mouseDist);
+          
+          // Combine effects
+          float opacity = mix(0.35, 1.00, glow) * radialFade;
+          
           gl_FragColor = vec4(color, opacity);
         }
       `,
