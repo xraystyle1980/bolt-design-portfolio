@@ -9,9 +9,11 @@ import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from '@/components/icons/arrow-right';
 import { cn } from '@/lib/utils';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export function HomePage() {
   const location = useLocation();
+  const sectionRefs = useScrollAnimation();
   
   // Use our custom hook to scroll to top when navigating to home
   useScrollToTop([location.pathname]);
@@ -53,24 +55,35 @@ export function HomePage() {
 
       {/* Case Studies Section */}
       <Container>
-        <CaseStudies />
+        <div className="py-12 md:py-24">
+          <h2 className="text-display-lg font-normal text-foreground mb-8 md:mb-10">
+            Case Studies
+          </h2>
+          <CaseStudies />
+        </div>
       </Container>
 
       {/* Insights Section */}
       <Container>
-        <Insights />
+        <div ref={el => sectionRefs.current[0] = el}>
+          <Insights />
+        </div>
       </Container>
 
       {/* CTA Section */}
       <section className="border-t border-solid border-border">
         <Container>
-          <CTA />
+          <div ref={el => sectionRefs.current[1] = el}>
+            <CTA />
+          </div>
         </Container>
       </section>
 
       {/* Footer */}
       <Container>
-        <Footer />
+        <div ref={el => sectionRefs.current[2] = el}>
+          <Footer />
+        </div>
       </Container>
     </div>
   );

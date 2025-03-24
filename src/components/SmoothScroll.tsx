@@ -15,35 +15,20 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
   const smoothContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Wait for next tick to ensure DOM is fully rendered
-    let smoother: any;
-    
-    const initSmoother = () => {
-      // Clean up any existing ScrollTrigger instances to prevent conflicts
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      
-      // Create ScrollSmoother instance
-      smoother = ScrollSmoother.create({
-        wrapper: smoothWrapperRef.current,
-        content: smoothContentRef.current,
-        smooth: 1.5, // Higher value = smoother scrolling
-        effects: true, // Enables special scroll effects with data attributes
-        normalizeScroll: true, // Prevents jerky scrolling with mouse wheel
-        ignoreMobileResize: true // Helps with mobile browser address bar issues
-      });
-      
-      console.log('ScrollSmoother initialized');
-    };
-    
-    // Initialize after a small delay to ensure DOM is fully rendered
-    const timer = setTimeout(initSmoother, 100);
+    // Create ScrollSmoother instance
+    const smoother = ScrollSmoother.create({
+      wrapper: smoothWrapperRef.current,
+      content: smoothContentRef.current,
+      smooth: 1.5,
+      effects: true,
+    });
+
+    // Refresh ScrollTrigger after smoother is created
+    ScrollTrigger.refresh();
 
     // Clean up on unmount
     return () => {
-      clearTimeout(timer);
-      if (smoother) {
-        smoother.kill();
-      }
+      smoother.kill();
     };
   }, []);
 
