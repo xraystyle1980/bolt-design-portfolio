@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "./icons/arrow-right";
 import { DribbbleIcon, GitHubIcon, LinkedInIcon } from "./icons/social";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const menuItems = [
   { label: "Home", href: "/" },
@@ -22,13 +23,16 @@ const socialLinks = [
 ];
 
 export function MobileMenu() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button 
           variant="outline" 
           size="icon" 
           className="rounded-full w-10 h-10"
+          aria-label="Open menu"
         >
           <Menu className="h-6 w-6" />
         </Button>
@@ -39,6 +43,7 @@ export function MobileMenu() {
           "flex flex-col"
         )}
       >
+        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         {/* Social Links */}
         <div className="flex gap-6 mb-8">
           {socialLinks.map(({ icon: Icon, href }) => (
@@ -48,18 +53,20 @@ export function MobileMenu() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-foreground transition-colors"
+              aria-label={`Visit ${href.split('.com/')[1]} profile`}
             >
               <Icon className="h-6 w-6" />
             </a>
           ))}
         </div>
 
-        <nav className="flex flex-col gap-8">
+        <nav className="flex flex-col gap-8" aria-label="Mobile navigation">
           {menuItems.map((item) => (
             <Link
               key={item.label}
               to={item.href}
               className="text-display-lg text-foreground hover:text-primary transition-colors"
+              onClick={() => setOpen(false)}
             >
               {item.label}
             </Link>
@@ -68,6 +75,7 @@ export function MobileMenu() {
             variant="default"
             size="lg"
             className="rounded-full mt-8 w-fit group transition-all duration-300"
+            onClick={() => setOpen(false)}
           >
             Let's Talk
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

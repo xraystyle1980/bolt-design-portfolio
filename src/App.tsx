@@ -6,6 +6,8 @@ import { useLayoutEffect } from 'react';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { ThreeJsPlayground } from './pages/ThreeJsPlayground';
+import { DesignSystemPlayground } from './pages/DesignSystemPlayground';
 
 // ScrollRestoration component
 function ScrollRestoration() {
@@ -48,6 +50,8 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/case-study/:id" element={<CaseStudyPage />} />
+              <Route path="/playground/threejs" element={<ThreeJsPlayground />} />
+              <Route path="/playground/design-system" element={<DesignSystemPlayground />} />
             </Routes>
           </main>
         </div>

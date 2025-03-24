@@ -2,29 +2,31 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
-type ThemeContextType = {
+interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
-};
+}
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 // Add script to prevent theme flashing
 const themeScript = `
-  let isDark;
-  const stored = localStorage.getItem('theme');
-  
-  if (stored === 'dark') {
-    isDark = true;
-  } else if (stored === 'light') {
-    isDark = false;
-  } else {
-    isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-  
-  if (isDark) {
-    document.documentElement.classList.add('dark');
-  }
+  (function() {
+    let stored = localStorage.getItem('theme');
+    let isDark;
+    
+    if (stored === 'dark') {
+      isDark = true;
+    } else if (stored === 'light') {
+      isDark = false;
+    } else {
+      isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    }
+  })();
 `;
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {

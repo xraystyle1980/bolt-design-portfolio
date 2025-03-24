@@ -5,10 +5,24 @@ import { Container } from '@/components/ui/container';
 import { projects } from '../data/projects';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { Tags } from '@/components/Tags';
+import { Project, Section, NarrativeSection, ProcessSection } from '@/data/types';
+
+interface SubChallenge {
+  title: string;
+  content: string;
+}
+
+interface SubSolution {
+  title: string;
+  content: string;
+}
 
 export function CaseStudyPage() {
   const { id } = useParams();
   const project = projects.find(p => p.id === id);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   
   // Use our custom hook to scroll to top
   useScrollToTop([id]);
@@ -24,12 +38,13 @@ export function CaseStudyPage() {
         <div className="absolute inset-0">
           <div className={cn(
             "relative h-full w-full",
-            "image-loading"
+            !loadedImages['hero'] && "image-loading"
           )}>
             <img
               src={project.heroImage}
               alt={project.title}
               className="h-full w-full object-cover"
+              onLoad={() => setLoadedImages(prev => ({ ...prev, 'hero': true }))}
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 to-foreground/40" />
@@ -62,42 +77,137 @@ export function CaseStudyPage() {
         <div className="py-12 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 mb-16 md:mb-24">
             <div>
-              <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">The Challenge</h2>
-              <p className="text-body-md text-muted-foreground">{project.challenge}</p>
+              <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
+                {project.challenge.title}
+              </h2>
+              <p className="text-body-md text-muted-foreground mb-6">
+                {project.challenge.content}
+              </p>
+              {project.challenge.subchallenges && (
+                <div className="space-y-4">
+                  {project.challenge.subchallenges.map((subchallenge: SubChallenge, index: number) => (
+                    <div key={index}>
+                      <h3 className="text-display-sm font-normal mb-2 text-accent">
+                        {subchallenge.title}
+                      </h3>
+                      <p className="text-body-md text-muted-foreground">
+                        {subchallenge.content}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <div>
-              <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">The Solution</h2>
-              <p className="text-body-md text-muted-foreground">{project.solution}</p>
+              <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
+                {project.solution.title}
+              </h2>
+              <p className="text-body-md text-muted-foreground mb-6">
+                {project.solution.content}
+              </p>
+              {project.solution.subsolutions && (
+                <div className="space-y-4">
+                  {project.solution.subsolutions.map((subsolution: SubSolution, index: number) => (
+                    <div key={index}>
+                      <h3 className="text-display-sm font-normal mb-2 text-accent">
+                        {subsolution.title}
+                      </h3>
+                      <p className="text-body-md text-muted-foreground">
+                        {subsolution.content}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
           {/* Project Sections */}
           <div className="space-y-16 md:space-y-24 lg:space-y-32">
-            {project.sections.map((section, index) => (
-              <div 
-                key={index} 
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 items-center"
-              >
-                <div className={index % 2 === 0 ? 'md:order-1' : 'md:order-2'}>
-                  <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">{section.title}</h2>
-                  <p className="text-body-md text-muted-foreground">{section.content}</p>
-                </div>
-                <div className={index % 2 === 0 ? 'md:order-2' : 'md:order-1'}>
-                  <div className="group aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
-                    <div className={cn(
-                      "relative h-full w-full",
-                      "image-loading"
-                    )}>
-                      <img
-                        src={section.image}
-                        alt={section.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+            {project.sections.map((section: Section, index: number) => {
+              switch (section.type) {
+                case 'narrative': {
+                  const narrativeSection = section as NarrativeSection;
+                  return (
+                    <div key={index} className="space-y-8">
+                      <div>
+                        <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
+                          {narrativeSection.title}
+                        </h2>
+                        <p className="text-body-md text-muted-foreground">
+                          {narrativeSection.content}
+                        </p>
+                      </div>
+                      {narrativeSection.subsections && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                          {narrativeSection.subsections.map((subsection, subIndex: number) => (
+                            <div key={subIndex} className="space-y-4">
+                              <h3 className="text-display-sm font-normal text-accent">
+                                {subsection.title}
+                              </h3>
+                              <p className="text-body-md text-muted-foreground">
+                                {subsection.content}
+                              </p>
+                              {subsection.keyPoints && (
+                                <ul className="space-y-2">
+                                  {subsection.keyPoints.map((point: string, pointIndex: number) => (
+                                    <li key={pointIndex} className="text-body-md text-muted-foreground flex items-center gap-2">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                      {point}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+                  );
+                }
+                case 'process': {
+                  const processSection = section as ProcessSection;
+                  return (
+                    <div key={index} className="space-y-8">
+                      <div>
+                        <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
+                          {processSection.title}
+                        </h2>
+                        <p className="text-body-md text-muted-foreground">
+                          {processSection.content}
+                        </p>
+                      </div>
+                      {processSection.steps && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                          {processSection.steps.map((step, stepIndex: number) => (
+                            <div key={stepIndex} className="space-y-4">
+                              <h3 className="text-display-sm font-normal text-accent">
+                                {step.title}
+                              </h3>
+                              <p className="text-body-md text-muted-foreground">
+                                {step.content}
+                              </p>
+                              {step.keyPoints && (
+                                <ul className="space-y-2">
+                                  {step.keyPoints.map((point: string, pointIndex: number) => (
+                                    <li key={pointIndex} className="text-body-md text-muted-foreground flex items-center gap-2">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                      {point}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                default:
+                  return null;
+              }
+            })}
           </div>
 
           {/* Testimonial */}
@@ -112,16 +222,7 @@ export function CaseStudyPage() {
           </div>
 
           {/* Technologies */}
-          <div className="flex flex-wrap gap-2 justify-center">
-            {project.technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="px-3 py-1.5 md:px-4 md:py-2 bg-muted text-muted-foreground rounded-full text-body-sm"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+          <Tags tags={project.technologies} />
         </div>
       </Container>
 

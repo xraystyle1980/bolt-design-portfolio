@@ -3,6 +3,7 @@ import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { ArrowRight } from "./icons/arrow-right";
+import { Tags } from "./Tags";
 
 export function CaseStudies() {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
@@ -14,11 +15,12 @@ export function CaseStudies() {
       </h2>
       <div className="flex flex-grow flex-col gap-8 md:gap-16 lg:gap-24">
         {projects.map((project) => (
-          <div
+          <Link
             key={project.id}
-            className="flex flex-col gap-4 md:gap-8"
+            to={project.link}
+            className="group flex flex-col gap-4 md:gap-8"
           >
-            <div className="group flex flex-col items-center overflow-clip rounded-2xl md:rounded-3xl bg-muted">
+            <div className="flex flex-col items-center overflow-clip rounded-2xl md:rounded-3xl bg-muted">
               <div className="relative aspect-[16/9] w-full h-full">
                 <div className={cn(
                   "relative h-full w-full",
@@ -38,21 +40,19 @@ export function CaseStudies() {
             </div>
             <div className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex flex-col gap-2 max-w-2xl">
-              <h3 className="text-display-md text-accent">
+                <h3 className="text-display-md text-accent">
                   {project.title}
                 </h3>
                 <p className="text-body-lg max-w-xl">
                   {project.description}
                 </p>
+                <Tags tags={project.technologies} className="mt-2" />
               </div>
-              <Link
-                to={project.link}
-                className="flex items-center justify-center rounded-[100px] border border-solid border-foreground px-6 py-3 md:px-7 md:py-[15px] transition-colors hover:bg-foreground hover:text-background shrink-0"
-              >
+              <div className="flex items-center justify-center rounded-[100px] border border-solid border-foreground px-6 py-3 md:px-7 md:py-[15px] transition-colors group-hover:bg-foreground group-hover:text-background shrink-0">
                 <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
-              </Link>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
