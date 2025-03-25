@@ -8,7 +8,7 @@ export const decentApp: Project = {
   link: '/case-study/decent-app',
   description: 'A strategic transformation of Fractal into Decent, redefining the product\'s value in the decentralized governance space.',
   imageUrl: '/images/decent-app-hero-1.png',
-  heroImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2000',
+  heroImage: '/images/decent-app-hero-1.png?h=600&fit=cover',
   summary: 'Led the product design transition from Fractal to Decent, creating an intuitive and adaptable experience that bridges Web2 and Web3 usability.',
   challenge: {
     title: 'A Need for Evolution',

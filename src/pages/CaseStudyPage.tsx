@@ -34,26 +34,52 @@ export function CaseStudyPage() {
   return (
     <div id="top" className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-screen pt-24 md:pt-24">
-        <div className="absolute inset-0">
-          <div className={cn(
-            "relative h-full w-full",
-            !loadedImages['hero'] && "image-loading"
-          )}>
-            <img
-              src={project.heroImage}
-              alt={project.title}
-              className="h-full w-full object-cover"
-              onLoad={() => setLoadedImages(prev => ({ ...prev, 'hero': true }))}
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 to-foreground/40" />
-        </div>
         
-        <Container className="relative text-background">
+      <section className="relative top-[200px]">
+        <Container className="text-foreground mb-16">
+          <div className="relative flex flex-col items-center">
+            {/* Gradient background container */}
+            <div className="relative w-full h-[500px] rounded-2xl md:rounded-3xl overflow-hidden">
+              <div className="absolute inset-0" style={{
+                background: 'radial-gradient(62.37% 58.17% at 48.63% 30.27%, #D2D4E0 0%, #A6B1BC 100%)'
+              }} />
+            </div>
+
+            {/* Overlapping images container */}
+            <div className="absolute inset-0 flex justify-center items-center">
+              {/* Left Image */}
+              <div className={cn(
+                "relative w-[24%] -ml-12",
+                !loadedImages['left'] && "image-loading"
+              )}>
+                <img
+                  src="/images/decent-app-hero-single-left.png"
+                  alt="Decent App Interface Left"
+                  className="w-full h-auto object-contain"
+                  onLoad={() => setLoadedImages(prev => ({ ...prev, 'left': true }))}
+                />
+              </div>
+
+              {/* Right Image */}
+              <div className={cn(
+                "relative w-[24%] -mr-12",
+                !loadedImages['right'] && "image-loading"
+              )}>
+                <img
+                  src="/images/decent-app-hero-single-right.png"
+                  alt="Decent App Interface Right"
+                  className="w-full h-auto object-contain"
+                  onLoad={() => setLoadedImages(prev => ({ ...prev, 'right': true }))}
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+        
+        <Container className="relative max-w-4xl">
           <Link 
             to="/#top" 
-            className="inline-flex items-center text-body-sm hover:text-background/80 mb-6 md:mb-8"
+            className="inline-flex items-center text-body-sm text-muted-foreground hover:text-foreground mb-6 md:mb-8"
             onClick={() => {
               // Force immediate scroll to top when clicking back to home
               window.scrollTo(0, 0);
@@ -63,34 +89,35 @@ export function CaseStudyPage() {
             Back to Home
           </Link>
           <p className="text-body-xl mb-3 md:mb-4 text-accent">{project.category}</p>
-          <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl font-normal tracking-tight mb-4 md:mb-6 max-w-4xl">
+          <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl font-normal tracking-tight mb-4 md:mb-6 text-foreground">
             {project.title}
           </h1>
-          <p className="text-body-lg md:text-body-xl max-w-2xl mb-16 md:mb-24 text-background/80">
+          <p className="text-body-lg md:text-body-xl mb-16 md:mb-24 text-muted-foreground">
             {project.summary}
           </p>
         </Container>
       </section>
 
       {/* Project Details */}
-      <Container>
+      <Container className="max-w-4xl">
         <div className="py-12 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 mb-16 md:mb-24">
-            <div>
-              <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
+          {/* Challenge Section */}
+          <div className="flex flex-col gap-16 md:gap-24">
+            <div className="flex flex-col gap-2">
+              <h2 className="text-display-md md:text-display-lg font-normal text-accent">
                 {project.challenge.title}
               </h2>
-              <p className="text-body-md text-muted-foreground mb-6">
+              <p className="text-body-lg text-muted-foreground">
                 {project.challenge.content}
               </p>
               {project.challenge.subchallenges && (
-                <div className="space-y-4">
+                <div className="flex flex-col gap-2">
                   {project.challenge.subchallenges.map((subchallenge: SubChallenge, index: number) => (
-                    <div key={index}>
-                      <h3 className="text-display-sm font-normal mb-2 text-accent">
+                    <div key={index} className="flex flex-col gap-4">
+                      <h3 className="text-display-sm font-normal text-accent">
                         {subchallenge.title}
                       </h3>
-                      <p className="text-body-md text-muted-foreground">
+                      <p className="text-body-lg text-muted-foreground">
                         {subchallenge.content}
                       </p>
                     </div>
@@ -98,21 +125,23 @@ export function CaseStudyPage() {
                 </div>
               )}
             </div>
-            <div>
-              <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
+
+            {/* Solution Section */}
+            <div className="flex flex-col gap-6">
+              <h2 className="text-display-md md:text-display-lg font-normal text-accent">
                 {project.solution.title}
               </h2>
-              <p className="text-body-md text-muted-foreground mb-6">
+              <p className="text-body-lg text-muted-foreground">
                 {project.solution.content}
               </p>
               {project.solution.subsolutions && (
-                <div className="space-y-4">
+                <div className="flex flex-col gap-6">
                   {project.solution.subsolutions.map((subsolution: SubSolution, index: number) => (
-                    <div key={index}>
-                      <h3 className="text-display-sm font-normal mb-2 text-accent">
+                    <div key={index} className="flex flex-col gap-4">
+                      <h3 className="text-display-sm font-normal text-accent">
                         {subsolution.title}
                       </h3>
-                      <p className="text-body-md text-muted-foreground">
+                      <p className="text-body-lg text-muted-foreground">
                         {subsolution.content}
                       </p>
                     </div>
@@ -120,109 +149,109 @@ export function CaseStudyPage() {
                 </div>
               )}
             </div>
-          </div>
 
-          {/* Project Sections */}
-          <div className="space-y-16 md:space-y-24 lg:space-y-32">
-            {project.sections.map((section: Section, index: number) => {
-              switch (section.type) {
-                case 'narrative': {
-                  const narrativeSection = section as NarrativeSection;
-                  return (
-                    <div key={index} className="space-y-8">
-                      <div>
-                        <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
-                          {narrativeSection.title}
-                        </h2>
-                        <p className="text-body-md text-muted-foreground">
-                          {narrativeSection.content}
-                        </p>
-                      </div>
-                      {narrativeSection.subsections && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                          {narrativeSection.subsections.map((subsection, subIndex: number) => (
-                            <div key={subIndex} className="space-y-4">
-                              <h3 className="text-display-sm font-normal text-accent">
-                                {subsection.title}
-                              </h3>
-                              <p className="text-body-md text-muted-foreground">
-                                {subsection.content}
-                              </p>
-                              {subsection.keyPoints && (
-                                <ul className="space-y-2">
-                                  {subsection.keyPoints.map((point: string, pointIndex: number) => (
-                                    <li key={pointIndex} className="text-body-md text-muted-foreground flex items-center gap-2">
-                                      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                      {point}
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          ))}
+            {/* Project Sections */}
+            <div className="flex flex-col gap-16 md:gap-24">
+              {project.sections.map((section: Section, index: number) => {
+                switch (section.type) {
+                  case 'narrative': {
+                    const narrativeSection = section as NarrativeSection;
+                    return (
+                      <div key={index} className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-4">
+                          <h2 className="text-display-md md:text-display-lg font-normal text-accent">
+                            {narrativeSection.title}
+                          </h2>
+                          <p className="text-body-lg text-muted-foreground">
+                            {narrativeSection.content}
+                          </p>
                         </div>
-                      )}
-                    </div>
-                  );
-                }
-                case 'process': {
-                  const processSection = section as ProcessSection;
-                  return (
-                    <div key={index} className="space-y-8">
-                      <div>
-                        <h2 className="text-display-md md:text-display-lg font-normal mb-3 md:mb-4 text-accent">
-                          {processSection.title}
-                        </h2>
-                        <p className="text-body-md text-muted-foreground">
-                          {processSection.content}
-                        </p>
+                        {narrativeSection.subsections && (
+                          <div className="flex flex-col gap-6">
+                            {narrativeSection.subsections.map((subsection, subIndex: number) => (
+                              <div key={subIndex} className="flex flex-col gap-4">
+                                <h3 className="text-display-sm font-normal text-accent">
+                                  {subsection.title}
+                                </h3>
+                                <p className="text-body-lg text-muted-foreground">
+                                  {subsection.content}
+                                </p>
+                                {subsection.keyPoints && (
+                                  <ul className="flex flex-col gap-3">
+                                    {subsection.keyPoints.map((point: string, pointIndex: number) => (
+                                      <li key={pointIndex} className="text-body-lg text-muted-foreground flex items-center gap-3">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                        {point}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                      {processSection.steps && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                          {processSection.steps.map((step, stepIndex: number) => (
-                            <div key={stepIndex} className="space-y-4">
-                              <h3 className="text-display-sm font-normal text-accent">
-                                {step.title}
-                              </h3>
-                              <p className="text-body-md text-muted-foreground">
-                                {step.content}
-                              </p>
-                              {step.keyPoints && (
-                                <ul className="space-y-2">
-                                  {step.keyPoints.map((point: string, pointIndex: number) => (
-                                    <li key={pointIndex} className="text-body-md text-muted-foreground flex items-center gap-2">
-                                      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                      {point}
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          ))}
+                    );
+                  }
+                  case 'process': {
+                    const processSection = section as ProcessSection;
+                    return (
+                      <div key={index} className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-4">
+                          <h2 className="text-display-md md:text-display-lg font-normal text-accent">
+                            {processSection.title}
+                          </h2>
+                          <p className="text-body-lg text-muted-foreground">
+                            {processSection.content}
+                          </p>
                         </div>
-                      )}
-                    </div>
-                  );
+                        {processSection.steps && (
+                          <div className="flex flex-col gap-2">
+                            {processSection.steps.map((step, stepIndex: number) => (
+                              <div key={stepIndex} className="flex flex-col gap-4">
+                                <h3 className="text-display-sm font-normal text-accent">
+                                  {step.title}
+                                </h3>
+                                <p className="text-body-lg text-muted-foreground">
+                                  {step.content}
+                                </p>
+                                {step.keyPoints && (
+                                  <ul className="flex flex-col gap-3">
+                                    {step.keyPoints.map((point: string, pointIndex: number) => (
+                                      <li key={pointIndex} className="text-body-lg text-muted-foreground flex items-center gap-3">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                        {point}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  default:
+                    return null;
                 }
-                default:
-                  return null;
-              }
-            })}
-          </div>
+              })}
+            </div>
 
-          {/* Testimonial */}
-          <div className="my-16 md:my-24 lg:my-32 text-center max-w-3xl mx-auto">
-            <blockquote className="text-display-lg md:text-display-xl font-normal mb-6 md:mb-8 text-accent">
-              "{project.testimonial.quote}"
-            </blockquote>
-            <cite className="not-italic">
-              <p className="text-body-lg font-normal text-foreground">{project.testimonial.author}</p>
-              <p className="text-body-md text-muted-foreground">{project.testimonial.role}</p>
-            </cite>
-          </div>
+            {/* Testimonial */}
+            <div className="flex flex-col items-center gap-2 max-w-3xl mx-auto">
+              <blockquote className="text-display-lg md:text-display-xl font-normal text-accent text-center">
+                "{project.testimonial.quote}"
+              </blockquote>
+              <cite className="not-italic flex flex-col items-center gap-2">
+                <p className="text-body-lg font-normal text-foreground">{project.testimonial.author}</p>
+                <p className="text-body-lg text-muted-foreground">{project.testimonial.role}</p>
+              </cite>
+            </div>
 
-          {/* Technologies */}
-          <Tags tags={project.technologies} />
+            {/* Technologies */}
+            <Tags tags={project.technologies} />
+          </div>
         </div>
       </Container>
 

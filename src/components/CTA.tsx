@@ -13,7 +13,7 @@ export function CTA({ className }: CTAProps) {
           Have an idea?
         </h4>
         <div className="flex flex-row items-center justify-center gap-2">
-          <Mail className="text-accent h-8 w-8" />
+          <Mail className="text-accent h-14 w-14" />
           <h5 className="mb-0 text-display-xl sm:text-display-2xl md:text-display-4xl lg:text-display-5xl">
             <a href="mailto:hello@trice.design" className="text-accent hover:opacity-80 transition-opacity">
               <span className="text-foreground">hello</span>@trice.design
