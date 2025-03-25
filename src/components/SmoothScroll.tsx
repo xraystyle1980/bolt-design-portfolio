@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -13,14 +14,18 @@ interface SmoothScrollProps {
 export function SmoothScroll({ children }: SmoothScrollProps) {
   const smoothWrapperRef = useRef<HTMLDivElement>(null);
   const smoothContentRef = useRef<HTMLDivElement>(null);
+  const smootherRef = useRef<any>(null);
+  const location = useLocation();
 
   useEffect(() => {
     // Create ScrollSmoother instance
-    const smoother = ScrollSmoother.create({
+    smootherRef.current = ScrollSmoother.create({
       wrapper: smoothWrapperRef.current,
       content: smoothContentRef.current,
       smooth: 1.5,
       effects: true,
+      normalizeScroll: true, // This helps with cross-browser consistency
+      ignoreMobileResize: true, // Better mobile handling
     });
 
     // Refresh ScrollTrigger after smoother is created
@@ -28,9 +33,20 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
 
     // Clean up on unmount
     return () => {
-      smoother.kill();
+      if (smootherRef.current) {
+        smootherRef.current.kill();
+      }
     };
   }, []);
+
+  // Handle route changes
+  useEffect(() => {
+    // Reset scroll position on route change
+    if (smootherRef.current) {
+      smootherRef.current.scrollTop(0);
+    }
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div id="smooth-wrapper" ref={smoothWrapperRef}>

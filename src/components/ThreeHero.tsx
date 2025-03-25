@@ -18,6 +18,8 @@ export function ThreeHero() {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const ripplesRef = useRef<Ripple[]>([]);
+  const gridGroupRef = useRef<THREE.Group | null>(null);
+  const linesRef = useRef<THREE.Line[]>([]);
   const lastTimeRef = useRef<number>(0);
   
   useEffect(() => {
@@ -25,14 +27,13 @@ export function ThreeHero() {
 
     // Scene setup
     const scene = new THREE.Scene();
-    scene.background = null; // Remove background for transparency
+    scene.background = null;
     sceneRef.current = scene;
     
-    // Reduce FOV for flatter perspective
     const camera = new THREE.PerspectiveCamera(3, window.innerWidth / window.innerHeight, 0.1, 2000);
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
-      alpha: true, // Enable transparency
+      alpha: true,
       powerPreference: 'high-performance',
       precision: 'mediump'
     });
@@ -40,60 +41,43 @@ export function ThreeHero() {
     cameraRef.current = camera;
     rendererRef.current = renderer;
     
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    // Grid setup with optimized geometries
+    // Grid setup
     const gridSize = 80;
     const spacing = 2.0;
-    const lines: THREE.Line[] = [];
-
-    // Create a group to hold all grid lines
     const gridGroup = new THREE.Group();
+    gridGroupRef.current = gridGroup;
     scene.add(gridGroup);
 
-    // Optimize shader for performance
+    // Optimized shader
     const gradientMaterial = new THREE.ShaderMaterial({
       uniforms: {
         color: { value: new THREE.Color(0xE5ECE9) },
-        mousePos: { value: new THREE.Vector2(0, 0) },
-        time: { value: 0 }
+        mousePos: { value: new THREE.Vector2(0, 0) }
       },
       vertexShader: `
-        varying vec2 vUv;
         varying vec3 vPosition;
-        uniform vec2 mousePos;
         
         void main() {
-          vUv = uv;
           vPosition = position;
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
       fragmentShader: `
-        varying vec2 vUv;
         varying vec3 vPosition;
         uniform vec2 mousePos;
         uniform vec3 color;
-        uniform float time;
 
         void main() {
-          // Calculate distance from center
           float centerDist = length(vPosition.xy);
-          
-          // Calculate distance from mouse
           float mouseDist = length(vPosition.xy - mousePos * 25.0);
-          
-          // Create radial fade effect
-          float fadeStart = 35.0; // Distance where fade begins
-          float fadeEnd = 45.0;   // Distance where fade ends
+          float fadeStart = 35.0;
+          float fadeEnd = 45.0;
           float radialFade = smoothstep(fadeEnd, fadeStart, centerDist);
-          
-          // Mouse glow effect
           float glow = smoothstep(25.0, 2.0, mouseDist);
-          
-          // Combine effects
           float opacity = mix(0.35, 1.00, glow) * radialFade;
           
           gl_FragColor = vec4(color, opacity);
@@ -103,132 +87,96 @@ export function ThreeHero() {
       side: THREE.DoubleSide,
     });
 
-    // Pre-allocate buffers for better performance
-    const positions = new Float32Array(gridSize * 3);
-    const tempPoints: THREE.Vector3[] = [];
+    // Reusable point pool for geometry creation
+    const pointPool: THREE.Vector3[] = Array(gridSize).fill(0).map(() => new THREE.Vector3());
     
-    // Create horizontal and vertical lines with shared geometry
-    for (let j = 0; j < gridSize; j++) {
-      tempPoints.length = 0;
-      for (let i = 0; i < gridSize; i++) {
-        tempPoints.push(new THREE.Vector3(
-          (i - gridSize / 2) * spacing,
-          (j - gridSize / 2) * spacing,
-          0
-        ));
-      }
-      const curve = new THREE.CatmullRomCurve3(tempPoints, false, 'catmullrom', 0.5);
-      const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(gridSize * 2));
-      const line = new THREE.Line(geometry, gradientMaterial);
-      gridGroup.add(line);
-      lines.push(line);
-    }
-
-    // Vertical lines with shared geometry
-    for (let i = 0; i < gridSize; i++) {
-      tempPoints.length = 0;
+    // Create horizontal and vertical lines
+    const createLines = (isHorizontal: boolean) => {
       for (let j = 0; j < gridSize; j++) {
-        tempPoints.push(new THREE.Vector3(
-          (i - gridSize / 2) * spacing,
-          (j - gridSize / 2) * spacing,
-          0
-        ));
+        for (let i = 0; i < gridSize; i++) {
+          const point = pointPool[i];
+          point.set(
+            isHorizontal ? (i - gridSize / 2) * spacing : (j - gridSize / 2) * spacing,
+            isHorizontal ? (j - gridSize / 2) * spacing : (i - gridSize / 2) * spacing,
+            0
+          );
+        }
+        const curve = new THREE.CatmullRomCurve3(pointPool, false, 'catmullrom', 0.5);
+        const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(gridSize * 2));
+        const line = new THREE.Line(geometry, gradientMaterial);
+        gridGroup.add(line);
+        linesRef.current.push(line);
       }
-      const curve = new THREE.CatmullRomCurve3(tempPoints, false, 'catmullrom', 0.5);
-      const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(gridSize * 2));
-      const line = new THREE.Line(geometry, gradientMaterial);
-      gridGroup.add(line);
-      lines.push(line);
-    }
+    };
 
-    // Adjust camera position for wider view
+    createLines(true);  // Horizontal lines
+    createLines(false); // Vertical lines
+
     camera.position.set(0, 0, 150);
     camera.lookAt(0, 0, 0);
 
-    // Window resize handler
     const handleResize = () => {
-      if (!cameraRef.current || !rendererRef.current || !sceneRef.current) return;
+      if (!camera || !renderer || !gridGroup) return;
       
       const width = window.innerWidth;
       const height = window.innerHeight;
       
-      // Update camera aspect ratio
-      cameraRef.current.aspect = width / height;
-      cameraRef.current.updateProjectionMatrix();
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
       
-      // Update renderer size
-      rendererRef.current.setSize(width, height);
-      
-      // Calculate viewport coverage
-      const fov = cameraRef.current.fov * (Math.PI / 180);
+      const fov = camera.fov * (Math.PI / 180);
       const viewportHeight = 2 * Math.tan(fov / 2) * Math.abs(camera.position.z);
-      const viewportWidth = viewportHeight * cameraRef.current.aspect;
+      const viewportWidth = viewportHeight * camera.aspect;
       
-      // Scale grid to cover viewport with overflow
       const gridWorldSize = gridSize * spacing;
       const scaleX = (viewportWidth / gridWorldSize) * 1.85;
       const scaleY = (viewportHeight / gridWorldSize) * 1.85;
       const scale = Math.max(scaleX, scaleY);
       
-      // Apply scale to grid group
       gridGroup.scale.set(scale, scale, 1);
     };
 
-    // Mouse move handler
     const handleMouseMove = (event: MouseEvent) => {
-      mousePosition.current = {
-        x: (event.clientX / window.innerWidth) * 2 - 1,
-        y: -(event.clientY / window.innerHeight) * 2 + 1,
-      };
-      // Update shader uniform
-      gradientMaterial.uniforms.mousePos.value.set(
-        mousePosition.current.x,
-        mousePosition.current.y
-      );
+      const x = (event.clientX / window.innerWidth) * 2 - 1;
+      const y = -(event.clientY / window.innerHeight) * 2 + 1;
+      mousePosition.current = { x, y };
+      gradientMaterial.uniforms.mousePos.value.set(x, y);
     };
 
-    // Mouse click handler
     const handleClick = (event: MouseEvent) => {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
       
-      // Create new ripple with physics-based parameters
       ripplesRef.current.push({
         position: new THREE.Vector2(x, y),
         time: 0,
-        strength: 1.2,     // Sweet spot for visible but controlled waves
-        velocity: 12,      // Balanced speed for smooth propagation
-        frequency: 1.2,    // Creates clear, distinct wave patterns
-        wavelength: 18,    // Good spread without losing definition
-        damping: 0.035     // Long-lasting but eventually fades (about 3-4 seconds)
+        strength: 1.2,
+        velocity: 12,
+        frequency: 1.2,
+        wavelength: 18,
+        damping: 0.035
       });
     };
 
-    // Animation with optimized performance
     const animate = (currentTime: number) => {
-      const id = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
 
       const deltaTime = Math.min((currentTime - lastTimeRef.current) / 1000, 0.1);
       lastTimeRef.current = currentTime;
 
-      // Update time uniform for subtle animation
-      gradientMaterial.uniforms.time.value += deltaTime * 0.5;
-
-      // Update ripples with wave physics
+      // Update ripples with time-based animation
       ripplesRef.current = ripplesRef.current.filter(ripple => {
-        ripple.time += deltaTime * 0.24; // Time scale: 0.2 to 0.8 (below 0.2 is too slow, above 0.8 too fast)
-        
-        // Apply gentler energy loss over time and distance
+        ripple.time += deltaTime * 0.24;
         ripple.strength *= Math.exp(-ripple.damping * ripple.time);
-        
-        return ripple.strength > 0.001; // Threshold: 0.0005 to 0.002 (lower values keep waves longer but impact performance)
+        return ripple.strength > 0.001;
       });
 
-      // Optimize grid updates
       const mouseX = mousePosition.current.x * 25;
       const mouseY = mousePosition.current.y * 25;
 
-      lines.forEach((line) => {
+      // Batch geometry updates
+      linesRef.current.forEach((line) => {
         const positions = line.geometry.attributes.position;
         const array = positions.array;
         let needsUpdate = false;
@@ -245,32 +193,26 @@ export function ThreeHero() {
           
           let targetZ = peakInfluence;
 
-          // Calculate wave interference pattern
+          // Calculate wave interference
           for (const ripple of ripplesRef.current) {
             const rippleX = ripple.position.x * 25;
             const rippleY = ripple.position.y * 25;
             const distance = Math.hypot(rippleX - x, rippleY - y);
             
-            // Wave equation components
             const phase = (distance / ripple.wavelength) - (ripple.time * ripple.velocity);
-            const amplitude = ripple.strength * Math.exp(-distance * 0.002); // Distance falloff: 0.001 to 0.004 (lower spreads further)
+            const amplitude = ripple.strength * Math.exp(-distance * 0.002);
             
-            // Combine multiple wave components with more pronounced sub-harmonics
             const waveform = (
-              Math.sin(phase * ripple.frequency * Math.PI) +                    // Primary wave
-              Math.sin(phase * ripple.frequency * 0.3 * Math.PI) * 0.7 +       // Sub-harmonic (ratio 0.2 to 0.4)
-              Math.sin(phase * ripple.frequency * 0.15 * Math.PI) * 0.4        // Second sub-harmonic (ratio 0.1 to 0.2)
+              Math.sin(phase * ripple.frequency * Math.PI) +
+              Math.sin(phase * ripple.frequency * 0.3 * Math.PI) * 0.7 +
+              Math.sin(phase * ripple.frequency * 0.15 * Math.PI) * 0.4
             );
 
-            // Wavefront focusing factor
-            const focusFactor = Math.exp(-Math.pow(distance - ripple.velocity * ripple.time, 2) * 0.0002); // Range: 0.0001 to 0.0004
-            
-            // Final amplitude scaling
-            targetZ += waveform * amplitude * focusFactor * 35; // Scale: 20 to 50 (above 50 causes extreme displacement)
+            const focusFactor = Math.exp(-Math.pow(distance - ripple.velocity * ripple.time, 2) * 0.0002);
+            targetZ += waveform * amplitude * focusFactor * 35;
           }
           
           const currentZ = array[idx + 2];
-          // Motion control parameters - Range: 0.1 to 0.3 (lower = smoother but slower)
           const dampingFactor = Math.abs(targetZ - currentZ) > 1 ? 0.10 : 0.18;
           const velocity = (targetZ - currentZ) * dampingFactor;
           const newZ = currentZ + velocity;
@@ -289,24 +231,21 @@ export function ThreeHero() {
       renderer.render(scene, camera);
     };
 
-    // Event listeners
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleResize);
     window.addEventListener('click', handleClick);
 
-    // Initial setup
     handleResize();
-
-    // Start animation with initial timestamp
     lastTimeRef.current = performance.now();
     animate(lastTimeRef.current);
 
-    // Cleanup
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('click', handleClick);
       containerRef.current?.removeChild(renderer.domElement);
+      linesRef.current.forEach(line => line.geometry.dispose());
+      gradientMaterial.dispose();
       scene.clear();
       renderer.dispose();
     };

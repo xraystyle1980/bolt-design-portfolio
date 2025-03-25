@@ -6,11 +6,11 @@ import { ArrowRight } from "./icons/arrow-right";
 import { Tags } from "./Tags";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HeroSection } from "./case-study/HeroSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function CaseStudies() {
-  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const caseStudyRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
@@ -42,6 +42,33 @@ export function CaseStudies() {
     };
   }, []);
 
+  // Determine hero layout and images based on project
+  const getHeroConfig = (projectId: string) => {
+    switch (projectId) {
+      case 'decent-app':
+        return {
+          layout: 'double' as const,
+          leftImage: '/images/decent-app-hero-single-left.png',
+          rightImage: '/images/decent-app-hero-single-right.png'
+        };
+      case 'blockset-docs':
+        return {
+          layout: 'single' as const,
+          singleImage: '/images/blockset-docs-hero-single.png'
+        };
+      case 'decent-design-system':
+        return {
+          layout: 'single' as const,
+          singleImage: '/images/decent-design-system-hero-single.png'
+        };
+      default:
+        return {
+          layout: 'single' as const,
+          singleImage: '/images/decent-design-system-hero-single.png' // fallback
+        };
+    }
+  };
+
   return (
     <div className="flex flex-grow flex-col gap-8 md:gap-16 lg:gap-24">
       {projects.map((project, index) => (
@@ -51,23 +78,12 @@ export function CaseStudies() {
           className="group flex flex-col gap-4 md:gap-8"
           ref={el => caseStudyRefs.current[index] = el}
         >
-          <div className="flex flex-col items-center overflow-clip rounded-2xl md:rounded-3xl bg-muted">
-            <div className="relative aspect-[16/9] w-full h-full">
-              <div className={cn(
-                "relative h-full w-full",
-                !loadedImages[project.id] && "image-loading"
-              )}>
-                <img 
-                  src={project.imageUrl} 
-                  alt={project.title}
-                  className={cn(
-                    "h-full w-full object-cover transition-transform duration-500",
-                    loadedImages[project.id] && "group-hover:scale-105"
-                  )}
-                  onLoad={() => setLoadedImages(prev => ({ ...prev, [project.id]: true }))}
-                />
-              </div>
-            </div>
+          <div className="w-full py-20">
+            <HeroSection 
+              id={project.id}
+              {...getHeroConfig(project.id)}
+              className="h-[300px] md:h-[500px]"
+            />
           </div>
           <div className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex flex-col gap-2 max-w-2xl">
