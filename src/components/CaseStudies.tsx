@@ -7,11 +7,12 @@ import { Tags } from "./Tags";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HeroSection } from "./case-study/HeroSection";
+import { Button } from "./ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function CaseStudies() {
-  const caseStudyRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const caseStudyRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     caseStudyRefs.current.forEach((ref, index) => {
@@ -71,35 +72,49 @@ export function CaseStudies() {
 
   return (
     <div className="flex flex-grow flex-col gap-8 md:gap-16 lg:gap-24">
+      <h4 className="text-display-lg">
+        Case Studies
+      </h4>
       {projects.map((project, index) => (
-        <Link
-          key={project.id}
-          to={project.link}
-          className="group flex flex-col gap-4 md:gap-8"
-          ref={el => caseStudyRefs.current[index] = el}
-        >
-          <div className="w-full py-20">
-            <HeroSection 
-              id={project.id}
-              {...getHeroConfig(project.id)}
-              className="h-[300px] md:h-[500px]"
-            />
+        <div key={project.id} ref={el => caseStudyRefs.current[index] = el}>
+          <div className="w-full pb-20">
+          
+            <Link to={project.link} className="group">
+              <HeroSection 
+                id={project.id}
+                {...getHeroConfig(project.id)}
+                className="h-[300px] md:h-[600px]"
+              />
+            </Link>
+
           </div>
+          
           <div className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-start lg:justify-between">
+            
             <div className="flex flex-col gap-2 max-w-2xl">
               <h3 className="text-display-md text-accent">
                 {project.title}
               </h3>
               <p className="text-body-lg max-w-xl">
-                {project.description}
+                {project.summary}
               </p>
-              <Tags tags={project.technologies} className="mt-2" />
+              <Tags tags={project.technologies} justify="start" className="mt-2" />
             </div>
-            <div className="flex items-center justify-center rounded-[100px] border border-solid border-foreground px-6 py-3 md:px-7 md:py-[15px] transition-colors group-hover:bg-foreground group-hover:text-background shrink-0">
-              <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
-            </div>
+
+            <Link
+              to={project.link}
+            >
+              <Button 
+                variant="outline"
+                size="md"
+                className="rounded-full group-hover:bg-foreground group-hover:text-background shrink-0"
+              >
+                <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
+              </Button>
+            </Link>
+
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );

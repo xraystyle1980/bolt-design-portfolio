@@ -10,6 +10,8 @@ export const decentDesignSystem: Project = {
   imageUrl: '/images/decent-design-system-hero-collage.png',
   heroImage: '/images/decent-design-system-hero-collage.png?h=600&fit=cover',
   summary: 'Led the development of a unified design system that streamlined workflows, improved team alignment, and delivered consistent user experiences across the organization.',
+  role: 'Design Systems Lead',
+  team: 'Product Design (3), Engineering (2), Product (1)',
   challenge: {
     title: 'A Need for Consistency',
     content: 'Scaling a product across a diverse ecosystem required consistency, efficiency, and collaboration. The organization needed a unified design language that could streamline workflows and improve team alignment.',

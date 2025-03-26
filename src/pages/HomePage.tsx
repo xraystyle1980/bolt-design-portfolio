@@ -22,14 +22,14 @@ export function HomePage() {
     <div id="top">
       <ThreeHero />
       <Container>
-        <div className="relative top-[200px]">
           <div className="flex flex-col gap-8 md:gap-16 lg:gap-24">
-            <section>
+{/* gap-8/16/24 */}
+            <section className='flex flex-col justify-center h-screen'>
               <h1>
-                <span className="block text-body-lg md:text-body-xl text-accent">
+                <span className="block text-body-xl md:text-body-xxl text-muted-foreground">
                   👋 Hello, I'm Matt Trice.
                 </span>
-                <span className="block text-display-xl md:text-display-3xl text-foreground leading-[1.1] pt-3 md:pt-4 break-words overflow-hidden">
+                <span className="block text-display-xl md:text-display-3xl text-foreground pt-3 md:pt-4 break-words overflow-hidden">
                   I am a Senior Product Designer connecting UX, design systems, and front-end.
                 </span>
               </h1>
@@ -42,11 +42,14 @@ export function HomePage() {
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </section>
+{/* gap-8/16/24 */}
             <CaseStudies />
+{/* gap-8/16/24 */}
             <Insights />
+{/* gap-8/16/24 */}
             <CTA />
+{/* gap-8/16/24 */}
           </div>
-        </div>
       </Container>
       <Footer />
     </div>

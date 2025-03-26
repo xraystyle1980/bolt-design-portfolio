@@ -31,7 +31,7 @@ export function MobileMenu() {
         <Button 
           variant="outline" 
           size="icon" 
-          className="rounded-full w-10 h-10"
+          className="rounded-full w-14 h-10"
           aria-label="Open menu"
         >
           <Menu className="h-6 w-6" />
@@ -74,7 +74,7 @@ export function MobileMenu() {
           <Button 
             variant="default"
             size="lg"
-            className="rounded-full mt-8 w-fit group transition-all duration-300"
+            className="rounded-full mt-8 group transition-all duration-300"
             onClick={() => setOpen(false)}
           >
             Let's Talk

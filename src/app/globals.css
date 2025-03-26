@@ -234,7 +234,7 @@ html::-webkit-scrollbar {
 
   /* Theme Variables - Dark Mode */
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 0 0% 9%;
     --foreground: 0 0% 95%;
  
     --card: 24 9.8% 10%;

@@ -254,7 +254,7 @@ export function ThreeHero() {
   return (
     <div 
       ref={containerRef} 
-      className="absolute top-0 left-0 w-full h-screen -z-10 pointer-events-none"
+      className="absolute top-0 left-0 w-full h-screen -z-10 pointer-events-none border-b border-1"
     />
   );
 }

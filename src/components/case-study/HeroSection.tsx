@@ -96,96 +96,96 @@ export function HeroSection({ id, layout = 'single', leftImage, rightImage, cent
   return (
     <div 
       ref={containerRef}
-      className={cn("relative flex flex-col items-center", className)}
+      className={cn("relative w-full h-[300px] md:h-[600px]", className)}
     >
       {/* Gradient background container */}
-      <div className="relative w-full h-[500px] rounded-2xl md:rounded-3xl overflow-hidden">
-        <div className="absolute inset-0" style={{
+      <div className="absolute inset-0 w-full h-full rounded-2xl md:rounded-3xl overflow-hidden">
+        <div className="absolute inset-0 w-full h-full" style={{
           background: 'radial-gradient(62.37% 58.17% at 48.63% 30.27%, #D2D4E0 0%, #A6B1BC 100%)'
         }} />
       </div>
 
       {/* Overlapping images container */}
-      <div className="absolute inset-0 flex justify-center items-center">
+      <div className="absolute inset-0 flex justify-center items-center p-12 md:p-24">
         {layout === 'single' ? (
           <div 
             ref={singleImageRef}
             className={cn(
-              "relative w-[60%]",
+              "relative w-full max-w-[800px]",
               !loadedImages['single'] && "image-loading"
             )}
           >
             <img
               src={singleImage}
               alt={`${id} Interface`}
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               onLoad={() => setLoadedImages(prev => ({ ...prev, 'single': true }))}
             />
           </div>
         ) : layout === 'double' ? (
-          <>
+          <div className="relative w-full max-w-[900px] flex justify-center items-center">
             {/* Left Image */}
             <div 
               ref={leftImageRef}
-              className="relative w-[24%] -ml-12"
+              className="relative w-[35%] -mr-[8%]"
             >
               <img
                 src={leftImage}
                 alt={`${id} Interface Left`}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
 
             {/* Right Image */}
             <div 
               ref={rightImageRef}
-              className="relative w-[24%] -mr-12"
+              className="relative w-[35%]"
             >
               <img
                 src={rightImage}
                 alt={`${id} Interface Right`}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
-          </>
+          </div>
         ) : (
-          <>
+          <div className="relative w-full max-w-[1200px] flex justify-center items-center">
             {/* Left Image */}
             <div 
               ref={leftImageRef}
-              className="relative w-[20%] -ml-16"
+              className="relative w-[35%] -mr-[5%]"
             >
               <img
                 src={leftImage}
                 alt={`${id} Interface Left`}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
 
             {/* Center Image */}
             <div 
               ref={centerImageRef}
-              className="relative w-[20%]"
+              className="relative w-[35%] -mr-[5%]"
             >
               <img
                 src={centerImage}
                 alt={`${id} Interface Center`}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
 
             {/* Right Image */}
             <div 
               ref={rightImageRef}
-              className="relative w-[20%] -mr-16"
+              className="relative w-[35%]"
             >
               <img
                 src={rightImage}
                 alt={`${id} Interface Right`}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

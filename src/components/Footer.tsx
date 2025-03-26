@@ -1,5 +1,6 @@
 import { DribbbleIcon, GitHubIcon, LinkedInIcon } from "./icons/social"
 import { Link } from "react-router-dom"
+import { Container } from "./ui/container"
 
 interface FooterProps {
   className?: string
@@ -46,8 +47,9 @@ const socialLinks = [
 
 export function Footer({ className }: FooterProps) {
   return (
-    <div className="flex w-full flex-col gap-2 pt-12 pb-6">
-      <div className="flex flex-wrap items-start justify-between gap-x-12 gap-y-3 min-[1190px]:flex-nowrap">
+    <div className="flex w-full flex-col gap-2 pt-12 pb-3 border-t border-border">
+      <Container className="max-w-screen-2xl">
+      <div className="flex flex-wrap items-start justify-between gap-x-12 gap-y-3">
         <h2 className="text-display-sm flex flex-col">
           Matt Trice Design
           <span className="text-accent mt-2">
@@ -95,6 +97,7 @@ export function Footer({ className }: FooterProps) {
           ©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit. Designed despite of tyrannical 🐈
         </p>
       </div>
+      </Container>
     </div>
   )
 }

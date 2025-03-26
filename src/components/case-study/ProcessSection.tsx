@@ -6,9 +6,9 @@ interface KeyPointsListProps {
 
 function KeyPointsList({ points }: KeyPointsListProps) {
   return (
-    <ul className="flex flex-col gap-3">
+    <ul className="flex flex-col gap-2">
       {points.map((point, index) => (
-        <li key={index} className="text-body-lg text-muted-foreground flex items-center gap-3">
+        <li key={index} className="text-body-lg text-foreground flex items-center gap-3">
           <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           {point}
         </li>
@@ -25,9 +25,9 @@ interface StepProps {
 
 function Step({ title, content, keyPoints }: StepProps) {
   return (
-    <div className="flex flex-col gap-4">
-      <h3 className="text-display-sm font-normal text-accent">{title}</h3>
-      <p className="text-body-lg text-muted-foreground">{content}</p>
+    <div className="flex flex-col gap-2">
+      <h3 className="text-display-sm text-foreground">{title}</h3>
+      <p className="text-body-lg text-foreground">{content}</p>
       {keyPoints && <KeyPointsList points={keyPoints} />}
     </div>
   );
@@ -39,7 +39,7 @@ interface StepsListProps {
 
 function StepsList({ steps }: StepsListProps) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-10">
       {steps.map(step => (
         <Step key={step.title} {...step} />
       ))}
@@ -54,11 +54,11 @@ interface SectionHeaderProps {
 
 function SectionHeader({ title, content }: SectionHeaderProps) {
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-display-md md:text-display-lg font-normal text-accent">
+    <div className="flex flex-col gap-2">
+      <h2 className="text-display-md md:text-display-lg text-foreground">
         {title}
       </h2>
-      <p className="text-body-lg text-muted-foreground">
+      <p className="text-body-lg text-foreground">
         {content}
       </p>
     </div>

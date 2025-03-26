@@ -1,4 +1,4 @@
-import { Project, NarrativeSection, ProcessSection, OutcomeSection } from '../types';
+import { Project, NarrativeSection, ProcessSection, OutcomeSection, GallerySection } from '../types';
 
 export const decentApp: Project = {
   id: 'decent-app',
@@ -6,10 +6,12 @@ export const decentApp: Project = {
   category: 'Product Design',
   year: '2023',
   link: '/case-study/decent-app',
-  description: 'A strategic transformation of Fractal into Decent, redefining the product\'s value in the decentralized governance space.',
-  imageUrl: '/images/decent-app-hero-1.png',
-  heroImage: '/images/decent-app-hero-1.png?h=600&fit=cover',
-  summary: 'Led the product design transition from Fractal to Decent, creating an intuitive and adaptable experience that bridges Web2 and Web3 usability.',
+  description: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
+  imageUrl: '/images/decent-app-hero-collage.png',
+  heroImage: '/images/decent-app-hero-collage.png?h=600&fit=cover',
+  heroSubTitle: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
+  role: 'Lead Product Designer',
+  team: '1 Product Designer (me), 1 Brand Designer, 1 Creative Director, 4 Engineers, 1 Product Manager',
   challenge: {
     title: 'A Need for Evolution',
     content: 'Fractal, the original product, was falling short of user expectations. The decentralized governance space had evolved, and Fractal\'s rigid smart contract structures limited adoption. Users found it complex, inflexible, and outdated.',
@@ -157,7 +159,26 @@ export const decentApp: Project = {
           ]
         }
       ]
-    } as ProcessSection
+    } as ProcessSection,
+    {
+      type: 'gallery',
+      title: 'Project Gallery',
+      content: 'A collection of key moments and deliverables from the project.',
+      images: [
+        {
+          url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
+          alt: 'Project dashboard interface'
+        },
+        {
+          url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
+          alt: 'Team collaboration session'
+        },
+        {
+          url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000',
+          alt: 'User research workshop'
+        }
+      ]
+    } as GallerySection
   ],
   technologies: ['React', 'TypeScript', 'Chakra UI', 'Figma', 'Notion'],
   outcomes: [

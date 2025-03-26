@@ -2,14 +2,16 @@ import { Project, NarrativeSection, ProcessSection } from '../types';
 
 export const blocksetDocs: Project = {
   id: 'blockset-docs',
-  title: 'Blockset Documentation',
-  category: 'Product Design',
-  year: '2021',
+  title: 'Blockset Docs',
+  category: 'Documentation',
+  year: '2023',
   link: '/case-study/blockset-docs',
-  description: 'A unified documentation platform and marketing website that bridges the gap between technical nuance and user onboarding needs for a blockchain data integration platform.',
-  imageUrl: '/images/blockset-docs-hero.png',
-  heroImage: '/images/blockset-docs-hero.png?h=600&fit=cover',
-  summary: 'Led the design of a comprehensive documentation site and marketing page that improved developer confidence, streamlined integration processes, and elevated Blockset\'s market presence.',
+  description: 'A comprehensive documentation platform that improved developer experience and streamlined API integration.',
+  imageUrl: '/images/blockset-docs-hero-1.png',
+  heroImage: '/images/blockset-docs-hero-1.png?h=600&fit=cover',
+  summary: 'Designed and built a unified documentation platform that improved developer experience and streamlined API integration.',
+  role: 'Lead Product Designer',
+  team: 'Product Design (1), Engineering (3), Technical Writing (2)',
   challenge: {
     title: 'Technical Accessibility',
     content: 'Balancing technical depth with accessibility was our main challenge. We needed to provide comprehensive API documentation while ensuring the content remained approachable for developers at different experience levels.',

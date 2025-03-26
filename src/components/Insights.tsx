@@ -28,9 +28,9 @@ const insights: Insight[] = [
 export function Insights() {
   return (
     <section className="py-24">
-      <h2 className="text-display-2xl text-neutral-500 mb-10">
+      <h4 className="text-display-lg pb-10">
         Playground
-      </h2>
+      </h4>
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         {insights.map((insight) => (
           <PlaygroundCard

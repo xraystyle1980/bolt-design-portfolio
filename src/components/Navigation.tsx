@@ -45,14 +45,14 @@ export function Navigation({ className }: NavigationProps) {
     'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
     theme === 'dark' ? 'text-white' : 'text-neutral-900',
     {
-      'bg-background/40 backdrop-blur-md shadow-sm py-1': isScrolled,
+      'bg-background/40 backdrop-blur-md shadow-sm py-2': isScrolled,
       'py-6': !isScrolled
     },
     className
   );
 
   const containerClasses = cn(
-    'nav-container mx-auto w-full max-w-screen-xl flex items-center justify-between px-6'
+    'nav-container mx-auto w-full max-w-screen-2xl flex items-center justify-between px-6'
   );
 
   const logoClasses = cn(

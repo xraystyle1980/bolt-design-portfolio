@@ -4,11 +4,12 @@ import { cn } from "@/lib/utils";
 interface TagsProps {
   tags: string[];
   className?: string;
+  justify?: 'start' | 'center' | 'end';
 }
 
-export function Tags({ tags, className }: TagsProps) {
+export function Tags({ tags, className, justify = 'center' }: TagsProps) {
   return (
-    <div className={cn("flex flex-wrap gap-2 justify-center", className)}>
+    <div className={cn(`flex flex-wrap gap-3 justify-${justify}`, className)}>
       {tags.map((tag, index) => (
         <Badge
           key={index}

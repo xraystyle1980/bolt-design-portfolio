@@ -39,11 +39,14 @@ export function PlaygroundCard({ imageUrl, title, description, link }: Playgroun
           <h3 className="text-display-sm text-accent">{title}</h3>
           <p className="text-body-lg max-w-xl">{description}</p>
         </div>
-        <Link
-          to={link}
-          className="flex items-center justify-center rounded-[100px] border border-solid border-foreground px-7 py-[15px] transition-colors hover:bg-foreground hover:text-background"
-        >
-          <ArrowRight className="h-6 w-6" />
+        <Link to={link}>
+          <Button 
+            variant="outline"
+            size="lg"
+            className="rounded-full hover:bg-foreground hover:text-background"
+          >
+            <ArrowRight className="h-6 w-6" />
+          </Button>
         </Link>
       </div>
     </div>

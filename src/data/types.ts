@@ -76,6 +76,8 @@ export interface Project {
   heroImage: string;
   link: string;
   summary: string;
+  role: string;
+  team: string;
   challenge: {
     title: string;
     content: string;
