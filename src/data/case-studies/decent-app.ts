@@ -1,4 +1,4 @@
-import { Project, NarrativeSection, ProcessSection, OutcomeSection, GallerySection } from '../types';
+import { Project, NarrativeSection, ProcessSection, OutcomeSection, GallerySection, ContentSection } from '../types';
 
 export const decentApp: Project = {
   id: 'decent-app',
@@ -34,148 +34,168 @@ export const decentApp: Project = {
   },
   sections: [
     {
-      type: 'narrative',
-      title: 'Strategic Repositioning & Product Redesign',
-      content: 'Fractal\'s transition to Decent wasn\'t just a redesign—it was a strategic shift to redefine its value in the market. The challenge? Balancing blockchain\'s technical constraints with user expectations while ensuring the product remained scalable and intuitive.',
+      type: 'content',
+      title: 'Project Overview',
+      content: 'Led the product design transition from Fractal to Decent, creating an intuitive and adaptable experience that bridges Web2 and Web3 usability.',
+      layout: 'wide',
       subsections: [
         {
-          title: 'Bridging user insights with business needs',
-          content: 'I conducted extensive user research & market analysis, identifying gaps in Fractal\'s offering that hindered adoption.',
+          title: 'The Challenge',
+          content: 'Scaling a product across a diverse ecosystem required consistency, efficiency, and collaboration. The organization needed a unified design language that could streamline workflows and improve team alignment.',
           keyPoints: [
-            'Extensive user research and market analysis',
-            'Identification of adoption barriers',
-            'Strategic alignment with business needs'
+            'Complex ecosystem integration',
+            'Need for unified design language',
+            'Workflow optimization'
           ]
         },
         {
-          title: 'Aligning stakeholders',
-          content: 'I facilitated cross-functional workshops, ensuring alignment across product, engineering, and leadership.',
+          title: 'The Solution',
+          content: 'Through collaborative design and development, we created a comprehensive design system that included a style guide, component library, and design tokens, ensuring visual consistency and scalability.',
           keyPoints: [
-            'Cross-functional workshops',
-            'Stakeholder alignment',
-            'Team collaboration'
-          ]
-        },
-        {
-          title: 'Creating a design foundation',
-          content: 'I defined core UX principles, focusing on scalability, usability, and modularity to ensure the product could evolve efficiently.',
-          keyPoints: [
-            'Core UX principles definition',
-            'Scalability focus',
-            'Modular architecture'
-          ]
-        }
-      ]
-    } as NarrativeSection,
-    {
-      type: 'process',
-      title: 'Collaborative & Iterative Design Process',
-      content: 'Working closely with the Head of Design, Product, and Engineering teams, I translated user research into clear, actionable design decisions, navigated complex UX challenges while preserving a familiar user experience, and ensured that designs were both scalable and technically feasible.',
-      steps: [
-        {
-          title: 'Refining UX through engineering collaboration',
-          content: 'I worked closely with engineers in a pair-programming-inspired design process, ensuring usability was considered at every stage.',
-          keyPoints: [
-            'Pair-programming approach',
-            'Engineering collaboration',
-            'Usability focus'
-          ]
-        },
-        {
-          title: 'Validating through rapid feedback loops',
-          content: 'I conducted weekly user feedback sessions, testing prototypes to uncover pain points and refine key flows.',
-          keyPoints: [
-            'Weekly feedback sessions',
-            'Prototype testing',
-            'Iterative refinement'
-          ]
-        },
-        {
-          title: 'Ensuring accessibility & intuitive interactions',
-          content: 'I led multiple rounds of prototyping & usability testing, iterating designs based on real-world friction.',
-          keyPoints: [
-            'Multiple prototype iterations',
-            'Usability testing',
-            'Accessibility focus'
-          ]
-        }
-      ]
-    } as ProcessSection,
-    {
-      type: 'narrative',
-      title: 'Scalable Design System & Brand Evolution',
-      content: 'Design systems thrive on continuous communication—early and often. Supporting the builders, tending to the system like a garden, and finding overlapping touchpoints between teams were key to ensuring a smooth collaboration.',
-      subsections: [
-        {
-          title: 'Building a scalable foundation',
-          content: 'I based the UI component library on classes and properties from Chakra UI, ensuring alignment and easier handoff to the engineering team.',
-          keyPoints: [
-            'Chakra UI integration',
+            'Comprehensive design system',
             'Component library development',
-            'Engineering handoff optimization'
-          ]
-        },
-        {
-          title: 'Collaborating with brand designers',
-          content: 'I worked closely with Decent\'s brand and visual designers to translate their new identity into a functional UI, ensuring the design system aligned with their branding principles.',
-          keyPoints: [
-            'Brand alignment',
-            'Visual design collaboration',
-            'Identity translation'
-          ]
-        },
-        {
-          title: 'Maintaining design consistency',
-          content: 'I contributed to comprehensive design guidelines and documentation, ensuring alignment across teams and providing org-wide direction. Specifically, my contribution was creating and maintaining a Notion database for components, documenting their usage and properties.',
-          keyPoints: [
-            'Design guidelines',
-            'Documentation',
-            'Component database'
+            'Design token implementation'
           ]
         }
       ]
-    } as NarrativeSection,
-    {
-      type: 'process',
-      title: 'Quality Assurance & Continuous Improvement',
-      content: 'I championed internal QA at every opportunity, advocating for thorough design reviews and detailed feedback to ensure a polished final product.',
-      steps: [
-        {
-          title: 'Pixel-perfect execution',
-          content: 'I provided detailed GitHub design feedback, working directly with engineers to ensure designs were accurately translated into code. This facilitated rapid iteration and created a strong feedback loop between design and development.',
-          keyPoints: [
-            'Detailed design feedback',
-            'Engineering collaboration',
-            'Rapid iteration'
-          ]
-        },
-        {
-          title: 'Post-launch iteration',
-          content: 'I analyzed user behavior and usability tests to make continuous improvements, refining the experience based on real-world usage.',
-          keyPoints: [
-            'User behavior analysis',
-            'Usability testing',
-            'Continuous improvement'
-          ]
-        }
-      ]
-    } as ProcessSection,
+    } as ContentSection,
     {
       type: 'gallery',
-      title: 'Project Gallery',
+      title: 'Key Deliverables',
       content: 'A collection of key moments and deliverables from the project.',
+      layout: 'wide',
       images: [
         {
           url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Project dashboard interface'
+          alt: 'Project dashboard interface',
+          caption: 'The redesigned dashboard provides a clear overview of DAO activities and governance status.'
         },
         {
           url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Team collaboration session'
+          alt: 'Team collaboration session',
+          caption: 'Regular cross-functional workshops ensured alignment between design, engineering, and product teams.'
+        }
+      ]
+    } as GallerySection,
+    {
+      type: 'process',
+      title: 'Design Process',
+      content: 'Our approach focused on collaboration and iteration, ensuring that every design decision was validated through user feedback and technical feasibility.',
+      steps: [
+        {
+          title: 'Research & Discovery',
+          content: 'Conducted user interviews and analyzed existing workflows to identify pain points and opportunities for improvement.',
+          keyPoints: [
+            'User research',
+            'Workflow analysis',
+            'Pain point identification'
+          ]
+        },
+        {
+          title: 'Design & Development',
+          content: 'Worked closely with engineers in a pair-programming-inspired design process, ensuring usability was considered at every stage.',
+          keyPoints: [
+            'Engineering collaboration',
+            'Usability focus',
+            'Iterative design'
+          ]
+        },
+        {
+          title: 'Testing & Refinement',
+          content: 'Conducted weekly user feedback sessions, testing prototypes to uncover pain points and refine key flows.',
+          keyPoints: [
+            'Weekly feedback sessions',
+            'Prototype testing',
+            'Flow refinement'
+          ]
+        }
+      ]
+    } as ProcessSection,
+    {
+      type: 'content',
+      title: 'Design System Implementation',
+      content: 'The design system was built with growth in mind, implementing design tokens and modular components that scaled seamlessly as new products and features were developed.',
+      layout: 'narrow',
+      subsections: [
+        {
+          title: 'Component Library',
+          content: 'Created a comprehensive component library that streamlined design and development processes.',
+          keyPoints: [
+            'Modular UI components',
+            'Development efficiency',
+            'Design consistency'
+          ]
+        },
+        {
+          title: 'Documentation',
+          content: 'Established clear guidelines and documentation to ensure the system remained accessible and intuitive as the organization expanded.',
+          keyPoints: [
+            'Clear guidelines',
+            'Accessible documentation',
+            'Team adoption'
+          ]
+        }
+      ]
+    } as ContentSection,
+    {
+      type: 'gallery',
+      title: 'Design System Components',
+      content: 'Examples of the design system components and their implementation.',
+      layout: 'narrow',
+      images: [
+        {
+          url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000',
+          alt: 'Design system components',
+          caption: 'The component library includes reusable UI elements that maintain consistency across the platform.'
+        }
+      ]
+    } as GallerySection,
+    {
+      type: 'content',
+      title: 'Outcomes & Impact',
+      content: 'The implementation of the design system and improved UX led to significant improvements in efficiency and user satisfaction.',
+      layout: 'wide',
+      subsections: [
+        {
+          title: 'Development Efficiency',
+          content: 'Teams could easily understand and implement components, reducing development time and inconsistencies.',
+          keyPoints: [
+            'Reduced development time',
+            'Improved consistency',
+            'Streamlined workflows'
+          ]
+        },
+        {
+          title: 'User Experience',
+          content: 'The new design system and improved UX led to better user satisfaction and reduced onboarding friction.',
+          keyPoints: [
+            'Improved user satisfaction',
+            'Reduced onboarding friction',
+            'Better retention'
+          ]
+        }
+      ]
+    } as ContentSection,
+    {
+      type: 'gallery',
+      title: 'Project Evolution',
+      content: 'A visual journey through the project\'s transformation from Fractal to Decent.',
+      layout: 'wide',
+      images: [
+        {
+          url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
+          alt: 'Initial user research phase',
+          caption: 'Early user research sessions helped identify key pain points and opportunities for improvement.'
+        },
+        {
+          url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
+          alt: 'Design system implementation',
+          caption: 'The new design system brought consistency and efficiency to the development process.'
         },
         {
           url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000',
-          alt: 'User research workshop'
+          alt: 'Final product launch',
+          caption: 'The redesigned platform successfully bridged the gap between Web2 and Web3 usability.'
         }
       ]
     } as GallerySection

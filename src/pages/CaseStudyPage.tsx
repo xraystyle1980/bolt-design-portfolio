@@ -100,33 +100,79 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           <div className="col-span-3">
             <div className="flex flex-col gap-24 md:gap-32">
               {project.sections.map((section: Section) => {
+                const commonProps = {
+                  key: section.title,
+                  title: section.title,
+                  content: section.content,
+                };
+
                 switch (section.type) {
+                  case 'content':
+                    return (
+                      <div className={cn(
+                        "flex flex-col gap-8",
+                        section.layout === 'wide' && "col-span-3",
+                        section.layout === 'narrow' && "col-span-2"
+                      )}>
+                        <div className="flex flex-col gap-4">
+                          <h3 className="text-display-md text-foreground">{section.title}</h3>
+                          <p className="text-body-lg text-foreground">{section.content}</p>
+                        </div>
+                        {section.subsections?.map((subsection, index) => (
+                          <div key={index} className="flex flex-col gap-4">
+                            <h4 className="text-display-sm text-foreground">{subsection.title}</h4>
+                            <p className="text-body-md text-foreground">{subsection.content}</p>
+                            {subsection.keyPoints && (
+                              <ul className="list-disc list-inside text-body-md text-foreground">
+                                {subsection.keyPoints.map((point, i) => (
+                                  <li key={i}>{point}</li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    );
                   case 'process':
                     return (
                       <ProcessSection
-                        key={section.title}
-                        title={section.title}
-                        content={section.content}
+                        {...commonProps}
                         steps={section.steps}
-                      />
-                    );
-                  case 'narrative':
-                    return (
-                      <NarrativeSection
-                        key={section.title}
-                        title={section.title}
-                        content={section.content}
-                        subsections={section.subsections}
                       />
                     );
                   case 'gallery':
                     return (
-                      <div key={section.title} className="flex flex-col gap-8">
+                      <div className={cn(
+                        "flex flex-col gap-8",
+                        section.layout === 'wide' && "col-span-3",
+                        section.layout === 'narrow' && "col-span-2"
+                      )}>
                         <div className="flex flex-col gap-4">
                           <h3 className="text-display-md text-foreground">{section.title}</h3>
                           <p className="text-body-lg text-foreground">{section.content}</p>
                         </div>
                         <Lightbox images={section.images} />
+                      </div>
+                    );
+                  case 'comparison':
+                    return (
+                      <div className="flex flex-col gap-8">
+                        <div className="flex flex-col gap-4">
+                          <h3 className="text-display-md text-foreground">{section.title}</h3>
+                          <p className="text-body-lg text-foreground">{section.content}</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="flex flex-col gap-4">
+                            <h4 className="text-display-sm text-foreground">{section.before.title}</h4>
+                            <p className="text-body-md text-foreground">{section.before.content}</p>
+                            <img src={section.before.image} alt={section.before.title} className="w-full h-auto" />
+                          </div>
+                          <div className="flex flex-col gap-4">
+                            <h4 className="text-display-sm text-foreground">{section.after.title}</h4>
+                            <p className="text-body-md text-foreground">{section.after.content}</p>
+                            <img src={section.after.image} alt={section.after.title} className="w-full h-auto" />
+                          </div>
+                        </div>
                       </div>
                     );
                   default:

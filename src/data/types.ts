@@ -2,37 +2,24 @@
 export interface BaseSection {
   title: string;
   content: string;
-  image?: string;
+  layout?: 'default' | 'wide' | 'narrow';
 }
 
-export interface KeyPointSection extends BaseSection {
-  keyPoints?: string[];
-}
-
-export interface SubSection extends KeyPointSection {
-  subsections?: SubSection[];
-}
-
-// Different section types for different layouts
-export interface NarrativeSection extends BaseSection {
-  type: 'narrative';
-  subsections?: SubSection[];
-}
-
-export interface ProcessSection extends BaseSection {
-  type: 'process';
-  steps?: {
+export interface ContentSection extends BaseSection {
+  type: 'content';
+  subsections?: {
     title: string;
     content: string;
     keyPoints?: string[];
   }[];
 }
 
-export interface OutcomeSection extends BaseSection {
-  type: 'outcome';
-  metrics?: {
-    label: string;
-    value: string;
+export interface ProcessSection extends BaseSection {
+  type: 'process';
+  steps: {
+    title: string;
+    content: string;
+    keyPoints?: string[];
   }[];
 }
 
@@ -40,6 +27,7 @@ export interface GallerySection extends BaseSection {
   type: 'gallery';
   images: {
     url: string;
+    alt?: string;
     caption?: string;
   }[];
 }
@@ -49,22 +37,16 @@ export interface ComparisonSection extends BaseSection {
   before: {
     title: string;
     content: string;
-    image?: string;
+    image: string;
   };
   after: {
     title: string;
     content: string;
-    image?: string;
+    image: string;
   };
 }
 
-// Union type for all possible section types
-export type Section = 
-  | NarrativeSection 
-  | ProcessSection 
-  | OutcomeSection 
-  | GallerySection 
-  | ComparisonSection;
+export type Section = ContentSection | ProcessSection | GallerySection | ComparisonSection;
 
 export interface Project {
   id: string;
