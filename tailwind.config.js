@@ -22,9 +22,9 @@ export default {
       },
       fontSize: {
         // Display scale
-        'display-5xl': ['96px', { lineHeight: '120%', letterSpacing: '-1.92px', fontWeight: '400' }],
-        'display-4xl': ['80px', { lineHeight: '120%', letterSpacing: '-1.6px', fontWeight: '400' }],
-        'display-3xl': ['64px', { lineHeight: '120%', letterSpacing: '-1.28px', fontWeight: '400' }],
+        'display-5xl': ['96px', { lineHeight: '114%', letterSpacing: '-1.92px', fontWeight: '400' }],
+        'display-4xl': ['80px', { lineHeight: '114%', letterSpacing: '-1.6px', fontWeight: '400' }],
+        'display-3xl': ['64px', { lineHeight: '114%', letterSpacing: '-1.28px', fontWeight: '400' }],
         'display-2xl': ['56px', { lineHeight: '130%', letterSpacing: '-1.12px', fontWeight: '400' }],
         'display-xl': ['48px', { lineHeight: '130%', letterSpacing: '-0.48px', fontWeight: '700' }],
         'display-lg': ['36px', { lineHeight: '130%', letterSpacing: '-0.36px', fontWeight: '700' }],

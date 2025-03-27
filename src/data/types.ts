@@ -46,18 +46,36 @@ export interface ComparisonSection extends BaseSection {
   };
 }
 
-export type Section = ContentSection | ProcessSection | GallerySection | ComparisonSection;
+export interface NarrativeSection extends BaseSection {
+  type: 'narrative';
+  subsections?: {
+    title: string;
+    content: string;
+    keyPoints?: string[];
+  }[];
+}
+
+export type Section = ContentSection | ProcessSection | GallerySection | ComparisonSection | NarrativeSection;
+
+export interface OutcomeSection {
+  title: string;
+  content: string;
+  metrics: Array<{ label: string; value: string }>;
+}
 
 export interface Project {
   id: string;
   title: string;
   category: string;
   year: string;
+  link: string;
   description: string;
   imageUrl: string;
   heroImage: string;
-  link: string;
-  summary: string;
+  leftImage?: string;
+  rightImage?: string;
+  singleImage?: string;
+  heroSubTitle?: string;
   role: string;
   team: string;
   challenge: {
@@ -78,19 +96,12 @@ export interface Project {
   };
   sections: Section[];
   technologies: string[];
-  outcomes?: {
-    title: string;
-    content: string;
-    metrics?: {
-      label: string;
-      value: string;
-    }[];
-  }[];
-  contributions?: string[];
+  outcomes: OutcomeSection[];
+  contributions: string[];
   testimonial: {
     quote: string;
     author: string;
     role: string;
   };
-  layout?: 'narrative' | 'process' | 'gallery' | 'comparison' | 'mixed';
+  layout: 'single' | 'double' | 'triple';
 } 

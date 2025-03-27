@@ -1,4 +1,4 @@
-import { Project, NarrativeSection, ProcessSection } from '../types';
+import { Project, Section } from '../types';
 
 export const blocksetDocs: Project = {
   id: 'blockset-docs',
@@ -6,9 +6,10 @@ export const blocksetDocs: Project = {
   category: 'Documentation',
   year: '2023',
   link: '/case-study/blockset-docs',
-  description: 'A comprehensive documentation platform that improved developer experience and streamlined API integration.',
-  imageUrl: '/images/blockset-docs-hero-1.png',
-  heroImage: '/images/blockset-docs-hero-1.png?h=600&fit=cover',
+  // description: 'A comprehensive documentation platform that improved developer experience and streamlined API integration.',
+  // imageUrl: '/images/blockset-docs-hero-1.png',
+  // heroImage: '/images/blockset-docs-hero-single.png',
+  singleImage: '/images/blockset-docs-hero-single.png',
   summary: 'Designed and built a unified documentation platform that improved developer experience and streamlined API integration.',
   role: 'Lead Product Designer',
   team: 'Product Design (1), Engineering (3), Technical Writing (2)',
@@ -57,7 +58,7 @@ export const blocksetDocs: Project = {
           ]
         }
       ]
-    } as NarrativeSection,
+    },
     {
       type: 'process',
       title: 'Developer-First Approach',
@@ -82,7 +83,7 @@ export const blocksetDocs: Project = {
           ]
         }
       ]
-    } as ProcessSection
+    }
   ],
   technologies: ['React', 'TypeScript', 'MDX', 'Figma', 'Storybook'],
   outcomes: [

@@ -2,26 +2,53 @@ import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { projects } from '@/data/projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface HeroSectionProps {
   id: string;
-  layout?: 'single' | 'double' | 'triple';
-  leftImage?: string;
-  rightImage?: string;
-  centerImage?: string;
-  singleImage?: string;
   className?: string;
 }
 
-export function HeroSection({ id, layout = 'single', leftImage, rightImage, centerImage, singleImage, className }: HeroSectionProps) {
+export function HeroSection({ id, className }: HeroSectionProps) {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const containerRef = useRef<HTMLDivElement>(null);
   const leftImageRef = useRef<HTMLDivElement>(null);
   const rightImageRef = useRef<HTMLDivElement>(null);
-  const centerImageRef = useRef<HTMLDivElement>(null);
   const singleImageRef = useRef<HTMLDivElement>(null);
+
+  const project = projects.find(p => p.id === id);
+
+  if (!project) {
+    return null;
+  }
+
+  const { layout, leftImage, rightImage, singleImage } = (() => {
+    switch (project.id) {
+      case 'decent-app':
+        return {
+          layout: 'double' as const,
+          leftImage: project.leftImage,
+          rightImage: project.rightImage
+        };
+      case 'blockset-docs':
+        return {
+          layout: 'single' as const,
+          singleImage: project.singleImage
+        };
+      case 'decent-design-system':
+        return {
+          layout: 'single' as const,
+          singleImage: project.singleImage
+        };
+      default:
+        return {
+          layout: 'single' as const,
+          singleImage: project.singleImage
+        };
+    }
+  })();
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -63,24 +90,6 @@ export function HeroSection({ id, layout = 'single', leftImage, rightImage, cent
         {
           opacity: 1,
           x: 0,
-          scale: 1,
-          duration: 1,
-          ease: 'power3.out',
-        }
-      );
-    } else if (layout === 'triple') {
-      timeline.fromTo(
-        [leftImageRef.current, centerImageRef.current, rightImageRef.current],
-        {
-          opacity: 1,
-          x: (index) => index === 1 ? 0 : index === 0 ? -100 : 100,
-          y: (index) => index === 1 ? 30 : 0,
-          scale: 0.9,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
           scale: 1,
           duration: 1,
           ease: 'power3.out',
@@ -158,18 +167,6 @@ export function HeroSection({ id, layout = 'single', leftImage, rightImage, cent
               <img
                 src={leftImage}
                 alt={`${id} Interface Left`}
-                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Center Image */}
-            <div 
-              ref={centerImageRef}
-              className="relative w-[35%] -mr-[5%]"
-            >
-              <img
-                src={centerImage}
-                alt={`${id} Interface Center`}
                 className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>

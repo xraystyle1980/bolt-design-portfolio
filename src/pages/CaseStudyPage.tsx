@@ -6,8 +6,7 @@ import { projects } from '../data/projects';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { Tags } from '@/components/Tags';
-import { NarrativeSection } from '@/components/case-study/NarrativeSection';
-import { ProcessSection } from '@/components/case-study/ProcessSection';
+import { TextSection } from '@/components/case-study/TextSection';
 import { Section } from '@/data/types';
 import { HeroSection } from '@/components/case-study/HeroSection';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -24,23 +23,6 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
     return <div>Project not found</div>;
   }
 
-  // Determine hero layout based on project
-  const heroConfig = (() => {
-    switch (project.id) {
-      case 'decent-app':
-        return {
-          layout: 'double' as const,
-          leftImage: '/images/decent-app-hero-single-left.png',
-          rightImage: '/images/decent-app-hero-single-right.png'
-        };
-      default:
-        return {
-          layout: 'single' as const,
-          singleImage: project.heroImage
-        };
-    }
-  })();
-
   return (
     <div id="top">
       <section className="mt-20">
@@ -50,7 +32,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           <Link 
             to="/#top"
             className={cn(
-              buttonVariants({ variant: "outline", size: "md" }),
+              buttonVariants({ variant: "outline", size: "sm" }),
               "rounded-full mt-20 w-fit group transition-all duration-300"
             )}
           >
@@ -69,7 +51,14 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           
           {/* Hero Section */}
           <div className="py-20">
-            <HeroSection id={project.id} {...heroConfig} />
+            <HeroSection 
+              id={project.id} 
+              layout={project.heroLayout || 'single'} 
+              leftImage={project.leftImage} 
+              rightImage={project.rightImage} 
+              centerImage={project.centerImage} 
+              singleImage={project.heroImage} 
+            />
           </div>
         </Container>
 
@@ -109,35 +98,16 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                 switch (section.type) {
                   case 'content':
                     return (
-                      <div className={cn(
-                        "flex flex-col gap-8",
-                        section.layout === 'wide' && "col-span-3",
-                        section.layout === 'narrow' && "col-span-2"
-                      )}>
-                        <div className="flex flex-col gap-4">
-                          <h3 className="text-display-md text-foreground">{section.title}</h3>
-                          <p className="text-body-lg text-foreground">{section.content}</p>
-                        </div>
-                        {section.subsections?.map((subsection, index) => (
-                          <div key={index} className="flex flex-col gap-4">
-                            <h4 className="text-display-sm text-foreground">{subsection.title}</h4>
-                            <p className="text-body-md text-foreground">{subsection.content}</p>
-                            {subsection.keyPoints && (
-                              <ul className="list-disc list-inside text-body-md text-foreground">
-                                {subsection.keyPoints.map((point, i) => (
-                                  <li key={i}>{point}</li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-                        ))}
-                      </div>
+                      <TextSection
+                        {...commonProps}
+                        items={'subsections' in section ? section.subsections : []}
+                      />
                     );
                   case 'process':
                     return (
-                      <ProcessSection
+                      <TextSection
                         {...commonProps}
-                        steps={section.steps}
+                        items={'steps' in section ? section.steps : []}
                       />
                     );
                   case 'gallery':
