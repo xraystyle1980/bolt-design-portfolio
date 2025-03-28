@@ -1,4 +1,4 @@
-import { Project, NarrativeSection, ProcessSection } from '../types';
+import { Project } from '../types';
 
 export const decentDesignSystem: Project = {
   id: 'decent-design-system',
@@ -6,12 +6,13 @@ export const decentDesignSystem: Project = {
   category: 'Design System',
   year: '2023',
   link: '/case-study/decent-design-system',
-  // description: 'Building a scalable design system to unify product experiences and streamline development workflows.',
-  // imageUrl: '/images/decent-design-system-hero-collage.png',
-  // heroImage: '/images/decent-design-system-hero-collage.png?h=600&fit=cover',
-  // Ensure leftImage and rightImage are used for double layout
+  description: 'Building a scalable design system to unify product experiences and streamline development workflows.',
+  imageUrl: '/images/decent-design-system-hero-collage.png',
+  heroImage: '/images/decent-design-system-hero-collage.png?h=600&fit=cover',
+  leftImage: '/images/decent-design-system-hero-single-left.png',
+  rightImage: '/images/decent-design-system-hero-single-right.png',
   singleImage: '/images/decent-design-system-hero-single.png',
-  summary: 'Building a scalable design system to unify product experiences and streamline development workflows.',
+  heroSubTitle: 'Building a scalable design system to unify product experiences and streamline development workflows.',
   role: 'Design System Lead',
   team: '1 Design System Lead (me), 2 Product Designers, 1 Brand Designer, 3 Engineers, 1 Product Manager',
   challenge: {
@@ -205,6 +206,7 @@ export const decentDesignSystem: Project = {
   technologies: ['React', 'TypeScript', 'Chakra UI', 'Figma', 'Notion'],
   outcomes: [
     {
+      type: 'outcome',
       title: 'Increased adoption',
       content: 'Active DAOs grew in the first few months post-launch, driving an increase in user base and total value locked (TVL) on the platform.',
       metrics: [
@@ -223,6 +225,7 @@ export const decentDesignSystem: Project = {
       ]
     },
     {
+      type: 'outcome',
       title: 'Enhanced UX',
       content: 'Usability testing showed reduced onboarding friction, boosting retention.',
       metrics: [

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { projects } from "@/data/projects";
-import { cn } from "@/lib/utils";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowRight } from "./icons/arrow-right";
 import { Tags } from "./Tags";
 import gsap from "gsap";
@@ -9,13 +8,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HeroSection } from "./case-study/HeroSection";
 import { Button } from "./ui/button";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function CaseStudies() {
   const caseStudyRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    caseStudyRefs.current.forEach((ref, index) => {
+    if (caseStudyRefs.current.length === 0) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    caseStudyRefs.current.forEach((ref) => {
       if (!ref) return;
 
       gsap.fromTo(
@@ -92,13 +93,15 @@ export function CaseStudies() {
           <div className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-start lg:justify-between">
             
             <div className="flex flex-col gap-2 max-w-2xl">
-              <h3 className="text-display-md text-accent">
+              <h3 className="text-display-md text-muted-foreground">
                 {project.title}
               </h3>
-              <p className="text-body-lg max-w-xl">
-                {project.summary}
-              </p>
-              <Tags tags={project.technologies} justify="start" className="mt-2" />
+              <div className="space-y-6 max-w-xl">
+                <p className="text-body-lg text-foreground/80">
+                  {project.description}
+                </p>
+                <Tags tags={project.technologies} justify="start" className="mt-2" />
+              </div>
             </div>
 
             <Link

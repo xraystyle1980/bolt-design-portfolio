@@ -9,7 +9,7 @@ export const useScrollAnimation = () => {
 
   useEffect(() => {
     // Create animations for each section
-    sectionRefs.current.forEach((section, index) => {
+    sectionRefs.current.forEach((section) => {
       if (!section) return;
 
       gsap.fromTo(

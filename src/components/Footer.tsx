@@ -1,10 +1,6 @@
-import { DribbbleIcon, GitHubIcon, LinkedInIcon } from "./icons/social"
+import { GitHubIcon, LinkedInIcon } from "./icons/social"
 import { Link } from "react-router-dom"
 import { Container } from "./ui/container"
-
-interface FooterProps {
-  className?: string
-}
 
 interface FooterSection {
   title: string
@@ -45,14 +41,14 @@ const socialLinks = [
   { icon: GitHubIcon, href: "https://github.com", label: "GitHub" },
 ]
 
-export function Footer({ className }: FooterProps) {
+export function Footer() {
   return (
     <div className="flex w-full flex-col gap-2 pt-12 pb-3 border-t border-border">
       <Container className="max-w-screen-2xl">
       <div className="flex flex-wrap items-start justify-between gap-x-12 gap-y-3">
         <h2 className="text-display-sm flex flex-col">
           Matt Trice Design
-          <span className="text-accent mt-2">
+          <span className="text-muted-foreground mt-2">
             Always iterating, always experimenting.
           </span>
         </h2>
@@ -75,14 +71,14 @@ export function Footer({ className }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[88px] gap-y-[51px]">
           {footerSections.map((section) => (
             <div key={section.title} className="flex flex-col gap-4">
-              <h3 className="text-body-sm font-bold text-accent">
+              <h3 className="text-body-sm font-bold text-muted-foreground">
                 {section.title}
               </h3>
               {section.links.map((link) => (
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="text-body-md hover:text-accent transition-colors"
+                  className="text-body-md hover:text-muted-foreground transition-colors"
                 >
                   {link.label}
                 </Link>

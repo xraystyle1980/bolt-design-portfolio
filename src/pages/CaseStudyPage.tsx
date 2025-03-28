@@ -4,12 +4,11 @@ import { Footer } from '../components/Footer';
 import { Container } from '@/components/ui/container';
 import { projects } from '../data/projects';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
 import { Tags } from '@/components/Tags';
 import { TextSection } from '@/components/case-study/TextSection';
 import { Section } from '@/data/types';
 import { HeroSection } from '@/components/case-study/HeroSection';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { Lightbox } from '@/components/Lightbox';
 
 interface CaseStudyPageProps {}
@@ -17,8 +16,7 @@ interface CaseStudyPageProps {}
 export function CaseStudyPage({}: CaseStudyPageProps) {
   const { id } = useParams();
   const project = projects.find(p => p.id === id);
-  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
-
+  
   if (!project) {
     return <div>Project not found</div>;
   }
@@ -51,14 +49,11 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           
           {/* Hero Section */}
           <div className="py-20">
-            <HeroSection 
-              id={project.id} 
-              layout={project.heroLayout || 'single'} 
-              leftImage={project.leftImage} 
-              rightImage={project.rightImage} 
-              centerImage={project.centerImage} 
-              singleImage={project.heroImage} 
-            />
+            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl overflow-hidden">
+              <HeroSection 
+                id={project.id}
+              />
+            </div>
           </div>
         </Container>
 
@@ -157,18 +152,11 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
       {/* Testimonial */}
       {project.testimonial && (
         <Container className="relative max-w-4xl my-24 md:my-32">
-          <blockquote className="flex flex-col items-center text-center gap-6 md:gap-8">
-            <p className="text-display-md md:text-display-lg text-foreground">
-              "{project.testimonial.quote}"
-            </p>
-            <div className="flex flex-col items-center gap-1">
-              <cite className="text-body-lg text-foreground not-italic">
-                {project.testimonial.author}
-              </cite>
-              <p className="text-body-md text-foreground">
-                {project.testimonial.title}
-              </p>
-            </div>
+          <blockquote className="border-l-4 border-primary p-4 my-6 bg-neutral-50 rounded-r-lg max-w-none">
+            <p className="text-body-lg italic">{project.testimonial.quote}</p>
+            <footer className="text-body-sm mt-2">
+              — <cite>{project.testimonial.author}</cite>, {project.testimonial.role}
+            </footer>
           </blockquote>
         </Container>
       )}

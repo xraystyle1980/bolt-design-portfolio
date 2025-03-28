@@ -12,7 +12,7 @@ export function ThreeJsPlayground() {
           <Link 
             to="/" 
             className={cn(
-              "flex items-center gap-2 text-body-lg text-accent w-fit",
+              "flex items-center gap-2 text-body-lg text-muted-foreground w-fit",
               "transition-colors hover:text-primary"
             )}
           >
@@ -22,7 +22,7 @@ export function ThreeJsPlayground() {
 
           <div className="flex flex-col gap-8">
             <h1 className="text-display-2xl">ThreeJS Experiments</h1>
-            <p className="text-body-lg text-accent max-w-2xl">
+            <p className="text-body-lg text-muted-foreground max-w-2xl">
               A playground for 3D experiments and interactive experiences using ThreeJS.
               Coming soon.
             </p>

@@ -36,7 +36,7 @@ export function PlaygroundCard({ imageUrl, title, description, link }: Playgroun
       </Link>
       <div className="flex items-start justify-between gap-8">
         <div className="flex flex-col gap-2">
-          <h3 className="text-display-sm text-accent">{title}</h3>
+          <h3 className="text-display-sm text-muted-foreground">{title}</h3>
           <p className="text-body-lg max-w-xl">{description}</p>
         </div>
         <Link to={link}>

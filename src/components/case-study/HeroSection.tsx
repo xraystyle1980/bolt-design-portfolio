@@ -89,10 +89,10 @@ export function HeroSection({ id, className }: HeroSectionProps) {
         },
         {
           opacity: 1,
-          x: 0,
+          x: (index) => index === 0 ? -30 : 30,
           scale: 1,
           duration: 1,
-          ease: 'power3.out',
+          ease: 'expo.out',
         }
       );
     }
@@ -120,19 +120,19 @@ export function HeroSection({ id, className }: HeroSectionProps) {
           <div 
             ref={singleImageRef}
             className={cn(
-              "relative w-full max-w-[800px]",
+              "relative w-full max-w-[800px] group hover:cursor-pointer",
               !loadedImages['single'] && "image-loading"
             )}
           >
             <img
               src={singleImage}
               alt={`${id} Interface`}
-              className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-auto object-contain [transition:transform_800ms_ease] group-hover:scale-105"
               onLoad={() => setLoadedImages(prev => ({ ...prev, 'single': true }))}
             />
           </div>
         ) : layout === 'double' ? (
-          <div className="relative w-full max-w-[900px] flex justify-center items-center">
+          <div className="relative w-full max-w-[900px] flex justify-center items-center group hover:cursor-pointer">
             {/* Left Image */}
             <div 
               ref={leftImageRef}
@@ -141,7 +141,7 @@ export function HeroSection({ id, className }: HeroSectionProps) {
               <img
                 src={leftImage}
                 alt={`${id} Interface Left`}
-                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-auto object-contain [transition:transform_800ms_ease] group-hover:scale-105"
               />
             </div>
 
@@ -153,12 +153,12 @@ export function HeroSection({ id, className }: HeroSectionProps) {
               <img
                 src={rightImage}
                 alt={`${id} Interface Right`}
-                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-auto object-contain [transition:transform_800ms_ease] group-hover:scale-105"
               />
             </div>
           </div>
         ) : (
-          <div className="relative w-full max-w-[1200px] flex justify-center items-center">
+          <div className="relative w-full max-w-[1200px] flex justify-center items-center group hover:cursor-pointer">
             {/* Left Image */}
             <div 
               ref={leftImageRef}
@@ -167,7 +167,7 @@ export function HeroSection({ id, className }: HeroSectionProps) {
               <img
                 src={leftImage}
                 alt={`${id} Interface Left`}
-                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-auto object-contain [transition:transform_800ms_ease] group-hover:scale-105"
               />
             </div>
 
@@ -179,7 +179,7 @@ export function HeroSection({ id, className }: HeroSectionProps) {
               <img
                 src={rightImage}
                 alt={`${id} Interface Right`}
-                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-auto object-contain [transition:transform_800ms_ease] group-hover:scale-105"
               />
             </div>
           </div>

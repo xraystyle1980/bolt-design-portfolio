@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 export function GltfLogo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,10 +28,10 @@ export function GltfLogo() {
       premultipliedAlpha: false, // Better transparency handling
       preserveDrawingBuffer: true,
     });
-    renderer.setClearColor(0x000000, 0); // Fully transparent background
-    renderer.setPixelRatio(window.devicePixelRatio); // Match device pixel ratio
+    renderer.setClearColor(0xffffff, 0);
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
-    renderer.outputEncoding = THREE.sRGBEncoding; // Better color accuracy
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping; // Improved tone mapping
     renderer.toneMappingExposure = 1.0;
     containerRef.current.appendChild(renderer.domElement);
@@ -69,17 +68,9 @@ export function GltfLogo() {
     const maxRotationOffset = Math.PI / 3; // 60 degrees max offset
     const maxVerticalRotation = Math.PI / 12; // Reduced to ±15 degrees
     const rotationSpeed = 0.35; // Much faster response
-    const mouseSensitivity = 2.5; // Amplify mouse movement
 
     // Helper function to clamp value between 0 and 1
     const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-
-    // Remove OrbitControls as we'll use custom mouse tracking
-    // Controls
-    // const controls = new OrbitControls(camera, renderer.domElement);
-    // controls.enableDamping = true;
-    // controls.dampingFactor = 0.05;
-    // controls.enableZoom = false;
 
     // GLTF Loader
     const loader = new GLTFLoader();

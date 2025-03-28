@@ -2,7 +2,11 @@ import { Project, NarrativeSection, ProcessSection, OutcomeSection, GallerySecti
 
 // Template for a narrative-focused case study
 export const narrativeTemplate: Partial<Project> = {
-  layout: 'narrative',
+  id: 'narrative-template',
+  title: 'Narrative Template',
+  category: 'Documentation',
+  year: '2023',
+  layout: 'single',
   sections: [
     {
       type: 'narrative',
@@ -25,7 +29,11 @@ export const narrativeTemplate: Partial<Project> = {
 
 // Template for a process-focused case study
 export const processTemplate: Partial<Project> = {
-  layout: 'process',
+  id: 'process-template',
+  title: 'Process Template',
+  category: 'Design System',
+  year: '2023',
+  layout: 'double',
   sections: [
     {
       type: 'process',
@@ -48,7 +56,11 @@ export const processTemplate: Partial<Project> = {
 
 // Template for a before/after comparison case study
 export const comparisonTemplate: Partial<Project> = {
-  layout: 'comparison',
+  id: 'comparison-template',
+  title: 'Comparison Template',
+  category: 'UX Research',
+  year: '2023',
+  layout: 'double',
   sections: [
     {
       type: 'comparison',
@@ -70,7 +82,11 @@ export const comparisonTemplate: Partial<Project> = {
 
 // Template for a gallery-focused case study
 export const galleryTemplate: Partial<Project> = {
-  layout: 'gallery',
+  id: 'gallery-template',
+  title: 'Gallery Template',
+  category: 'Visual Design',
+  year: '2023',
+  layout: 'triple',
   sections: [
     {
       type: 'gallery',
@@ -92,7 +108,11 @@ export const galleryTemplate: Partial<Project> = {
 
 // Template for a mixed layout case study
 export const mixedTemplate: Partial<Project> = {
-  layout: 'mixed',
+  id: 'mixed-template',
+  title: 'Mixed Template',
+  category: 'Product Design',
+  year: '2023',
+  layout: 'single',
   sections: [
     {
       type: 'narrative',

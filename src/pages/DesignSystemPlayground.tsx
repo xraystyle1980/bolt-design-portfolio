@@ -12,7 +12,7 @@ export function DesignSystemPlayground() {
           <Link 
             to="/" 
             className={cn(
-              "flex items-center gap-2 text-body-lg text-accent w-fit",
+              "flex items-center gap-2 text-body-lg text-muted-foreground w-fit",
               "transition-colors hover:text-primary"
             )}
           >
@@ -22,7 +22,7 @@ export function DesignSystemPlayground() {
 
           <div className="flex flex-col gap-8">
             <h1 className="text-display-2xl">Design System Demo</h1>
-            <p className="text-body-lg text-accent max-w-2xl">
+            <p className="text-body-lg text-muted-foreground max-w-2xl">
               An interactive showcase of the design system components and patterns.
               Coming soon.
             </p>

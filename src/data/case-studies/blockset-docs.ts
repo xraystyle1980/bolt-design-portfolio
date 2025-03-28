@@ -1,4 +1,4 @@
-import { Project, Section } from '../types';
+import { Project } from '../types';
 
 export const blocksetDocs: Project = {
   id: 'blockset-docs',
@@ -6,13 +6,13 @@ export const blocksetDocs: Project = {
   category: 'Documentation',
   year: '2023',
   link: '/case-study/blockset-docs',
-  // description: 'A comprehensive documentation platform that improved developer experience and streamlined API integration.',
-  // imageUrl: '/images/blockset-docs-hero-1.png',
-  // heroImage: '/images/blockset-docs-hero-single.png',
+  description: 'How I transformed complex technical documentation into a beautiful, intuitive information architecture that dramatically improved developer experience.',
+  imageUrl: '/images/blockset-docs-hero-single.png',
+  heroImage: '/images/blockset-docs-hero-single.png?h=600&fit=cover',
   singleImage: '/images/blockset-docs-hero-single.png',
-  summary: 'Designed and built a unified documentation platform that improved developer experience and streamlined API integration.',
-  role: 'Lead Product Designer',
-  team: 'Product Design (1), Engineering (3), Technical Writing (2)',
+  heroSubTitle: 'How I transformed complex technical documentation into a beautiful, intuitive information architecture that dramatically improved developer experience.',
+  role: 'Lead Designer',
+  team: '1 Designer (me), 1 Technical Writer, 2 Engineers',
   challenge: {
     title: 'Technical Accessibility',
     content: 'Balancing technical depth with accessibility was our main challenge. We needed to provide comprehensive API documentation while ensuring the content remained approachable for developers at different experience levels.',
@@ -88,6 +88,7 @@ export const blocksetDocs: Project = {
   technologies: ['React', 'TypeScript', 'MDX', 'Figma', 'Storybook'],
   outcomes: [
     {
+      type: 'outcome',
       title: 'Improved Developer Experience',
       content: 'The interactive API sandbox proved to be a game-changer, allowing developers to experiment with endpoints before committing to integration.',
       metrics: [
@@ -114,5 +115,5 @@ export const blocksetDocs: Project = {
     author: 'Product Lead',
     role: 'BRD'
   },
-  layout: 'mixed'
+  layout: 'single'
 }; 

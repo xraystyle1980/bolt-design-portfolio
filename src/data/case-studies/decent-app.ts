@@ -1,4 +1,4 @@
-import { Project, NarrativeSection, ProcessSection, OutcomeSection, GallerySection, ContentSection } from '../types';
+import { Project, ProcessSection, GallerySection, ContentSection } from '../types';
 
 export const decentApp: Project = {
   id: 'decent-app',
@@ -6,12 +6,12 @@ export const decentApp: Project = {
   category: 'Product Design',
   year: '2023',
   link: '/case-study/decent-app',
-  // description: 'Leading product design and execution to redesign a failing legacy app driving growth, aligning with brand, and reclaiming market share',
-
+  description: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
+  imageUrl: '/images/decent-app-hero-collage.png',
+  heroImage: '/images/decent-app-hero-collage.png?h=600&fit=cover',
   leftImage: '/images/decent-app-hero-single-left.png',
   rightImage: '/images/decent-app-hero-single-right.png',
-  summary: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
-
+  heroSubTitle: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
   role: 'Lead Product Designer',
   team: '1 Product Designer (me), 1 Brand Designer, 1 Creative Director, 4 Engineers, 1 Product Manager',
   challenge: {
@@ -205,6 +205,7 @@ export const decentApp: Project = {
   technologies: ['React', 'TypeScript', 'Chakra UI', 'Figma', 'Notion'],
   outcomes: [
     {
+      type: 'outcome',
       title: 'Increased adoption',
       content: 'Active DAOs grew in the first few months post-launch, driving an increase in user base and total value locked (TVL) on the platform.',
       metrics: [
@@ -223,6 +224,7 @@ export const decentApp: Project = {
       ]
     },
     {
+      type: 'outcome',
       title: 'Enhanced UX',
       content: 'Usability testing showed reduced onboarding friction, boosting retention.',
       metrics: [
@@ -249,5 +251,5 @@ export const decentApp: Project = {
     author: 'Project Lead',
     role: 'Decent'
   },
-  layout: 'mixed'
+  layout: 'double'
 }; 

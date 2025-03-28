@@ -55,13 +55,14 @@ export interface NarrativeSection extends BaseSection {
   }[];
 }
 
-export type Section = ContentSection | ProcessSection | GallerySection | ComparisonSection | NarrativeSection;
-
 export interface OutcomeSection {
+  type: 'outcome';
   title: string;
   content: string;
   metrics: Array<{ label: string; value: string }>;
 }
+
+export type Section = ContentSection | ProcessSection | GallerySection | ComparisonSection | NarrativeSection | OutcomeSection;
 
 export interface Project {
   id: string;

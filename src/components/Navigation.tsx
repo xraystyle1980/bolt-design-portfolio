@@ -1,5 +1,5 @@
-import { useLayoutEffect, useRef, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MobileMenu } from './MobileMenu';
 import { Container } from '@/components/ui/container';
 import { LottieLogo } from './LottieLogo';
@@ -18,7 +18,6 @@ interface NavigationProps {
 export function Navigation({ className }: NavigationProps) {
   const navRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
 
@@ -57,10 +56,6 @@ export function Navigation({ className }: NavigationProps) {
 
   const logoClasses = cn(
     'transform transition-all duration-300 ease-in-out origin-left'
-  );
-
-  const buttonClasses = cn(
-    'rounded-full hidden md:inline-flex group transition-all duration-300'
   );
 
   return (
