@@ -1,5 +1,3 @@
-import { Section } from '../types';
-
 export const threeJsDemo = {
   id: 'threejs-experiments',
   title: 'Three.js Experiments',
