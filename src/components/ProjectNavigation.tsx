@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/ui/container';
+import { buttonVariants } from '@/components/ui/button';
 
 interface Project {
   id: string;
@@ -27,54 +28,58 @@ export function ProjectNavigation({ prevProject, nextProject }: ProjectNavigatio
   };
 
   return (
-    <Container className="max-w-screen-2xl">
-    <div className="grid grid-cols-2 gap-8">
-      {prevProject ? (
-        <Link 
-          to={prevProject.link}
-          className={cn(
-            "group flex flex-col items-start p-6 rounded-2xl border border-border hover:bg-muted transition-colors duration-300"
+    <div className="max-w-screen-xl mx-auto mt-28 mb-22 md:mb-28 md:mt-32">
+      <Container className="max-w-screen-2xl">
+        <div className="grid grid-cols-2 gap-8">
+          {prevProject ? (
+            <Link 
+              to={prevProject.link}
+              className={cn(
+                buttonVariants({ variant: "card" }),
+                "items-start"
+              )}
+            >
+              <div className="flex items-center gap-2 text-muted-foreground mb-4">
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                <span className="text-sm">Previous Project</span>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Badge variant={getBadgeVariant(prevProject.projectType)} className="w-fit">
+                  {getBadgeLabel(prevProject.projectType)}
+                </Badge>
+                <h3 className="text-display-sm text-foreground">{prevProject.title}</h3>
+                <p className="text-body-md text-muted-foreground">{prevProject.subtitle}</p>
+              </div>
+            </Link>
+          ) : (
+            <div />
           )}
-        >
-          <div className="flex items-center gap-2 text-muted-foreground mb-4">
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm">Previous Project</span>
-          </div>
-          <div className="flex flex-col gap-2">
-            <Badge variant={getBadgeVariant(prevProject.projectType)} className="w-fit">
-              {getBadgeLabel(prevProject.projectType)}
-            </Badge>
-            <h3 className="text-display-sm text-foreground">{prevProject.title}</h3>
-            <p className="text-body-md text-muted-foreground">{prevProject.subtitle}</p>
-          </div>
-        </Link>
-      ) : (
-        <div />
-      )}
-      
-      {nextProject ? (
-        <Link 
-          to={nextProject.link}
-          className={cn(
-            "group flex flex-col items-end text-right p-6 rounded-2xl border border-border hover:bg-muted transition-colors duration-300"
+          
+          {nextProject ? (
+            <Link 
+              to={nextProject.link}
+              className={cn(
+                buttonVariants({ variant: "card" }),
+                "items-end text-right"
+              )}
+            >
+              <div className="flex items-center gap-2 text-muted-foreground mb-4">
+                <span className="text-sm">Next Project</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
+              <div className="flex flex-col gap-2 items-end">
+                <Badge variant={getBadgeVariant(nextProject.projectType)} className="w-fit">
+                  {getBadgeLabel(nextProject.projectType)}
+                </Badge>
+                <h3 className="text-display-sm text-foreground">{nextProject.title}</h3>
+                <p className="text-body-md text-muted-foreground">{nextProject.subtitle}</p>
+              </div>
+            </Link>
+          ) : (
+            <div />
           )}
-        >
-          <div className="flex items-center gap-2 text-muted-foreground mb-4">
-            <span className="text-sm">Next Project</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </div>
-          <div className="flex flex-col gap-2 items-end">
-            <Badge variant={getBadgeVariant(nextProject.projectType)} className="w-fit">
-              {getBadgeLabel(nextProject.projectType)}
-            </Badge>
-            <h3 className="text-display-sm text-foreground">{nextProject.title}</h3>
-            <p className="text-body-md text-muted-foreground">{nextProject.subtitle}</p>
-          </div>
-        </Link>
-      ) : (
-        <div />
-      )}
+        </div>
+      </Container>
     </div>
-    </Container>
   );
 } 

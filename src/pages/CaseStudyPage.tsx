@@ -37,7 +37,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
               "rounded-full mt-20 w-fit group transition-all duration-300"
             )}
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
           <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
@@ -163,10 +163,8 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           </blockquote>
         </Container>
       )}
-      
-      <Container className="relative m-24 md:m-32">
-        <ProjectNavigation prevProject={prev} nextProject={next} />
-      </Container>
+
+      <ProjectNavigation prevProject={prev} nextProject={next} />
       
       <Footer />
     </div>

@@ -139,9 +139,7 @@ export function DesignSystemDemo() {
         </div>
       </Container>
 
-      <div className="my-24 md:my-32">
-        <ProjectNavigation prevProject={prev} nextProject={next} />
-      </div>
+      <ProjectNavigation prevProject={prev} nextProject={next} />
 
       <Footer />
     </div>

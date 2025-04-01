@@ -9,6 +9,7 @@ import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
 import { threeJsDemo } from '@/data/demos/threejs';
 import { Tags } from '@/components/Tags';
+import { TokenHero } from '@/components/TokenHero';
 
 export function ThreeJsPlayground() {
   const { prev, next } = getAdjacentProjects('threejs-experiments');
@@ -22,10 +23,10 @@ export function ThreeJsPlayground() {
             to="/#top"
             className={cn(
               buttonVariants({ variant: "outline", size: "sm" }),
-              "rounded-full mt-20 w-fit group transition-all duration-300"
+              "mt-20 w-fit group transition-all duration-300"
             )}
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
           <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
@@ -39,8 +40,8 @@ export function ThreeJsPlayground() {
           
           {/* Hero Section */}
           <div className="py-20">
-            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl">
-              {/* TODO: Add Three.js hero scene */}
+            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl overflow-hidden">
+              <TokenHero />
             </div>
           </div>
         </Container>
@@ -64,9 +65,7 @@ export function ThreeJsPlayground() {
         </div>
       </Container>
 
-      <Container className="relative m-24 md:m-32">
-        <ProjectNavigation prevProject={prev} nextProject={next} />
-      </Container>
+      <ProjectNavigation prevProject={prev} nextProject={next} />
 
       <Footer />
     </div>
