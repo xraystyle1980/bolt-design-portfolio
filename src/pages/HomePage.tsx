@@ -1,12 +1,12 @@
 import { ThreeHero } from '../components/ThreeHero';
 import { CaseStudies } from '../components/CaseStudies';
-import { Insights } from '../components/Insights';
 import { Footer } from '../components/Footer';
 import { Container } from '@/components/ui/container';
 import { CTA } from '@/components/CTA';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from '@/components/icons/arrow-right';
 import { cn } from '@/lib/utils';
+import { Playground } from '../components/Playground';
 
 export function HomePage() {
   const buttonClasses = cn(
@@ -37,7 +37,7 @@ export function HomePage() {
               </Button>
             </section>
             <CaseStudies />
-            <Insights />
+            <Playground />
             <CTA />
           </div>
       </Container>

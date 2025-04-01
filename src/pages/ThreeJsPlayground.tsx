@@ -3,36 +3,75 @@ import { Footer } from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { PlaygroundCard } from '@/components/PlaygroundCard';
+import { ProjectNavigation } from '@/components/ProjectNavigation';
+import { getAdjacentProjects } from '@/data/navigation';
+import { threeJsDemo } from '@/data/demos/threejs';
+import { Tags } from '@/components/Tags';
 
 export function ThreeJsPlayground() {
+  const { prev, next } = getAdjacentProjects('threejs-experiments');
+
   return (
-    <div className="min-h-screen pt-32">
-      <Container>
-        <div className="flex flex-col gap-12">
+    <div id="top">
+      <section className="mt-20">
+        <Container className="text-foreground mb-16">
+          {/* Back to Home */}
           <Link 
-            to="/" 
+            to="/#top"
             className={cn(
-              "flex items-center gap-2 text-body-lg text-muted-foreground w-fit",
-              "transition-colors hover:text-primary"
+              buttonVariants({ variant: "outline", size: "sm" }),
+              "rounded-full mt-20 w-fit group transition-all duration-300"
             )}
           >
-            <ArrowLeft className="h-5 w-5" />
+            <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
           </Link>
-
-          <div className="flex flex-col gap-8">
-            <h1 className="text-display-2xl">ThreeJS Experiments</h1>
-            <p className="text-body-lg text-muted-foreground max-w-2xl">
-              A playground for 3D experiments and interactive experiences using ThreeJS.
-              Coming soon.
-            </p>
+          <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
+            {threeJsDemo.title}
+          </h1>
+          <div className="max-w-full md:max-w-[70%]">
+            <h2 className="text-display-sm md:text-display-md mb-10 md:mb-12 text-foreground !font-normal">
+              {threeJsDemo.subtitle}
+            </h2>
           </div>
+          
+          {/* Hero Section */}
+          <div className="py-20">
+            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl">
+              {/* TODO: Add Three.js hero scene */}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Project Details */}
+      <Container className="relative max-w-4xl">
+        <div className="flex justify-center mb-20">
+          <Tags tags={threeJsDemo.technologies} justify="center" />
+        </div>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          {threeJsDemo.projects.map((project) => (
+            <PlaygroundCard
+              key={project.id}
+              imageUrl={project.imageUrl}
+              title={project.title}
+              description={project.description}
+              link={project.link}
+            />
+          ))}
         </div>
       </Container>
-      
-      <Container className="mt-24">
-        <Footer />
+
+      <Container className="relative m-24 md:m-32">
+        <ProjectNavigation prevProject={prev} nextProject={next} />
       </Container>
+
+      <Footer />
     </div>
   );
 } 
+
+
+

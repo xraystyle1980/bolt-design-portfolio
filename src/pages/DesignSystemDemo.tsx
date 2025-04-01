@@ -1,34 +1,25 @@
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
-import { Footer } from '@/components/Footer';
 import { Container } from '@/components/ui/container';
-import { projects } from '@/data/case-studies';
+import { Footer } from '@/components/Footer';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Tags } from '@/components/Tags';
-import { TextSection } from '@/components/case-study/TextSection';
-import { Section, Project } from '@/data/types';
-import { HeroSection } from '@/components/case-study/HeroSection';
 import { buttonVariants } from '@/components/ui/button';
+import { TextSection } from '@/components/case-study/TextSection';
 import { Lightbox } from '@/components/Lightbox';
+import { Tags } from '@/components/Tags';
+import { designSystemDemo } from '@/data/demos/design-system';
+import { Section } from '@/data/types';
+import { DesignSystemHero } from '@/components/design-system/Hero';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
 
-interface CaseStudyPageProps {}
-
-export function CaseStudyPage({}: CaseStudyPageProps) {
-  const { id } = useParams();
-  const project = projects.find((p: Project) => p.id === id);
-  const { prev, next } = getAdjacentProjects(id || '');
-  
-  if (!project) {
-    return <div>Project not found</div>;
-  }
+export function DesignSystemDemo() {
+  const { prev, next } = getAdjacentProjects('design-system-demo');
 
   return (
     <div id="top">
       <section className="mt-20">
         <Container className="text-foreground mb-16">
-     
           {/* Back to Home */}
           <Link 
             to="/#top"
@@ -41,32 +32,27 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
             Back to Home
           </Link>
           <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
-            {project.title}
+            {designSystemDemo.title}
           </h1>
           <div className="max-w-full md:max-w-[70%]">
             <h2 className="text-display-sm md:text-display-md mb-10 md:mb-12 text-foreground !font-normal">
-              {project.heroSubTitle}
+              {designSystemDemo.subtitle}
             </h2>
           </div>
           
-          
           {/* Hero Section */}
           <div className="py-20">
-            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl">
-              <HeroSection 
-                id={project.id}
-              />
+            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl overflow-hidden">
+              <DesignSystemHero />
             </div>
           </div>
         </Container>
-
-        
       </section>
 
       {/* Project Details */}
       <Container className="relative max-w-4xl">
         <div className="flex justify-center mb-20">
-          <Tags tags={project.technologies} justify="center" />
+          <Tags tags={designSystemDemo.technologies} justify="center" />
         </div>
         <div className="grid grid-cols-4 gap-8">
           {/* Left column - 25% */}
@@ -74,11 +60,11 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <h3 className="text-display-xs text-foreground">Role</h3>
-                <p className="text-body-md text-muted-foreground">{project.role}</p>
+                <p className="text-body-md text-muted-foreground">{designSystemDemo.role}</p>
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-display-xs text-foreground">Team</h3>
-                <p className="text-body-md text-muted-foreground">{project.team}</p>
+                <p className="text-body-md text-muted-foreground">{designSystemDemo.team}</p>
               </div>
             </div>
           </div>
@@ -86,9 +72,8 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           {/* Right column - 75% */}
           <div className="col-span-3">
             <div className="flex flex-col gap-24 md:gap-32">
-              {project.sections.map((section: Section) => {
+              {designSystemDemo.sections.map((section: Section) => {
                 const commonProps = {
-                  key: section.title,
                   title: section.title,
                   content: section.content,
                 };
@@ -97,6 +82,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                   case 'content':
                     return (
                       <TextSection
+                        key={section.title}
                         {...commonProps}
                         items={'subsections' in section ? section.subsections : []}
                       />
@@ -104,6 +90,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                   case 'process':
                     return (
                       <TextSection
+                        key={section.title}
                         {...commonProps}
                         items={'steps' in section ? section.steps : []}
                       />
@@ -152,23 +139,11 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
         </div>
       </Container>
 
-      {/* Testimonial */}
-      {project.testimonial && (
-        <Container className="relative max-w-4xl my-24 md:my-32">
-          <blockquote className="border-l-4 border-primary p-4 my-6 rounded-r-lg max-w-none">
-            <p className="text-body-lg italic">{project.testimonial.quote}</p>
-            <footer className="text-body-sm mt-2">
-              — <cite>{project.testimonial.author}</cite>, {project.testimonial.role}
-            </footer>
-          </blockquote>
-        </Container>
-      )}
-      
-      <Container className="relative m-24 md:m-32">
+      <div className="my-24 md:my-32">
         <ProjectNavigation prevProject={prev} nextProject={next} />
-      </Container>
-      
+      </div>
+
       <Footer />
     </div>
   );
-}
+} 

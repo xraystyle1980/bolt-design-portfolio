@@ -6,7 +6,7 @@ import { SmoothScroll } from '@/components/SmoothScroll';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { ThreeJsPlayground } from './pages/ThreeJsPlayground';
-import { DesignSystemPlayground } from './pages/DesignSystemPlayground';
+import { DesignSystemDemo } from './pages/DesignSystemDemo';
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/case-study/:id" element={<CaseStudyPage />} />
               <Route path="/playground/threejs" element={<ThreeJsPlayground />} />
-              <Route path="/playground/design-system" element={<DesignSystemPlayground />} />
+              <Route path="/playground/design-system" element={<DesignSystemDemo />} />
             </Routes>
           </main>
         </div>

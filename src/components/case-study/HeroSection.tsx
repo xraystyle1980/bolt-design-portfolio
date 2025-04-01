@@ -2,16 +2,27 @@ import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects } from '@/data/projects';
+import { projects } from '@/data/case-studies';
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface HeroSectionProps {
   id: string;
   className?: string;
+  layout?: 'single' | 'double' | 'triple';
+  leftImage?: string;
+  rightImage?: string;
+  singleImage?: string;
 }
 
-export function HeroSection({ id, className }: HeroSectionProps) {
+export function HeroSection({ 
+  id, 
+  className,
+  layout: propLayout,
+  leftImage: propLeftImage,
+  rightImage: propRightImage,
+  singleImage: propSingleImage
+}: HeroSectionProps) {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const containerRef = useRef<HTMLDivElement>(null);
   const leftImageRef = useRef<HTMLDivElement>(null);
@@ -20,11 +31,24 @@ export function HeroSection({ id, className }: HeroSectionProps) {
 
   const project = projects.find(p => p.id === id);
 
-  if (!project) {
-    return null;
-  }
-
+  // Use props if provided, otherwise fallback to project data
   const { layout, leftImage, rightImage, singleImage } = (() => {
+    if (propLayout) {
+      return {
+        layout: propLayout,
+        leftImage: propLeftImage,
+        rightImage: propRightImage,
+        singleImage: propSingleImage
+      };
+    }
+
+    if (!project) {
+      return {
+        layout: 'single' as const,
+        singleImage: ''
+      };
+    }
+
     switch (project.id) {
       case 'decent-app':
         return {
@@ -78,21 +102,22 @@ export function HeroSection({ id, className }: HeroSectionProps) {
           ease: 'power3.out',
         }
       );
-    } else if (layout === 'double') {
+    } else if (layout === 'double' && leftImageRef.current && rightImageRef.current) {
       // Animate both images simultaneously
       timeline.fromTo(
         [leftImageRef.current, rightImageRef.current],
         {
-          opacity: 1,
+          opacity: 0,
           x: (index) => index === 0 ? -100 : 100,
           scale: 0.9,
         },
         {
           opacity: 1,
-          x: (index) => index === 0 ? -30 : 30,
+          x: 0,
           scale: 1,
           duration: 1,
           ease: 'expo.out',
+          stagger: 0.2
         }
       );
     }

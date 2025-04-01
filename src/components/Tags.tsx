@@ -2,12 +2,14 @@ import { Badge } from "./ui/badge";
 import { cn } from "@/lib/utils";
 
 interface TagsProps {
-  tags: string[];
+  tags?: string[];
   className?: string;
   justify?: 'start' | 'center' | 'end';
 }
 
-export function Tags({ tags, className, justify = 'center' }: TagsProps) {
+export function Tags({ tags = [], className, justify = 'center' }: TagsProps) {
+  if (!tags || tags.length === 0) return null;
+
   return (
     <div className={cn(`flex flex-wrap gap-3 justify-${justify}`, className)}>
       {tags.map((tag, index) => (

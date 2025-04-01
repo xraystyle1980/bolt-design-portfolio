@@ -25,7 +25,7 @@ const insights: Insight[] = [
   }
 ];
 
-export function Insights() {
+export function Playground() {
   return (
     <section className="py-24">
       <h4 className="text-display-lg pb-10">

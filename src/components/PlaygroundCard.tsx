@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Button } from './ui/button';
-import { ArrowRight } from './icons/arrow-right';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from '@/components/icons/arrow-right';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -42,10 +42,10 @@ export function PlaygroundCard({ imageUrl, title, description, link }: Playgroun
         <Link to={link}>
           <Button 
             variant="outline"
-            size="lg"
+            size="md"
             className="rounded-full hover:bg-foreground hover:text-background"
           >
-            <ArrowRight className="h-6 w-6" />
+            <ArrowRight className="h-5 w-5 md:h-8 md:w-8" />
           </Button>
         </Link>
       </div>

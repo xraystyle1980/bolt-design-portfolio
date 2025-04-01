@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { projects } from "@/data/projects";
+import { projects } from "@/data/case-studies";
 import { useEffect, useRef } from "react";
 import { ArrowRight } from "./icons/arrow-right";
 import { Tags } from "./Tags";
@@ -112,7 +112,7 @@ export function CaseStudies() {
                 size="md"
                 className="rounded-full group-hover:bg-foreground group-hover:text-background shrink-0"
               >
-                <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
+                <ArrowRight className="h-5 w-5 md:h-8 md:w-8" />
               </Button>
             </Link>
 

@@ -1,5 +1,3 @@
-export type { Project } from './types';
-
 interface Project {
   id: string;
   title: string;
@@ -7,7 +5,7 @@ interface Project {
   link: string;
 }
 
-export const projects: Project[] = [
+export const playgroundProjects: Project[] = [
   {
     id: 'threejs-experiments',
     title: 'Three.js Experiments',
@@ -23,11 +21,11 @@ export const projects: Project[] = [
 ];
 
 export function getAdjacentProjects(currentId: string): { prev?: Project; next?: Project } {
-  const currentIndex = projects.findIndex(p => p.id === currentId);
+  const currentIndex = playgroundProjects.findIndex(p => p.id === currentId);
   if (currentIndex === -1) return {};
 
   return {
-    prev: currentIndex > 0 ? projects[currentIndex - 1] : undefined,
-    next: currentIndex < projects.length - 1 ? projects[currentIndex + 1] : undefined
+    prev: currentIndex > 0 ? playgroundProjects[currentIndex - 1] : undefined,
+    next: currentIndex < playgroundProjects.length - 1 ? playgroundProjects[currentIndex + 1] : undefined
   };
-}
+} 
