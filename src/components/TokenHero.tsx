@@ -3,6 +3,8 @@ import { Environment } from '@react-three/drei'
 import { useState, useRef, useMemo } from 'react'
 import { Group, Vector3 } from 'three'
 import { Token } from './Token'
+import { EffectComposer, Bloom, Vignette, HueSaturation } from '@react-three/postprocessing'
+import { BlendFunction } from 'postprocessing'
 
 interface TokenInstance {
   position: [number, number, number]
@@ -184,26 +186,19 @@ function TokenRain() {
       onPointerLeave={() => setIsInteracting(false)}
       onPointerMove={handlePointerMove}
     >
-      {/* Main lighting */}
-      <ambientLight intensity={0.7} /> {/* Brighter ambient to show colors */}
-      <directionalLight 
-        position={[3, 5, 3]} 
-        intensity={0.8}
-        color="#FFF"
-      />
-      <directionalLight 
-        position={[-3, 5, -3]} 
-        intensity={0.5}
-        color="#FFF"
-      />
-      
-      {/* Ground */}
+      {/* Enhanced Lighting */}
+      <ambientLight intensity={0.7} color="#ffd1a4" />
+      <directionalLight position={[5, 10, 7.5]} intensity={1} color="#ffffff" />
+      <directionalLight position={[-5, 10, -7.5]} intensity={0.5} color="#ffffff" />
+      <pointLight position={[0, 5, 0]} intensity={0.3} color="#ffffff" />
+
+      {/* Invisible Ground for collision */}
       <mesh position={[0, GROUND_Y, 0]} rotation={[-Math.PI / 2, 0, 0]} visible={false}>
         <planeGeometry args={[30, 30]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
 
-      {/* Tokens */}
+      {/* Render Tokens */}
       {tokens.map((token, index) => (
         <Token
           key={index}
@@ -223,12 +218,19 @@ export function TokenHero() {
       camera={{ position: [0, 6, 12], fov: 40 }}
       style={{ width: '100%', height: '100%' }}
     >
+      {/* Background Color */}
       <color attach="background" args={['#f0f0f0']} />
-      <fog attach="fog" args={['#f0f0f0', 15, 25]} />
       
+      {/* Token Rain and Interaction */}
       <TokenRain />
       
-      <Environment preset="studio" background={false} blur={0.8} />
+      {/* Environment for reflections */}
+      <Environment preset="sunset" background={false} />
+
+       {/* Post-processing: adjust hue & saturation */}
+      <EffectComposer>
+        <HueSaturation hue={0.05} saturation={0.7} />
+      </EffectComposer>
     </Canvas>
   )
-} 
+}
