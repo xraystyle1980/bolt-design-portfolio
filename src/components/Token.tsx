@@ -6,14 +6,13 @@ interface TokenProps {
   position: [number, number, number]
   rotation: [number, number, number]
   scale: number
-  isHovered?: boolean
 }
 
 // Load the model once outside the component
 const MODEL_PATH = '/temp-ref/token-face-export-1.glb'
 let cachedScene: Object3D | null = null
 
-export function Token({ position, rotation, scale, isHovered = false }: TokenProps) {
+export function Token({ position, rotation, scale }: TokenProps) {
   const groupRef = useRef<Group>(null)
   
   // Load the model
@@ -61,18 +60,6 @@ export function Token({ position, rotation, scale, isHovered = false }: TokenPro
 
   // Clone the cached scene for this instance
   const instanceScene = cachedScene.clone()
-  
-  // Update materials based on hover state
-  instanceScene.traverse((child: any) => {
-    if (child.isMesh && child.material) {
-      child.material = child.material.clone()
-      // Subtle hover effect that preserves colors
-      child.material.metalness = isHovered ? 0.2 : 0.1
-      child.material.roughness = isHovered ? 0.5 : 0.6
-      child.material.envMapIntensity = isHovered ? 0.7 : 0.5
-      child.material.emissiveIntensity = isHovered ? 0.2 : 0.1
-    }
-  })
 
   return (
     <group ref={groupRef} position={position} rotation={rotation} scale={scale}>

@@ -1,9 +1,9 @@
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Environment } from '@react-three/drei'
+import { Environment, OrbitControls } from '@react-three/drei'
 import { useState, useRef, useMemo } from 'react'
 import { Group, Vector3 } from 'three'
 import { Token } from './Token'
-import { EffectComposer, Bloom, Vignette, HueSaturation } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, Vignette, HueSaturation, BrightnessContrast } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 
 interface TokenInstance {
@@ -22,26 +22,27 @@ function TokenRain() {
 
   // Physics constants
   const GROUND_Y = -2
-  const GRAVITY = 0.015
+  const GRAVITY = 0.01
   const DAMPING = 0.98
-  const MOUSE_FORCE = 0.15  // Increased for more responsive interaction
+  const MOUSE_FORCE = 0.1
   const BOUNCE_FORCE = 0.3
-  const ATTRACTION_RADIUS = 8  // Increased range
-  const TOKEN_SPACING = 2.5  // Slightly increased spacing
+  const TOKEN_SPACING = 4
+  const TOKEN_ATTRACTION = 0.02
+  const CENTER_FORCE = 0.001
 
   // Initialize tokens
   useMemo(() => {
     const newTokens: TokenInstance[] = []
-    const numTokens = 12  // Reduced for better performance
+    const numTokens = 10  // Reduced number of tokens
 
     for (let i = 0; i < numTokens; i++) {
       const angle = (i / numTokens) * Math.PI * 2
-      const radius = 4 + Math.random() * 2
+      const radius = 2 + Math.random() * 1  // Tighter initial formation
       
       newTokens.push({
         position: [
           Math.cos(angle) * radius,
-          8 + Math.random() * 3,  // Lower initial height
+          5 + Math.random() * 1,  // Lower initial height
           Math.sin(angle) * radius
         ] as [number, number, number],
         rotation: [
@@ -49,16 +50,12 @@ function TokenRain() {
           Math.random() * Math.PI * 2,
           Math.random() * Math.PI * 2
         ] as [number, number, number],
-        scale: 0.8 + Math.random() * 0.4,
-        velocity: new Vector3(
-          (Math.random() - 0.5) * 0.01,  // Reduced initial velocity
-          0,
-          (Math.random() - 0.5) * 0.01
-        ),
+        scale: 1.6 + Math.random() * 0.3,
+        velocity: new Vector3(0, 0, 0),  // Start with zero velocity
         rotationSpeed: [
-          (Math.random() - 0.5) * 0.01,  // Slower rotation
-          (Math.random() - 0.5) * 0.01,
-          (Math.random() - 0.5) * 0.01
+          (Math.random() - 0.5) * 0.001,  // Very slow rotation
+          (Math.random() - 0.5) * 0.001,
+          (Math.random() - 0.5) * 0.001
         ] as [number, number, number]
       })
     }
@@ -95,21 +92,20 @@ function TokenRain() {
         // Apply gravity
         velocity.y -= GRAVITY
 
-        // Mouse interaction with smoother force application
+        // Mouse interaction
         if (isInteracting) {
           const dx = mousePosition[0] - token.position[0]
           const dz = mousePosition[1] - token.position[2]
           const distance = Math.sqrt(dx * dx + dz * dz)
           
-          if (distance < ATTRACTION_RADIUS) {
-            const force = Math.pow(1 - distance / ATTRACTION_RADIUS, 2) * MOUSE_FORCE  // Quadratic falloff
-            velocity.x += dx * force
-            velocity.z += dz * force
-            velocity.y += 0.2 * force  // Increased lift
+          if (distance < 8) {
+            const force = (1 - distance / 8) * MOUSE_FORCE
+            velocity.x -= dx * force
+            velocity.z -= dz * force
           }
         }
 
-        // Token-token interaction with smoother repulsion
+        // Token-token interaction
         for (let j = i + 1; j < updatedTokens.length; j++) {
           const other = updatedTokens[j]
           const dx = other.position[0] - token.position[0]
@@ -118,28 +114,28 @@ function TokenRain() {
           const distance = Math.sqrt(dx * dx + dy * dy + dz * dz)
 
           if (distance < TOKEN_SPACING) {
-            const force = Math.pow(1 - distance / TOKEN_SPACING, 2) * 0.08  // Increased and smoothed
+            // Simple repulsion
+            const force = (1 - distance / TOKEN_SPACING) * TOKEN_ATTRACTION
             velocity.x -= dx * force
             velocity.y -= dy * force
             velocity.z -= dz * force
           }
         }
 
-        // Ground collision with better bounce
-        if (token.position[1] + velocity.y <= GROUND_Y) {
-          velocity.y = Math.abs(velocity.y * BOUNCE_FORCE)
-          const horizontalSpeed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z)
-          if (horizontalSpeed > 0.01) {
-            velocity.multiplyScalar(0.85) // More damping for moving tokens
-          } else {
-            velocity.multiplyScalar(0.95) // Less damping for settling tokens
-          }
+        // Center force when not interacting
+        if (!isInteracting) {
+          velocity.x -= token.position[0] * CENTER_FORCE
+          velocity.z -= token.position[2] * CENTER_FORCE
         }
 
-        // Apply damping with velocity-based adjustment
-        const speed = velocity.length()
-        const dampingFactor = speed > 0.1 ? DAMPING : 0.995  // Less damping at low speeds
-        velocity.multiplyScalar(dampingFactor)
+        // Ground collision
+        if (token.position[1] + velocity.y <= GROUND_Y) {
+          velocity.y = Math.abs(velocity.y * BOUNCE_FORCE)
+          velocity.multiplyScalar(0.95)  // Consistent damping
+        }
+
+        // Apply damping
+        velocity.multiplyScalar(DAMPING)
 
         // Update position
         const newPosition: [number, number, number] = [
@@ -148,20 +144,11 @@ function TokenRain() {
           token.position[2] + velocity.z
         ]
 
-        // Update rotation based on movement
-        const rotationDamping = 0.985
-        const newRotationSpeed = token.rotationSpeed.map(r => r * rotationDamping) as [number, number, number]
-        
-        // Add movement-based rotation
-        if (speed > 0.01) {
-          newRotationSpeed[0] += velocity.z * 0.1
-          newRotationSpeed[1] += velocity.x * 0.1
-        }
-
+        // Simple rotation
         const newRotation: [number, number, number] = [
-          token.rotation[0] + newRotationSpeed[0],
-          token.rotation[1] + newRotationSpeed[1],
-          token.rotation[2] + newRotationSpeed[2]
+          token.rotation[0] + token.rotationSpeed[0],
+          token.rotation[1] + token.rotationSpeed[1],
+          token.rotation[2] + token.rotationSpeed[2]
         ]
 
         // Update token
@@ -169,8 +156,7 @@ function TokenRain() {
           ...token,
           position: newPosition,
           rotation: newRotation,
-          velocity: velocity,
-          rotationSpeed: newRotationSpeed
+          velocity: velocity
         }
       }
 
@@ -205,7 +191,6 @@ function TokenRain() {
           position={token.position}
           rotation={token.rotation}
           scale={token.scale}
-          isHovered={isInteracting}
         />
       ))}
     </group>
@@ -215,7 +200,7 @@ function TokenRain() {
 export function TokenHero() {
   return (
     <Canvas 
-      camera={{ position: [0, 6, 12], fov: 40 }}
+      camera={{ position: [0, 4, 8], fov: 32 }}
       style={{ width: '100%', height: '100%' }}
     >
       {/* Background Color */}
@@ -227,9 +212,38 @@ export function TokenHero() {
       {/* Environment for reflections */}
       <Environment preset="sunset" background={false} />
 
-       {/* Post-processing: adjust hue & saturation */}
+      {/* Camera Controls */}
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        minPolarAngle={Math.PI / 4} // Limit vertical rotation
+        maxPolarAngle={Math.PI / 2}
+        autoRotate
+        autoRotateSpeed={0.5}
+        dampingFactor={0.1}
+      />
+
+      {/* Post-processing effects */}
       <EffectComposer>
-        <HueSaturation hue={0.05} saturation={0.7} />
+        {/* <Bloom 
+          intensity={0.8}
+          luminanceThreshold={0.6}
+          luminanceSmoothing={0.3}
+        /> */}
+        <BrightnessContrast 
+          brightness={0.0}
+          contrast={0.4}
+          blendFunction={BlendFunction.NORMAL}
+        />
+        <Vignette
+          opacity={0.3}
+          darkness={0.7}
+          blendFunction={BlendFunction.NORMAL}
+        />
+        <HueSaturation 
+          hue={0.0} 
+          saturation={0.2}
+        />
       </EffectComposer>
     </Canvas>
   )

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { PlaygroundCard } from '@/components/PlaygroundCard';
+import { ProjectSection } from '@/components/ProjectSection';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
 import { threeJsDemo } from '@/data/demos/threejs';
@@ -47,23 +47,22 @@ export function ThreeJsPlayground() {
         </Container>
       </section>
 
-      {/* Project Details */}
-      <Container className="relative max-w-4xl">
-        <div className="flex justify-center mb-20">
-          <Tags tags={threeJsDemo.technologies} justify="center" />
-        </div>
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-          {threeJsDemo.projects.map((project) => (
-            <PlaygroundCard
-              key={project.id}
-              imageUrl={project.imageUrl}
-              title={project.title}
-              description={project.description}
-              link={project.link}
-            />
-          ))}
-        </div>
-      </Container>
+      {/* Project Sections */}
+      <div className="space-y-0">
+        {threeJsDemo.projects.map((project) => (
+          <ProjectSection
+            key={project.id}
+            title={project.title}
+            description={project.description}
+            imageUrl={project.imageUrl}
+            videoUrl={project.videoUrl}
+            technologies={project.technologies}
+            demoUrl={project.demoUrl}
+            githubUrl={project.githubUrl}
+            codesandboxUrl={project.codesandboxUrl}
+          />
+        ))}
+      </div>
 
       <ProjectNavigation prevProject={prev} nextProject={next} />
 

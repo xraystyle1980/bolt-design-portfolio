@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo(0, 0);
 });
 
+// Removed StrictMode to fix video loading issues with react-player
+// See: https://github.com/cookpete/react-player/issues/1520
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
     <App />

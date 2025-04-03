@@ -1,3 +1,6 @@
+import tokenVideo from '/scrolling-token-scroll.mp4'
+import floppyVideo from '/red-hot-floppy-slider.mp4'
+
 export const threeJsDemo = {
   id: 'threejs-experiments',
   title: 'Three.js Experiments',
@@ -8,26 +11,35 @@ export const threeJsDemo = {
   technologies: ['Three.js', 'WebGL', 'GLSL', 'JavaScript', 'React'],
   projects: [
     {
-      id: 'interactive-particles',
-      title: '3d Token',
-      description: 'A dynamic particle system that responds to mouse movement and creates beautiful flowing patterns. Built with Three.js and custom shaders.',
-      imageUrl: '/images/playground-particles.png',
-      link: 'https://codepen.io/your-codepen-link'
+      id: '3d-scrolling-token',
+      title: '3D Scrolling Token',
+      description: 'In an earlier iteration of my portfolio, I crafted this 3D token in Illustrator and Blender before importing it into Three.js. With GSAP, it dynamically scrolls with the page, providing an engaging interaction, while custom lighting ties it seamlessly to the neon grid background.',
+      videoUrl: '/scrolling-token-scroll.mp4',
+      technologies: ['Three.js', 'GSAP', 'Illustrator', 'Blender'],
+      demoUrl: 'https://your-demo-url.com',
+      githubUrl: 'https://github.com/xraystyle1980/scrolling-token',
+      codesandboxUrl: 'https://codesandbox.io/p/github/xraystyle1980/scrolling-token/main?import=true'
     },
     {
-      id: 'procedural-terrain',
+      id: 'red-hot-floppy',
       title: 'Red Hot Floppy',
-      description: 'Generating realistic 3D terrain using Perlin noise and custom geometry. Features dynamic lighting and camera controls.',
-      imageUrl: '/images/playground-terrain.png',
-      link: 'https://your-vercel-deployment-link'
-    },
-    {
-      id: 'shader-waves',
-      title: 'Clipping Will Be Lost',
-      description: 'Experimenting with GLSL shaders to create mesmerizing wave animations. Interactive parameters allow real-time manipulation.',
-      imageUrl: '/images/playground-waves.png',
-      link: 'https://codepen.io/your-codepen-link'
+      description: 'Building on a design I discovered in the Figma community, I integrating interactive lighting controls in Three.js—transforming the static red hot glow into a fun and dynamic visual effect.',
+      videoUrl: '/red-hot-floppy-slider.mp4',
+      technologies: ['Three.js', 'Figma'],
+      demoUrl: 'https://red-hot-floppy.vercel.app/',
+      githubUrl: 'https://github.com/xraystyle1980/red-hot-floppy'
+      // codesandboxUrl: 'https://codesandbox.io/your-sandbox'
     }
+    // {
+    //   id: 'shader-waves',
+    //   title: 'Clipping Will Be Lost',
+    //   description: 'A mesmerizing shader-based animation that creates dynamic wave patterns. Features real-time parameter manipulation and smooth transitions between states.',
+    //   imageUrl: '/images/playground-waves.png',
+    //   technologies: ['Three.js', 'GLSL', 'React', 'PostProcessing'],
+    //   demoUrl: 'https://your-demo-url.com',
+    //   githubUrl: 'https://github.com/yourusername/clipping-waves',
+    //   codesandboxUrl: 'https://codesandbox.io/your-sandbox'
+    // }
     // {
     //   id: 'physics-playground',
     //   title: 'Physics Playground',

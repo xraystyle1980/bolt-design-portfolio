@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { Cross2Icon } from '@radix-ui/react-icons';
+import { X } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Button } from './button';
 
@@ -69,7 +69,7 @@ const SheetContent = React.forwardRef<
           size="icon" 
           className="absolute right-10 top-6 rounded-full w-10 h-10"
         >
-          <Cross2Icon className="h-6 w-6" />
+          <X className="h-6 w-6" />
           <span className="sr-only">Close</span>
         </Button>
       </SheetPrimitive.Close>
