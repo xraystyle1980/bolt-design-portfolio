@@ -1,71 +1,24 @@
-import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-const colorSchemes = [
-  {
-    name: 'Default',
-    primary: 'bg-primary',
-    secondary: 'bg-secondary',
-    muted: 'bg-muted',
-    accent: 'bg-accent'
-  },
-  {
-    name: 'Vibrant',
-    primary: 'bg-[#FF3366]',
-    secondary: 'bg-[#33FF99]',
-    muted: 'bg-[#F0F0F0]',
-    accent: 'bg-[#9933FF]'
-  },
-  {
-    name: 'Earthy',
-    primary: 'bg-[#8B4513]',
-    secondary: 'bg-[#556B2F]',
-    muted: 'bg-[#F5DEB3]',
-    accent: 'bg-[#CD853F]'
-  }
-];
-
-const spacingSizes = ['gap-2', 'gap-4', 'gap-8', 'gap-12'];
-const borderRadii = ['rounded-none', 'rounded-md', 'rounded-xl', 'rounded-full'];
-
 export function DesignSystemHero() {
-  const [currentScheme, setCurrentScheme] = useState(0);
-  const [currentSpacing, setCurrentSpacing] = useState(1);
-  const [currentRadius, setCurrentRadius] = useState(1);
-
-  const scheme = colorSchemes[currentScheme];
-
   return (
-    <div className="flex flex-col gap-8 p-8 h-full">
-      <div className="flex gap-4 justify-center">
-        <button 
-          onClick={() => setCurrentScheme((prev) => (prev + 1) % colorSchemes.length)}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
-        >
-          Change Colors
-        </button>
-        <button 
-          onClick={() => setCurrentSpacing((prev) => (prev + 1) % spacingSizes.length)}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
-        >
-          Change Spacing
-        </button>
-        <button 
-          onClick={() => setCurrentRadius((prev) => (prev + 1) % borderRadii.length)}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
-        >
-          Change Radius
-        </button>
-      </div>
-
-      <div className={cn("grid grid-cols-2 w-full h-full", spacingSizes[currentSpacing])}>
-        <div className={cn("flex flex-col", spacingSizes[currentSpacing])}>
-          <div className={cn("w-full aspect-square", scheme.primary, borderRadii[currentRadius])} />
-          <div className={cn("w-full aspect-square", scheme.secondary, borderRadii[currentRadius])} />
-        </div>
-        <div className={cn("flex flex-col", spacingSizes[currentSpacing])}>
-          <div className={cn("w-full aspect-square", scheme.accent, borderRadii[currentRadius])} />
-          <div className={cn("w-full aspect-square", scheme.muted, borderRadii[currentRadius])} />
+    <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+      <div className="max-w-2xl">
+        <h2 className="text-display-lg md:text-display-xl mb-6 text-foreground">
+          Design System Demo
+        </h2>
+        <p className="text-body-lg md:text-body-xl text-muted-foreground mb-8">
+          A simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS
+        </p>
+        <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
+          <div className="bg-primary text-primary-foreground p-4 rounded-lg">
+            <h3 className="text-display-xs mb-2">Figma</h3>
+            <p className="text-body-sm">Design tokens and variables</p>
+          </div>
+          <div className="bg-secondary text-secondary-foreground p-4 rounded-lg">
+            <h3 className="text-display-xs mb-2">Development</h3>
+            <p className="text-body-sm">shadcn/ui + TailwindCSS</p>
+          </div>
         </div>
       </div>
     </div>

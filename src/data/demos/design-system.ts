@@ -2,48 +2,44 @@ import { Section } from '../types';
 
 export const designSystemDemo = {
   id: 'design-system-demo',
-  title: 'Design System Demo',
-  subtitle: 'A live demonstration of design tokens and component libraries working together',
-  description: 'Experience how design tokens from Figma can be synchronized with a live codebase, enabling real-time updates and seamless design-to-development workflow.',
+  title: 'DS Demo: Figma → shadcn/ui + TailwindCSS',
+  subtitle: 'A simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS',
+  description: 'This project showcases an efficient integration using Style Dictionary, highlighting a streamlined approach to managing design tokens across design and development.',
   role: 'Design Systems Engineer',
   team: 'Solo Project',
-  technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Figma Tokens', 'Style Dictionary'],
+  technologies: ['Figma', 'shadcn/ui', 'TailwindCSS', 'Style Dictionary', 'React', 'TypeScript'],
   sections: [
     {
       type: 'content',
       title: 'Overview',
-      content: 'This demo showcases a modern design system workflow where design decisions in Figma are automatically reflected in the codebase. It demonstrates how design tokens can bridge the gap between design and development.',
+      content: 'This project showcases a simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS, highlighting an efficient integration using Style Dictionary. Starting from an existing community-driven Figma library, I streamlined the token structure and optimized the workflow for ease of use, clarity, and seamless implementation.',
       subsections: [
         {
-          title: 'The Challenge',
-          content: 'Design systems often suffer from synchronization issues between design tools and code implementation. Changes in design tools require manual updates in code, leading to inconsistencies and inefficient workflows.'
+          title: 'Why I Made This',
+          content: 'While exploring various token-to-code workflows, I found many solutions overly complex or cumbersome for practical applications. My goal was to create an approachable and straightforward demo highlighting a simplified but powerful workflow for managing design tokens across Figma and development, using shadcn/ui, TailwindCSS, and Style Dictionary.'
         },
         {
-          title: 'The Solution',
-          content: 'By implementing a token-based workflow, we create a single source of truth that automatically updates both design and code. This ensures perfect consistency and dramatically reduces maintenance overhead.'
+          title: "What's Different",
+          content: 'Simplified Tokens: Removed unnecessary slate light/dark modes from primitive tokens. Renamed shadcn.com Light/Dark to simply "Light" and "Dark" for clarity.'
         }
       ]
     },
     {
       type: 'process',
-      title: 'How It Works',
-      content: 'The demo illustrates a complete token synchronization workflow from Figma to code.',
+      title: 'Recommended Figma Workflow',
+      content: 'Essential plugins and step-by-step instructions for implementing the design system workflow.',
       steps: [
         {
-          title: 'Design Tokens in Figma',
-          content: 'Using Figma Tokens plugin, we define our design tokens for colors, typography, spacing, and more.'
+          title: 'Essential Plugins',
+          content: 'Variables Manager – Reorder and copy variables between files\nVariables to JSON – Export Figma variables as JSON files\nSwap Variables – Quickly swap variable references within Figma\n\nWhy these plugins? After exploring several options, this specific set of plugins provided exactly the functionality needed—simple JSON formatting, clear variable scope management, and ease of use. While alternatives like Tokens Studio are powerful, they often add unnecessary complexity for simple use-cases.'
         },
         {
-          title: 'Token Transformation',
-          content: 'Tokens are exported and transformed using Style Dictionary into platform-specific formats.'
+          title: 'In Figma',
+          content: '1. Duplicate the Primitives and Tokens variable sets from the original core library into your new Figma file.\n2. Update your primitive variables using HSL color values in either the "Light" or "Dark" mode.\n3. Run the Swap Variables plugin to ensure your new variables replace the originals. (Tip: sort variables by "created in this file").'
         },
         {
-          title: 'Code Integration',
-          content: 'The transformed tokens are automatically integrated into our React components via Tailwind CSS.'
-        },
-        {
-          title: 'Live Updates',
-          content: 'Changes to tokens in Figma trigger automatic updates in the codebase, maintaining perfect sync.'
+          title: 'In Your App',
+          content: '1. Use the Variables to JSON plugin to export variables. Save the file exactly as labeled by the plugin—the conversion script expects this naming convention.\n2. Place the exported JSON file into your app directory and run the conversion script.\n3. CSS files will auto-generate, updating your design system in real time.'
         }
       ]
     },
@@ -67,16 +63,16 @@ export const designSystemDemo = {
     },
     {
       type: 'comparison',
-      title: 'Before & After',
-      content: 'See the impact of implementing a token-based workflow.',
+      title: 'Project Resources',
+      content: 'Access the Figma libraries and GitHub repository for this project.',
       before: {
-        title: 'Traditional Workflow',
-        content: 'Manual updates required for every design change, leading to inconsistencies and maintenance overhead.',
+        title: 'Figma Library',
+        content: 'DS Demo Library (Figma → shadcn/ui + TailwindCSS)',
         image: '/images/design-system/before-workflow.png'
       },
       after: {
-        title: 'Token-based Workflow',
-        content: 'Automated synchronization ensures perfect consistency between design and code.',
+        title: 'Demo App',
+        content: 'GitHub Repository',
         image: '/images/design-system/after-workflow.png'
       }
     }
