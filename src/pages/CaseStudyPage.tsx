@@ -6,6 +6,7 @@ import { projects } from '@/data/case-studies';
 import { cn } from '@/lib/utils';
 import { Tags } from '@/components/Tags';
 import { TextSection } from '@/components/case-study/TextSection';
+import { ResourceSection } from '@/components/case-study/ResourceSection';
 import { Section, Project } from '@/data/types';
 import { HeroSection } from '@/components/case-study/HeroSection';
 import { buttonVariants } from '@/components/ui/button';
@@ -122,27 +123,8 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                         <Lightbox images={section.images} />
                       </div>
                     );
-                  case 'comparison':
-                    return (
-                      <div className="flex flex-col gap-8">
-                        <div className="flex flex-col gap-4">
-                          <h3 className="text-display-md text-foreground">{section.title}</h3>
-                          <p className="text-body-lg text-foreground">{section.content}</p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                          <div className="flex flex-col gap-4">
-                            <h4 className="text-display-sm text-foreground">{section.before.title}</h4>
-                            <p className="text-body-md text-foreground">{section.before.content}</p>
-                            <img src={section.before.image} alt={section.before.title} className="w-full h-auto" />
-                          </div>
-                          <div className="flex flex-col gap-4">
-                            <h4 className="text-display-sm text-foreground">{section.after.title}</h4>
-                            <p className="text-body-md text-foreground">{section.after.content}</p>
-                            <img src={section.after.image} alt={section.after.title} className="w-full h-auto" />
-                          </div>
-                        </div>
-                      </div>
-                    );
+                  case 'resources':
+                    return <ResourceSection section={section} />;
                   default:
                     return null;
                 }

@@ -17,64 +17,41 @@ export const designSystemDemo = {
         {
           title: 'Why I Made This',
           content: 'While exploring various token-to-code workflows, I found many solutions overly complex or cumbersome for practical applications. My goal was to create an approachable and straightforward demo highlighting a simplified but powerful workflow for managing design tokens across Figma and development, using shadcn/ui, TailwindCSS, and Style Dictionary.'
-        },
-        {
-          title: "What's Different",
-          content: 'Simplified Tokens: Removed unnecessary slate light/dark modes from primitive tokens. Renamed shadcn.com Light/Dark to simply "Light" and "Dark" for clarity.'
         }
       ]
     },
     {
-      type: 'process',
-      title: 'Recommended Figma Workflow',
-      content: 'Essential plugins and step-by-step instructions for implementing the design system workflow.',
-      steps: [
+      type: 'content',
+      title: 'My workflow in Figma',
+      content: 'Below you will find demo files, the Figma plugins I have used, and step-by-step instructions for implementing the design system workflow.',
+      subsections: [
         {
-          title: 'Essential Plugins',
-          content: 'Variables Manager – Reorder and copy variables between files\nVariables to JSON – Export Figma variables as JSON files\nSwap Variables – Quickly swap variable references within Figma\n\nWhy these plugins? After exploring several options, this specific set of plugins provided exactly the functionality needed—simple JSON formatting, clear variable scope management, and ease of use. While alternatives like Tokens Studio are powerful, they often add unnecessary complexity for simple use-cases.'
-        },
-        {
-          title: 'In Figma',
-          content: '1. Duplicate the Primitives and Tokens variable sets from the original core library into your new Figma file.\n2. Update your primitive variables using HSL color values in either the "Light" or "Dark" mode.\n3. Run the Swap Variables plugin to ensure your new variables replace the originals. (Tip: sort variables by "created in this file").'
-        },
-        {
-          title: 'In Your App',
-          content: '1. Use the Variables to JSON plugin to export variables. Save the file exactly as labeled by the plugin—the conversion script expects this naming convention.\n2. Place the exported JSON file into your app directory and run the conversion script.\n3. CSS files will auto-generate, updating your design system in real time.'
+          title: 'Demo Files',
+          content: 'Below you will find demo files, the Figma plugins I have used, and step-by-step instructions for implementing the design system workflow.'
         }
       ]
     },
+  
     {
-      type: 'gallery',
-      layout: 'wide',
-      title: 'Interactive Examples',
-      content: 'Explore live examples of the design system in action. Try modifying tokens and see real-time updates across components.',
-      images: [
-        {
-          url: '/images/design-system/tokens-demo.png',
-          alt: 'Design tokens demonstration',
-          caption: 'Live token manipulation interface'
-        },
-        {
-          url: '/images/design-system/components-demo.png',
-          alt: 'Component library showcase',
-          caption: 'Interactive component playground'
-        }
-      ]
-    },
-    {
-      type: 'comparison',
+      type: 'resources',
       title: 'Project Resources',
       content: 'Access the Figma libraries and GitHub repository for this project.',
-      before: {
-        title: 'Figma Library',
-        content: 'DS Demo Library (Figma → shadcn/ui + TailwindCSS)',
-        image: '/images/design-system/before-workflow.png'
-      },
-      after: {
-        title: 'Demo App',
-        content: 'GitHub Repository',
-        image: '/images/design-system/after-workflow.png'
-      }
+      resources: [
+        {
+          type: 'github',
+          title: 'ds-demo5',
+          description: 'A React + TypeScript project built on shadcn/ui and TailwindCSS that streamlines Figma token exports through automatic Style Dictionary conversion.',
+          url: 'https://github.com/xraystyle1980/ds-demo5',
+          lastUpdated: '2024-04-02T22:24:58Z'
+        },
+        {
+          type: 'figma',
+          title: 'DS Demo Library',
+          description: 'A comprehensive design system library built with Figma Variables, optimized for shadcn/ui and TailwindCSS integration.',
+          url: 'https://www.figma.com/community/file/1490098810930924038/ds-demo-library-figma-shadcn-ui-tailwind',
+          lastUpdated: '2024-04-02T22:24:58Z'
+        }
+      ]
     }
   ] as Section[]
 }; 

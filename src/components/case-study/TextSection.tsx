@@ -21,14 +21,31 @@ interface ItemProps {
   title: string;
   content: string;
   keyPoints?: string[];
+  image?: {
+    url: string;
+    alt: string;
+    caption?: string;
+  };
 }
 
-function Item({ title, content, keyPoints }: ItemProps) {
+function Item({ title, content, keyPoints, image }: ItemProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       <h3 className="text-display-sm text-foreground">{title}</h3>
       <p className="text-body-lg text-foreground">{content}</p>
       {keyPoints && <KeyPointsList points={keyPoints} />}
+      {image && (
+        <div className="mt-4">
+          <img 
+            src={image.url} 
+            alt={image.alt} 
+            className="w-full h-auto rounded-lg"
+          />
+          {image.caption && (
+            <p className="text-body-sm text-muted-foreground mt-2">{image.caption}</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -74,7 +91,7 @@ export interface TextSectionProps {
 
 export function TextSection({ title, content, items, className }: TextSectionProps) {
   return (
-    <div className={cn("flex flex-col gap-10", className)}>
+    <div className={cn("flex flex-col gap-6", className)}>
       <SectionHeader title={title} content={content} />
       {items && <ItemsList items={items} />}
     </div>

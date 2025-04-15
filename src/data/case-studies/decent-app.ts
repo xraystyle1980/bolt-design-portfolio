@@ -80,10 +80,10 @@ export const decentApp: Project = {
       ]
     } as GallerySection,
     {
-      type: 'process',
+      type: 'content',
       title: 'Design Process',
       content: 'Our approach focused on collaboration and iteration, ensuring that every design decision was validated through user feedback and technical feasibility.',
-      steps: [
+      subsections: [
         {
           title: 'Research & Discovery',
           content: 'Conducted user interviews and analyzed existing workflows to identify pain points and opportunities for improvement.',
@@ -112,7 +112,7 @@ export const decentApp: Project = {
           ]
         }
       ]
-    } as ProcessSection,
+    } as ContentSection,
     {
       type: 'content',
       title: 'Design System Implementation',

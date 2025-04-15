@@ -1,8 +1,47 @@
 // Base types for common elements
 export interface BaseSection {
+  type: string;
   title: string;
   content: string;
-  layout?: 'default' | 'wide' | 'narrow';
+  layout?: 'wide' | 'narrow';
+}
+
+export interface Subsection {
+  title: string;
+  content: string;
+  keyPoints?: string[];
+  image?: {
+    url: string;
+    alt: string;
+    caption?: string;
+  };
+}
+
+export interface Step {
+  title: string;
+  content: string;
+  keyPoints?: string[];
+  image?: {
+    url: string;
+    alt: string;
+    caption?: string;
+  };
+  items?: Array<{
+    title: string;
+    description: string;
+    link?: string;
+    image?: {
+      url: string;
+      alt: string;
+      caption?: string;
+    };
+  }>;
+}
+
+export interface Image {
+  url: string;
+  alt?: string;
+  caption?: string;
 }
 
 export interface ContentSection extends BaseSection {
@@ -11,15 +50,11 @@ export interface ContentSection extends BaseSection {
     title: string;
     content: string;
     keyPoints?: string[];
-  }[];
-}
-
-export interface ProcessSection extends BaseSection {
-  type: 'process';
-  steps: {
-    title: string;
-    content: string;
-    keyPoints?: string[];
+    image?: {
+      url: string;
+      alt: string;
+      caption?: string;
+    };
   }[];
 }
 
@@ -27,42 +62,34 @@ export interface GallerySection extends BaseSection {
   type: 'gallery';
   images: {
     url: string;
-    alt?: string;
+    alt: string;
     caption?: string;
   }[];
 }
 
-export interface ComparisonSection extends BaseSection {
-  type: 'comparison';
-  before: {
-    title: string;
-    content: string;
-    image: string;
-  };
-  after: {
-    title: string;
-    content: string;
-    image: string;
-  };
+export interface Resource {
+  type: 'github' | 'figma';
+  title: string;
+  description: string;
+  url: string;
+  lastUpdated?: string;
 }
 
-export interface NarrativeSection extends BaseSection {
-  type: 'narrative';
-  subsections?: {
+export interface ResourceSection extends BaseSection {
+  type: 'resources';
+  resources: {
     title: string;
-    content: string;
-    keyPoints?: string[];
+    description: string;
+    link: string;
+    image?: {
+      url: string;
+      alt: string;
+      caption?: string;
+    };
   }[];
 }
 
-export interface OutcomeSection {
-  type: 'outcome';
-  title: string;
-  content: string;
-  metrics: Array<{ label: string; value: string }>;
-}
-
-export type Section = ContentSection | ProcessSection | GallerySection | ComparisonSection | NarrativeSection | OutcomeSection;
+export type Section = ContentSection | GallerySection | ResourceSection;
 
 export interface Project {
   id: string;
@@ -76,33 +103,58 @@ export interface Project {
   leftImage?: string;
   rightImage?: string;
   singleImage?: string;
-  heroSubTitle?: string;
+  heroSubTitle: string;
   role: string;
   team: string;
   challenge: {
     title: string;
     content: string;
-    subchallenges?: {
+    subchallenges?: Array<{
       title: string;
       content: string;
-    }[];
+    }>;
   };
   solution: {
     title: string;
     content: string;
-    subsolutions?: {
+    subsolutions?: Array<{
       title: string;
       content: string;
-    }[];
+    }>;
   };
   sections: Section[];
   technologies: string[];
-  outcomes: OutcomeSection[];
+  outcomes: Array<{
+    type: 'outcome';
+    title: string;
+    content: string;
+    metrics: Array<{ label: string; value: string }>;
+  }>;
   contributions: string[];
-  testimonial: {
+  testimonial?: {
     quote: string;
     author: string;
     role: string;
   };
-  layout: 'single' | 'double' | 'triple';
+  layout?: 'single' | 'split';
+}
+
+export interface ProcessStep {
+  title: string;
+  content: string;
+  image?: {
+    url: string;
+    alt: string;
+    caption?: string;
+  };
+  items?: Array<{
+    title: string;
+    description: string;
+    link?: string;
+    image?: {
+      url: string;
+      alt: string;
+      caption?: string;
+    };
+  }>;
 } 
