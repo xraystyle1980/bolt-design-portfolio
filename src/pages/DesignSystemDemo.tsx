@@ -72,7 +72,7 @@ export function DesignSystemDemo() {
           
           {/* Right column - 75% */}
           <div className="col-span-3">
-            <div className="flex flex-col gap-8 md:gap-12">
+            <div className="flex flex-col gap-6 md:gap-8">
               {designSystemDemo.sections.map((section: Section) => {
                 const commonProps = {
                   key: section.title,
@@ -84,7 +84,9 @@ export function DesignSystemDemo() {
                   case 'content':
                     return (
                       <TextSection
-                        {...commonProps}
+                        key={section.title}
+                        title={section.title}
+                        content={section.content}
                         items={'subsections' in section ? section.subsections : []}
                       />
                     );

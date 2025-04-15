@@ -1,20 +1,27 @@
 // Base types for common elements
+export type HtmlString = string;
+
 export interface BaseSection {
   type: string;
-  title: string;
-  content: string;
+  title: HtmlString;
+  content: HtmlString;
   layout?: 'wide' | 'narrow';
 }
 
 export interface Subsection {
-  title: string;
-  content: string;
+  title: HtmlString;
+  content: HtmlString;
   keyPoints?: string[];
   image?: {
     url: string;
     alt: string;
     caption?: string;
   };
+  images?: Array<{
+    url: string;
+    alt: string;
+    caption?: string;
+  }>;
 }
 
 export interface Step {
@@ -47,8 +54,8 @@ export interface Image {
 export interface ContentSection extends BaseSection {
   type: 'content';
   subsections?: {
-    title: string;
-    content: string;
+    title: HtmlString;
+    content: HtmlString;
     keyPoints?: string[];
     image?: {
       url: string;
@@ -73,20 +80,12 @@ export interface Resource {
   description: string;
   url: string;
   lastUpdated?: string;
+  image?: string;
 }
 
 export interface ResourceSection extends BaseSection {
   type: 'resources';
-  resources: {
-    title: string;
-    description: string;
-    link: string;
-    image?: {
-      url: string;
-      alt: string;
-      caption?: string;
-    };
-  }[];
+  resources: Resource[];
 }
 
 export type Section = ContentSection | GallerySection | ResourceSection;

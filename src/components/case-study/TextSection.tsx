@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Lightbox } from "@/components/Lightbox";
 
 interface KeyPointsListProps {
   points: string[];
@@ -26,13 +27,25 @@ interface ItemProps {
     alt: string;
     caption?: string;
   };
+  images?: Array<{
+    url: string;
+    alt: string;
+    caption?: string;
+  }>;
+  caption?: string;
 }
 
-function Item({ title, content, keyPoints, image }: ItemProps) {
+function Item({ title, content, keyPoints, image, images, caption }: ItemProps) {
   return (
-    <div className="flex flex-col gap-4">
-      <h3 className="text-display-sm text-foreground">{title}</h3>
-      <p className="text-body-lg text-foreground">{content}</p>
+    <div className="flex flex-col gap-2">
+      <div 
+        className="text-display-sm text-foreground"
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
+      <div 
+        className="text-body-lg text-foreground [&>a]:text-foreground [&>a]:underline [&>a]:decoration-[0.5px] [&>a]:underline-offset-4 [&>a]:transition-colors hover:[&>a]:text-accent" 
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
       {keyPoints && <KeyPointsList points={keyPoints} />}
       {image && (
         <div className="mt-4">
@@ -42,7 +55,31 @@ function Item({ title, content, keyPoints, image }: ItemProps) {
             className="w-full h-auto rounded-lg"
           />
           {image.caption && (
-            <p className="text-body-sm text-muted-foreground mt-2">{image.caption}</p>
+            <p className="text-body-sm text-muted-foreground mt-2 text-center">{image.caption}</p>
+          )}
+        </div>
+      )}
+      {images && images.length > 0 && (
+        <div className="mt-4">
+          <div className={cn(
+            "grid gap-4",
+            images.length === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-3"
+          )}>
+            {images.map((img, index) => (
+              <div key={index} className="overflow-hidden content-center">
+                <Lightbox 
+                  src={img.url} 
+                  alt={img.alt} 
+                  className="w-full h-auto hover:scale-105 transition-transform duration-300"
+                />
+                {img.caption && (
+                  <p className="text-body-sm text-muted-foreground mt-2 text-center">{img.caption}</p>
+                )}
+              </div>
+            ))}
+          </div>
+          {caption && (
+            <p className="caption text-muted-foreground mt-4 text-center max-w-lg m-auto">{caption}</p>
           )}
         </div>
       )}
@@ -72,12 +109,14 @@ interface SectionHeaderProps {
 function SectionHeader({ title, content }: SectionHeaderProps) {
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="text-display-md md:text-display-lg text-foreground">
-        {title}
-      </h2>
-      <p className="text-body-lg text-foreground">
-        {content}
-      </p>
+      <div 
+        className="text-display-md md:text-display-lg text-foreground"
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
+      <div 
+        className="text-body-lg text-foreground [&>a]:text-foreground [&>a]:underline [&>a]:decoration-[1px] [&>a]:underline-offset-4 [&>a]:transition-colors hover:[&>a]:text-accent"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </div>
   );
 }
