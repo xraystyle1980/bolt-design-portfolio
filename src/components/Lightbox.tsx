@@ -3,23 +3,43 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export interface LightboxProps {
-  src: string;
+interface Image {
+  url: string;
   alt: string;
-  className?: string;
+  caption?: string;
 }
 
-export function Lightbox({ src, alt, className }: LightboxProps) {
+interface LightboxProps {
+  src?: string;
+  alt?: string;
+  className?: string;
+  images?: Image[];
+}
+
+export function Lightbox({ src, alt, className, images }: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<number>(0);
+
+  // If we have a single image via src/alt, convert it to our images format
+  const normalizedImages = images || (src && alt ? [{ url: src, alt }] : []);
+
+  if (normalizedImages.length === 0) return null;
 
   return (
-    <>
-      <img 
-        src={src} 
-        alt={alt} 
-        className={`cursor-pointer ${className}`}
-        onClick={() => setIsOpen(true)}
-      />
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {normalizedImages.map((image, index) => (
+        <div key={index} className="overflow-hidden content-center">
+          <img 
+            src={image.url} 
+            alt={image.alt} 
+            className={`cursor-pointer w-full h-auto hover:scale-105 transition-transform duration-300 ${className}`}
+            onClick={() => {
+              setSelectedImage(index);
+              setIsOpen(true);
+            }}
+          />
+        </div>
+      ))}
       {isOpen && createPortal(
         <div 
           className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
@@ -40,8 +60,8 @@ export function Lightbox({ src, alt, className }: LightboxProps) {
           <div className="h-full w-full flex items-center justify-center p-4">
             <div className="relative">
               <img 
-                src={src} 
-                alt={alt} 
+                src={normalizedImages[selectedImage].url} 
+                alt={normalizedImages[selectedImage].alt} 
                 className="max-h-[85vh] w-auto object-contain rounded-lg"
               />
             </div>
@@ -49,6 +69,6 @@ export function Lightbox({ src, alt, className }: LightboxProps) {
         </div>,
         document.body
       )}
-    </>
+    </div>
   );
 } 

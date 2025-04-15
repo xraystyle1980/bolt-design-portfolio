@@ -1,6 +1,3 @@
-import tokenVideo from '/scrolling-token-scroll.mp4'
-import floppyVideo from '/red-hot-floppy-slider.mp4'
-
 export const threeJsDemo = {
   id: 'threejs-experiments',
   title: 'Three.js Experiments',

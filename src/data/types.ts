@@ -2,10 +2,29 @@
 export type HtmlString = string;
 
 export interface BaseSection {
-  type: string;
+  type: 'content' | 'gallery' | 'resources' | 'process' | 'narrative';
+}
+
+export interface ContentSection extends BaseSection {
+  type: 'content';
   title: HtmlString;
   content: HtmlString;
   layout?: 'wide' | 'narrow';
+  subsections?: Subsection[];
+}
+
+export interface ProcessSection extends BaseSection {
+  type: 'process';
+  title: HtmlString;
+  content: HtmlString;
+  steps?: Subsection[];
+}
+
+export interface NarrativeSection extends BaseSection {
+  type: 'narrative';
+  title: HtmlString;
+  content: HtmlString;
+  subsections?: Subsection[];
 }
 
 export interface Subsection {
@@ -51,22 +70,11 @@ export interface Image {
   caption?: string;
 }
 
-export interface ContentSection extends BaseSection {
-  type: 'content';
-  subsections?: {
-    title: HtmlString;
-    content: HtmlString;
-    keyPoints?: string[];
-    image?: {
-      url: string;
-      alt: string;
-      caption?: string;
-    };
-  }[];
-}
-
 export interface GallerySection extends BaseSection {
   type: 'gallery';
+  title: HtmlString;
+  content: HtmlString;
+  layout?: 'wide' | 'narrow';
   images: {
     url: string;
     alt: string;
@@ -85,10 +93,12 @@ export interface Resource {
 
 export interface ResourceSection extends BaseSection {
   type: 'resources';
+  title: HtmlString;
+  content: HtmlString;
   resources: Resource[];
 }
 
-export type Section = ContentSection | GallerySection | ResourceSection;
+export type Section = ContentSection | GallerySection | ResourceSection | ProcessSection | NarrativeSection;
 
 export interface Project {
   id: string;
@@ -135,7 +145,7 @@ export interface Project {
     author: string;
     role: string;
   };
-  layout?: 'single' | 'split';
+  layout?: 'single' | 'split' | 'double';
 }
 
 export interface ProcessStep {

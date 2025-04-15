@@ -1,4 +1,4 @@
-import { Project, ProcessSection, GallerySection, ContentSection } from '../types';
+import { Project, GallerySection, ContentSection } from '../types';
 
 export const decentApp: Project = {
   id: 'decent-app',

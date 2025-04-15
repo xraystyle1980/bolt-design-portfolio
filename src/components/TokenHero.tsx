@@ -3,7 +3,7 @@ import { Environment, OrbitControls } from '@react-three/drei'
 import { useState, useRef, useMemo } from 'react'
 import { Group, Vector3 } from 'three'
 import { Token } from './Token'
-import { EffectComposer, Bloom, Vignette, HueSaturation, BrightnessContrast } from '@react-three/postprocessing'
+import { EffectComposer, Vignette, HueSaturation, BrightnessContrast } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 
 interface TokenInstance {
@@ -225,11 +225,6 @@ export function TokenHero() {
 
       {/* Post-processing effects */}
       <EffectComposer>
-        {/* <Bloom 
-          intensity={0.8}
-          luminanceThreshold={0.6}
-          luminanceSmoothing={0.3}
-        /> */}
         <BrightnessContrast 
           brightness={0.0}
           contrast={0.4}

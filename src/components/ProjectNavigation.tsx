@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/ui/container';
-import { buttonVariants } from '@/components/ui/button';
 
 interface Project {
   id: string;

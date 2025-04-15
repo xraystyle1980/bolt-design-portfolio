@@ -1,5 +1,4 @@
 import { Section } from '@/data/types';
-import { cn } from '@/lib/utils';
 import { Github, ExternalLink, Figma } from 'lucide-react';
 
 interface ResourceSectionProps {

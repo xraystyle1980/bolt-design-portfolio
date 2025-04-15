@@ -49,7 +49,7 @@ function Item({ title, content, keyPoints, image, images, caption }: ItemProps) 
       {keyPoints && <KeyPointsList points={keyPoints} />}
       {image && (
         <div className="mt-4">
-          <img 
+          <Lightbox 
             src={image.url} 
             alt={image.alt} 
             className="w-full h-auto rounded-lg"
@@ -61,23 +61,7 @@ function Item({ title, content, keyPoints, image, images, caption }: ItemProps) 
       )}
       {images && images.length > 0 && (
         <div className="mt-4">
-          <div className={cn(
-            "grid gap-4",
-            images.length === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-3"
-          )}>
-            {images.map((img, index) => (
-              <div key={index} className="overflow-hidden content-center">
-                <Lightbox 
-                  src={img.url} 
-                  alt={img.alt} 
-                  className="w-full h-auto hover:scale-105 transition-transform duration-300"
-                />
-                {img.caption && (
-                  <p className="text-body-sm text-muted-foreground mt-2 text-center">{img.caption}</p>
-                )}
-              </div>
-            ))}
-          </div>
+          <Lightbox images={images} />
           {caption && (
             <p className="caption text-muted-foreground mt-4 text-center max-w-lg m-auto">{caption}</p>
           )}

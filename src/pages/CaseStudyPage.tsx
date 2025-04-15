@@ -87,26 +87,33 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           {/* Right column - 75% */}
           <div className="col-span-3">
             <div className="flex flex-col gap-24 md:gap-32">
-              {project.sections.map((section: Section) => {
-                const commonProps = {
-                  key: section.title,
-                  title: section.title,
-                  content: section.content,
-                };
-
+              {project.sections.map((section: Section, index: number) => {
                 switch (section.type) {
                   case 'content':
                     return (
                       <TextSection
-                        {...commonProps}
-                        items={'subsections' in section ? section.subsections : []}
+                        key={index}
+                        title={section.title}
+                        content={section.content}
+                        items={section.subsections}
                       />
                     );
                   case 'process':
                     return (
                       <TextSection
-                        {...commonProps}
-                        items={'steps' in section ? section.steps : []}
+                        key={index}
+                        title={section.title}
+                        content={section.content}
+                        items={section.steps || []}
+                      />
+                    );
+                  case 'narrative':
+                    return (
+                      <TextSection
+                        key={index}
+                        title={section.title}
+                        content={section.content}
+                        items={section.subsections}
                       />
                     );
                   case 'gallery':

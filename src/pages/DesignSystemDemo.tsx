@@ -74,12 +74,6 @@ export function DesignSystemDemo() {
           <div className="col-span-3">
             <div className="flex flex-col gap-6 md:gap-8">
               {designSystemDemo.sections.map((section: Section) => {
-                const commonProps = {
-                  key: section.title,
-                  title: section.title,
-                  content: section.content,
-                };
-
                 switch (section.type) {
                   case 'content':
                     return (

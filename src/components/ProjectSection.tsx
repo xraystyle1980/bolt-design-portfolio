@@ -31,8 +31,6 @@ export function ProjectSection({
   return (
     <section className="py-20 border-b border-border">
       <div className="container">
-
-
         <div className="grid gap-12 items-center lg:grid-cols-[1.2fr,1fr] min-h-[600px]">
           
           {/* Media */}
@@ -126,8 +124,6 @@ export function ProjectSection({
           </div>
 
         </div>
-
-
       </div>
     </section>
   );

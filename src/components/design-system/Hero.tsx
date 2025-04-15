@@ -1,5 +1,3 @@
-import { cn } from '@/lib/utils';
-
 export function DesignSystemHero() {
   return (
     <div className="flex flex-col items-center justify-center h-full p-8 text-center">
