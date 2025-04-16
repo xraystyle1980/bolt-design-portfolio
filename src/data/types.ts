@@ -2,9 +2,52 @@
 export type HtmlString = string;
 
 export interface BaseSection {
-  type: 'content' | 'gallery' | 'resources' | 'process' | 'narrative' | 'instruction';
+  type: 'content' | 'gallery' | 'resources' | 'process' | 'narrative' | 'instruction' | 'flex-column' | 'grid-layout';
 }
 
+// Shared types
+export interface Image {
+  url: string;
+  alt: string;
+  caption?: string;
+}
+
+export interface Link {
+  text: string;
+  url: string;
+}
+
+export interface Subsection {
+  title: string;
+  content: string;
+  keyPoints?: string[];
+  variant?: 'warning' | 'info' | 'default';
+  image?: Image;
+  images?: Image[];
+  caption?: string;
+}
+
+// New section types
+export interface FlexColumnSection extends BaseSection {
+  type: 'flex-column';
+  title: string;
+  content: string;
+  variant?: 'warning' | 'info' | 'default';
+  items?: Subsection[];
+  className?: string;
+}
+
+export interface GridLayoutSection extends BaseSection {
+  type: 'grid-layout';
+  title?: string;
+  content: string;
+  variant?: 'warning' | 'info' | 'default';
+  image?: Image;
+  link?: Link;
+  className?: string;
+}
+
+// Existing section types (preserved for backward compatibility)
 export interface ContentSection extends BaseSection {
   type: 'content';
   title: HtmlString;
@@ -32,58 +75,8 @@ export interface InstructionSection extends BaseSection {
   title?: HtmlString;
   content: HtmlString;
   variant?: 'warning' | 'info' | 'default';
-  image?: {
-    url: string;
-    alt: string;
-    caption?: string;
-  };
-  link?: {
-    text: string;
-    url: string;
-  };
-}
-
-export interface Subsection {
-  title: HtmlString;
-  content: HtmlString;
-  keyPoints?: string[];
-  image?: {
-    url: string;
-    alt: string;
-    caption?: string;
-  };
-  images?: Array<{
-    url: string;
-    alt: string;
-    caption?: string;
-  }>;
-}
-
-export interface Step {
-  title: string;
-  content: string;
-  keyPoints?: string[];
-  image?: {
-    url: string;
-    alt: string;
-    caption?: string;
-  };
-  items?: Array<{
-    title: string;
-    description: string;
-    link?: string;
-    image?: {
-      url: string;
-      alt: string;
-      caption?: string;
-    };
-  }>;
-}
-
-export interface Image {
-  url: string;
-  alt?: string;
-  caption?: string;
+  image?: Image;
+  link?: Link;
 }
 
 export interface GallerySection extends BaseSection {
@@ -91,11 +84,7 @@ export interface GallerySection extends BaseSection {
   title: HtmlString;
   content: HtmlString;
   layout?: 'wide' | 'narrow';
-  images: {
-    url: string;
-    alt: string;
-    caption?: string;
-  }[];
+  images: Image[];
 }
 
 export interface Resource {
@@ -114,7 +103,16 @@ export interface ResourceSection extends BaseSection {
   resources: Resource[];
 }
 
-export type Section = ContentSection | GallerySection | ResourceSection | ProcessSection | NarrativeSection | InstructionSection;
+// Combined section type
+export type Section = 
+  | ContentSection 
+  | GallerySection 
+  | ResourceSection 
+  | ProcessSection 
+  | NarrativeSection 
+  | InstructionSection
+  | FlexColumnSection
+  | GridLayoutSection;
 
 export interface Project {
   id: string;

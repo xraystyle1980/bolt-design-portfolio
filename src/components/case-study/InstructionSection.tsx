@@ -2,6 +2,9 @@ import { InstructionSection as InstructionSectionType } from '@/data/types';
 import { ExternalLink } from 'lucide-react';
 import { Banner } from '@/components/ui/banner';
 
+/**
+ * @deprecated Use GridLayoutSection instead. This component will be removed in a future release.
+ */
 export function InstructionSection({ 
   title, 
   content, 

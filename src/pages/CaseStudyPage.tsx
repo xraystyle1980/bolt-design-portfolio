@@ -13,6 +13,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { Lightbox } from '@/components/Lightbox';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
+import { FlexColumnSection } from '@/components/case-study/FlexColumnSection';
+import { GridLayoutSection } from '@/components/case-study/GridLayoutSection';
 
 interface CaseStudyPageProps {}
 
@@ -90,30 +92,21 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
               {project.sections.map((section: Section, index: number) => {
                 switch (section.type) {
                   case 'content':
-                    return (
-                      <TextSection
-                        key={index}
-                        title={section.title}
-                        content={section.content}
-                        items={section.subsections}
-                      />
-                    );
                   case 'process':
-                    return (
-                      <TextSection
-                        key={index}
-                        title={section.title}
-                        content={section.content}
-                        items={section.steps || []}
-                      />
-                    );
                   case 'narrative':
                     return (
-                      <TextSection
+                      <FlexColumnSection
                         key={index}
                         title={section.title}
                         content={section.content}
-                        items={section.subsections}
+                        items={'subsections' in section ? section.subsections : []}
+                      />
+                    );
+                  case 'instruction':
+                    return (
+                      <GridLayoutSection
+                        key={index}
+                        {...section}
                       />
                     );
                   case 'gallery':

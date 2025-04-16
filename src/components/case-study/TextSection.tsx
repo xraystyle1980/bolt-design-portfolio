@@ -1,6 +1,16 @@
 import { cn } from "@/lib/utils";
 import { Lightbox } from "@/components/Lightbox";
 
+/**
+ * @deprecated Use FlexColumnSection instead. This component will be removed in a future release.
+ */
+export interface TextSectionProps {
+  title: string;
+  content: string;
+  items?: ItemProps[];
+  className?: string;
+}
+
 interface KeyPointsListProps {
   points: string[];
 }
@@ -105,13 +115,6 @@ function SectionHeader({ title, content }: SectionHeaderProps) {
       />
     </div>
   );
-}
-
-export interface TextSectionProps {
-  title: string;
-  content: string;
-  items?: ItemProps[];
-  className?: string;
 }
 
 export function TextSection({ title, content, items, className }: TextSectionProps) {

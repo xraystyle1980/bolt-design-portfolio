@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { TextSection } from '@/components/case-study/TextSection';
-import { ResourceSection } from '@/components/case-study/ResourceSection';
-import { InstructionSection } from '@/components/case-study/InstructionSection';
 import { Lightbox } from '@/components/Lightbox';
 import { Tags } from '@/components/Tags';
 import { designSystemDemo } from '@/data/demos/design-system';
@@ -14,6 +11,7 @@ import { Section } from '@/data/types';
 import { DesignSystemHero } from '@/components/design-system/Hero';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
+import { FlexColumnSection, GridLayoutSection, ResourceSection } from '@/components/case-study';
 
 export function DesignSystemDemo() {
   const { prev, next } = getAdjacentProjects('design-system-demo');
@@ -77,12 +75,21 @@ export function DesignSystemDemo() {
               {designSystemDemo.sections.map((section: Section) => {
                 switch (section.type) {
                   case 'content':
+                  case 'process':
+                  case 'narrative':
                     return (
-                      <TextSection
+                      <FlexColumnSection
                         key={section.title}
                         title={section.title}
                         content={section.content}
                         items={'subsections' in section ? section.subsections : []}
+                      />
+                    );
+                  case 'instruction':
+                    return (
+                      <GridLayoutSection
+                        key={section.title || section.content}
+                        {...section}
                       />
                     );
                   case 'resources':
@@ -92,16 +99,9 @@ export function DesignSystemDemo() {
                         section={section}
                       />
                     );
-                  case 'instruction':
-                    return (
-                      <InstructionSection
-                        key={section.title}
-                        {...section}
-                      />
-                    );
                   case 'gallery':
                     return (
-                      <div className={cn(
+                      <div key={section.title} className={cn(
                         "flex flex-col gap-8",
                         section.layout === 'wide' && "col-span-3",
                         section.layout === 'narrow' && "col-span-2"
