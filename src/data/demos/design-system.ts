@@ -23,17 +23,13 @@ export const designSystemDemo = {
       ]
     },
 
-    
-  
-
 
     {
       type: 'content',
       title: 'My workflow in Figma',
       content: 'Below you will find demo files, the Figma plugins I have used, and step-by-step instructions for implementing the design system workflow.'
-      
     },
-  
+    
 
     {
       type: 'resources',
@@ -106,35 +102,67 @@ export const designSystemDemo = {
 
     {
       type: 'content',
-      title: 'Example Layouts',
-      content: 'Below are examples of different image layouts supported in the design system.',
+      title: 'In Figma',
+      content: 'Duplicate the Primitives and Tokens variable collections from the DS Demo – Library into the DS Demo – Theme file. The idea here is to only copy over the variables we will be using in our custom theme. This way we keep the core library variables intact and only make changes to this new set. For the demo I used the aforementioned Variables Manager plugin to automate an otherwise tedious manual process.',
       subsections: [
         {
-          title: 'Single Image Example',
-          content: 'This example shows a single image with a caption. The image spans the full width of the container.',
-          image: {
-            url: '/images/design-system/plugin-variables-json.png',
-            alt: 'Variables to JSON plugin interface',
-            caption: 'The Variables to JSON plugin provides a simple interface for exporting Figma variables'
-          }
-        },
-        {
-          title: 'Side by Side Comparison',
-          content: 'This example shows two images side by side, perfect for before/after comparisons or showing related content.',
           images: [
             {
-              url: '/images/design-system/plugin-variables-manager.png',
-              alt: 'Variables Manager interface',
-              caption: 'Variables Manager: Organize and copy variables between files'
+              url: '/images/design-system/variables-primitives.png',
+              alt: 'Primitive variables',
+              caption: 'The Primitives collection contains the light and dark theme values in hex format. Using hex over a color variable allows us to set opacity variants.'
             },
             {
-              url: '/images/design-system/plugin-swap-variables.png',
-              alt: 'Swap Variables interface',
-              caption: 'Swap Variables: Replace variable references across components'
+              url: '/images/design-system/variables-tokens.png',
+              alt: 'Semantic variables',
+              caption: 'The Tokens collection is where you map the Primitive variables to a semantic collection. The variable names align with shadcn/ui and Tailwind conventions.'
             }
           ]
+        },
+        {
+          images: [
+            {
+              url: '/images/design-system/figma-custom-color-theme.png',
+              alt: 'Custom color theme',
+              caption: 'Theme file with a custom color theme applied.'
+            }
+          ]
+        },
+        {
+          content: 'In the Theme file, update the <strong>Primitive</strong> variable set with your custom light and dark theme colors.'
         }
       ]
+    },
+
+
+
+    {
+      type: 'instruction',
+      content: 'Note: Shadcn/ui components use HSL color values by default. While Figma variables can initially be defined in HSL, they\'re displayed in hex. Our Style Dictionary setup addresses this, converting colors back to HSL for seamless integration.',
+      variant: 'info'
+    },
+
+    {
+      type: 'instruction',
+      content: 'Run the Variables to JSON plugin in Figma and download the resulting JSON file. Save this file directly into your project\'s import folder—this is the location Style Dictionary will look for it',
+      image: {
+        url: '/images/design-system/plugin-variables-to-json-run.png',
+        alt: 'Running the Variables to JSON plugin in Figma'
+      },
+      link: {
+        text: 'Watch the author\'s video',
+        url: 'https://www.youtube.com/watch?v=aExmHQSbGLM'
+      }
+    },
+
+    {
+      type: 'instruction',
+      content: '🚨 Tip: Be sure your Figma variables have scopes assigned; otherwise, the export process won\'t work correctly.',
+      variant: 'warning',
+      image: {
+        url: '/images/design-system/figma-variable-scope.png',
+        alt: 'Set the scope of the variables in Figma'
+      }
     }
 
 

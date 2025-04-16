@@ -2,7 +2,7 @@
 export type HtmlString = string;
 
 export interface BaseSection {
-  type: 'content' | 'gallery' | 'resources' | 'process' | 'narrative';
+  type: 'content' | 'gallery' | 'resources' | 'process' | 'narrative' | 'instruction';
 }
 
 export interface ContentSection extends BaseSection {
@@ -25,6 +25,22 @@ export interface NarrativeSection extends BaseSection {
   title: HtmlString;
   content: HtmlString;
   subsections?: Subsection[];
+}
+
+export interface InstructionSection extends BaseSection {
+  type: 'instruction';
+  title?: HtmlString;
+  content: HtmlString;
+  variant?: 'warning' | 'info' | 'default';
+  image?: {
+    url: string;
+    alt: string;
+    caption?: string;
+  };
+  link?: {
+    text: string;
+    url: string;
+  };
 }
 
 export interface Subsection {
@@ -98,7 +114,7 @@ export interface ResourceSection extends BaseSection {
   resources: Resource[];
 }
 
-export type Section = ContentSection | GallerySection | ResourceSection | ProcessSection | NarrativeSection;
+export type Section = ContentSection | GallerySection | ResourceSection | ProcessSection | NarrativeSection | InstructionSection;
 
 export interface Project {
   id: string;

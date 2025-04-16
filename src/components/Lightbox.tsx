@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { cn } from '@/lib/utils';
 
 interface Image {
   url: string;
@@ -26,7 +27,11 @@ export function Lightbox({ src, alt, className, images }: LightboxProps) {
   if (normalizedImages.length === 0) return null;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className={cn(
+      "grid grid-cols-1 gap-4",
+      normalizedImages.length === 2 ? "md:grid-cols-2" : 
+      normalizedImages.length > 2 ? "md:grid-cols-3" : ""
+    )}>
       {normalizedImages.map((image, index) => (
         <div key={index} className="overflow-hidden content-center">
           <img 
@@ -38,6 +43,9 @@ export function Lightbox({ src, alt, className, images }: LightboxProps) {
               setIsOpen(true);
             }}
           />
+          {image.caption && (
+            <p className="caption text-muted-foreground mt-2 text-center">{image.caption}</p>
+          )}
         </div>
       ))}
       {isOpen && createPortal(

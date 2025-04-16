@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { TextSection } from '@/components/case-study/TextSection';
 import { ResourceSection } from '@/components/case-study/ResourceSection';
+import { InstructionSection } from '@/components/case-study/InstructionSection';
 import { Lightbox } from '@/components/Lightbox';
 import { Tags } from '@/components/Tags';
 import { designSystemDemo } from '@/data/demos/design-system';
@@ -55,7 +56,7 @@ export function DesignSystemDemo() {
         <div className="flex justify-center mb-20">
           <Tags tags={designSystemDemo.technologies} justify="center" />
         </div>
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Left column - 25% */}
           <div className="col-span-1">
             <div className="flex flex-col gap-6">
@@ -71,7 +72,7 @@ export function DesignSystemDemo() {
           </div>
           
           {/* Right column - 75% */}
-          <div className="col-span-3">
+          <div className="col-span-1 md:col-span-3">
             <div className="flex flex-col gap-6 md:gap-8">
               {designSystemDemo.sections.map((section: Section) => {
                 switch (section.type) {
@@ -89,6 +90,13 @@ export function DesignSystemDemo() {
                       <ResourceSection
                         key={section.title}
                         section={section}
+                      />
+                    );
+                  case 'instruction':
+                    return (
+                      <InstructionSection
+                        key={section.title}
+                        {...section}
                       />
                     );
                   case 'gallery':

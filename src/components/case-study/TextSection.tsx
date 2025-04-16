@@ -37,37 +37,39 @@ interface ItemProps {
 
 function Item({ title, content, keyPoints, image, images, caption }: ItemProps) {
   return (
-    <div className="flex flex-col gap-2">
-      <div 
-        className="text-display-sm text-foreground"
-        dangerouslySetInnerHTML={{ __html: title }}
-      />
-      <div 
-        className="text-body-lg text-foreground [&>a]:text-foreground [&>a]:underline [&>a]:decoration-[0.5px] [&>a]:underline-offset-4 [&>a]:transition-colors hover:[&>a]:text-accent" 
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-      {keyPoints && <KeyPointsList points={keyPoints} />}
-      {image && (
-        <div className="mt-4">
-          <Lightbox 
-            src={image.url} 
-            alt={image.alt} 
-            className="w-full h-auto rounded-lg"
-          />
-          {image.caption && (
-            <p className="text-body-sm text-muted-foreground mt-2 text-center">{image.caption}</p>
-          )}
-        </div>
-      )}
-      {images && images.length > 0 && (
-        <div className="mt-4">
-          <Lightbox images={images} />
-          {caption && (
-            <p className="caption text-muted-foreground mt-4 text-center max-w-lg m-auto">{caption}</p>
-          )}
-        </div>
-      )}
-    </div>
+    <section className="mb-4" id="hoody">
+      <div className="flex flex-col gap-2">
+        <div 
+          className="text-display-sm text-foreground"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+        <div 
+          className="text-body-lg text-foreground [&>a]:text-foreground [&>a]:underline [&>a]:decoration-[0.5px] [&>a]:underline-offset-4 [&>a]:transition-colors hover:[&>a]:text-accent" 
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+        {keyPoints && <KeyPointsList points={keyPoints} />}
+        {image && (
+          <div className="mt-4">
+            <Lightbox 
+              src={image.url} 
+              alt={image.alt} 
+              className="w-full h-auto rounded-lg"
+            />
+            {image.caption && (
+              <p className="text-body-sm text-muted-foreground mt-2 text-center">{image.caption}</p>
+            )}
+          </div>
+        )}
+        {images && images.length > 0 && (
+          <div className="mt-4">
+            <Lightbox images={images} />
+            {caption && (
+              <p className="caption text-muted-foreground mt-4 text-center max-w-lg m-auto">{caption}</p>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -77,7 +79,7 @@ interface ItemsListProps {
 
 function ItemsList({ items }: ItemsListProps) {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-2">
       {items.map(item => (
         <Item key={item.title} {...item} />
       ))}
@@ -92,7 +94,7 @@ interface SectionHeaderProps {
 
 function SectionHeader({ title, content }: SectionHeaderProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       <div 
         className="text-display-md md:text-display-lg text-foreground"
         dangerouslySetInnerHTML={{ __html: title }}
