@@ -1,20 +1,18 @@
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
-import { Footer } from '@/components/Footer';
 import { Container } from '@/components/ui/container';
-import { projects } from '@/data/case-studies';
+import { Footer } from '@/components/Footer';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Tags } from '@/components/Tags';
-import { TextSection } from '@/components/case-study/TextSection';
-import { ResourceSection } from '@/components/case-study/ResourceSection';
-import { Section, Project } from '@/data/types';
-import { HeroSection } from '@/components/case-study/HeroSection';
 import { buttonVariants } from '@/components/ui/button';
 import { Lightbox } from '@/components/Lightbox';
+import { Tags } from '@/components/Tags';
+import { Section, Project } from '@/data/types';
+import { useParams } from 'react-router-dom';
+import { projects } from '@/data/case-studies';
+import { FlexColumnSection, GridLayoutSection, ResourceSection } from '@/components/case-study';
+import { HeroSection } from '@/components/case-study/HeroSection';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
-import { FlexColumnSection } from '@/components/case-study/FlexColumnSection';
-import { GridLayoutSection } from '@/components/case-study/GridLayoutSection';
 
 interface CaseStudyPageProps {}
 
