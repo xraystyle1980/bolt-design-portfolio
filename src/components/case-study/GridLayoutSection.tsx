@@ -7,6 +7,7 @@ import { GridLayoutSection as GridLayoutSectionType, InstructionSection as Instr
 export interface GridLayoutSectionProps extends Omit<GridLayoutSectionType | InstructionSectionType, 'type'> {
   type?: 'grid-layout' | 'instruction';
   items?: Subsection[];
+  subsections?: Subsection[];
   className?: string;
 }
 
@@ -14,12 +15,16 @@ export function GridLayoutSection({
   title, 
   content, 
   image, 
-  link, 
+  link,
   variant = 'default',
   className,
-  items = []
+  items = [],
+  subsections = []
 }: GridLayoutSectionProps) {
-  if (variant !== 'default' && !image) {
+  // Use subsections if available (for instruction type), otherwise use items
+  const sectionItems = subsections.length > 0 ? subsections : items;
+
+  if (variant !== 'default' && !image && !sectionItems?.length) {
     return (
       <section className={cn("flex flex-col gap-8", className)}>
         <Banner variant={variant}>
@@ -56,24 +61,37 @@ export function GridLayoutSection({
           )}
         </div>
 
-        {/* Image */}
-        {image && (
+        {/* Image or Video */}
+        {(image || sectionItems?.[0]?.videoUrl) && (
           <div className="flex flex-col gap-4">
-            <Lightbox 
-              src={image.url} 
-              alt={image.alt} 
-              className="w-full h-auto rounded-lg"
-            />
-            {image.caption && (
-              <p className="text-body-sm text-muted-foreground mt-2 text-center">{image.caption}</p>
+            {image ? (
+              <Lightbox 
+                src={image.url} 
+                alt={image.alt} 
+                className="w-full h-auto rounded-lg"
+              />
+            ) : sectionItems?.[0]?.videoUrl && (
+              <Lightbox 
+                images={[{
+                  url: sectionItems[0].videoUrl,
+                  alt: "Video content",
+                  videoUrl: sectionItems[0].videoUrl,
+                  aspectRatio: sectionItems[0].aspectRatio
+                }]}
+              />
+            )}
+            {(image?.caption || sectionItems?.[0]?.caption) && (
+              <p className="text-body-sm text-muted-foreground mt-2 text-center">
+                {image?.caption || sectionItems[0].caption}
+              </p>
             )}
           </div>
         )}
       </div>
 
-      {items && items.length > 0 && (
+      {sectionItems && sectionItems.length > 0 && !sectionItems[0].videoUrl && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {items.map((item, index) => (
+          {sectionItems.map((item, index) => (
             <div 
               key={index} 
               className={`flex flex-col gap-2 p-6 rounded-2xl border ${

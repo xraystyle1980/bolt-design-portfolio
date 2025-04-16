@@ -14,7 +14,7 @@ export const designSystemDemo = {
     {
       type: 'content',
       title: 'Overview',
-      content: 'This project showcases a simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS, highlighting an efficient integration using Style Dictionary. Starting from an existing community-driven Figma library, I streamlined the token structure and optimized the workflow for ease of use, clarity, and seamless implementation.',
+      content: 'This project showcases a simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS, highlighting an efficient integration using Style Dictionary. Starting from an existing community-driven Figma library, I streamlined the token structure and optimized the workflow for clarity, ease of use, and seamless implementation across design and development.',
       subsections: [
         {
           title: 'Why I Made This',
@@ -35,13 +35,7 @@ export const designSystemDemo = {
       type: 'resources',
       title: 'Figma Files',
       resources: [
-        // {
-        //   type: 'github',
-        //   title: 'ds-demo5',
-        //   description: 'A React + TypeScript project built on shadcn/ui and TailwindCSS that streamlines Figma token exports through automatic Style Dictionary conversion.',
-        //   url: 'https://github.com/xraystyle1980/ds-demo5',
-        //   lastUpdated: '2024-04-02T22:24:58Z'
-        // },
+
         {
           type: 'figma',
           title: 'DS Demo – Library',
@@ -78,6 +72,9 @@ export const designSystemDemo = {
         {
           title: '<a href="https://www.figma.com/community/plugin/1334258818515407420/swap-variables" target="_blank" rel="noopener noreferrer" class="text-body-lg font-semibold inline-flex items-center gap-2 hover:text-accent transition-colors underline decoration-[1px] underline-offset-4">Swap Variables<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>',
           content: 'Swap variable references from remotely imported library components to new custom theme. There are a ton of plugins and workflows for copying variables between files. I found this specific workflow and plugin set does exactly what I need it to do.',
+        },
+        {
+          
           images: [
             {
               url: '/images/design-system/plugin-variables-json.png',
@@ -103,7 +100,7 @@ export const designSystemDemo = {
     {
       type: 'content',
       title: 'In Figma',
-      content: 'Duplicate the Primitives and Tokens variable collections from the DS Demo – Library into the DS Demo – Theme file. The idea here is to only copy over the variables we will be using in our custom theme. This way we keep the core library variables intact and only make changes to this new set. For the demo I used the aforementioned Variables Manager plugin to automate an otherwise tedious manual process.',
+      content: 'In your own workflow, you’d duplicate the Primitives and Tokens variable collections from the DS Demo – Library into the DS Demo – Theme file. The goal is to only copy the variables needed for your custom theme, keeping the core library intact. For this demo, I’ve already done this step using the Variables Manager plugin to automate what would otherwise be a tedious manual task.',
       subsections: [
         {
           images: [
@@ -120,20 +117,59 @@ export const designSystemDemo = {
           ]
         },
         {
-          images: [
-            {
-              url: '/images/design-system/figma-custom-color-theme.png',
-              alt: 'Custom color theme',
-              caption: 'Theme file with a custom color theme applied.'
-            }
-          ]
-        },
-        {
           content: 'In the Theme file, update the <strong>Primitive</strong> variable set with your custom light and dark theme colors.'
         }
       ]
     },
+    
 
+    {
+      type: 'instruction',
+      content: '🚨 Tip: Be sure your Figma variables have scopes assigned; otherwise, the export process won\'t work correctly.',
+      variant: 'warning',
+      image: {
+        url: '/images/design-system/figma-variable-scope.png',
+        alt: 'Set the scope of the variables in Figma'
+      }
+    },
+
+
+
+    {
+      type: 'content',
+      // title: 'In Figma',
+      content: 'Run the Swap Variables plugin to ensure your new custom variables replace the original variables from the Library file. This effectively connects your theme to the new variable sets.',
+      subsections: [
+        {
+          images: [
+            {
+              url: '/images/design-system/figma-running-swap-variables.png',
+              alt: 'Swap Variables plugin interface',
+              caption: 'Running Swap Variable plugin to ensure proper connectivity',
+              videoUrl: '/scrolling-token-scroll.mp4'
+            },
+            {
+              url: '/images/design-system/figma-custom-color-theme.png',
+              alt: 'Custom color theme',
+              caption: 'Demo theme file with a custom color theme applied'
+            }
+          ]
+        }
+      ]
+    },
+
+
+    {
+      type: 'content',
+      title: 'Make some Changes',
+      content: 'From here, I’ll demonstrate how I updated the primary colors in the Primitive variable collection in the Theme file. In the video below, you’ll see me adjust the primary color variables for both light and dark modes, as well as modify the radius variable within the Tokens collection to reflect a less rounded corner style.',
+      subsections: [
+        {
+          videoUrl: '/figma-change-variables.mp4',
+          caption: 'You should see the components update in your theme file'
+        }
+      ]
+    },
 
 
     {
@@ -142,9 +178,11 @@ export const designSystemDemo = {
       variant: 'info'
     },
 
+
     {
       type: 'instruction',
-      content: 'Run the Variables to JSON plugin in Figma and download the resulting JSON file. Save this file directly into your project\'s import folder—this is the location Style Dictionary will look for it',
+      title: 'Run the Variables to JSON plugin in Figma',
+      content: 'Run the Variables to JSON plugin in Figma and download the resulting JSON file—this file contains the design tokens you’ll hand off to developers. If you’re following along with the demo app, copy the JSON into the project’s import folder so Style Dictionary can process it. (Instructions for installing the demo app from GitHub are covered below.)',
       image: {
         url: '/images/design-system/plugin-variables-to-json-run.png',
         alt: 'Running the Variables to JSON plugin in Figma'
@@ -155,15 +193,118 @@ export const designSystemDemo = {
       }
     },
 
+   
+
+    {
+      type: 'content',
+      title: 'Install the demo app',
+      content: 'To follow along or preview your theme changes in real time, you’ll need to install the demo app from GitHub.',
+    },
+    
+
+    {
+      type: 'resources',
+      title: 'Get the app',
+      resources: [
+        {
+          type: 'github',
+          title: 'ds-demo5',
+          description: 'A React + TypeScript project built on shadcn/ui and TailwindCSS that streamlines Figma token exports through automatic Style Dictionary conversion.',
+          url: 'https://github.com/xraystyle1980/ds-demo5',
+          lastUpdated: '2024-04-02T22:24:58Z'
+        }
+      ]
+    },
+
+
     {
       type: 'instruction',
-      content: '🚨 Tip: Be sure your Figma variables have scopes assigned; otherwise, the export process won\'t work correctly.',
-      variant: 'warning',
+      title: 'Follow the README',
+      content: 'Follow the <strong>README</strong> to get up and running.',
       image: {
-        url: '/images/design-system/figma-variable-scope.png',
-        alt: 'Set the scope of the variables in Figma'
+        url: '/images/design-system/readme.png',
+        alt: 'README file'
       }
-    }
+    },
+
+
+    {
+      type: 'content',
+      // title: 'Install the demo app',
+      content: 'With the app up and running, we can generate our tokens (if you haven’t already) and save them directly to the project folder.',
+    },
+
+
+    {
+      type: 'instruction',
+      content: 'Note: For the purposes of this demo, the Style Dictionary config is set up to handle a limited set of variables from Figma: light and dark theme colors, spacing, and radius values.',
+      variant: 'info'
+    },
+
+
+    {
+      type: 'content',
+      title: 'See it in action',
+      content: 'With the app up and running, we can generate our tokens (if you haven’t already) and save them directly to the project folder.',
+    },
+
+
+    {
+      type: 'instruction',
+      // title: 'Generate tokens',
+      content: 'Use the Variables to JSON plugin to export variables. Save the file exactly as <strong>figma-variables-export.json</strong>—the conversion script expects this file naming convention, although you can modify this as you see fit.',
+      image: {
+        url: '/images/design-system/variables-save-as.png',
+        alt: 'Save the variables as figma-variables-export.json in your project'
+      }
+    },
+
+
+    {
+      type: 'content',
+      // title: 'Make some Changes',
+      // content: 'From here, I’ll demonstrate how I updated the primary colors in the Primitive variable collection in the Theme file. In the video below, you’ll see me adjust the primary color variables for both light and dark modes, as well as modify the radius variable within the Tokens collection to reflect a less rounded corner style.',
+      subsections: [
+        {
+          videoUrl: '/figma-vars-to-json.mp4',
+          caption: 'Running the plugin and placing the JSON token file into your app’s import folder'
+        }
+      ]
+    },
+
+
+    {
+      type: 'instruction',
+      // title: 'Make some Changes',
+      content: 'With the exported JSON file in your app directory, run the conversion script.',
+      subsections: [
+        {
+          videoUrl: '/console-convert-tokens.mp4',
+          aspectRatio: '16/8',
+          // caption: 'Successfully running the conversion script'
+        }
+      ]
+    },
+    
+
+    {
+      type: 'content',
+      title: 'Watch the magic 🧙🏻‍♂️',
+      content: 'CSS files will auto-generate, instantly updating your design system in real time. If you\'re following along, this is the fun part—just drop the exported JSON into your app\'s import directory and run the conversion script. With the app running locally, you\'ll see your design token changes reflected live. ',
+      subsections: [
+        {
+          videoUrl: '/browser-console-side-by-side.mp4',
+          caption: 'CSS files will auto-generate, instantly updating your design system in real time'
+        }
+      ]
+    },
+
+    {
+      type: 'content',
+      title: 'Putting it all together',
+      content: 'This demo walks through a focused Figma-to-code workflow, powered by tokens and Style Dictionary, with a live frontend preview to visualize changes in real time. The goal is to demonstrate how variable collections in Figma can drive a connected design system—keeping designers and developers aligned through shared, scalable tokens. While this setup is intentionally scoped to just color, spacing, and radius, it establishes a foundation you can build on to support a more robust system as your needs grow.',
+    },
+   
 
 
   ] as Section[]

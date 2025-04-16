@@ -3,11 +3,14 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
+import ReactPlayer from 'react-player';
 
 interface Image {
   url: string;
   alt: string;
   caption?: string;
+  videoUrl?: string;
+  aspectRatio?: string;
 }
 
 interface LightboxProps {
@@ -34,15 +37,47 @@ export function Lightbox({ src, alt, className, images }: LightboxProps) {
     )}>
       {normalizedImages.map((image, index) => (
         <div key={index} className="overflow-hidden content-center">
-          <img 
-            src={image.url} 
-            alt={image.alt} 
-            className={`cursor-pointer w-full h-auto hover:scale-105 transition-transform duration-300 ${className}`}
-            onClick={() => {
-              setSelectedImage(index);
-              setIsOpen(true);
-            }}
-          />
+          {image.videoUrl ? (
+            <div 
+              className="rounded-lg overflow-hidden shadow-lg cursor-pointer w-full relative" 
+              style={{ aspectRatio: image.aspectRatio || '16/10' }}
+              onClick={() => {
+                setSelectedImage(index);
+                setIsOpen(true);
+              }}
+            >
+              <div className="absolute inset-0">
+                <ReactPlayer
+                  url={image.videoUrl}
+                  width="100%"
+                  height="100%"
+                  controls={false}
+                  playing={true}
+                  muted={true}
+                  playsinline={true}
+                  loop={true}
+                  style={{ width: '100%', height: '100%' }}
+                  config={{
+                    file: {
+                      attributes: {
+                        controlsList: 'nodownload'
+                      }
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          ) : (
+            <img 
+              src={image.url} 
+              alt={image.alt} 
+              className={`cursor-pointer w-full h-auto hover:scale-105 transition-transform duration-300 rounded-lg ${className}`}
+              onClick={() => {
+                setSelectedImage(index);
+                setIsOpen(true);
+              }}
+            />
+          )}
           {image.caption && (
             <p className="caption text-muted-foreground mt-2 text-center">{image.caption}</p>
           )}
@@ -67,11 +102,33 @@ export function Lightbox({ src, alt, className, images }: LightboxProps) {
           </button>
           <div className="h-full w-full flex items-center justify-center p-4">
             <div className="relative">
-              <img 
-                src={normalizedImages[selectedImage].url} 
-                alt={normalizedImages[selectedImage].alt} 
-                className="max-h-[85vh] w-auto object-contain rounded-lg"
-              />
+              {normalizedImages[selectedImage].videoUrl ? (
+                <div className="rounded-lg overflow-hidden" style={{ maxWidth: '1300px', maxHeight: '80vh', width: '90vw', aspectRatio: '16/9' }}>
+                  <ReactPlayer
+                    url={normalizedImages[selectedImage].videoUrl}
+                    width="100%"
+                    height="100%"
+                    controls={true}
+                    playing={true}
+                    muted={false}
+                    playsinline={true}
+                    loop={true}
+                    config={{
+                      file: {
+                        attributes: {
+                          controlsList: 'nodownload'
+                        }
+                      }
+                    }}
+                  />
+                </div>
+              ) : (
+                <img 
+                  src={normalizedImages[selectedImage].url} 
+                  alt={normalizedImages[selectedImage].alt} 
+                  className="max-h-[85vh] w-auto object-contain rounded-lg"
+                />
+              )}
             </div>
           </div>
         </div>,

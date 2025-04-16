@@ -10,6 +10,8 @@ export interface Image {
   url: string;
   alt: string;
   caption?: string;
+  videoUrl?: string;
+  aspectRatio?: string;
 }
 
 export interface Link {
@@ -18,13 +20,15 @@ export interface Link {
 }
 
 export interface Subsection {
-  title: string;
-  content: string;
+  title?: string;
+  content?: string;
   keyPoints?: string[];
   variant?: 'warning' | 'info' | 'default';
   image?: Image;
   images?: Image[];
   caption?: string;
+  videoUrl?: string;
+  aspectRatio?: string;
 }
 
 // New section types
@@ -77,6 +81,7 @@ export interface InstructionSection extends BaseSection {
   variant?: 'warning' | 'info' | 'default';
   image?: Image;
   link?: Link;
+  subsections?: Subsection[];
 }
 
 export interface GallerySection extends BaseSection {

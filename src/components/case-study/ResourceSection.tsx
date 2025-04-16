@@ -21,7 +21,7 @@ export function ResourceSection({ section }: ResourceSectionProps) {
               )}
               <div className="flex items-center gap-2">
                 <span className="text-body-lg text-muted-foreground">
-                  {resource.type === 'github' ? 'GitHub Repository /' : 'Figma /'}
+                  {resource.type === 'github' ? 'GitHub /' : 'Figma /'}
                 </span>
                 <a 
                   href={resource.url}

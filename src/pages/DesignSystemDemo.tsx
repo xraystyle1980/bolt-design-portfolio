@@ -21,7 +21,7 @@ export function DesignSystemDemo() {
       <section className="mt-20">
         <Container className="text-foreground mb-16">
           {/* Back to Home */}
-          <Link 
+          <Link
             to="/#top"
             className={cn(
               buttonVariants({ variant: "outline", size: "sm" }),
@@ -31,6 +31,7 @@ export function DesignSystemDemo() {
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
           </Link>
+
           <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
             {designSystemDemo.title}
           </h1>
@@ -39,7 +40,7 @@ export function DesignSystemDemo() {
               {designSystemDemo.subtitle}
             </h2>
           </div>
-          
+
           {/* Hero Section */}
           <div className="py-20">
             <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl overflow-hidden">
@@ -54,6 +55,7 @@ export function DesignSystemDemo() {
         <div className="flex justify-center mb-20">
           <Tags tags={designSystemDemo.technologies} justify="center" />
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Left column - 25% */}
           <div className="col-span-1">
@@ -72,14 +74,14 @@ export function DesignSystemDemo() {
           {/* Right column - 75% */}
           <div className="col-span-1 md:col-span-3">
             <div className="flex flex-col gap-6 md:gap-8">
-              {designSystemDemo.sections.map((section: Section) => {
+              {designSystemDemo.sections.map((section: Section, index: number) => {
                 switch (section.type) {
                   case 'content':
                   case 'process':
                   case 'narrative':
                     return (
                       <FlexColumnSection
-                        key={section.title}
+                        key={`${section.type}-${index}`}
                         title={section.title}
                         content={section.content}
                         items={'subsections' in section ? section.subsections : []}
@@ -88,20 +90,20 @@ export function DesignSystemDemo() {
                   case 'instruction':
                     return (
                       <GridLayoutSection
-                        key={section.title || section.content}
+                        key={`${section.type}-${index}`}
                         {...section}
                       />
                     );
                   case 'resources':
                     return (
                       <ResourceSection
-                        key={section.title}
+                        key={`${section.type}-${index}`}
                         section={section}
                       />
                     );
                   case 'gallery':
                     return (
-                      <div key={section.title} className={cn(
+                      <div key={`${section.type}-${index}`} className={cn(
                         "flex flex-col gap-8",
                         section.layout === 'wide' && "col-span-3",
                         section.layout === 'narrow' && "col-span-2"

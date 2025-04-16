@@ -8,10 +8,28 @@ A modern, interactive portfolio website built with React, Three.js, and Tailwind
 
 - 🎨 Interactive 3D hero section with Three.js
 - 📱 Fully responsive design
-- 💼 Detailed case studies
+- 💼 Detailed case studies with modular components
 - 🎯 Modern UI with shadcn/ui components
 - 🚀 Built with Vite for optimal performance
 - 🎭 Beautiful animations and transitions
+- 🔄 Design system demo showcasing Figma → shadcn/ui workflow
+
+## Case Studies
+
+The portfolio includes detailed case studies with modular components:
+
+- `FlexColumnSection`: Flexible content sections with support for HTML content, images, and captions
+- `GridLayoutSection`: Grid-based layouts for instruction sections
+- `ResourceSection`: Showcase external resources like GitHub repos and Figma files
+
+## Design System Demo
+
+Explore a simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS:
+
+- Figma variables to JSON export
+- Style Dictionary integration
+- Custom theme implementation
+- Live component previews
 
 ## Prerequisites
 
@@ -53,8 +71,11 @@ The built files will be in the `dist` directory.
 ```
 src/
 ├── components/        # Reusable UI components
+│   ├── case-study/   # Case study specific components
+│   ├── ui/           # shadcn/ui components
+│   └── design-system/# Design system demo components
 ├── pages/            # Page components
-├── data/            # Data files
+├── data/            # Data and type definitions
 ├── lib/             # Utility functions
 └── hooks/           # Custom React hooks
 ```
@@ -68,6 +89,7 @@ src/
 - shadcn/ui
 - TypeScript
 - React Router
+- Style Dictionary
 
 ## Contributing
 
