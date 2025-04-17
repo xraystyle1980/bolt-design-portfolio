@@ -8,7 +8,7 @@ interface ResourceSectionProps {
 export function ResourceSection({ section }: ResourceSectionProps) {
   return (
     <section className="mb-8">
-      <h2 className="text-display-md mb-8">{section.title}</h2>
+      {section.title && <h2 className="text-display-md mb-8">{section.title}</h2>}
       <div className="flex flex-col gap-6 md:gap-8">
         {section.resources.map((resource) => (
           <div key={resource.url} className="rounded-xl border border-border bg-card">

@@ -73,7 +73,7 @@ export function DesignSystemDemo() {
           
           {/* Right column - 75% */}
           <div className="col-span-1 md:col-span-3">
-            <div className="flex flex-col gap-6 md:gap-8">
+            <div className="flex flex-col gap-16 md:gap-24">
               {designSystemDemo.sections.map((section: Section, index: number) => {
                 switch (section.type) {
                   case 'content':

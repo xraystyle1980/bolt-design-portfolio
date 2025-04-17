@@ -29,6 +29,10 @@ export interface Subsection {
   caption?: string;
   videoUrl?: string;
   aspectRatio?: string;
+  resources?: Resource[];
+  alignContent?: 'start' | 'center';
+  link?: Link;
+  subsections?: Subsection[];
 }
 
 // New section types
