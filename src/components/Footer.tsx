@@ -1,6 +1,6 @@
-import { GitHubIcon, LinkedInIcon } from "./icons/social"
-import { Link } from "react-router-dom"
 import { Container } from "./ui/container"
+import { Link } from "react-router-dom"
+import { GitHubIcon, LinkedInIcon } from "./icons/social"
 
 interface FooterSection {
   title: string
@@ -12,10 +12,9 @@ interface FooterSection {
 
 const footerSections: FooterSection[] = [
   {
-    title: "Home",
+    title: "Trice Design",
     links: [
       { label: "Home", href: "/" },
-      { label: "About Me", href: "/about" },
     ]
   },
   {

@@ -2,7 +2,8 @@
 export type HtmlString = string;
 
 export interface BaseSection {
-  type: 'content' | 'gallery' | 'resources' | 'process' | 'narrative' | 'instruction' | 'flex-column' | 'grid-layout';
+  type: 'gallery' | 'resources' | 'flex-column' | 'grid-layout' | 'content' | 'process' | 'narrative' | 'instruction';
+  layout?: 'wide' | 'narrow';
 }
 
 // Shared types
@@ -35,7 +36,7 @@ export interface Subsection {
   subsections?: Subsection[];
 }
 
-// New section types
+// Section types
 export interface FlexColumnSection extends BaseSection {
   type: 'flex-column';
   title: string;
@@ -53,39 +54,7 @@ export interface GridLayoutSection extends BaseSection {
   image?: Image;
   link?: Link;
   className?: string;
-}
-
-// Existing section types (preserved for backward compatibility)
-export interface ContentSection extends BaseSection {
-  type: 'content';
-  title: HtmlString;
-  content: HtmlString;
   layout?: 'wide' | 'narrow';
-  subsections?: Subsection[];
-}
-
-export interface ProcessSection extends BaseSection {
-  type: 'process';
-  title: HtmlString;
-  content: HtmlString;
-  steps?: Subsection[];
-}
-
-export interface NarrativeSection extends BaseSection {
-  type: 'narrative';
-  title: HtmlString;
-  content: HtmlString;
-  subsections?: Subsection[];
-}
-
-export interface InstructionSection extends BaseSection {
-  type: 'instruction';
-  title?: HtmlString;
-  content: HtmlString;
-  variant?: 'warning' | 'info' | 'default';
-  image?: Image;
-  link?: Link;
-  subsections?: Subsection[];
 }
 
 export interface GallerySection extends BaseSection {
@@ -112,16 +81,54 @@ export interface ResourceSection extends BaseSection {
   resources: Resource[];
 }
 
+export interface ContentSection extends BaseSection {
+  type: 'content';
+  title: string;
+  content: string;
+  items?: Subsection[];
+  subsections?: Subsection[];
+  layout?: 'wide' | 'narrow';
+}
+
+export interface ProcessSection extends BaseSection {
+  type: 'process';
+  title: string;
+  content: string;
+  items?: Subsection[];
+  steps?: Subsection[];
+  layout?: 'wide' | 'narrow';
+}
+
+export interface NarrativeSection extends BaseSection {
+  type: 'narrative';
+  title: string;
+  content: string;
+  items?: Subsection[];
+  subsections?: Subsection[];
+  layout?: 'wide' | 'narrow';
+}
+
+export interface InstructionSection extends BaseSection {
+  type: 'instruction';
+  title: string;
+  content: string;
+  items?: Subsection[];
+  image?: Image;
+  link?: Link;
+  variant?: 'warning' | 'info' | 'default';
+  layout?: 'wide' | 'narrow';
+}
+
 // Combined section type
 export type Section = 
-  | ContentSection 
+  | FlexColumnSection 
+  | GridLayoutSection
   | GallerySection 
-  | ResourceSection 
-  | ProcessSection 
-  | NarrativeSection 
-  | InstructionSection
-  | FlexColumnSection
-  | GridLayoutSection;
+  | ResourceSection
+  | ContentSection
+  | ProcessSection
+  | NarrativeSection
+  | InstructionSection;
 
 export interface Project {
   id: string;
@@ -135,6 +142,7 @@ export interface Project {
   leftImage?: string;
   rightImage?: string;
   singleImage?: string;
+  videoUrl?: string;
   heroSubTitle: string;
   role: string;
   team: string;

@@ -2,24 +2,27 @@ import { Section } from '../types';
 
 export const designSystemDemo = {
   id: 'design-system-demo',
-  title: 'DS Demo: Figma → shadcn/ui + TailwindCSS',
+  title: 'Design System Demo',
   subtitle: 'A simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS',
   description: 'This project showcases an efficient integration using Style Dictionary, highlighting a streamlined approach to managing design tokens across design and development.',
   role: 'Design Systems Engineer',
   team: 'Solo Project',
   technologies: ['Figma', 'shadcn/ui', 'TailwindCSS', 'Style Dictionary', 'React', 'TypeScript'],
+  leftImage: '/images/design-system/components-demo.png',
+  rightImage: '/images/design-system/tokens-demo.png',
+  layout: 'double',
   sections: [
 
 
     // Overview
     {
-      type: 'content',
+      type: 'flex-column',
       title: 'Overview',
       content: 'This project showcases a simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS, highlighting an efficient integration using Style Dictionary. Starting from an existing community-driven Figma library, I streamlined the token structure and optimized the workflow for clarity, ease of use, and seamless implementation across design and development.',
-      subsections: [
+      items: [
         {
           title: 'Why I Made This',
-          content: 'While exploring various token-to-code workflows, I found many solutions overly complex or cumbersome for practical applications. My goal was to create an approachable and straightforward demo highlighting a simplified but powerful workflow for managing design tokens across Figma and development, using <a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">shadcn/ui</a>, <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">TailwindCSS</a>, and <a href="https://amzn.github.io/style-dictionary" target="_blank" rel="noopener noreferrer">Style Dictionary</a>.'
+          content: 'While exploring various token-to-code workflows, I found many solutions overly complex or cumbersome for practical use. As a product designer, I created this demo to better understand the end-to-end process—so I can more effectively collaborate with engineering teams, support implementation, and even contribute directly to builds when needed. The result is an approachable yet powerful workflow for managing design tokens across Figma and development using <a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">shadcn/ui</a>, <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">TailwindCSS</a>, and <a href="https://amzn.github.io/style-dictionary" target="_blank" rel="noopener noreferrer">Style Dictionary</a>.'
         }
       ]
     },
@@ -27,10 +30,10 @@ export const designSystemDemo = {
 
     // Getting setup in Figma
     {
-      type: 'content',
+      type: 'flex-column',
       title: 'Getting setup in Figma',
       content: 'Below you will find demo files, the Figma plugins I have used, and step-by-step instructions for implementing the design system workflow.',
-      subsections: [
+      items: [
         {
           resources: [
             {
@@ -53,9 +56,10 @@ export const designSystemDemo = {
             }
           ]
         },
+        // Figma Plugins
         {
           title: 'Figma Plugins',
-          content: 'These Figma plugins are what I used to the workflow. Note: Variables to JSON and Variables Manager require a one-time premium purchase. Variables to JSON looks to be built on Token Studio which offers a more robust token management experience.'
+          content: 'These are the Figma plugins I used to support this workflow. <a href="https://tokens.studio/plugin" target="_blank" rel="noopener noreferrer">Tokens Studio</a> offers a more robust, feature-rich approach to token management—and it\'s a tool I\'m planning to explore in a future demo.'
         },
         {
           title: '<a href="https://www.figma.com/community/plugin/1468186413196022101/variables-to-json" target="_blank" rel="noopener noreferrer" class="text-body-lg font-semibold inline-flex items-center gap-2 hover:text-accent transition-colors underline decoration-[1px] underline-offset-4">Variables to JSON <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>',
@@ -95,10 +99,10 @@ export const designSystemDemo = {
 
     // My Figma Workflow
     {
-      type: 'content',
+      type: 'flex-column',
       title: 'My Figma Workflow',
-      content: 'In your own workflow, you\'d duplicate the Primitives and Tokens variable collections from the DS Demo - Library into the DS Demo - Theme file. The goal is to only copy the variables needed for your custom theme, keeping the core library intact. For this demo, I\'ve already done this step using the Variables Manager plugin to automate what would otherwise be a tedious manual task.',
-      subsections: [
+      content: 'In your own workflow, you\'d duplicate the <strong>Primitives</strong> and <strong>Tokens</strong> variable collections from the <strong>DS Demo - Library</strong> into the <strong>DS Demo - Theme</strong> file. The goal is to only copy the variables needed for your custom theme, keeping the core library intact. For this demo, I\'ve already done this step using the <strong>Variables Manager</strong> plugin to automate what would otherwise be a tedious manual task.',
+      items: [
         {
           images: [
             {
@@ -126,14 +130,14 @@ export const designSystemDemo = {
           }
         },
         {
-          content: 'Run the Swap Variables plugin to ensure your new custom variables replace the original variables from the Library file. This effectively connects your theme to the new variable sets.'
+          content: 'Run the <strong>Swap Variables</strong> plugin to ensure your new custom variables replace the original variables from the Library file. This effectively connects your theme to the new variable sets.'
         },
         {
           images: [
             {
               url: '/images/design-system/figma-running-swap-variables.png',
               alt: 'Swap Variables plugin interface',
-              caption: 'Running Swap Variable plugin to ensure proper connectivity',
+              caption: 'Running the Swap Variables plugin to ensure proper connectivity',
               videoUrl: '/scrolling-token-scroll.mp4'
             },
             {
@@ -149,10 +153,10 @@ export const designSystemDemo = {
 
     // Make some Changes
     {
-      type: 'content',
+      type: 'flex-column',
       title: 'Make some Changes',
-      content: 'From here, I\'ll demonstrate how I updated the primary colors in the Primitive variable collection in the Theme file. In the video below, you\'ll see me adjust the primary color variables for both light and dark modes, as well as modify the radius variable within the Tokens collection to reflect a less rounded corner style.',
-      subsections: [
+      content: 'From here, I\'ll demonstrate how I updated the <strong>primary</strong> colors in the <strong>Primitive</strong> variable collection in the <strong>Theme</strong> file. In the video below, you\'ll see me adjust the primary color variables for both light and dark modes, as well as modify the radius variable within the <strong>Tokens</strong> collection to reflect a less rounded corner style.',
+      items: [
         {
           videoUrl: '/figma-change-variables.mp4',
           caption: 'You should see the components update in your theme file'
@@ -164,7 +168,7 @@ export const designSystemDemo = {
       
         {
           title: 'Run the Variables to JSON Plugin',
-          content: 'Run the Variables to JSON plugin in Figma and download the resulting JSON file—this file contains the design tokens you\'ll hand off to developers. If you\'re following along with the demo app, copy the JSON into the project\'s import folder so Style Dictionary can process it. (Instructions for installing the demo app from GitHub are covered below.)',
+          content: 'Run the <strong>Variables to JSON</strong> plugin in Figma and download the resulting JSON file—this file contains the design tokens you\'ll hand off to developers. If you\'re following along with the demo app, copy the JSON into the project\'s import folder so Style Dictionary can process it. (Instructions for installing the demo app from GitHub are covered below.)',
           variant: 'default',
           alignContent: 'center',
           image: {
@@ -182,10 +186,10 @@ export const designSystemDemo = {
    
     // Install the demo app
     {
-      type: 'content',
+      type: 'flex-column',
       title: 'Install the demo app',
       content: 'To follow along or preview your theme changes in real time, you\'ll need to install the demo app from GitHub.',
-      subsections: [
+      items: [
         {
           resources: [
             {
@@ -218,12 +222,12 @@ export const designSystemDemo = {
 
     // Watch the magic 🧙🏻‍♂️
     {
-      type: 'content',
+      type: 'flex-column',
       title: 'Watch the magic 🧙🏻‍♂️',
       content: 'With the app up and running, we can generate our tokens (if you haven\'t already) and save them directly to the project folder.',
-      subsections: [
+      items: [
         {
-          content: 'Use the Variables to JSON plugin to export variables. Save the file exactly as <strong>figma-variables-export.json</strong>—the conversion script expects this file naming convention, although you can modify this as you see fit.',
+          content: 'Use the <strong>Variables to JSON</strong> plugin to export variables. Save the file exactly as <strong>figma-variables-export.json</strong>—the conversion script expects this file naming convention, although you can modify this as you see fit.',
           variant: 'default',
           alignContent: 'center',
           image: {
@@ -257,9 +261,9 @@ export const designSystemDemo = {
 
     // Putting it all together
     {
-      type: 'content',
+      type: 'flex-column',
       title: 'Putting it all together',
-      content: 'This demo walks through a focused Figma-to-code workflow, powered by tokens and Style Dictionary, with a live frontend preview to visualize changes in real time. The goal is to demonstrate how variable collections in Figma can drive a connected design system—keeping designers and developers aligned through shared, scalable tokens. While this setup is intentionally scoped to just color, spacing, and radius, it establishes a foundation you can build on to support a more robust system as your needs grow.',
+      content: 'This demo walks through a focused Figma-to-code workflow, powered by tokens and Style Dictionary, with a live frontend preview to visualize changes in real time. The goal is to demonstrate how variable collections in Figma can drive a connected design system—keeping designers and developers aligned through shared, scalable tokens.<br /><br />While this setup is intentionally scoped to just color, spacing, and radius, it establishes a foundation you can build on to support a more robust system as your needs grow.'
     },
    
 

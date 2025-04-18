@@ -43,7 +43,7 @@ export function DesignSystemDemo() {
 
           {/* Hero Section */}
           <div className="py-20">
-            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl overflow-hidden">
+            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl overflow-hidden border-primary border-2">
               <DesignSystemHero />
             </div>
           </div>
@@ -76,18 +76,16 @@ export function DesignSystemDemo() {
             <div className="flex flex-col gap-16 md:gap-24">
               {designSystemDemo.sections.map((section: Section, index: number) => {
                 switch (section.type) {
-                  case 'content':
-                  case 'process':
-                  case 'narrative':
+                  case 'flex-column':
                     return (
                       <FlexColumnSection
                         key={`${section.type}-${index}`}
                         title={section.title}
                         content={section.content}
-                        items={'subsections' in section ? section.subsections : []}
+                        items={section.items}
                       />
                     );
-                  case 'instruction':
+                  case 'grid-layout':
                     return (
                       <GridLayoutSection
                         key={`${section.type}-${index}`}

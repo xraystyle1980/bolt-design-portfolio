@@ -3,7 +3,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "./icons/arrow-right";
-import { DribbbleIcon, GitHubIcon, LinkedInIcon } from "./icons/social";
+import { GitHubIcon, LinkedInIcon } from "./icons/social";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -17,7 +17,7 @@ const menuItems = [
 ];
 
 const socialLinks = [
-  { icon: DribbbleIcon, href: "https://dribbble.com/trice" },
+  // { icon: DribbbleIcon, href: "https://dribbble.com/trice" },
   { icon: GitHubIcon, href: "https://github.com/trice" },
   { icon: LinkedInIcon, href: "https://linkedin.com/in/trice" },
 ];

@@ -13,6 +13,7 @@ interface HeroSectionProps {
   leftImage?: string;
   rightImage?: string;
   singleImage?: string;
+  videoUrl?: string;
 }
 
 export function HeroSection({ 
@@ -21,31 +22,35 @@ export function HeroSection({
   layout: propLayout,
   leftImage: propLeftImage,
   rightImage: propRightImage,
-  singleImage: propSingleImage
+  singleImage: propSingleImage,
+  videoUrl: propVideoUrl
 }: HeroSectionProps) {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const containerRef = useRef<HTMLDivElement>(null);
   const leftImageRef = useRef<HTMLDivElement>(null);
   const rightImageRef = useRef<HTMLDivElement>(null);
   const singleImageRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const project = projects.find(p => p.id === id);
 
   // Use props if provided, otherwise fallback to project data
-  const { layout, leftImage, rightImage, singleImage } = (() => {
+  const { layout, leftImage, rightImage, singleImage, videoUrl } = (() => {
     if (propLayout) {
       return {
         layout: propLayout,
         leftImage: propLeftImage,
         rightImage: propRightImage,
-        singleImage: propSingleImage
+        singleImage: propSingleImage,
+        videoUrl: propVideoUrl
       };
     }
 
     if (!project) {
       return {
         layout: 'single' as const,
-        singleImage: ''
+        singleImage: '',
+        videoUrl: ''
       };
     }
 
@@ -54,22 +59,26 @@ export function HeroSection({
         return {
           layout: 'double' as const,
           leftImage: project.leftImage,
-          rightImage: project.rightImage
+          rightImage: project.rightImage,
+          videoUrl: project.videoUrl
         };
       case 'blockset-docs':
         return {
           layout: 'single' as const,
-          singleImage: project.singleImage
+          singleImage: project.singleImage,
+          videoUrl: project.videoUrl
         };
       case 'decent-design-system':
         return {
           layout: 'single' as const,
-          singleImage: project.singleImage
+          singleImage: project.singleImage,
+          videoUrl: project.videoUrl
         };
       default:
         return {
           layout: 'single' as const,
-          singleImage: project.singleImage
+          singleImage: project.singleImage,
+          videoUrl: project.videoUrl
         };
     }
   })();
@@ -86,7 +95,23 @@ export function HeroSection({
       }
     });
 
-    if (layout === 'single' && singleImageRef.current) {
+    if (videoUrl && videoRef.current) {
+      timeline.fromTo(
+        videoRef.current,
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.9,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+        }
+      );
+    } else if (layout === 'single' && singleImageRef.current) {
       timeline.fromTo(
         singleImageRef.current,
         {
@@ -125,7 +150,7 @@ export function HeroSection({
     return () => {
       timeline.kill();
     };
-  }, [layout]);
+  }, [layout, videoUrl]);
 
   return (
     <div 
@@ -139,9 +164,24 @@ export function HeroSection({
         }} />
       </div>
 
-      {/* Overlapping images container */}
+      {/* Content container */}
       <div className="absolute inset-0 flex justify-center items-center p-12 md:p-24">
-        {layout === 'single' ? (
+        {videoUrl ? (
+          <div 
+            ref={singleImageRef}
+            className="relative w-full max-w-[800px] group hover:cursor-pointer"
+          >
+            <video
+              ref={videoRef}
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto object-contain rounded-lg [transition:transform_800ms_ease] group-hover:scale-105"
+            />
+          </div>
+        ) : layout === 'single' ? (
           <div 
             ref={singleImageRef}
             className={cn(

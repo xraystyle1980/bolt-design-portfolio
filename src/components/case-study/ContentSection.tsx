@@ -1,21 +1,31 @@
 import { cn } from '@/lib/utils';
-import { ContentSection as ContentSectionType } from '@/data/types';
-import { Subsection } from './Subsection';
+import { ContentSection as ContentSectionType, Subsection } from '@/data/types';
 
-export function ContentSection({ title, content, subsections, layout = 'narrow' }: ContentSectionType) {
+export function ContentSection({ title, content, subsections = [], layout = 'narrow' }: ContentSectionType) {
   return (
-    <section className="flex flex-col gap-8">
-      <div className={cn('flex flex-col gap-4', layout === 'wide' ? 'max-w-none' : 'max-w-2xl')}>
-        <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
-        <div className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: content }} />
+    <div className={cn(
+      "flex flex-col gap-8",
+      layout === 'wide' && "col-span-3",
+      layout === 'narrow' && "col-span-2"
+    )}>
+      <div className="flex flex-col gap-2">
+        <h3 className="text-display-md text-foreground">{title}</h3>
+        <p className="text-body-lg text-foreground">{content}</p>
       </div>
-      {subsections && (
+      {subsections && subsections.length > 0 && (
         <div className="flex flex-col gap-8">
-          {subsections.map((subsection, index) => (
-            <Subsection key={index} {...subsection} />
+          {subsections.map((subsection: Subsection, index: number) => (
+            <div key={index} className="flex flex-col gap-2">
+              {subsection.title && (
+                <h4 className="text-display-sm text-foreground">{subsection.title}</h4>
+              )}
+              {subsection.content && (
+                <p className="text-body-lg text-foreground">{subsection.content}</p>
+              )}
+            </div>
           ))}
         </div>
       )}
-    </section>
+    </div>
   );
 } 
