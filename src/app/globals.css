@@ -266,4 +266,12 @@ html::-webkit-scrollbar {
   * {
     @apply border-border;
   }
+}
+
+@layer utilities {
+  .text-body-xl {
+    font-size: 1.375rem; /* 22px at 16px base */
+    line-height: 150%;
+    letter-spacing: 0.44px;
+  }
 } 

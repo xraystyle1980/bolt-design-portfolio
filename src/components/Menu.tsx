@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu as MenuIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "./icons/arrow-right";
 import { GitHubIcon, LinkedInIcon } from "./icons/social";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Logo } from "./Logo";
+import { LottieLogo } from "./LottieLogo";
 
 const menuSections = [
   {
@@ -54,14 +54,16 @@ export function Menu() {
       </SheetTrigger>
       <SheetContent 
         className={cn(
-          "w-full sm:w-[540px] bg-background border-l border-border p-8",
-          "flex flex-col justify-between h-full"
+          "w-full sm:w-[540px] lg:w-screen h-screen bg-background p-8 lg:p-12",
+          "flex flex-col lg:flex-row lg:items-stretch"
         )}
+        side="right"
       >
-        <div className="flex flex-col">
+        {/* Main Content */}
+        <div className="flex flex-col flex-1">
           {/* Logo */}
           <div className="mb-12">
-            <Logo />
+            <LottieLogo />
           </div>
 
           {/* Navigation */}
@@ -86,8 +88,11 @@ export function Menu() {
           </nav>
         </div>
 
-        {/* Footer with contact and social */}
-        <div className="flex flex-col space-y-8">
+        {/* Contact Section - Mobile: Bottom, Desktop: Right Side */}
+        <div className={cn(
+          "flex flex-col space-y-8 mt-auto lg:mt-0",
+          "lg:w-[400px] lg:justify-end lg:pl-8 lg:border-l lg:border-border"
+        )}>
           {/* Social Links */}
           <div className="flex gap-6">
             {socialLinks.map(({ icon: Icon, href }) => (

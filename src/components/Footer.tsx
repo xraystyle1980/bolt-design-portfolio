@@ -1,38 +1,34 @@
 import { Container } from "./ui/container"
 import { Link } from "react-router-dom"
 import { GitHubIcon, LinkedInIcon } from "./icons/social"
+import { LottieLogo } from "./LottieLogo"
+import { cn } from "../lib/utils"
 
-interface FooterSection {
-  title: string
-  links: Array<{
-    label: string
-    href: string
-  }>
-}
-
-const footerSections: FooterSection[] = [
+const menuSections = [
   {
     title: "Trice Design",
-    links: [
+    items: [
       { label: "Home", href: "/" },
+      { label: "Book a Call", href: "#book-call" },
+      { label: "hello@trice.design", href: "mailto:hello@trice.design" },
     ]
   },
   {
     title: "Case Studies",
-    links: [
+    items: [
       { label: "Decent App", href: "/case-study/decent-app" },
-      { label: "Blockset Docs by BRD", href: "/case-study/blockset-docs" },
+      { label: "Blockset by BRD - Docs Site", href: "/case-study/blockset-docs" },
       { label: "Decent Design System", href: "/case-study/decent-design-system" },
     ]
   },
   {
     title: "Playground",
-    links: [
+    items: [
       { label: "3D Experiments", href: "/playground/threejs" },
       { label: "Design System Demo", href: "/playground/design-system" },
     ]
   }
-]
+];
 
 const socialLinks = [
   // { icon: DribbbleIcon, href: "https://dribbble.com", label: "Dribbble" },
@@ -42,57 +38,45 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <div className="flex w-full flex-col gap-2 pt-12 pb-3 border-t border-border">
+    <footer className="w-full pt-24 border-t border-border">
       <Container className="max-w-screen-2xl">
-      <div className="flex flex-wrap items-start justify-between gap-x-12 gap-y-3">
-        <h2 className="text-display-sm flex flex-col">
-          Matt Trice Design
-          <span className="text-muted-foreground mt-2">
-            Always iterating, always experimenting.
-          </span>
-        </h2>
-        <div className="flex items-center gap-12">
-          {socialLinks.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              className="transition-colors hover:text-white"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <social.icon className="h-6 w-6" />
-            </a>
-          ))}
+        {/* Header */}
+        <div className="mb-16">
+          <div className="flex flex-col gap-2 mb-4">
+            <LottieLogo />
+            <p className="text-body-xl">Matt Trice Design.<span className="text-muted-foreground"> Always iterating, always experimenting</span></p>
+          </div>
         </div>
-      </div>
 
-      <div className="pt-16 max-w-xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[88px] gap-y-[51px]">
-          {footerSections.map((section) => (
-            <div key={section.title} className="flex flex-col gap-4">
-              <h3 className="text-body-sm font-bold text-muted-foreground">
-                {section.title}
-              </h3>
-              {section.links.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="text-body-md hover:text-muted-foreground transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+        {/* Navigation Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-20 mb-24 md:max-w-screen-lg">
+          {menuSections.map((section) => (
+            <div key={section.title} className="flex flex-col">
+              <p className="text-muted-foreground mb-4 md:mb-8">{section.title}</p>
+              <div className="flex flex-col">
+                {section.items.map((item, index) => (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className={cn(
+                      "py-2 md:py-4",
+                      index !== section.items.length - 1 && "md:border-b md:border-border"
+                    )}
+                  >
+                    <span className="text-body-lg lg:text-body-xl text-foreground hover:text-primary transition-colors">{item.label}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           ))}
         </div>
-      </div>
 
-      <div className="flex pt-16">
-        <p className="text-body-sm">
-          ©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit. Designed despite of tyrannical 🐈
-        </p>
-      </div>
+        {/* Copyright */}
+        <div className="flex flex-col space-y-2">
+          <p className="text-body-sm">©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit.<br />
+          <span className="caption text-muted-foreground">Designed despite of tyrannical 🐈</span></p>
+        </div>
       </Container>
-    </div>
-  )
+    </footer>
+  );
 }

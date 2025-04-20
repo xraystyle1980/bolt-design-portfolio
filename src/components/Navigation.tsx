@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MobileMenu } from './MobileMenu';
+import { Menu } from './Menu';
 import { Container } from '@/components/ui/container';
 import { LottieLogo } from './LottieLogo';
 import { cn } from '@/lib/utils';
@@ -77,7 +77,7 @@ export function Navigation({ className }: NavigationProps) {
           </div>
         </Link>
         <div className="flex items-center gap-4">
-          <MobileMenu />
+          <Menu />
         </div>
       </Container>
     </nav>
