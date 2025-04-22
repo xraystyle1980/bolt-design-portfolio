@@ -12,6 +12,7 @@ interface TokenInstance {
   scale: number
   velocity: Vector3
   rotationSpeed: [number, number, number]
+  initialPosition: [number, number, number]
 }
 
 function TokenRain() {
@@ -24,26 +25,31 @@ function TokenRain() {
   const GROUND_Y = -2
   const GRAVITY = 0.01
   const DAMPING = 0.98
-  const MOUSE_FORCE = 0.1
+  const MOUSE_FORCE = 0.02
   const BOUNCE_FORCE = 0.3
-  const TOKEN_SPACING = 4
-  const TOKEN_ATTRACTION = 0.02
-  const CENTER_FORCE = 0.001
+  const MIN_DISTANCE = 4  // Increased minimum distance
+  const MAX_DISTANCE = 10  // Increased maximum distance
+  const TOKEN_ATTRACTION = 0.01  // Significantly reduced attraction force
+  const CENTER_FORCE = 0
+  const RETURN_FORCE = 0.001
 
   // Initialize tokens
   useMemo(() => {
     const newTokens: TokenInstance[] = []
-    const numTokens = 10  // Reduced number of tokens
+    const numTokens = 10
+    const baseRadius = 3  // Increased base radius for initial spread
 
     for (let i = 0; i < numTokens; i++) {
       const angle = (i / numTokens) * Math.PI * 2
-      const radius = 2 + Math.random() * 1  // Tighter initial formation
+      const radius = baseRadius + (Math.random() - 0.5) * 0.5  // Slight random variation
+      const initialX = Math.cos(angle) * radius
+      const initialZ = Math.sin(angle) * radius
       
       newTokens.push({
         position: [
-          Math.cos(angle) * radius,
-          5 + Math.random() * 1,  // Lower initial height
-          Math.sin(angle) * radius
+          initialX,
+          5 + Math.random() * 1,
+          initialZ
         ] as [number, number, number],
         rotation: [
           Math.random() * Math.PI * 2,
@@ -51,12 +57,17 @@ function TokenRain() {
           Math.random() * Math.PI * 2
         ] as [number, number, number],
         scale: 1.6 + Math.random() * 0.3,
-        velocity: new Vector3(0, 0, 0),  // Start with zero velocity
+        velocity: new Vector3(
+          (Math.random() - 0.5) * 0.01,  // Small initial random velocity
+          (Math.random() - 0.5) * 0.01,
+          (Math.random() - 0.5) * 0.01
+        ),
         rotationSpeed: [
-          (Math.random() - 0.5) * 0.001,  // Very slow rotation
+          (Math.random() - 0.5) * 0.001,
           (Math.random() - 0.5) * 0.001,
           (Math.random() - 0.5) * 0.001
-        ] as [number, number, number]
+        ] as [number, number, number],
+        initialPosition: [initialX, 0, initialZ] as [number, number, number]
       })
     }
     setTokens(newTokens)
@@ -103,6 +114,17 @@ function TokenRain() {
             velocity.x -= dx * force
             velocity.z -= dz * force
           }
+        } else {
+          // Return to initial position when not interacting
+          const dx = token.initialPosition[0] - token.position[0]
+          const dz = token.initialPosition[2] - token.position[2]
+          const distance = Math.sqrt(dx * dx + dz * dz)
+          
+          if (distance > 0.1) {  // Only apply return force if not close to initial position
+            const force = RETURN_FORCE
+            velocity.x += dx * force
+            velocity.z += dz * force
+          }
         }
 
         // Token-token interaction
@@ -113,12 +135,14 @@ function TokenRain() {
           const dz = other.position[2] - token.position[2]
           const distance = Math.sqrt(dx * dx + dy * dy + dz * dz)
 
-          if (distance < TOKEN_SPACING) {
-            // Simple repulsion
-            const force = (1 - distance / TOKEN_SPACING) * TOKEN_ATTRACTION
-            velocity.x -= dx * force
-            velocity.y -= dy * force
-            velocity.z -= dz * force
+          if (distance < MAX_DISTANCE && distance > MIN_DISTANCE) {
+            // Inverse square law with smooth falloff
+            const force = TOKEN_ATTRACTION * (1 / (distance * distance))
+            const falloff = 1 - (distance - MIN_DISTANCE) / (MAX_DISTANCE - MIN_DISTANCE)
+            
+            velocity.x += (dx / distance) * force * falloff
+            velocity.y += (dy / distance) * force * falloff
+            velocity.z += (dz / distance) * force * falloff
           }
         }
 
@@ -199,47 +223,56 @@ function TokenRain() {
 
 export function TokenHero() {
   return (
-    <Canvas 
-      camera={{ position: [0, 4, 8], fov: 32 }}
-      style={{ width: '100%', height: '100%' }}
-    >
-      {/* Background Color */}
-      <color attach="background" args={['#f0f0f0']} />
-      
-      {/* Token Rain and Interaction */}
-      <TokenRain />
-      
-      {/* Environment for reflections */}
-      <Environment preset="sunset" background={false} />
+    <div className="relative w-full h-full">
+      {/* Radial Gradient Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full" style={{
+          background: 'radial-gradient(62.37% 58.17% at 48.63% 30.27%, #D2D4E0 0%, #A6B1BC 100%)'
+        }} />
+      </div>
 
-      {/* Camera Controls */}
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        minPolarAngle={Math.PI / 4} // Limit vertical rotation
-        maxPolarAngle={Math.PI / 2}
-        autoRotate
-        autoRotateSpeed={0.5}
-        dampingFactor={0.1}
-      />
+      <Canvas 
+        camera={{ position: [0, 4, 8], fov: 32 }}
+        style={{ width: '100%', height: '100%' }}
+        gl={{ alpha: true }}  // Enable alpha channel
+      >
+        {/* Remove background color entirely since we have alpha: true */}
+        
+        {/* Token Rain and Interaction */}
+        <TokenRain />
+        
+        {/* Environment for reflections */}
+        <Environment preset="sunset" background={false} />
 
-      {/* Post-processing effects */}
-      <EffectComposer>
-        <BrightnessContrast 
-          brightness={0.0}
-          contrast={0.4}
-          blendFunction={BlendFunction.NORMAL}
+        {/* Camera Controls */}
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          minPolarAngle={Math.PI / 4} // Limit vertical rotation
+          maxPolarAngle={Math.PI / 2}
+          autoRotate
+          autoRotateSpeed={0.5}
+          dampingFactor={0.1}
         />
-        <Vignette
-          opacity={0.3}
-          darkness={0.7}
-          blendFunction={BlendFunction.NORMAL}
-        />
-        <HueSaturation 
-          hue={0.0} 
-          saturation={0.2}
-        />
-      </EffectComposer>
-    </Canvas>
+
+        {/* Post-processing effects */}
+        <EffectComposer>
+          <BrightnessContrast 
+            brightness={0.0}
+            contrast={0.4}
+            blendFunction={BlendFunction.NORMAL}
+          />
+          <Vignette
+            opacity={0.3}
+            darkness={0.7}
+            blendFunction={BlendFunction.NORMAL}
+          />
+          <HueSaturation 
+            hue={0.0} 
+            saturation={0.2}
+          />
+        </EffectComposer>
+      </Canvas>
+    </div>
   )
 }

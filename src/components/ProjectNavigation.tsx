@@ -18,12 +18,12 @@ interface ProjectNavigationProps {
 }
 
 export function ProjectNavigation({ prevProject, nextProject }: ProjectNavigationProps) {
-  const getBadgeVariant = (type: 'playground' | 'case-study') => {
-    return type === 'playground' ? 'secondary' : 'default';
+  const getBadgeVariant = (_type: 'playground' | 'case-study'): 'default' | 'secondary' | 'destructive' | 'outline' | 'muted' => {
+    return 'default';
   };
 
   const getBadgeLabel = (type: 'playground' | 'case-study') => {
-    return type === 'playground' ? 'Playground' : 'Case Study';
+    return type === 'playground' ? 'Demos' : 'Case Study';
   };
 
   return (

@@ -186,7 +186,7 @@ export function HeroSection({
           <div 
             ref={singleImageRef}
             className={cn(
-              "relative w-full max-w-[350px] sm:max-w-[400px] md:max-w-[800px] group hover:cursor-pointer",
+              "relative w-full max-w-[350px] sm:max-w-[400px] md:max-w-[700px] group hover:cursor-pointer",
               !loadedImages['single'] && "image-loading"
             )}
           >
@@ -202,7 +202,7 @@ export function HeroSection({
             {/* Left Image */}
             <div 
               ref={leftImageRef}
-              className="relative w-[28%] md:w-[35%] -mr-[12%] md:-mr-[8%]"
+              className="relative w-[28%] md:w-[30%] -mr-[12%] md:-mr-[8%]"
             >
               <img
                 src={leftImage}
@@ -214,7 +214,7 @@ export function HeroSection({
             {/* Right Image */}
             <div 
               ref={rightImageRef}
-              className="relative w-[28%] md:w-[35%]"
+              className="relative w-[28%] md:w-[30%]"
             >
               <img
                 src={rightImage}
