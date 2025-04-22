@@ -72,19 +72,19 @@ export function CaseStudies() {
   };
 
   return (
-    <div className="flex flex-grow flex-col gap-8 md:gap-16 lg:gap-24">
-      <h4 className="text-display-lg">
+    <div className="flex flex-grow flex-col gap-12 md:gap-16 lg:gap-24">
+      <h4 className="text-display-lg mb-0 mt-4">
         Case Studies
       </h4>
       {projects.map((project, index) => (
         <div key={project.id} ref={el => caseStudyRefs.current[index] = el}>
-          <div className="w-full pb-20">
+          <div className="w-full pb-2 md:pb-20">
           
             <Link to={project.link} className="group">
               <HeroSection 
                 id={project.id}
                 {...getHeroConfig(project.id)}
-                className="h-[300px] md:h-[600px]"
+                className="h-[280px] sm:h-[330px] md:h-[500px] lg:h-[600px]"
               />
             </Link>
 
@@ -92,31 +92,35 @@ export function CaseStudies() {
           
           <div className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-start lg:justify-between">
             
-            <div className="flex flex-col gap-2 max-w-2xl">
-              <h3 className="text-display-md text-muted-foreground">
-                {project.title}
-              </h3>
+            <div className="flex flex-col gap-1 md:gap-2 max-w-2xl">
+              <div className="flex items-center justify-between my-4">
+                <h3 className="text-display-md md:text-display-xl mb-0 text-muted-foreground">
+                  {project.title}
+                </h3>
+                <Link
+                to={project.link}
+                >
+                  <Button 
+                    variant="outline"
+                    size="md"
+                    className="px-3.5 py-1.5 md:px-8 rounded-full group-hover:bg-foreground group-hover:text-background shrink-0"
+                  >
+                    <ArrowRight className="h-5 w-5 md:h-8 md:w-8" />
+                  </Button>
+                </Link>
+              </div>
               <div className="space-y-6 max-w-xl">
-                <p className="text-body-lg text-foreground/80">
+                <p className="text-body-sm md:text-body-lg text-foreground/80">
                   {project.description}
                 </p>
-                <Tags tags={project.technologies} justify="start" className="mt-2" />
+                <Tags tags={project.technologies} justify="start" mobileJustify="center" className="mt-2" />
               </div>
             </div>
 
-            <Link
-              to={project.link}
-            >
-              <Button 
-                variant="outline"
-                size="md"
-                className="rounded-full group-hover:bg-foreground group-hover:text-background shrink-0"
-              >
-                <ArrowRight className="h-5 w-5 md:h-8 md:w-8" />
-              </Button>
-            </Link>
+            
 
           </div>
+          
         </div>
       ))}
     </div>

@@ -26,11 +26,11 @@ export default {
         'display-4xl': ['80px', { lineHeight: '114%', letterSpacing: '-1.6px', fontWeight: '400' }],
         'display-3xl': ['64px', { lineHeight: '114%', letterSpacing: '-1.28px', fontWeight: '400' }],
         'display-2xl': ['56px', { lineHeight: '130%', letterSpacing: '-1.12px', fontWeight: '400' }],
-        'display-xl': ['48px', { lineHeight: '130%', letterSpacing: '-0.48px', fontWeight: '700' }],
-        'display-lg': ['36px', { lineHeight: '130%', letterSpacing: '-0.36px', fontWeight: '700' }],
-        'display-md': ['32px', { lineHeight: '130%', letterSpacing: '-0.32px', fontWeight: '700' }],
-        'display-sm': ['24px', { lineHeight: '130%', letterSpacing: '-0.24px', fontWeight: '700' }],
-        'display-xs': ['20px', { lineHeight: '130%', letterSpacing: '-0.20px', fontWeight: '700' }],
+        'display-xl': ['48px', { lineHeight: '130%', letterSpacing: '-0.48px', fontWeight: '400' }],
+        'display-lg': ['36px', { lineHeight: '130%', letterSpacing: '-0.36px', fontWeight: '400' }],
+        'display-md': ['32px', { lineHeight: '130%', letterSpacing: '-0.32px', fontWeight: '400' }],
+        'display-sm': ['24px', { lineHeight: '130%', letterSpacing: '-0.24px', fontWeight: '400' }],
+        'display-xs': ['20px', { lineHeight: '130%', letterSpacing: '-0.20px', fontWeight: '400' }],
         // Body scale
         'body-xxl': ['30px', { lineHeight: '120%', letterSpacing: '-0.30px', fontWeight: '400' }],
         'body-xl': ['24px', { lineHeight: '150%', letterSpacing: '-0.24px', fontWeight: '400' }],
@@ -117,10 +117,33 @@ export default {
             height: '0',
           },
         },
+        'bounce-in': {
+          '0%': {
+            transform: 'scale(0.3)',
+            opacity: '0'
+          },
+          '25%': {
+            transform: 'scale(0.5)',
+            opacity: '0.3'
+          },
+          '50%': {
+            transform: 'scale(1.1)',
+            opacity: '0.8'
+          },
+          '75%': {
+            transform: 'scale(0.95)',
+            opacity: '0.9'
+          },
+          '100%': {
+            transform: 'scale(1)',
+            opacity: '1'
+          }
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'bounce-in': 'bounce-in 2.5s ease-out',
       },
       transitionTimingFunction: {
         'custom-spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',

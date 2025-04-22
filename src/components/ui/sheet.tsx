@@ -67,9 +67,9 @@ const SheetContent = React.forwardRef<
         <Button
           variant="outline"
           size="icon" 
-          className="absolute right-10 top-6 rounded-full w-10 h-10"
+          className="absolute right-6 top-3 md:right-10 md:top-6 rounded-full w-8 h-8 md:w-10 md:h-10"
         >
-          <X className="h-6 w-6" />
+          <X className="h-5 w-5 md:h-6 md:w-6" />
           <span className="sr-only">Close</span>
         </Button>
       </SheetPrimitive.Close>

@@ -1,6 +1,5 @@
 import { Container } from "./ui/container"
 import { Link } from "react-router-dom"
-import { GitHubIcon, LinkedInIcon } from "./icons/social"
 import { LottieLogo } from "./LottieLogo"
 import { cn } from "../lib/utils"
 
@@ -30,12 +29,6 @@ const menuSections = [
   }
 ];
 
-const socialLinks = [
-  // { icon: DribbbleIcon, href: "https://dribbble.com", label: "Dribbble" },
-  { icon: LinkedInIcon, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: GitHubIcon, href: "https://github.com", label: "GitHub" },
-]
-
 export function Footer() {
   return (
     <footer className="w-full pt-24 border-t border-border">
@@ -63,7 +56,7 @@ export function Footer() {
                       index !== section.items.length - 1 && "md:border-b md:border-border"
                     )}
                   >
-                    <span className="text-body-lg lg:text-body-xl text-foreground hover:text-primary transition-colors">{item.label}</span>
+                    <span className="text-body-lg lg:text-body-xl text-foreground hover:text-accent transition-colors">{item.label}</span>
                   </Link>
                 ))}
               </div>

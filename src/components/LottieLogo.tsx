@@ -1,8 +1,14 @@
 import Lottie, { LottieRefCurrentProps } from 'lottie-react';
 import { useEffect, useState, useRef } from 'react';
 import { useTheme } from './ThemeProvider';
+import lottie from "lottie-web";
+import { cn } from "@/lib/utils";
 
-export function LottieLogo() {
+interface LottieLogoProps {
+  className?: string;
+}
+
+export function LottieLogo({ className }: LottieLogoProps) {
   const [logoData, setLogoData] = useState<any>(null);
   const [blinkData, setBlinkData] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -10,6 +16,7 @@ export function LottieLogo() {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const blinkRef = useRef<LottieRefCurrentProps>(null);
   const { theme } = useTheme();
+  const container = useRef<HTMLDivElement>(null);
 
   // Load blink animation once
   useEffect(() => {
@@ -44,6 +51,20 @@ export function LottieLogo() {
       lottieRef.current.setSpeed(1.5); // Faster logo
     }
   }, [blinkData, logoData]);
+
+  useEffect(() => {
+    if (!container.current) return;
+
+    const animation = lottie.loadAnimation({
+      container: container.current,
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      path: "/animations/trice-design-logo.json",
+    });
+
+    return () => animation.destroy();
+  }, []);
 
   const handleMouseEnter = () => {
     if (lottieRef.current && !isPlaying && hasPlayedInitialAnimation) {
@@ -82,7 +103,7 @@ export function LottieLogo() {
   return (
     <div 
       onMouseEnter={handleMouseEnter}
-      className="cursor-pointer flex items-center"
+      className={cn("cursor-pointer flex items-center", className)}
     >
       {blinkData && (
         <Lottie

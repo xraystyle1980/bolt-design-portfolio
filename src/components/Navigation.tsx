@@ -73,7 +73,7 @@ export function Navigation({ className }: NavigationProps) {
           }}
         >
           <div className={logoClasses}>
-            <LottieLogo />
+            <LottieLogo className="w-[160px] md:w-[200px]" />
           </div>
         </Link>
         <div className="flex items-center gap-4">

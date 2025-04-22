@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Menu as MenuIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "./icons/arrow-right";
-import { GitHubIcon, LinkedInIcon } from "./icons/social";
-import { cn } from "@/lib/utils";
+import { SocialLinks } from "./SocialLinks";
 import { useState } from "react";
-import { LottieLogo } from "./LottieLogo";
+import { BlinkAnimation } from "./BlinkAnimation";
 
 const menuSections = [
   {
@@ -32,102 +31,99 @@ const menuSections = [
   }
 ];
 
-const socialLinks = [
-  { icon: LinkedInIcon, href: "https://linkedin.com/in/trice" },
-  { icon: GitHubIcon, href: "https://github.com/trice" },
-];
-
 export function Menu() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
         <Button 
           variant="outline" 
           size="icon" 
-          className="rounded-full w-14 h-10"
+          className="rounded-full w-12 h-8 md:w-14 md:h-10"
           aria-label="Open menu"
         >
-          <MenuIcon className="h-6 w-6" />
+          <MenuIcon className="h-5 w-5 md:h-6 md:w-6" />
         </Button>
-      </SheetTrigger>
-      <SheetContent 
-        className={cn(
-          "w-full sm:w-[540px] lg:w-screen h-screen bg-background p-8 lg:p-12",
-          "flex flex-col lg:flex-row lg:items-stretch"
-        )}
-        side="right"
-      >
-        {/* Main Content */}
-        <div className="flex flex-col flex-1">
-          {/* Logo */}
-          <div className="mb-12">
-            <LottieLogo />
-          </div>
+      </DialogTrigger>
 
-          {/* Navigation */}
-          <nav className="flex flex-col space-y-12" aria-label="Main navigation">
-            {menuSections.map((section) => (
-              <div key={section.title} className="flex flex-col space-y-6">
-                <h2 className="text-lg text-muted-foreground">{section.title}</h2>
-                <div className="flex flex-col space-y-6">
-                  {section.items.map((item) => (
-                    <Link
-                      key={item.label}
-                      to={item.href}
-                      className="text-display-lg text-foreground hover:text-primary transition-colors"
-                      onClick={() => setOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+
+      <DialogContent className="w-[95vw] h-[90vh] max-w-[1400px] p-6 md:p-12">
+        <div className="flex flex-col">
+          
+
+          {/* Main Content */}
+          <div className="flex flex-1 h-full mt-6">
+            <div className="flex flex-col w-full">
+              
+              {/* Create a container for both sections with equal widths */}
+              <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6 flex-1">
+
+
+                
+
+                {/* Contact Section */}
+                <div className="flex flex-col space-y-3 md:space-y-6 items-center md:items-start justify-center border-b md:border-r md:border-b-0 border-border">
+                  {/* Logo */}
+                  <div>
+                    <BlinkAnimation className="h-[100px] md:h-[150px] w-auto" />
+                  </div>
+                  {/* Social Links */}
+                  <div className="py-2">
+                    <SocialLinks className="flex items-center gap-6" />
+                  </div>
+
+                  {/* Contact */}
+                  <a 
+                    href="mailto:hello@trice.design"
+                    className="text-body-lg lg:text-body-xl pb-2 text-foreground hover:text-accent transition-colors"
+                  >
+                    hello@trice.design
+                  </a>
+
+                  {/* Book a Call Button */}
+                  <Button 
+                    variant="outline"
+                    size="md"
+                    className="rounded-full group transition-all duration-300 w-fit"
+                  >
+                    Book a Call
+                    <ArrowRight className="h-4 w-4 md:h-5 md:w-5 ml-2 transition-transform group-hover:translate-x-1" />
+                  </Button>
                 </div>
+
+
+                {/* Navigation */}
+                <nav className="flex flex-col space-y-4 md:space-y-8 justify-center items-center md:items-end" aria-label="Main navigation">
+                  {menuSections.map((section) => (
+                    <div key={section.title} className="flex flex-col">
+                      <p className="text-muted-foreground caption">{section.title}</p>
+                      <div className="flex flex-col gap-1">
+                        {section.items.map((item) => (
+                          <Link
+                            key={item.label}
+                            to={item.href}
+                            className="text-body-lg lg:text-body-xl font-normal text-foreground hover:text-accent transition-colors"
+                            onClick={() => setOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </nav>
+
+
+
+
               </div>
-            ))}
-          </nav>
-        </div>
-
-        {/* Contact Section - Mobile: Bottom, Desktop: Right Side */}
-        <div className={cn(
-          "flex flex-col space-y-8 mt-auto lg:mt-0",
-          "lg:w-[400px] lg:justify-end lg:pl-8 lg:border-l lg:border-border"
-        )}>
-          {/* Social Links */}
-          <div className="flex gap-6">
-            {socialLinks.map(({ icon: Icon, href }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label={`Visit ${href.split('.com/')[1]} profile`}
-              >
-                <Icon className="h-6 w-6" />
-              </a>
-            ))}
+            </div>
           </div>
-
-          {/* Contact */}
-          <a 
-            href="mailto:hello@trice.design"
-            className="text-lg text-foreground hover:text-primary transition-colors"
-          >
-            hello@trice.design
-          </a>
-
-          {/* Book a Call Button */}
-          <Button 
-            variant="outline"
-            size="lg"
-            className="rounded-full group transition-all duration-300 w-fit"
-          >
-            Book a Call
-            <ArrowRight className="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1" />
-          </Button>
         </div>
-      </SheetContent>
-    </Sheet>
+      </DialogContent>
+
+
+    </Dialog>
   );
 }

@@ -31,6 +31,7 @@ export function HeroSection({
   const rightImageRef = useRef<HTMLDivElement>(null);
   const singleImageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
 
   const project = projects.find(p => p.id === id);
 
@@ -168,8 +169,8 @@ export function HeroSection({
       <div className="absolute inset-0 flex justify-center items-center p-12 md:p-24">
         {videoUrl ? (
           <div 
-            ref={singleImageRef}
-            className="relative w-full max-w-[800px] group hover:cursor-pointer"
+            ref={videoContainerRef}
+            className="relative w-full max-w-[500px] sm:max-w-[600px] md:max-w-[800px] group hover:cursor-pointer"
           >
             <video
               ref={videoRef}
@@ -185,7 +186,7 @@ export function HeroSection({
           <div 
             ref={singleImageRef}
             className={cn(
-              "relative w-full max-w-[800px] group hover:cursor-pointer",
+              "relative w-full max-w-[350px] sm:max-w-[400px] md:max-w-[800px] group hover:cursor-pointer",
               !loadedImages['single'] && "image-loading"
             )}
           >
@@ -197,11 +198,11 @@ export function HeroSection({
             />
           </div>
         ) : layout === 'double' ? (
-          <div className="relative w-full max-w-[900px] flex justify-center items-center group hover:cursor-pointer">
+          <div className="relative w-full max-w-[400px] sm:max-w-[600px] md:max-w-[900px] flex justify-center items-center group hover:cursor-pointer">
             {/* Left Image */}
             <div 
               ref={leftImageRef}
-              className="relative w-[35%] -mr-[8%]"
+              className="relative w-[28%] md:w-[35%] -mr-[12%] md:-mr-[8%]"
             >
               <img
                 src={leftImage}
@@ -213,7 +214,7 @@ export function HeroSection({
             {/* Right Image */}
             <div 
               ref={rightImageRef}
-              className="relative w-[35%]"
+              className="relative w-[28%] md:w-[35%]"
             >
               <img
                 src={rightImage}
