@@ -103,8 +103,8 @@ export function DesignSystemDemo() {
                     return (
                       <div key={`${section.type}-${index}`} className={cn(
                         "flex flex-col gap-8",
-                        section.layout === 'wide' && "col-span-3",
-                        section.layout === 'narrow' && "col-span-2"
+                        section.layout === '3-col' && "col-span-3",
+                        section.layout === '2-col' && "col-span-2"
                       )}>
                         <div className="flex flex-col gap-2">
                           <h3 className="text-display-md text-foreground">{section.title}</h3>

@@ -18,9 +18,10 @@ interface LightboxProps {
   alt?: string;
   className?: string;
   images?: Image[];
+  containerHidden?: boolean;
 }
 
-export function Lightbox({ src, alt, className, images }: LightboxProps) {
+export function Lightbox({ src, alt, className, images, containerHidden }: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<number>(0);
 
@@ -29,19 +30,26 @@ export function Lightbox({ src, alt, className, images }: LightboxProps) {
 
   if (normalizedImages.length === 0) return null;
 
+  const gridClass = className?.includes("col-span-1") 
+    ? "grid-cols-1" 
+    : className?.includes("col-span-2") 
+      ? "grid-cols-1 md:grid-cols-2" 
+      : "grid-cols-1 md:grid-cols-3";
+
   return (
     <div className={cn(
       "grid gap-4",
-      className || (
-        normalizedImages.length === 2 ? "md:grid-cols-2" : 
-        normalizedImages.length > 2 ? "md:grid-cols-3" : "grid-cols-1"
-      )
+      className,
+      !className?.includes("w-full") && gridClass
     )}>
       {normalizedImages.map((image, index) => (
-        <div key={index} className="content-center">
+        <div key={index}>
           {image.videoUrl ? (
             <div 
-              className="rounded-lg overflow-hidden shadow-lg cursor-pointer w-full relative" 
+              className={cn(
+                "w-full relative cursor-pointer",
+                containerHidden ? "bg-background" : "rounded-lg overflow-hidden shadow-lg"
+              )}
               style={{ aspectRatio: image.aspectRatio || '16/10' }}
               onClick={() => {
                 setSelectedImage(index);
@@ -73,7 +81,7 @@ export function Lightbox({ src, alt, className, images }: LightboxProps) {
             <img 
               src={image.url} 
               alt={image.alt} 
-              className={`cursor-pointer w-full h-auto hover:scale-105 transition-transform duration-300 rounded-lg ${className}`}
+              className="cursor-pointer w-full h-auto hover:scale-105 transition-transform duration-300 rounded-lg"
               onClick={() => {
                 setSelectedImage(index);
                 setIsOpen(true);

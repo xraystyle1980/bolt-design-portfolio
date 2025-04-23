@@ -41,21 +41,11 @@ export const blocksetDocs: Project = {
       subsections: [
         {
           title: 'Information Architecture',
-          content: 'Restructured existing documentation to improve accessibility and logical flow for developers.',
-          keyPoints: [
-            'Improved navigation',
-            'Logical content flow',
-            'Enhanced accessibility'
-          ]
+          content: 'Restructured existing documentation to improve accessibility and logical flow for developers.'
         },
         {
           title: 'Stakeholder Collaboration',
-          content: 'Integrated feedback from BRD\'s internal teams and external stakeholders to refine the platform\'s UX.',
-          keyPoints: [
-            'Cross-team feedback',
-            'Stakeholder alignment',
-            'UX refinement'
-          ]
+          content: 'Integrated feedback from BRD\'s internal teams and external stakeholders to refine the platform\'s UX.'
         }
       ]
     },
@@ -66,21 +56,11 @@ export const blocksetDocs: Project = {
       steps: [
         {
           title: 'Interactive API Sandbox',
-          content: 'Created an interactive API sandbox that allowed developers to experiment with endpoints before committing to integration, significantly reducing the time from discovery to implementation.',
-          keyPoints: [
-            'Interactive testing',
-            'Rapid prototyping',
-            'Reduced integration time'
-          ]
+          content: 'Created an interactive API sandbox that allowed developers to experiment with endpoints before committing to integration, significantly reducing the time from discovery to implementation.'
         },
         {
           title: 'Marketing Integration',
-          content: 'Designed an interactive and visually compelling website that communicated technical features in an accessible way.',
-          keyPoints: [
-            'Visual communication',
-            'Technical accessibility',
-            'Market presence'
-          ]
+          content: 'Designed an interactive and visually compelling website that communicated technical features in an accessible way.'
         }
       ]
     }

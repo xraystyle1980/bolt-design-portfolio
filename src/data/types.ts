@@ -3,7 +3,7 @@ export type HtmlString = string;
 
 export interface BaseSection {
   type: 'gallery' | 'resources' | 'flex-column' | 'grid-layout' | 'content' | 'process' | 'narrative' | 'instruction';
-  layout?: 'wide' | 'narrow';
+  layout?: '1-col' | '2-col' | '3-col';
 }
 
 // Shared types
@@ -23,8 +23,8 @@ export interface Link {
 export interface Subsection {
   title?: string;
   content?: string;
-  keyPoints?: string[];
   variant?: 'warning' | 'info' | 'default';
+  titleVariant?: 'large' | 'default';
   image?: Image;
   images?: Image[];
   caption?: string;
@@ -34,6 +34,7 @@ export interface Subsection {
   alignContent?: 'start' | 'center';
   link?: Link;
   subsections?: Subsection[];
+  keyPoints?: string[];
 }
 
 // Section types
@@ -54,16 +55,15 @@ export interface GridLayoutSection extends BaseSection {
   image?: Image;
   link?: Link;
   className?: string;
-  layout?: 'wide' | 'narrow';
 }
 
 export interface GallerySection extends BaseSection {
   type: 'gallery';
-  title: HtmlString;
-  content: HtmlString;
+  title?: HtmlString;
+  content?: HtmlString;
   smallTitle?: string;
-  layout?: 'wide' | 'narrow';
   className?: string;
+  containerHidden?: boolean;
   images: Image[];
 }
 
@@ -90,7 +90,6 @@ export interface ContentSection extends BaseSection {
   smallTitle?: string;
   items?: Subsection[];
   subsections?: Subsection[];
-  layout?: 'wide' | 'narrow';
 }
 
 export interface ProcessSection extends BaseSection {
@@ -99,7 +98,6 @@ export interface ProcessSection extends BaseSection {
   content: string;
   items?: Subsection[];
   steps?: Subsection[];
-  layout?: 'wide' | 'narrow';
 }
 
 export interface NarrativeSection extends BaseSection {
@@ -108,7 +106,6 @@ export interface NarrativeSection extends BaseSection {
   content: string;
   items?: Subsection[];
   subsections?: Subsection[];
-  layout?: 'wide' | 'narrow';
 }
 
 export interface InstructionSection extends BaseSection {
@@ -119,7 +116,6 @@ export interface InstructionSection extends BaseSection {
   image?: Image;
   link?: Link;
   variant?: 'warning' | 'info' | 'default';
-  layout?: 'wide' | 'narrow';
 }
 
 // Combined section type

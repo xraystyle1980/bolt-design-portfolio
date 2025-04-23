@@ -9,7 +9,7 @@ import { Tags } from '@/components/Tags';
 import { Section, Project } from '@/data/types';
 import { useParams } from 'react-router-dom';
 import { projects } from '@/data/case-studies';
-import { FlexColumnSection, GridLayoutSection, ResourceSection } from '@/components/case-study';
+import { GridLayoutSection, ResourceSection } from '@/components/case-study';
 import { HeroSection } from '@/components/case-study/HeroSection';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
@@ -69,7 +69,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
         <div className="flex justify-center mb-20">
           <Tags tags={project.technologies} justify="center" />
         </div>
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Left column - 25% */}
           <div className="col-span-1">
             <div className="flex flex-col gap-6">
@@ -96,15 +96,28 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                       <div key={index} className="flex flex-col gap-2">
                         <h2 className="text-foreground">
                           {'smallTitle' in section && section.smallTitle && (
-                            <span className="block text-display-xs mb-2">{section.smallTitle}</span>
+                            <span className="block text-display-xs mb-4">{section.smallTitle}</span>
                           )}
                           {section.title}
                         </h2>
-                        <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                        <div 
+                          className="text-body-lg text-foreground"
+                          dangerouslySetInnerHTML={{ __html: section.content }}
+                        />
                         {'subsections' in section && section.subsections && section.subsections.map((subsection, idx) => (
-                          <div key={idx} className="mt-8">
-                            <h3 className="mb-4">{subsection.title}</h3>
-                            <p className="text-body-lg">{subsection.content}</p>
+                          <div key={idx} className="mt-4">
+                            <h3 className={cn(
+                              "mb-4",
+                              subsection.titleVariant === 'large' ? "text-display-md" : "text-display-sm"
+                            )}>
+                              {subsection.title}
+                            </h3>
+                            {subsection.content && (
+                              <div 
+                                className="text-body-lg"
+                                dangerouslySetInnerHTML={{ __html: subsection.content }}
+                              />
+                            )}
                           </div>
                         ))}
                       </div>
@@ -120,22 +133,35 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                     return (
                       <div className={cn(
                         "flex flex-col gap-8",
-                        section.layout === 'wide' && "col-span-3",
-                        section.layout === 'narrow' && "col-span-2"
+                        section.layout === '3-col' && "col-span-3",
+                        section.layout === '2-col' && "col-span-2",
+                        section.layout === '1-col' && "col-span-1"
                       )}>
-                        <div className="flex flex-col gap-4">
-                          <h2 className="text-foreground">
-                            {section.smallTitle && (
-                              <span className="block text-display-xs mb-2">{section.smallTitle}</span>
+                        {(section.title || section.content || section.smallTitle) && (
+                          <div className="flex flex-col gap-4">
+                            <h2 className="text-foreground">
+                              {section.smallTitle && (
+                                <span className="block text-display-xs mb-4">{section.smallTitle}</span>
+                              )}
+                              {section.title}
+                            </h2>
+                            {section.content && (
+                              <div 
+                                className="text-body-lg text-foreground"
+                                dangerouslySetInnerHTML={{ __html: section.content }}
+                              />
                             )}
-                            {section.title}
-                          </h2>
-                          <div 
-                            className="text-body-lg text-foreground"
-                            dangerouslySetInnerHTML={{ __html: section.content }}
-                          />
-                        </div>
-                        <Lightbox images={section.images} className={section.className} />
+                          </div>
+                        )}
+                        <Lightbox 
+                          images={section.images} 
+                          className={cn(
+                            section.layout === '2-col' && "col-span-2",
+                            section.layout === '1-col' && "col-span-1",
+                            section.className
+                          )} 
+                          containerHidden={section.containerHidden}
+                        />
                       </div>
                     );
                   case 'resources':

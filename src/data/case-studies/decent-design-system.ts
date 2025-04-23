@@ -40,7 +40,7 @@ export const decentDesignSystem: Project = {
       type: 'content',
       title: 'Project Overview',
       content: 'Led the development of a scalable design system that unified product experiences and streamlined development workflows.',
-      layout: 'wide',
+      layout: '3-col',
       subsections: [
         {
           title: 'The Challenge',
@@ -66,7 +66,7 @@ export const decentDesignSystem: Project = {
       type: 'gallery',
       title: 'Key Deliverables',
       content: 'A collection of key moments and deliverables from the project.',
-      layout: 'wide',
+      layout: '3-col',
       images: [
         {
           url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
@@ -118,25 +118,15 @@ export const decentDesignSystem: Project = {
       type: 'content',
       title: 'Design System Implementation',
       content: 'The design system was built with growth in mind, implementing design tokens and modular components that scaled seamlessly as new products and features were developed.',
-      layout: 'narrow',
+      layout: '2-col',
       subsections: [
         {
           title: 'Component Library',
-          content: 'Created a comprehensive component library that streamlined design and development processes.',
-          keyPoints: [
-            'Modular UI components',
-            'Development efficiency',
-            'Design consistency'
-          ]
+          content: 'Built a comprehensive library of reusable components using React and TypeScript.'
         },
         {
-          title: 'Documentation',
-          content: 'Established clear guidelines and documentation to ensure the system remained accessible and intuitive as the organization expanded.',
-          keyPoints: [
-            'Clear guidelines',
-            'Accessible documentation',
-            'Team adoption'
-          ]
+          title: 'Design Tokens',
+          content: 'Implemented a robust design token system to maintain consistency across the platform.'
         }
       ]
     },
@@ -144,7 +134,7 @@ export const decentDesignSystem: Project = {
       type: 'gallery',
       title: 'Design System Components',
       content: 'Examples of the design system components and their implementation.',
-      layout: 'narrow',
+      layout: '2-col',
       images: [
         {
           url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000',
@@ -157,7 +147,7 @@ export const decentDesignSystem: Project = {
       type: 'content',
       title: 'Outcomes & Impact',
       content: 'The implementation of the design system and improved UX led to significant improvements in efficiency and user satisfaction.',
-      layout: 'wide',
+      layout: '3-col',
       subsections: [
         {
           title: 'Development Efficiency',
@@ -183,7 +173,7 @@ export const decentDesignSystem: Project = {
       type: 'gallery',
       title: 'Project Evolution',
       content: 'A visual journey through the project\'s transformation from Fractal to Decent.',
-      layout: 'wide',
+      layout: '3-col',
       images: [
         {
           url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
