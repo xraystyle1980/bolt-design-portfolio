@@ -4,7 +4,7 @@ import { CaseStudyPage } from './pages/CaseStudyPage';
 import { Navigation } from '@/components/Navigation';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { ScrollToTop } from '@/components/ScrollToTop';
 import { ThreeJsPlayground } from './pages/ThreeJsPlayground';
 import { DesignSystemDemo } from './pages/DesignSystemDemo';
 
@@ -25,7 +25,7 @@ export default function App() {
           </main>
         </div>
       </SmoothScroll>
-      <ThemeToggle />
+      <ScrollToTop />
     </ThemeProvider>
   );
 }

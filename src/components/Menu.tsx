@@ -65,7 +65,7 @@ export function Menu() {
                 {/* Contact Section */}
                 <div className="flex flex-col space-y-3 md:space-y-6 items-center md:items-start justify-center border-b md:border-r md:border-b-0 border-border">
                   {/* Logo */}
-                  <div>
+                  <div className="hidden md:block">
                     <BlinkAnimation className="h-[100px] md:h-[150px] w-auto" />
                   </div>
                   {/* Social Links */}

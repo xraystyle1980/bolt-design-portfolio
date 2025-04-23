@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTheme } from './ThemeProvider';
+import { ThemeToggle } from './ThemeToggle';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -77,6 +78,7 @@ export function Navigation({ className }: NavigationProps) {
           </div>
         </Link>
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           <Menu />
         </div>
       </Container>

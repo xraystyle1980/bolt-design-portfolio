@@ -48,6 +48,3 @@ export function HomePage() {
     </div>
   );
 }
-
-
-

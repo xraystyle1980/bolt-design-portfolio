@@ -86,19 +86,28 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
           
           {/* Right column - 75% */}
           <div className="col-span-3">
-            <div className="flex flex-col gap-24 md:gap-32">
+            <div className="flex flex-col gap-16 md:gap-24">
               {project.sections.map((section: Section, index: number) => {
                 switch (section.type) {
                   case 'content':
                   case 'process':
                   case 'narrative':
                     return (
-                      <FlexColumnSection
-                        key={index}
-                        title={section.title}
-                        content={section.content}
-                        items={'subsections' in section ? section.subsections : []}
-                      />
+                      <div key={index} className="flex flex-col gap-2">
+                        <h2 className="text-foreground">
+                          {'smallTitle' in section && section.smallTitle && (
+                            <span className="block text-display-xs mb-2">{section.smallTitle}</span>
+                          )}
+                          {section.title}
+                        </h2>
+                        <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                        {'subsections' in section && section.subsections && section.subsections.map((subsection, idx) => (
+                          <div key={idx} className="mt-8">
+                            <h3 className="mb-4">{subsection.title}</h3>
+                            <p className="text-body-lg">{subsection.content}</p>
+                          </div>
+                        ))}
+                      </div>
                     );
                   case 'instruction':
                     return (
@@ -115,10 +124,18 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                         section.layout === 'narrow' && "col-span-2"
                       )}>
                         <div className="flex flex-col gap-4">
-                          <h3 className="text-display-md text-foreground">{section.title}</h3>
-                          <p className="text-body-lg text-foreground">{section.content}</p>
+                          <h2 className="text-foreground">
+                            {section.smallTitle && (
+                              <span className="block text-display-xs mb-2">{section.smallTitle}</span>
+                            )}
+                            {section.title}
+                          </h2>
+                          <div 
+                            className="text-body-lg text-foreground"
+                            dangerouslySetInnerHTML={{ __html: section.content }}
+                          />
                         </div>
-                        <Lightbox images={section.images} />
+                        <Lightbox images={section.images} className={section.className} />
                       </div>
                     );
                   case 'resources':

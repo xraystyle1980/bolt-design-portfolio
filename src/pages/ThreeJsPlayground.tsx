@@ -9,6 +9,7 @@ import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { TokenHero } from '@/components/TokenHero';
+import { ScrollToTop } from '@/components/ScrollToTop';
 
 export function ThreeJsPlayground() {
   const { prev, next } = getAdjacentProjects('threejs-experiments');
@@ -44,7 +45,7 @@ export function ThreeJsPlayground() {
               <TokenHero />
             </div>
           </div>
-
+          </Container>
           {/* Project Sections */}
           <div className="space-y-0">
             {threeJsDemo.projects.map((project) => (
@@ -60,12 +61,13 @@ export function ThreeJsPlayground() {
               />
             ))}
           </div>
-        </Container>
+        
       </section>
 
       <ProjectNavigation prevProject={prev} nextProject={next} />
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 } 

@@ -31,12 +31,14 @@ export function Lightbox({ src, alt, className, images }: LightboxProps) {
 
   return (
     <div className={cn(
-      "grid grid-cols-1 gap-4",
-      normalizedImages.length === 2 ? "md:grid-cols-2" : 
-      normalizedImages.length > 2 ? "md:grid-cols-3" : ""
+      "grid gap-4",
+      className || (
+        normalizedImages.length === 2 ? "md:grid-cols-2" : 
+        normalizedImages.length > 2 ? "md:grid-cols-3" : "grid-cols-1"
+      )
     )}>
       {normalizedImages.map((image, index) => (
-        <div key={index} className="overflow-hidden content-center">
+        <div key={index} className="content-center">
           {image.videoUrl ? (
             <div 
               className="rounded-lg overflow-hidden shadow-lg cursor-pointer w-full relative" 

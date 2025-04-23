@@ -61,7 +61,9 @@ export interface GallerySection extends BaseSection {
   type: 'gallery';
   title: HtmlString;
   content: HtmlString;
+  smallTitle?: string;
   layout?: 'wide' | 'narrow';
+  className?: string;
   images: Image[];
 }
 
@@ -85,6 +87,7 @@ export interface ContentSection extends BaseSection {
   type: 'content';
   title: string;
   content: string;
+  smallTitle?: string;
   items?: Subsection[];
   subsections?: Subsection[];
   layout?: 'wide' | 'narrow';

@@ -139,7 +139,7 @@ export function HeroSection({
         },
         {
           opacity: 1,
-          x: 0,
+          x: (index) => index === 0 ? -30 : 30,
           scale: 1,
           duration: 1,
           ease: 'expo.out',

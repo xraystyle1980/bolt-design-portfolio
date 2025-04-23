@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HeroSection } from "./case-study/HeroSection";
 import { Button } from "./ui/button";
 import { TokenHero } from "./TokenHero";
+import { threeJsDemo } from "@/data/demos/threejs";
+import { designSystemDemo } from "@/data/demos/design-system";
 
 const insights = [
   {
@@ -15,7 +17,6 @@ const insights = [
     description: "Playing with web and 3D—because the internet shouldn't be boring. These are my experiments with Three.js, shaders, and interactive visuals. Click around, drag stuff, break it—go wild.",
     imageUrl: '/images/playground-3dtoken.png',
     link: '/playground/threejs',
-    technologies: ['Three.js', 'WebGL', 'React', 'TypeScript'],
     singleImage: '/images/playground-3dtoken.png',
     videoUrl: '/token.mp4'
   },
@@ -25,7 +26,6 @@ const insights = [
     description: 'Bridging the gap between design and dev. This is a live demo of a design system workflow, where Figma tokens sync to real code. See how changes update in real-time, tweak components, and explore the system in action.',
     imageUrl: '/images/decent-design-system-hero-collage.png',
     link: '/playground/design-system',
-    technologies: ['React', 'TypeScript', 'Tailwind', 'Radix UI'],
     singleImage: '/images/decent-design-system-hero-single.png',
     videoUrl: '/browser-console-side-by-side.mp4'
   }
@@ -142,7 +142,7 @@ export function Playground() {
             </div>
           </div>
           <div className="flex justify-center md:justify-start mt-2">
-            <Tags tags={project.technologies} />
+            <Tags tags={project.id === 'threejs-experiments' ? threeJsDemo.technologies : designSystemDemo.technologies} />
           </div>
         </div>
       ))}
