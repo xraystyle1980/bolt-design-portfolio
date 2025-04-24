@@ -11,7 +11,7 @@ export const decentApp: Project = {
   heroImage: '/images/decent-app-hero-collage.png?h=600&fit=cover',
   leftImage: '/images/decent-app-hero-single-left.png',
   rightImage: '/images/decent-app-hero-single-right.png',
-  heroSubTitle: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
+  heroSubTitle: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share.',
   role: 'Lead Product Designer',
   team: '1 Product Designer (me), 1 Brand Designer, 1 Creative Director, 4 Engineers, 1 Product Manager',
   challenge: {

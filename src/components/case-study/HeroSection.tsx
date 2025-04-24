@@ -156,7 +156,7 @@ export function HeroSection({
   return (
     <div 
       ref={containerRef}
-      className={cn("relative w-full h-[300px] md:h-[600px]", className)}
+      className={cn("relative w-full h-[240px] sm:h-[240px] md:h-[550px] lg:h-[600px]", className)}
     >
       {/* Gradient background container */}
       <div className="absolute inset-0 w-full h-full rounded-2xl md:rounded-3xl overflow-hidden">
@@ -166,7 +166,7 @@ export function HeroSection({
       </div>
 
       {/* Content container */}
-      <div className="absolute inset-0 flex justify-center items-center p-12 md:p-24">
+      <div className="absolute inset-0 flex justify-center items-center p-6 md:p-12">
         {videoUrl ? (
           <div 
             ref={videoContainerRef}
@@ -202,7 +202,7 @@ export function HeroSection({
             {/* Left Image */}
             <div 
               ref={leftImageRef}
-              className="relative w-[28%] md:w-[30%] -mr-[12%] md:-mr-[8%]"
+              className="relative w-[36%] -mr-[8%] sm:w-[28%] sm:-mr-[6%] md:w-[34%] md:-mr-[2%]"
             >
               <img
                 src={leftImage}
@@ -214,7 +214,7 @@ export function HeroSection({
             {/* Right Image */}
             <div 
               ref={rightImageRef}
-              className="relative w-[28%] md:w-[30%]"
+              className="relative w-[36%] -ml-[8%] sm:w-[28%] sm:-ml-[6%] md:w-[34%] md:-ml-[2%]"
             >
               <img
                 src={rightImage}
@@ -223,33 +223,7 @@ export function HeroSection({
               />
             </div>
           </div>
-        ) : (
-          <div className="relative w-full max-w-[1200px] flex justify-center items-center group hover:cursor-pointer">
-            {/* Left Image */}
-            <div 
-              ref={leftImageRef}
-              className="relative w-[35%] -mr-[5%]"
-            >
-              <img
-                src={leftImage}
-                alt={`${id} Interface Left`}
-                className="w-full h-auto object-contain [transition:transform_800ms_ease] group-hover:scale-105"
-              />
-            </div>
-
-            {/* Right Image */}
-            <div 
-              ref={rightImageRef}
-              className="relative w-[35%]"
-            >
-              <img
-                src={rightImage}
-                alt={`${id} Interface Right`}
-                className="w-full h-auto object-contain [transition:transform_800ms_ease] group-hover:scale-105"
-              />
-            </div>
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

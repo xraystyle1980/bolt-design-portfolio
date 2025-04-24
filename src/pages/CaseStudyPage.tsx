@@ -28,7 +28,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
   return (
     <div id="top">
       <section className="mt-20">
-        <Container className="text-foreground mb-16">
+        <Container className="text-foreground mb-10 md:mb-16">
      
           {/* Back to Home */}
           <Link 
@@ -41,19 +41,19 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
             <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
-          <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
+          <h1 className="my-4 md:my-6">
             {project.title}
           </h1>
           <div className="max-w-full md:max-w-[70%]">
-            <h2 className="text-display-sm md:text-display-md mb-10 md:mb-12 text-foreground !font-normal">
+            <h2 className="text-display-sm md:text-display-lg mb-10 md:mb-12 text-foreground !font-normal">
               {project.heroSubTitle}
             </h2>
           </div>
           
           
           {/* Hero Section */}
-          <div className="py-20">
-            <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl">
+          <div className="py-4 md:py-20">
+            <div className="w-full h-full rounded-2xl md:rounded-3xl">
               <HeroSection 
                 id={project.id}
               />
@@ -66,7 +66,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
 
       {/* Project Details */}
       <Container className="relative max-w-4xl">
-        <div className="flex justify-center mb-20">
+        <div className="flex justify-center mb-10 md:mb-20">
           <Tags tags={project.technologies} justify="center" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -94,24 +94,24 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                   case 'narrative':
                     return (
                       <div key={index} className="flex flex-col gap-2">
-                        <h2 className="text-foreground">
+                        <h3 className="text-foreground">
                           {'smallTitle' in section && section.smallTitle && (
                             <span className="block text-display-xs mb-4">{section.smallTitle}</span>
                           )}
                           {section.title}
-                        </h2>
+                        </h3>
                         <div 
                           className="text-body-lg text-foreground"
                           dangerouslySetInnerHTML={{ __html: section.content }}
                         />
                         {'subsections' in section && section.subsections && section.subsections.map((subsection, idx) => (
                           <div key={idx} className="mt-4">
-                            <h3 className={cn(
+                            <h4 className={cn(
                               "mb-4",
                               subsection.titleVariant === 'large' ? "text-display-md" : "text-display-sm"
                             )}>
                               {subsection.title}
-                            </h3>
+                            </h4>
                             {subsection.content && (
                               <div 
                                 className="text-body-lg"

@@ -52,8 +52,8 @@ export function Footer() {
                     key={item.label}
                     to={item.href}
                     className={cn(
-                      "py-2 md:py-4",
-                      index !== section.items.length - 1 && "md:border-b md:border-border"
+                      "py-1",
+                      index !== section.items.length - 1 && ""
                     )}
                   >
                     <span className="text-body-lg lg:text-body-xl text-foreground hover:text-accent transition-colors">{item.label}</span>
