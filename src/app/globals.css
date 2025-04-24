@@ -161,7 +161,7 @@ html::-webkit-scrollbar {
   }
 
   h3 {
-    @apply text-display-lg md:text-display-xl lg:text-display-2xl text-foreground;
+    @apply text-display-md md:text-display-xl lg:text-display-2xl text-foreground;
     margin-bottom: 0.25em;
     font-weight: 700;
   }

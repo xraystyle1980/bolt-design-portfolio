@@ -28,7 +28,7 @@ export default {
         'display-2xl': ['56px', { lineHeight: '130%', letterSpacing: '-1.12px' }],
         'display-xl': ['48px', { lineHeight: '130%', letterSpacing: '-0.48px' }],
         'display-lg': ['36px', { lineHeight: '130%', letterSpacing: '-0.36px' }],
-        'display-md': ['32px', { lineHeight: '130%', letterSpacing: '-0.32px' }],
+        'display-md': ['32px', { lineHeight: '124%', letterSpacing: '-0.32px' }],
         'display-sm': ['24px', { lineHeight: '130%', letterSpacing: '-0.24px' }],
         'display-xs': ['20px', { lineHeight: '130%', letterSpacing: '-0.20px' }],
         // Body scale

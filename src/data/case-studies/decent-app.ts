@@ -216,7 +216,7 @@ export const decentApp: Project = {
     {
       type: 'content',
       title: 'Key Outcomes',
-      content:'',
+      content:'This section highlights the measurable impact of my contributions, from streamlining collaboration with engineers to refining the user experience through iterative improvements. These outcomes reflect both the design execution and the systems thinking behind the work.',
       subsections: [
         {
           title: 'Increased adoption',
@@ -241,7 +241,7 @@ export const decentApp: Project = {
     },
     
   ],
-  technologies: ['React', 'TypeScript', 'Chakra UI', 'Figma', 'Notion'],
+  technologies: ['Chakra UI', 'Figma', 'Design Tokens', 'Github', 'Notion'],
   outcomes: [
     {
       type: 'outcome',

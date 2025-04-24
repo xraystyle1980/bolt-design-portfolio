@@ -93,7 +93,7 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                   case 'process':
                   case 'narrative':
                     return (
-                      <div key={index} className="flex flex-col gap-2">
+                      <div key={index} className="flex flex-col gap-4 md:gap-5">
                         <h3 className="text-foreground">
                           {'smallTitle' in section && section.smallTitle && (
                             <span className="block text-display-xs mb-4">{section.smallTitle}</span>
