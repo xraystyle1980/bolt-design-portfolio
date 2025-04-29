@@ -135,10 +135,10 @@ export const decentDesignSystem: Project = {
 
   ],
   technologies: ['Chakra UI', 'Figma', 'Design Tokens', 'GitHub', 'Notion'],
-  testimonial: {
-    quote: 'Matt brought clarity and cohesion to our product through the design system. His ability to bridge design and development helped us scale faster, with more consistency and fewer handoff gaps.',
-    author: 'Project Lead',
-    role: 'Decent'
-  },
+  // testimonial: {
+  //   quote: 'Matt brought clarity and cohesion to our product through the design system. His ability to bridge design and development helped us scale faster, with more consistency and fewer handoff gaps.',
+  //   author: 'Project Lead',
+  //   role: 'Decent'
+  // },
   layout: 'double'
 }; 

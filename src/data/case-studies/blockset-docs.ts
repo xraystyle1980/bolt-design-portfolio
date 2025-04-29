@@ -128,12 +128,12 @@ export const blocksetDocs: Project = {
 
 
   ],
-  technologies: ['Figma', 'Prototyping', 'Usability Testing', 'Stakeholder Collaboration'],
+  technologies: ['Figma', 'Prototyping', 'Usability Testing', 'Stakeholder Collaboration']
 
 
-  testimonial: {
-    quote: 'Matt took a dense, technical product and made it approachable. His ability to distill complexity into clean, usable documentation drastically improved the developer experience.',
-    author: 'Product Lead',
-    role: 'BRD'
-  }
+  // testimonial: {
+  //   quote: 'Matt took a dense, technical product and made it approachable. His ability to distill complexity into clean, usable documentation drastically improved the developer experience.',
+  //   author: 'Product Lead',
+  //   role: 'BRD'
+  // }
 }; 
