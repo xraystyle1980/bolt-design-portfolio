@@ -14,14 +14,8 @@ export const decentApp: Project = {
   heroSubTitle: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share.',
   role: 'Lead Product Designer',
   team: '1 Product Designer (me), 1 Brand Designer, 1 Creative Director, 4 Engineers, 1 Product Manager',
-  challenge: {
-    title: '',
-    content: ''
-  },
-  solution: {
-    title: '',
-    content: ''
-  },
+
+
   sections: [
     {
       type: 'gallery',
@@ -42,6 +36,8 @@ export const decentApp: Project = {
         }
       ]
     },
+
+
     {
       type: 'content',
       smallTitle: 'Approach & Key Contributions',
@@ -239,46 +235,15 @@ export const decentApp: Project = {
         }
       ]
     },
-    
   ],
+
+
   technologies: ['Chakra UI', 'Figma', 'Design Tokens', 'Github', 'Notion'],
-  outcomes: [
-    {
-      type: 'outcome',
-      title: 'Increased adoption',
-      content: 'Active DAOs grew in the first few months post-launch, driving an increase in user base.',
-      metrics: [
-        {
-          label: 'Active DAOs',
-          value: 'Increased'
-        },
-        {
-          label: 'User Base',
-          value: 'Expanded'
-        }
-      ]
-    },
-    {
-      type: 'outcome',
-      title: 'Enhanced UX',
-      content: 'Usability testing showed reduced onboarding friction, boosting retention.',
-      metrics: [
-        {
-          label: 'Onboarding Friction',
-          value: 'Reduced'
-        },
-        {
-          label: 'User Retention',
-          value: 'Improved'
-        }
-      ]
-    }
-  ],
-  contributions: [
-    'I defined the UX vision, translating research into actionable design improvements.',
-    'I led the development of a scalable UI system for long-term flexibility.',
-    'I aligned branding and UI to reflect Decent\'s new identity.',
-    'I streamlined governance workflows to reduce friction for DAOs.',
-    'I integrated QA workflows and iterated post-launch for continuous improvement.'
-  ]
+
+
+  testimonial: {
+    quote: 'Matt was instrumental in translating our vision into a clear, intuitive product. His design execution and close collaboration with engineering made a huge impact on the final experience.',
+    author: 'Product Lead',
+    role: 'Decent'
+  }
 }; 

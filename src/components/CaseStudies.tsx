@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { projects } from "@/data/case-studies";
 import { useEffect, useRef } from "react";
-import { ArrowRight } from "./icons/arrow-right";
 import { Tags } from "./Tags";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HeroSection } from "./case-study/HeroSection";
 import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
 
 export function CaseStudies() {
   const caseStudyRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -78,8 +78,6 @@ export function CaseStudies() {
       </h4>
       {projects.map((project, index) => (
         <div key={project.id} ref={el => caseStudyRefs.current[index] = el}>
-          
-
           <div className="w-full pb-2">
             <Link to={project.link} className="group">
               <HeroSection 
@@ -89,7 +87,6 @@ export function CaseStudies() {
               />
             </Link>
           </div>
-          
 
           <div className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex flex-col gap-1 md:gap-2 max-w-2xl">
@@ -97,16 +94,13 @@ export function CaseStudies() {
                 <h3 className="mb-0 text-display-sm md:text-display-md">
                   {project.title}
                 </h3>
-                <Link
-                to={project.link}
-                >
+                <Link to={project.link}>
                   <Button 
                     variant="outline"
                     size="md"
-                    className="px-3.5 py-1.5 md:px-8 rounded-full group-hover:bg-foreground group-hover:text-background shrink-0"
-                  >
-                    <ArrowRight className="h-5 w-5 md:h-8 md:w-8" />
-                  </Button>
+                    icon={ArrowRight}
+                    iconPlacement="right"
+                  />
                 </Link>
               </div>
               <div className="space-y-6 max-w-xl">
@@ -115,12 +109,10 @@ export function CaseStudies() {
                 </p>
               </div>
             </div>
-            
           </div>
           <div className="flex justify-center md:justify-start mt-2">
             <Tags tags={project.technologies} />
           </div>
-
         </div>
       ))}
     </div>

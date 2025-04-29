@@ -195,7 +195,7 @@ html::-webkit-scrollbar {
   }
 
   .caption {
-    @apply text-body-caption text-foreground;
+    @apply text-body-caption text-muted-foreground;
   }
 
   @media (min-width: 768px) {

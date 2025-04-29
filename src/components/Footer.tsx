@@ -66,6 +66,8 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="flex flex-col space-y-2">
+          {/* <p className="text-body-sm">©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit.<br />
+          <span className="caption text-muted-foreground">Designed despite of tyrannical 🐈</span></p> */}
           <p className="text-body-sm">©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit.<br />
           <span className="caption text-muted-foreground">Designed despite of tyrannical 🐈</span></p>
         </div>

@@ -1,4 +1,5 @@
 import { DribbbleIcon, GitHubIcon, LinkedInIcon } from "./icons/social"
+import { Button } from "./ui/button"
 
 export const socialLinks = [
   { icon: LinkedInIcon, href: "https://linkedin.com/in/trice", label: "LinkedIn" },
@@ -19,10 +20,15 @@ export function SocialLinks({ className }: SocialLinksProps) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground hover:text-accent transition-colors"
-          aria-label={link.label}
         >
-          <link.icon className="w-6 h-6" />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="p-[13px]"
+            aria-label={link.label}
+          >
+            <link.icon className="w-5 h-5" />
+          </Button>
         </a>
       ))}
     </div>

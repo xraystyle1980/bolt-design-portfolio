@@ -1,11 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Menu as MenuIcon } from "lucide-react";
+import { ArrowRight, Menu as MenuIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "./icons/arrow-right";
 import { SocialLinks } from "./SocialLinks";
 import { useState } from "react";
-import { BlinkAnimation } from "./BlinkAnimation";
 
 const menuSections = [
   {
@@ -38,9 +36,9 @@ export function Menu() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button 
-          variant="outline" 
+          variant="ghost" 
           size="icon" 
-          className="rounded-full w-12 h-8 md:w-14 md:h-10"
+          className="rounded-full w-8 h-8 md:w-10 md:h-10"
           aria-label="Open menu"
         >
           <MenuIcon className="h-5 w-5 md:h-6 md:w-6" />
@@ -63,33 +61,34 @@ export function Menu() {
                 
 
                 {/* Contact Section */}
-                <div className="flex flex-col space-y-3 md:space-y-6 items-center md:items-start justify-center border-b md:border-r md:border-b-0 border-border">
-                  {/* Logo */}
-                  <div className="hidden md:block">
-                    <BlinkAnimation className="h-[100px] md:h-[150px] w-auto" />
-                  </div>
+                <div className="flex flex-col space-y-3 md:space-y-6 items-center justify-center border-b md:border-r md:border-b-0 border-border pb-6 md:pb-0">
+       
                   {/* Social Links */}
-                  <div className="py-2">
+                  <div className="py-0 md:py-2">
                     <SocialLinks className="flex items-center gap-6" />
                   </div>
 
                   {/* Contact */}
                   <a 
                     href="mailto:hello@trice.design"
-                    className="text-body-lg lg:text-body-xl pb-2 text-foreground hover:text-accent transition-colors"
+                    className="text-body-md lg:text-body-xl pb-2 text-foreground hover:text-accent transition-colors"
                   >
                     hello@trice.design
                   </a>
-
-                  {/* Book a Call Button */}
-                  <Button 
-                    variant="outline"
-                    size="md"
-                    className="rounded-full group transition-all duration-300 w-fit"
+                  <a 
+                    href="https://calendly.com/matt-trice/30min" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
                   >
-                    Book a Call
-                    <ArrowRight className="h-4 w-4 md:h-5 md:w-5 ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
+                    <Button 
+                      size="sm"
+                      className="md:size-lg text-primary-foreground"
+                      icon={ArrowRight}
+                      iconPlacement="right"
+                    >
+                      Book a Call
+                    </Button>
+                  </a>
                 </div>
 
 
@@ -97,7 +96,7 @@ export function Menu() {
                 <nav className="flex flex-col space-y-4 md:space-y-8 justify-center items-center md:items-end" aria-label="Main navigation">
                   {menuSections.map((section) => (
                     <div key={section.title} className="flex flex-col">
-                      <p className="text-muted-foreground caption">{section.title}</p>
+                      <p className="text-muted-foreground caption mb-0 md:mb-2">{section.title}</p>
                       <div className="flex flex-col gap-1">
                         {section.items.map((item) => (
                           <Link

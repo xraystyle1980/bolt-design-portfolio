@@ -81,7 +81,10 @@ export function Lightbox({ src, alt, className, images, containerHidden }: Light
             <img 
               src={image.url} 
               alt={image.alt} 
-              className="cursor-pointer w-full h-auto hover:scale-105 transition-transform duration-300 rounded-lg"
+              className={cn(
+                "cursor-pointer w-full h-auto hover:scale-105 transition-transform duration-300 rounded-lg",
+                !containerHidden && "shadow-lg"
+              )}
               onClick={() => {
                 setSelectedImage(index);
                 setIsOpen(true);
@@ -89,7 +92,7 @@ export function Lightbox({ src, alt, className, images, containerHidden }: Light
             />
           )}
           {image.caption && (
-            <p className="caption text-muted-foreground mt-2 text-center">{image.caption}</p>
+            <p className="caption mt-2 text-center">{image.caption}</p>
           )}
         </div>
       ))}

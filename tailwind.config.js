@@ -37,7 +37,7 @@ export default {
         'body-lg': ['20px', { lineHeight: '150%', letterSpacing: '-0.20px', fontWeight: '400' }],
         'body-md': ['18px', { lineHeight: '150%', letterSpacing: '-0.18px', fontWeight: '400' }],
         'body-sm': ['16px', { lineHeight: '150%', letterSpacing: '-0.16px', fontWeight: '400' }],
-        'body-caption': ['14px', { lineHeight: '150%', letterSpacing: '-0.14px', fontWeight: '400' }],
+        'body-caption': ['14px', { lineHeight: '164%', fontWeight: '400' }],
       },
       letterSpacing: {
         tighter: '-1.92px',

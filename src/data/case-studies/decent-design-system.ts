@@ -14,231 +14,129 @@ export const decentDesignSystem: Project = {
   singleImage: '/images/decent-design-system-hero-single.png',
   heroSubTitle: 'Building a scalable design system to unify product experiences and streamline development workflows.',
   role: 'Design System Lead',
-  team: '1 Design System Lead (me), 2 Product Designers, 1 Brand Designer, 3 Engineers, 1 Product Manager',
-  challenge: {
-    title: 'A Need for Consistency',
-    content: 'The organization faced challenges with inconsistent design patterns and inefficient development processes. A unified design system was needed to streamline workflows and improve team alignment.',
-    subchallenges: [
-      {
-        title: 'Scalability',
-        content: 'The design system needed to be scalable to accommodate future growth and evolving product needs.'
-      }
-    ]
-  },
-  solution: {
-    title: 'Unified Design System',
-    content: 'We developed a comprehensive design system that included a style guide, component library, and design tokens, ensuring visual consistency and scalability.',
-    subsolutions: [
-      {
-        title: 'Component Library',
-        content: 'A comprehensive component library was created to streamline design and development processes.'
-      }
-    ]
-  },
+  team: 'Lead Product Designer (me), Front End Engineer',
+  
+  
   sections: [
     {
-      type: 'content',
-      title: 'Project Overview',
-      content: 'Led the development of a scalable design system that unified product experiences and streamlined development workflows.',
-      layout: '3-col',
-      subsections: [
-        {
-          title: 'The Challenge',
-          content: 'Scaling a product across a diverse ecosystem required consistency, efficiency, and collaboration. The organization needed a unified design language that could streamline workflows and improve team alignment.',
-          keyPoints: [
-            'Complex ecosystem integration',
-            'Need for unified design language',
-            'Workflow optimization'
-          ]
-        },
-        {
-          title: 'The Solution',
-          content: 'Through collaborative design and development, we created a comprehensive design system that included a style guide, component library, and design tokens, ensuring visual consistency and scalability.',
-          keyPoints: [
-            'Comprehensive design system',
-            'Component library development',
-            'Design token implementation'
-          ]
-        }
-      ]
-    },
-    {
       type: 'gallery',
-      title: 'Key Deliverables',
-      content: 'A collection of key moments and deliverables from the project.',
-      layout: '3-col',
+      smallTitle: 'The Challenge',
+      title: 'A Need for Consistency',
+      content: 'Scaling a product across a diverse ecosystem requires consistency, efficiency, and collaboration. The Decent Design System was built to address this challenge by creating a unified design language that streamlined workflows, improved team alignment, and delivered consistent user experiences.<br /><br />I spearheaded the development of the design system, working closely across the organization to ensure it met the needs of both developers and designers. Through this collaborative effort, the design system became a key enabler of scalability and innovation across the organization.',
+      layout: '1-col',
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Project dashboard interface',
-          caption: 'The redesigned dashboard provides a clear overview of DAO activities and governance status.'
+          url: '/images/decent-design-system/dds-spacing.png',
+          alt: 'Comprehensive spacing guidelines ensure consistent component layouts across the platform',
+          caption: 'Comprehensive spacing guidelines ensure consistent component layouts across the platform'
         },
         {
-          url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Team collaboration session',
-          caption: 'Regular cross-functional workshops ensured alignment between design, engineering, and product teams.'
+          url: '/images/decent-design-system/dds-brand-align.png',
+          alt: 'Close collaboration with the brand team ensured the design system reflected Decent\'s visual identity',
+          caption: 'Close collaboration with the brand team ensured the design system reflected Decent\'s visual identity'
         }
       ]
     },
-    {
-      type: 'process',
-      title: 'Design Process',
-      content: 'Our approach focused on collaboration and iteration, ensuring that every design decision was validated through user feedback and technical feasibility.',
-      steps: [
-        {
-          title: 'Research & Discovery',
-          content: 'Conducted user interviews and analyzed existing workflows to identify pain points and opportunities for improvement.',
-          keyPoints: [
-            'User research',
-            'Workflow analysis',
-            'Pain point identification'
-          ]
-        },
-        {
-          title: 'Design & Development',
-          content: 'Worked closely with engineers in a pair-programming-inspired design process, ensuring usability was considered at every stage.',
-          keyPoints: [
-            'Engineering collaboration',
-            'Usability focus',
-            'Iterative design'
-          ]
-        },
-        {
-          title: 'Testing & Refinement',
-          content: 'Conducted weekly user feedback sessions, testing prototypes to uncover pain points and refine key flows.',
-          keyPoints: [
-            'Weekly feedback sessions',
-            'Prototype testing',
-            'Flow refinement'
-          ]
-        }
-      ]
-    },
+
+
     {
       type: 'content',
-      title: 'Design System Implementation',
-      content: 'The design system was built with growth in mind, implementing design tokens and modular components that scaled seamlessly as new products and features were developed.',
-      layout: '2-col',
+      smallTitle: 'Impact',
+      title: 'Design Impact',
+      content: 'This section highlights the tangible outcomes of the design system work—tools and structures that improved consistency, sped up implementation, and gave the design team greater control over the product experience.',
       subsections: [
         {
+          title: 'Unified Design Language',
+          content: 'I laid the groundwork for and contributed to a comprehensive style guide covering colors, typography, and grid systems, ensuring visual consistency.'
+        },
+        {
           title: 'Component Library',
-          content: 'Built a comprehensive library of reusable components using React and TypeScript.'
+          content: 'Working closely with our front end engineer, I designed modular UI elements that streamlined design and development processes.'
         },
         {
           title: 'Design Tokens',
-          content: 'Implemented a robust design token system to maintain consistency across the platform.'
+          content: 'I integrated JSON tokens that allowed for design ownership over color palettes and typography.'
+        },
+        {
+          title: 'What was the biggest challenge?',
+          titleVariant: 'large',
+          content: 'Defining where and how the design system fit within the organization. What processes needed to change? What would become new? And most importantly, how do we make people want to use it? Adoption was a major hurdle, with myself and a front-end engineer as the primary advocates. Despite these challenges, the design system left a lasting impact, and I\'m eager to see how it continues to evolve.'
         }
       ]
     },
+
+
     {
       type: 'gallery',
-      title: 'Design System Components',
-      content: 'Examples of the design system components and their implementation.',
       layout: '2-col',
+      title: 'Design System Gallery',
+      content: 'Key screens from the Decent Design System showcasing the unified design language.',
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Design system components',
-          caption: 'The component library includes reusable UI elements that maintain consistency across the platform.'
+          url: '/images/decent-design-system/dds-hub-notion.png',
+          alt: 'Maintaining a hub for design system documentation in Notion',
+          caption: 'Maintaining a hub for design system documentation in Notion'
+        },
+        {
+          url: '/images/decent-design-system/dds-ui-color-tokens.png',
+          alt: 'Color tokens in Figma get applied directly within the codebase',
+          caption: 'Color tokens in Figma get applied directly within the codebase'
+        },
+        {
+          url: '/images/decent-design-system/dds-documentation-component-matrix-notion.png',
+          alt: 'Tracking component consistency in Notion',
+          caption: 'Tracking component consistency in Notion'
+        },
+        {
+          url: '/images/decent-design-system/dds-button-components.png',
+          alt: 'Button components',
+          caption: 'Button components'
+        },
+        {
+          url: '/images/decent-design-system/dds-dm-sans.png',
+          alt: 'Consistent typography across the platform',
+          caption: 'Consistent typography across the platform'
         }
+        
       ]
     },
+
+
     {
       type: 'content',
-      title: 'Outcomes & Impact',
-      content: 'The implementation of the design system and improved UX led to significant improvements in efficiency and user satisfaction.',
-      layout: '3-col',
+      smallTitle: 'Strategy & Execution',
+      title: 'Collaborative Design & Development',
+      content: 'I interviewed my teammates across the org to uncover pain points during their product design, design handoff processes. Through testing and feedback sessions, we refined the system and our approach iteratively to craft a design system that fits the needs of the organization.',
       subsections: [
         {
-          title: 'Development Efficiency',
-          content: 'Teams could easily understand and implement components, reducing development time and inconsistencies.',
-          keyPoints: [
-            'Reduced development time',
-            'Improved consistency',
-            'Streamlined workflows'
-          ]
+          title: 'Scalability First',
+          content: 'The system was built with growth in mind. By implementing design tokens and modular components, the design system scaled seamlessly as new products and features were developed.'
         },
         {
-          title: 'User Experience',
-          content: 'The new design system and improved UX led to better user satisfaction and reduced onboarding friction.',
-          keyPoints: [
-            'Improved user satisfaction',
-            'Reduced onboarding friction',
-            'Better retention'
-          ]
+          title: 'Documentation Focus',
+          content: 'Comprehensive documentation ensured that even as the organization expanded, the design system remained accessible and intuitive.'
+        },
+        {
+          title: 'What worked well?',
+          titleVariant: 'large',
+          content: 'Our focus on documentation and clear component guidelines encouraged high adoption rates. Teams could easily understand and implement components, reducing development time and inconsistencies.'
         }
       ]
     },
+
+
     {
-      type: 'gallery',
-      title: 'Project Evolution',
-      content: 'A visual journey through the project\'s transformation from Fractal to Decent.',
-      layout: '3-col',
-      images: [
-        {
-          url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Initial user research phase',
-          caption: 'Early user research sessions helped identify key pain points and opportunities for improvement.'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Design system implementation',
-          caption: 'The new design system brought consistency and efficiency to the development process.'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000',
-          alt: 'Final product launch',
-          caption: 'The redesigned platform successfully bridged the gap between Web2 and Web3 usability.'
-        }
-      ]
+      type: 'content',
+      smallTitle: 'Final Thoughts',
+      title: 'A Strategic Transformation',
+      content: 'The Decent Design System laid the foundation for future development and collaboration. The Design System established a unified visual language, contributed to streamlined workflows, and helped to foster continued collaboration.'
     }
+
+
   ],
-  technologies: ['React', 'TypeScript', 'Chakra UI', 'Figma', 'Notion'],
-  outcomes: [
-    {
-      type: 'outcome',
-      title: 'Increased adoption',
-      content: 'Active DAOs grew in the first few months post-launch, driving an increase in user base and total value locked (TVL) on the platform.',
-      metrics: [
-        {
-          label: 'Active DAOs',
-          value: 'Increased'
-        },
-        {
-          label: 'User Base',
-          value: 'Expanded'
-        },
-        {
-          label: 'TVL',
-          value: 'Increased'
-        }
-      ]
-    },
-    {
-      type: 'outcome',
-      title: 'Enhanced UX',
-      content: 'Usability testing showed reduced onboarding friction, boosting retention.',
-      metrics: [
-        {
-          label: 'Onboarding Friction',
-          value: 'Reduced'
-        },
-        {
-          label: 'User Retention',
-          value: 'Improved'
-        }
-      ]
-    }
-  ],
-  contributions: [
-    'I defined the UX vision, translating research into actionable design improvements.',
-    'I led the development of a scalable UI system for long-term flexibility.',
-    'I aligned branding and UI to reflect Decent\'s new identity.',
-    'I streamlined governance workflows to reduce friction for DAOs.',
-    'I integrated QA workflows and iterated post-launch for continuous improvement.'
-  ],
+  technologies: ['Chakra UI', 'Figma', 'Design Tokens', 'GitHub', 'Notion'],
   testimonial: {
-    quote: 'The shift from Fractal to Decent was more than a redesign—it was a strategic transformation that redefined the product\'s value.',
+    quote: 'Matt brought clarity and cohesion to our product through the design system. His ability to bridge design and development helped us scale faster, with more consistency and fewer handoff gaps.',
     author: 'Project Lead',
     role: 'Decent'
   },

@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { ArrowRight } from "./icons/arrow-right";
 import { Tags } from "./Tags";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HeroSection } from "./case-study/HeroSection";
-import { Button } from "./ui/button";
 import { TokenHero } from "./TokenHero";
 import { threeJsDemo } from "@/data/demos/threejs";
 import { designSystemDemo } from "@/data/demos/design-system";
+import { ArrowRight } from "lucide-react";
+import { Button } from "./ui/button";
 
 const insights = [
   {
@@ -122,16 +122,13 @@ export function Playground() {
                 <h3 className="mb-0 text-display-sm md:text-display-md">
                   {project.title}
                 </h3>
-                <Link
-                to={project.link}
-                >
+                <Link to={project.link} className="ml-4 shrink-0">
                   <Button 
                     variant="outline"
                     size="md"
-                    className="px-3.5 py-1.5 md:px-8 rounded-full group-hover:bg-foreground group-hover:text-background shrink-0"
-                  >
-                    <ArrowRight className="h-5 w-5 md:h-8 md:w-8" />
-                  </Button>
+                    icon={ArrowRight}
+                    iconPlacement="right"
+                  />
                 </Link>
               </div>
               <div className="space-y-6 max-w-xl">

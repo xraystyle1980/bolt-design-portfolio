@@ -1,0 +1,135 @@
+---
+title: 'Button'
+description: 'Interactive button component with multiple variants and sizes'
+---
+
+# Button Component
+
+The Button component is a versatile, interactive element that supports multiple variants and sizes. It's built using class-variance-authority (cva) for consistent styling and supports all standard button attributes.
+
+## Variants
+
+### Default
+```tsx
+<Button>Primary Action</Button>
+```
+- Use for primary actions and main CTAs
+- High-emphasis actions that drive user engagement
+- Examples: "Submit", "Get Started", "Book a Call"
+
+### Outline
+```tsx
+<Button variant="outline">Secondary Action</Button>
+```
+- Use for secondary actions
+- Medium-emphasis actions that complement the primary action
+- Examples: "Learn More", "View Details", "Cancel"
+
+### Ghost
+```tsx
+<Button variant="ghost">Tertiary Action</Button>
+```
+- Use for tertiary actions or UI controls
+- Low-emphasis actions that don't need to draw attention
+- Examples: "Close", "Menu", theme toggles
+
+### Link
+```tsx
+<Button variant="link">Text Link</Button>
+```
+- Use for in-content links
+- Text-style buttons that blend with content
+- Examples: "Read more", inline links
+
+### Card
+```tsx
+<Button variant="card">Card Action</Button>
+```
+- Use for card-style navigation elements
+- Full-width interactive areas
+- Examples: Project cards, feature blocks
+
+## Sizes
+
+### Large (lg)
+```tsx
+<Button size="lg">Large Button</Button>
+```
+- Use for main CTAs and hero sections
+- Padding: px-11 py-6
+- Font size: 22px
+
+### Medium (md)
+```tsx
+<Button size="md">Medium Button</Button>
+```
+- Default size
+- Use for most button instances
+- Padding: px-8 py-4
+- Font size: body-md
+
+### Small (sm)
+```tsx
+<Button size="sm">Small Button</Button>
+```
+- Use for compact UIs or dense layouts
+- Padding: px-[18px] py-3
+- Font size: body-sm
+
+### Icon
+```tsx
+<Button size="icon">
+  <IconComponent />
+</Button>
+```
+- Use for icon-only buttons
+- Available in lg, md, and sm variants
+- Maintains square aspect ratio
+
+## Icons with Text
+
+When using icons with text, follow these guidelines:
+- Use consistent icon sizes relative to button size:
+  - lg buttons: 24x24px icons
+  - md buttons: 20x20px icons
+  - sm buttons: 16x16px icons
+- Always maintain 8px gap between icon and text (built into button styles)
+- Icons should be placed after text for CTAs/actions
+- Icons should be placed before text for navigation/back buttons
+
+## Best Practices
+
+1. **Hierarchy**: Use button variants to establish clear visual hierarchy
+2. **Consistency**: Stick to the same variant for similar actions across the site
+3. **Accessibility**: Always include descriptive text or aria-label
+4. **Spacing**: Maintain consistent spacing between multiple buttons (gap-4 recommended)
+5. **Loading States**: Use disabled state with loading spinner for async actions
+6. **Hover States**: All buttons have built-in hover states with spring animation
+
+## Examples
+
+```tsx
+// Primary CTA with icon
+<Button size="lg">
+  Get Started
+  <ArrowRight className="h-6 w-6" />
+</Button>
+
+// Secondary action
+<Button variant="outline" size="md">
+  Learn More
+</Button>
+
+// Icon button with tooltip
+<Button variant="ghost" size="icon">
+  <Sun className="h-5 w-5" />
+  <span className="sr-only">Toggle theme</span>
+</Button>
+
+// Card navigation
+<Button variant="card">
+  <h3>Project Title</h3>
+  <p>Project description</p>
+  <ArrowRight className="h-5 w-5" />
+</Button>
+``` 

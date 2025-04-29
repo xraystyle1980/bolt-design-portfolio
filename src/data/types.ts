@@ -145,31 +145,9 @@ export interface Project {
   heroSubTitle: string;
   role: string;
   team: string;
-  challenge: {
-    title: string;
-    content: string;
-    subchallenges?: Array<{
-      title: string;
-      content: string;
-    }>;
-  };
-  solution: {
-    title: string;
-    content: string;
-    subsolutions?: Array<{
-      title: string;
-      content: string;
-    }>;
-  };
   sections: Section[];
   technologies: string[];
-  outcomes: Array<{
-    type: 'outcome';
-    title: string;
-    content: string;
-    metrics: Array<{ label: string; value: string }>;
-  }>;
-  contributions: string[];
+  contributions?: string[];
   testimonial?: {
     quote: string;
     author: string;
