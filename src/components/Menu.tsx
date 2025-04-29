@@ -4,6 +4,7 @@ import { ArrowRight, Menu as MenuIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SocialLinks } from "./SocialLinks";
 import { useState } from "react";
+import { manageScrollbarWidth } from "@/lib/utils";
 
 const menuSections = [
   {
@@ -23,8 +24,8 @@ const menuSections = [
   {
     title: "Demos",
     items: [
-      { label: "3D Experiments", href: "/playground/threejs" },
       { label: "Design System Demo", href: "/playground/design-system" },
+      { label: "3D Experiments", href: "/playground/threejs" },
     ]
   }
 ];
@@ -32,8 +33,13 @@ const menuSections = [
 export function Menu() {
   const [open, setOpen] = useState(false);
 
+  const handleOpenChange = (isOpen: boolean) => {
+    setOpen(isOpen);
+    manageScrollbarWidth(isOpen);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button 
           variant="ghost" 
@@ -102,7 +108,7 @@ export function Menu() {
                           <Link
                             key={item.label}
                             to={item.href}
-                            className="text-body-lg lg:text-body-xl font-normal text-foreground hover:text-accent transition-colors"
+                            className="text-body-lg lg:text-body-xl font-normal text-foreground hover:text-accent transition-colors hover:underline-offset-4 hover:underline"
                             onClick={() => setOpen(false)}
                           >
                             {item.label}

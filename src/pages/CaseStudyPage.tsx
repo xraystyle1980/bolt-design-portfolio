@@ -9,10 +9,11 @@ import { Tags } from '@/components/Tags';
 import { Section, Project } from '@/data/types';
 import { useParams } from 'react-router-dom';
 import { projects } from '@/data/case-studies';
-import { GridLayoutSection, ResourceSection } from '@/components/case-study';
+import { GridLayoutSection } from '@/components/case-study';
 import { HeroSection } from '@/components/case-study/HeroSection';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
+import { FlexColumnSection } from '@/components/case-study/FlexColumnSection';
 
 interface CaseStudyPageProps {}
 
@@ -165,7 +166,14 @@ export function CaseStudyPage({}: CaseStudyPageProps) {
                       </div>
                     );
                   case 'resources':
-                    return <ResourceSection section={section} />;
+                    return (
+                      <FlexColumnSection
+                        key={index}
+                        title={section.title || ''}
+                        content={section.content || ''}
+                        items={[{ resources: section.resources }]}
+                      />
+                    );
                   default:
                     return null;
                 }

@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { TokenHero } from '@/components/TokenHero';
 import { ScrollToTop } from '@/components/ScrollToTop';
+import { Project } from '@/types/project';
 
 export function ThreeJsPlayground() {
   const { prev, next } = getAdjacentProjects('threejs-experiments');
@@ -48,7 +49,7 @@ export function ThreeJsPlayground() {
           </Container>
           {/* Project Sections */}
           <div className="space-y-0">
-            {threeJsDemo.projects.map((project) => (
+            {threeJsDemo.projects.map((project: Project) => (
               <ProjectSection
                 key={project.id}
                 title={project.title}

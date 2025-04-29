@@ -73,7 +73,7 @@ export function CaseStudies() {
 
   return (
     <div className="flex flex-grow flex-col gap-12 md:gap-16">
-      <h4 className="text-display-xl mb-0 mt-4">
+      <h4 className="mb-0 mt-4">
         Case Studies
       </h4>
       {projects.map((project, index) => (

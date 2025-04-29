@@ -2,7 +2,7 @@
 export type HtmlString = string;
 
 export interface BaseSection {
-  type: 'gallery' | 'resources' | 'flex-column' | 'grid-layout' | 'content' | 'process' | 'narrative' | 'instruction';
+  type: 'gallery' | 'resources' | 'flex-column' | 'grid-layout' | 'content' | 'process' | 'narrative' | 'instruction' | 'design-tokens' | 'component-library';
   layout?: '1-col' | '2-col' | '3-col';
 }
 
@@ -118,6 +118,39 @@ export interface InstructionSection extends BaseSection {
   variant?: 'warning' | 'info' | 'default';
 }
 
+export interface DesignTokenSection extends BaseSection {
+  type: 'design-tokens';
+  title: string;
+  content: string;
+  tokens: {
+    category: string;
+    values: {
+      name: string;
+      value: string;
+      description?: string;
+    }[];
+  }[];
+}
+
+export interface ComponentLibrarySection extends BaseSection {
+  type: 'component-library';
+  title: string;
+  content: string;
+  components: {
+    name: string;
+    description: string;
+    preview: string;
+    code?: string;
+    props?: {
+      name: string;
+      type: string;
+      description: string;
+      required?: boolean;
+      default?: string;
+    }[];
+  }[];
+}
+
 // Combined section type
 export type Section = 
   | FlexColumnSection 
@@ -127,7 +160,9 @@ export type Section =
   | ContentSection
   | ProcessSection
   | NarrativeSection
-  | InstructionSection;
+  | InstructionSection
+  | DesignTokenSection
+  | ComponentLibrarySection;
 
 export interface Project {
   id: string;
@@ -174,4 +209,36 @@ export interface ProcessStep {
       caption?: string;
     };
   }>;
+}
+
+export interface DesignSystem {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  role: string;
+  team: string;
+  technologies: string[];
+  sections: Section[];
+  tokens?: {
+    category: string;
+    values: {
+      name: string;
+      value: string;
+      description?: string;
+    }[];
+  }[];
+  components?: {
+    name: string;
+    description: string;
+    preview: string;
+    code?: string;
+    props?: {
+      name: string;
+      type: string;
+      description: string;
+      required?: boolean;
+      default?: string;
+    }[];
+  }[];
 } 

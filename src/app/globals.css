@@ -235,6 +235,8 @@ html::-webkit-scrollbar {
     --ring: 0 0% 10%;
  
     --radius: 0.5rem;
+
+    --scrollbar-width: 0px;
   }
 
   /* Theme Variables - Dark Mode */
@@ -293,6 +295,7 @@ html::-webkit-scrollbar {
 
   /* Prevent content shift when dialog opens */
   .overflow-hidden {
-    padding-right: var(--removed-body-scroll-bar-size);
+    padding-right: var(--scrollbar-width);
+    overflow: hidden;
   }
 } 

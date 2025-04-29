@@ -7,16 +7,16 @@ interface Project {
 
 export const playgroundProjects: Project[] = [
   {
-    id: 'threejs-experiments',
-    title: 'Three.js Experiments',
-    subtitle: 'Interactive 3D experiments and visual experiences',
-    link: '/playground/threejs'
-  },
-  {
     id: 'design-system-demo',
     title: 'Design System Demo',
     subtitle: 'Live demonstration of design tokens and component libraries',
     link: '/playground/design-system'
+  },
+  {
+    id: 'threejs-experiments',
+    title: 'Three.js Experiments',
+    subtitle: 'Interactive 3D experiments and visual experiences',
+    link: '/playground/threejs'
   }
 ];
 

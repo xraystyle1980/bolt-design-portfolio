@@ -1,4 +1,6 @@
-export const threeJsDemo = {
+import { Demo } from '@/types/project';
+
+export const threeJsDemo: Demo = {
   id: 'threejs-experiments',
   title: 'Three.js Experiments',
   subtitle: 'Interactive 3D experiments and visual experiences',
@@ -13,9 +15,9 @@ export const threeJsDemo = {
       description: 'In an earlier iteration of my portfolio, I crafted this 3D token in Illustrator and Blender before importing it into Three.js. With GSAP, it dynamically scrolls with the page, providing an engaging interaction, while custom lighting ties it seamlessly to the neon grid background.',
       videoUrl: '/scrolling-token-scroll.mp4',
       technologies: ['Three.js', 'GSAP', 'Illustrator', 'Blender'],
-      demoUrl: 'https://your-demo-url.com',
+      demoUrl: 'https://scrolling-token.vercel.app/',
       githubUrl: 'https://github.com/xraystyle1980/scrolling-token',
-      codesandboxUrl: 'https://codesandbox.io/p/github/xraystyle1980/scrolling-token/main?import=true'
+      // codesandboxUrl: 'https://codesandbox.io/p/github/xraystyle1980/scrolling-token/main?import=true'
     },
     {
       id: 'red-hot-floppy',

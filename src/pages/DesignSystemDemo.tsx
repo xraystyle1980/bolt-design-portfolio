@@ -11,7 +11,7 @@ import { Section } from '@/data/types';
 import { DesignSystemHero } from '@/components/design-system/Hero';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
-import { FlexColumnSection, GridLayoutSection, ResourceSection } from '@/components/case-study';
+import { FlexColumnSection, GridLayoutSection } from '@/components/case-study';
 
 export function DesignSystemDemo() {
   const { prev, next } = getAdjacentProjects('design-system-demo');
@@ -32,7 +32,7 @@ export function DesignSystemDemo() {
             Back to Home
           </Link>
 
-          <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
+          <h1 className="text-display-xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
             {designSystemDemo.title}
           </h1>
           <div className="max-w-full md:max-w-[70%]">
@@ -42,7 +42,7 @@ export function DesignSystemDemo() {
           </div>
 
           {/* Hero Section */}
-          <div className="py-20">
+          <div className="py-8 md:py-20">
             <div className="w-full h-[300px] md:h-[600px] bg-muted rounded-2xl md:rounded-3xl overflow-hidden border-primary border-2">
               <DesignSystemHero />
             </div>
@@ -94,9 +94,11 @@ export function DesignSystemDemo() {
                     );
                   case 'resources':
                     return (
-                      <ResourceSection
+                      <FlexColumnSection
                         key={`${section.type}-${index}`}
-                        section={section}
+                        title={section.title || ''}
+                        content={section.content || ''}
+                        items={[{ resources: section.resources }]}
                       />
                     );
                   case 'gallery':

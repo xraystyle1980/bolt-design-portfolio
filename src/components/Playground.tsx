@@ -12,15 +12,6 @@ import { Button } from "./ui/button";
 
 const insights = [
   {
-    id: 'threejs-experiments',
-    title: 'Three.js experiments',
-    description: "Playing with web and 3D—because the internet shouldn't be boring. These are my experiments with Three.js, shaders, and interactive visuals. Click around, drag stuff, break it—go wild.",
-    imageUrl: '/images/playground-3dtoken.png',
-    link: '/playground/threejs',
-    singleImage: '/images/playground-3dtoken.png',
-    videoUrl: '/token.mp4'
-  },
-  {
     id: 'design-system-demo',
     title: 'Design System Demo',
     description: 'Bridging the gap between design and dev. This is a live demo of a design system workflow, where Figma tokens sync to real code. See how changes update in real-time, tweak components, and explore the system in action.',
@@ -28,6 +19,15 @@ const insights = [
     link: '/playground/design-system',
     singleImage: '/images/decent-design-system-hero-single.png',
     videoUrl: '/browser-console-side-by-side.mp4'
+  },
+  {
+    id: 'threejs-experiments',
+    title: 'Three.js experiments',
+    description: "Playing with web and 3D—because the internet shouldn't be boring. These are my experiments with Three.js, shaders, and interactive visuals. Click around, drag stuff—go wild.",
+    imageUrl: '/images/playground-3dtoken.png',
+    link: '/playground/threejs',
+    singleImage: '/images/playground-3dtoken.png',
+    videoUrl: '/token.mp4'
   }
 ];
 

@@ -25,7 +25,7 @@ export function FlexColumnSection({ title, content, items = [] }: FlexColumnSect
         <div key={index} className="flex flex-col gap-2">
           {/* Only render title here if not in a grid layout */}
           {item.title && !item.variant && (
-            <div 
+            <h4 
               className="text-display-sm text-foreground"
               dangerouslySetInnerHTML={{ __html: item.title }}
             />
@@ -129,21 +129,21 @@ export function FlexColumnSection({ title, content, items = [] }: FlexColumnSect
               {item.resources.map((resource) => (
                 <div key={resource.url} className="rounded-xl border border-border bg-card">
                   {/* Header with resource name and link */}
-                  <div className="flex items-center gap-3 p-6 border-b border-border">
+                  <div className="flex items-center gap-3 p-4 md:p-6 border-b border-border">
                     {resource.type === 'github' ? (
                       <Github className="h-5 w-5 text-muted-foreground" />
                     ) : (
                       <Figma className="h-5 w-5 text-muted-foreground" />
                     )}
                     <div className="flex items-center gap-2">
-                      <span className="text-body-lg text-muted-foreground">
+                      <span className="text-body-md md:text-body-lg text-muted-foreground">
                         {resource.type === 'github' ? 'GitHub /' : 'Figma /'}
                       </span>
                       <a 
                         href={resource.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-body-lg font-semibold hover:text-accent transition-colors inline-flex items-center gap-2 underline decoration-[1px] underline-offset-4"
+                        className="text-body-md md:text-body-lg font-semibold hover:text-accent transition-colors inline-flex items-center gap-2 underline decoration-[1px] underline-offset-4"
                       >
                         {resource.title}
                         <ExternalLink className="h-4 w-4" />
@@ -152,8 +152,8 @@ export function FlexColumnSection({ title, content, items = [] }: FlexColumnSect
                   </div>
 
                   {/* Description and stats */}
-                  <div className="p-6">
-                    <div className="flex flex-col md:flex-row gap-6">
+                  <div className="p-4 md:p-6">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-6">
                       <p className="text-body-md text-muted-foreground">
                         {resource.description}
                       </p>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { manageScrollbarWidth } from '@/lib/utils';
 
 import { cn } from '@/lib/utils';
 
@@ -31,27 +32,19 @@ const DialogContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
   <DialogPortal>
-    <DialogOverlay className="[--scrollbar-width:calc(100vw_-_100%)]" />
+    <DialogOverlay />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 rounded-3xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=open]:animate-bounce-in data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] mr-[--scrollbar-width]',
+        'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 rounded-3xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=open]:animate-bounce-in data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
         className
       )}
       onOpenAutoFocus={(e) => {
         e.preventDefault();
-        // Calculate and set scrollbar width when dialog opens
-        if (typeof window !== 'undefined') {
-          const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-          document.documentElement.style.setProperty('--removed-body-scroll-bar-size', `${scrollbarWidth}px`);
-          document.body.classList.add('overflow-hidden');
-        }
+        manageScrollbarWidth(true);
       }}
       onCloseAutoFocus={() => {
-        // Remove the class when dialog closes
-        if (typeof window !== 'undefined') {
-          document.body.classList.remove('overflow-hidden');
-        }
+        manageScrollbarWidth(false);
       }}
       {...props}
     >

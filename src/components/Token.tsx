@@ -9,7 +9,7 @@ interface TokenProps {
 }
 
 // Load the model once outside the component
-const MODEL_PATH = '/temp-ref/token-face-export-1.glb'
+const MODEL_PATH = '/models/token-face-export-1.glb'
 let cachedScene: Object3D | null = null
 
 export function Token({ position, rotation, scale }: TokenProps) {
