@@ -10,7 +10,12 @@ export function CTA() {
         <div className="flex flex-row items-center justify-center gap-2">
           <Mail className="text-muted-foreground h-6 w-6 md:h-10 md:w-10 lg:h-14 lg:w-14" />
           <h5 className="mb-0 text-display-sm sm:text-display-lg md:text-display-2xl lg:text-display-4xl font-normal">
-            <a href="mailto:hello@trice.design" className="text-muted-foreground hover:text-accent hover:underline-offset-4 hover:underline transition-opacity">
+            <a 
+              href="mailto:hello@trice.design" 
+              className="text-muted-foreground hover:text-accent hover:underline-offset-4 hover:underline transition-opacity"
+              aria-label="Send me an email at hello@trice.design"
+              title="Send an email to Matt Trice"
+            >
               <span className="text-foreground">hello</span>@trice.design
             </a>
           </h5>
@@ -21,6 +26,7 @@ export function CTA() {
             href="https://calendly.com/matt-trice/30min" 
             target="_blank" 
             rel="noopener noreferrer"
+            title="Schedule a 30-minute consultation call with Matt Trice"
           >
             <Button 
               size="md"

@@ -78,6 +78,8 @@ export function Menu() {
                   <a 
                     href="mailto:hello@trice.design"
                     className="text-body-md lg:text-body-xl pb-2 text-foreground hover:text-accent transition-colors"
+                    aria-label="Send me an email at hello@trice.design"
+                    title="Send an email to Matt Trice"
                   >
                     hello@trice.design
                   </a>
@@ -85,6 +87,7 @@ export function Menu() {
                     href="https://calendly.com/matt-trice/30min" 
                     target="_blank" 
                     rel="noopener noreferrer"
+                    title="Schedule a 30-minute consultation call with Matt Trice"
                   >
                     <Button 
                       size="sm"

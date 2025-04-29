@@ -86,40 +86,52 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
   const titleWords = title.split(' ');
 
   return (
-    <h1 className="flex flex-col items-start max-w-screen-xl">
-      <span 
-        ref={greetingRef}
-        className="font-normal block text-display-sm md:text-display-lg text-muted-foreground whitespace-nowrap"
+    <div className="flex flex-col items-start max-w-screen-xl">
+      {/* Hidden SEO-friendly version */}
+      <h1 className="sr-only">
+        {greeting} {title}
+      </h1>
+
+      {/* Animated version */}
+      <div 
+        role="presentation"
+        aria-hidden="true"
+        className="flex flex-col items-start max-w-screen-xl"
       >
         <span 
-          ref={emojiRef} 
-          className="inline-block"
+          ref={greetingRef}
+          className="font-normal block text-display-sm md:text-display-lg text-muted-foreground whitespace-nowrap"
         >
-          {emoji}
-        </span>
-        {' '}
-        {greetingText.join(' ')}
-      </span>
-      <div 
-        className="font-normal text-display-md md:text-display-3xl text-foreground pt-3 md:pt-4"
-        style={{
-          wordBreak: 'keep-all',
-          wordWrap: 'normal',
-          whiteSpace: 'normal',
-          hyphens: 'none'
-        }}
-      >
-        {titleWords.map((word, i) => (
-          <span
-            key={i}
-            ref={el => titleWordsRef.current[i] = el}
+          <span 
+            ref={emojiRef} 
             className="inline-block"
-            style={{ marginRight: '0.25em' }}
           >
-            {word}
+            {emoji}
           </span>
-        ))}
+          {' '}
+          {greetingText.join(' ')}
+        </span>
+        <div 
+          className="font-normal text-display-md md:text-display-3xl text-foreground pt-3 md:pt-4"
+          style={{
+            wordBreak: 'keep-all',
+            wordWrap: 'normal',
+            whiteSpace: 'normal',
+            hyphens: 'none'
+          }}
+        >
+          {titleWords.map((word, i) => (
+            <span
+              key={i}
+              ref={el => titleWordsRef.current[i] = el}
+              className="inline-block"
+              style={{ marginRight: '0.25em' }}
+            >
+              {word}
+            </span>
+          ))}
+        </div>
       </div>
-    </h1>
+    </div>
   );
 } 

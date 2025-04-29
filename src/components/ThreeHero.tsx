@@ -168,70 +168,70 @@ export function ThreeHero() {
       // Only update if visible in viewport
       const rect = containerRef.current?.getBoundingClientRect();
       if (rect && rect.bottom >= 0 && rect.top <= window.innerHeight) {
-        // Update ripples with time-based animation
-        ripplesRef.current = ripplesRef.current.filter(ripple => {
-          ripple.time += deltaTime * 0.24;
-          ripple.strength *= Math.exp(-ripple.damping * ripple.time);
-          return ripple.strength > 0.001;
-        });
+      // Update ripples with time-based animation
+      ripplesRef.current = ripplesRef.current.filter(ripple => {
+        ripple.time += deltaTime * 0.24;
+        ripple.strength *= Math.exp(-ripple.damping * ripple.time);
+        return ripple.strength > 0.001;
+      });
 
-        const mouseX = mousePosition.current.x * 25;
-        const mouseY = mousePosition.current.y * 25;
+      const mouseX = mousePosition.current.x * 25;
+      const mouseY = mousePosition.current.y * 25;
 
-        // Batch geometry updates
-        linesRef.current.forEach((line) => {
-          const positions = line.geometry.attributes.position;
-          const array = positions.array;
-          let needsUpdate = false;
+      // Batch geometry updates
+      linesRef.current.forEach((line) => {
+        const positions = line.geometry.attributes.position;
+        const array = positions.array;
+        let needsUpdate = false;
 
-          for (let i = 0; i < positions.count; i++) {
-            const idx = i * 3;
-            const x = array[idx];
-            const y = array[idx + 1];
+        for (let i = 0; i < positions.count; i++) {
+          const idx = i * 3;
+          const x = array[idx];
+          const y = array[idx + 1];
+          
+          const distX = mouseX - x;
+          const distY = mouseY - y;
+          const mouseDistance = Math.sqrt(distX * distX + distY * distY);
+          const peakInfluence = 25 * Math.exp(-Math.pow(mouseDistance * 0.15, 2));
+          
+          let targetZ = peakInfluence;
+
+          // Calculate wave interference
+          for (const ripple of ripplesRef.current) {
+            const rippleX = ripple.position.x * 25;
+            const rippleY = ripple.position.y * 25;
+            const distance = Math.hypot(rippleX - x, rippleY - y);
             
-            const distX = mouseX - x;
-            const distY = mouseY - y;
-            const mouseDistance = Math.sqrt(distX * distX + distY * distY);
-            const peakInfluence = 25 * Math.exp(-Math.pow(mouseDistance * 0.15, 2));
+            const phase = (distance / ripple.wavelength) - (ripple.time * ripple.velocity);
+            const amplitude = ripple.strength * Math.exp(-distance * 0.002);
             
-            let targetZ = peakInfluence;
+            const waveform = (
+              Math.sin(phase * ripple.frequency * Math.PI) +
+              Math.sin(phase * ripple.frequency * 0.3 * Math.PI) * 0.7 +
+              Math.sin(phase * ripple.frequency * 0.15 * Math.PI) * 0.4
+            );
 
-            // Calculate wave interference
-            for (const ripple of ripplesRef.current) {
-              const rippleX = ripple.position.x * 25;
-              const rippleY = ripple.position.y * 25;
-              const distance = Math.hypot(rippleX - x, rippleY - y);
-              
-              const phase = (distance / ripple.wavelength) - (ripple.time * ripple.velocity);
-              const amplitude = ripple.strength * Math.exp(-distance * 0.002);
-              
-              const waveform = (
-                Math.sin(phase * ripple.frequency * Math.PI) +
-                Math.sin(phase * ripple.frequency * 0.3 * Math.PI) * 0.7 +
-                Math.sin(phase * ripple.frequency * 0.15 * Math.PI) * 0.4
-              );
-
-              const focusFactor = Math.exp(-Math.pow(distance - ripple.velocity * ripple.time, 2) * 0.0002);
-              targetZ += waveform * amplitude * focusFactor * 35;
-            }
-            
-            const currentZ = array[idx + 2];
-            const dampingFactor = Math.abs(targetZ - currentZ) > 1 ? 0.10 : 0.18;
-            const velocity = (targetZ - currentZ) * dampingFactor;
-            const newZ = currentZ + velocity;
-            
-            if (Math.abs(newZ - currentZ) > 0.001) {
-              array[idx + 2] = newZ;
-              needsUpdate = true;
-            }
+            const focusFactor = Math.exp(-Math.pow(distance - ripple.velocity * ripple.time, 2) * 0.0002);
+            targetZ += waveform * amplitude * focusFactor * 35;
           }
           
-          if (needsUpdate) {
-            positions.needsUpdate = true;
+          const currentZ = array[idx + 2];
+          const dampingFactor = Math.abs(targetZ - currentZ) > 1 ? 0.10 : 0.18;
+          const velocity = (targetZ - currentZ) * dampingFactor;
+          const newZ = currentZ + velocity;
+          
+          if (Math.abs(newZ - currentZ) > 0.001) {
+            array[idx + 2] = newZ;
+            needsUpdate = true;
           }
-        });
+        }
+        
+        if (needsUpdate) {
+          positions.needsUpdate = true;
+        }
+      });
 
-        renderer.render(scene, camera);
+      renderer.render(scene, camera);
       }
     };
 

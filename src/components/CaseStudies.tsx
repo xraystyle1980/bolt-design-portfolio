@@ -73,9 +73,9 @@ export function CaseStudies() {
 
   return (
     <div className="flex flex-grow flex-col gap-12 md:gap-16">
-      <h4 className="mb-0 mt-4">
+      <h2 className="text-display-md md:text-display-lg lg:text-display-xl mb-0 mt-4">
         Case Studies
-      </h4>
+      </h2>
       {projects.map((project, index) => (
         <div key={project.id} ref={el => caseStudyRefs.current[index] = el}>
           <div className="w-full pb-2">
