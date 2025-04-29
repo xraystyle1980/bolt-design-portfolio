@@ -46,7 +46,7 @@ export function Menu() {
       </DialogTrigger>
 
 
-      <DialogContent className="w-[95vw] h-[90vh] max-w-[1400px] p-6 md:p-12">
+      <DialogContent className="w-[95vw] max-w-[1400px] p-6 md:p-12">
         <div className="flex flex-col">
           
 
