@@ -1,15 +1,14 @@
+import { LottieLogo } from "./LottieLogo"
 import { Container } from "./ui/container"
 import { Link } from "react-router-dom"
-import { LottieLogo } from "./LottieLogo"
 import { cn } from "../lib/utils"
+import { Lightbox } from "./Lightbox"
 
 const menuSections = [
   {
     title: "Trice Design",
     items: [
       { label: "Home", href: "/" },
-      { label: "Book a Call", href: "https://calendly.com/matt-trice/30min" },
-      { label: "hello@trice.design", href: "mailto:hello@trice.design" },
     ]
   },
   {
@@ -21,7 +20,7 @@ const menuSections = [
     ]
   },
   {
-    title: "Playground",
+    title: "Demos",
     items: [
       { label: "Design System Demo", href: "/playground/design-system" },
       { label: "3D Experiments", href: "/playground/threejs" },
@@ -67,7 +66,20 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="flex flex-col space-y-2">
-          <p className="max-w-[85%] caption text-foreground">©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit. <span className="caption text-muted-foreground">Designed despite of tyrannical 🐈</span></p>
+          <p className="max-w-[85%] caption text-foreground">
+            ©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit. 
+            <Lightbox
+              images={[{
+                url: "/fuzzy-404.mp4",
+                alt: "Static video",
+                videoUrl: "/fuzzy-404.mp4",
+                aspectRatio: "16/9"
+              }]}
+              containerHidden
+            >
+              <span className="caption text-muted-foreground cursor-pointer hover:text-accent transition-colors"> Designed despite of tyrannical 🐈</span>
+            </Lightbox>
+          </p>
         </div>
       </Container>
     </footer>

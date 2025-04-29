@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { ThreeJsPlayground } from './pages/ThreeJsPlayground';
 import { DesignSystemDemo } from './pages/DesignSystemDemo';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/case-study/:id" element={<CaseStudyPage />} />
               <Route path="/playground/threejs" element={<ThreeJsPlayground />} />
               <Route path="/playground/design-system" element={<DesignSystemDemo />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </div>

@@ -19,9 +19,10 @@ interface LightboxProps {
   className?: string;
   images?: Image[];
   containerHidden?: boolean;
+  children?: React.ReactNode;
 }
 
-export function Lightbox({ src, alt, className, images, containerHidden }: LightboxProps) {
+export function Lightbox({ src, alt, className, images, containerHidden, children }: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<number>(0);
 
@@ -36,6 +37,69 @@ export function Lightbox({ src, alt, className, images, containerHidden }: Light
       ? "grid-cols-1 md:grid-cols-2" 
       : "grid-cols-1 md:grid-cols-3";
 
+  // If children are provided, render them as the trigger
+  if (children) {
+    return (
+      <>
+        <div onClick={() => setIsOpen(true)}>
+          {children}
+        </div>
+        {isOpen && createPortal(
+          <div 
+            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          >
+            <button
+              className="fixed top-6 right-6 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:text-accent transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsOpen(false);
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <div className="h-full w-full flex items-center justify-center p-4">
+              <div className="relative">
+                {normalizedImages[selectedImage].videoUrl ? (
+                  <div className="rounded-lg overflow-hidden" style={{ maxWidth: '1300px', maxHeight: '80vh', width: '90vw', aspectRatio: '16/9' }}>
+                    <ReactPlayer
+                      url={normalizedImages[selectedImage].videoUrl}
+                      width="100%"
+                      height="100%"
+                      controls={true}
+                      playing={true}
+                      muted={false}
+                      playsinline={true}
+                      loop={true}
+                      config={{
+                        file: {
+                          attributes: {
+                            controlsList: 'nodownload'
+                          }
+                        }
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <img 
+                    src={normalizedImages[selectedImage].url} 
+                    alt={normalizedImages[selectedImage].alt} 
+                    className="max-h-[85vh] w-auto object-contain rounded-lg"
+                  />
+                )}
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+      </>
+    );
+  }
+
+  // Original grid view implementation
   return (
     <div className={cn(
       "grid gap-4",
