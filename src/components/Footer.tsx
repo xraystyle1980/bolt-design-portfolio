@@ -1,8 +1,8 @@
-import { LottieLogo } from "./LottieLogo"
+import { LottieLogo } from "@/components/LottieLogo"
 import { Container } from "@/components/ui/container"
 import { Link } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { Lightbox } from "./Lightbox"
+import { Lightbox } from "@/components/Lightbox"
 
 const menuSections = [
   {
