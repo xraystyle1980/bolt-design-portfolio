@@ -86,7 +86,7 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
   const titleWords = title.split(' ');
 
   return (
-    <div className="flex flex-col items-start max-w-screen-xl">
+    <div className="flex flex-col items-start">
       {/* Hidden SEO-friendly version */}
       <h1 className="sr-only">
         {greeting} {title}
@@ -96,7 +96,7 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
       <div 
         role="presentation"
         aria-hidden="true"
-        className="flex flex-col items-start max-w-screen-xl"
+        className="flex flex-col items-start"
       >
         <span 
           ref={greetingRef}

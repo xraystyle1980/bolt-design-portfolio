@@ -49,7 +49,7 @@ export const designSystemDemo = {
               type: 'figma',
               title: 'DS Demo - Theme',
               description: 'Demo design system built with shadcn/ui and TailwindCSS. Components export design tokens as JSON variables, integrated via Style Dictionary.',
-              url: 'https://www.figma.com/community/file/1490098810930924038/ds-demo-theme-figma-shadcn-ui-tailwind',
+              url: 'https://www.figma.com/community/file/1490096029662140932/ds-demo-theme-figma-shadcn-ui-tailwind',
               lastUpdated: '2024-04-02T22:24:58Z',
               image: '/images/design-system/demo-cover.png'
               // TO-DO: add Figma API to get cover photo
@@ -121,7 +121,7 @@ export const designSystemDemo = {
           content: 'In the Theme file, update the <strong>Primitive</strong> variable set with your custom light and dark theme colors.'
         },
         {
-          content: '🚨 Tip: Be sure your Figma variables have scopes assigned; otherwise, the export process won\'t work correctly.',
+          content: '⚠️ Important: Be sure your Figma variables have scopes assigned; otherwise, the export process won\'t work correctly.',
           variant: 'warning',
           alignContent: 'center',
           image: {
@@ -194,10 +194,9 @@ export const designSystemDemo = {
           resources: [
             {
               type: 'github',
-              title: 'ds-demo5',
+              title: 'figma-shadcn-demo',
               description: 'A React + TypeScript project built on shadcn/ui and TailwindCSS that streamlines Figma token exports through automatic Style Dictionary conversion.',
-              url: 'https://github.com/xraystyle1980/ds-demo5'
-              // lastUpdated: '2024-04-02T22:24:58Z'
+              url: 'https://github.com/xraystyle1980/figma-shadcn-demo'
               // TO-DO: add GH API to get last updated date
             }
           ]
