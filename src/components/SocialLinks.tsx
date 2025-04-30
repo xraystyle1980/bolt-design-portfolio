@@ -1,11 +1,5 @@
-import { DribbbleIcon, GitHubIcon, LinkedInIcon } from "./icons/social"
 import { Button } from "./ui/button"
-
-export const socialLinks = [
-  { icon: LinkedInIcon, href: "https://www.linkedin.com/in/matt-trice/", label: "LinkedIn" },
-  { icon: GitHubIcon, href: "https://github.com/xraystyle1980", label: "GitHub" },
-  { icon: DribbbleIcon, href: "https://dribbble.com/trice", label: "Dribbble" },
-];
+import { socialLinks } from "@/data/social-links"
 
 interface SocialLinksProps {
   className?: string;

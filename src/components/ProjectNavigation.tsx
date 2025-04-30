@@ -18,7 +18,7 @@ interface ProjectNavigationProps {
 }
 
 export function ProjectNavigation({ prevProject, nextProject }: ProjectNavigationProps) {
-  const getBadgeVariant = (_type: 'demo' | 'case-study'): 'default' | 'secondary' | 'destructive' | 'outline' | 'muted' => {
+  const getBadgeVariant = (): 'default' | 'secondary' | 'destructive' | 'outline' | 'muted' => {
     return 'default';
   };
 
@@ -42,7 +42,7 @@ export function ProjectNavigation({ prevProject, nextProject }: ProjectNavigatio
                 <span className="text-sm">Previous Project</span>
               </div>
               <div className="flex flex-col gap-2">
-                <Badge variant={getBadgeVariant(prevProject.projectType)} className="w-fit">
+                <Badge variant={getBadgeVariant()} className="w-fit">
                   {getBadgeLabel(prevProject.projectType)}
                 </Badge>
                 <h3 className="text-display-sm text-foreground">{prevProject.title}</h3>
@@ -65,7 +65,7 @@ export function ProjectNavigation({ prevProject, nextProject }: ProjectNavigatio
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </div>
               <div className="flex flex-col gap-2 items-end">
-                <Badge variant={getBadgeVariant(nextProject.projectType)} className="w-fit">
+                <Badge variant={getBadgeVariant()} className="w-fit">
                   {getBadgeLabel(nextProject.projectType)}
                 </Badge>
                 <h3 className="text-display-sm text-foreground">{nextProject.title}</h3>

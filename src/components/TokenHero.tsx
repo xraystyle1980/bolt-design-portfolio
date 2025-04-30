@@ -74,11 +74,12 @@ function TokenRain() {
   }, [])
 
   // Handle pointer movement with raycasting
-  const handlePointerMove = (event: any) => {
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!groupRef.current || !isInteracting) return
     
     // Convert pointer coordinates to scene coordinates
-    const bounds = event.target.getBoundingClientRect()
+    const target = event.target as HTMLDivElement;
+    const bounds = target.getBoundingClientRect();
     const x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1
     const z = -((event.clientY - bounds.top) / bounds.height) * 2 + 1
     

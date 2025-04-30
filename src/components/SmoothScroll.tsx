@@ -14,7 +14,7 @@ interface SmoothScrollProps {
 export function SmoothScroll({ children }: SmoothScrollProps) {
   const smoothWrapperRef = useRef<HTMLDivElement>(null);
   const smoothContentRef = useRef<HTMLDivElement>(null);
-  const smootherRef = useRef<any>(null);
+  const smootherRef = useRef<ScrollSmoother | null>(null);
   const location = useLocation();
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useGLTF } from '@react-three/drei'
 import { useRef } from 'react'
-import { Group, MeshStandardMaterial, Object3D } from 'three'
+import { Group, MeshStandardMaterial, Object3D, Mesh } from 'three'
 
 interface TokenProps {
   position: [number, number, number]
@@ -22,8 +22,8 @@ export function Token({ position, rotation, scale }: TokenProps) {
   if (!cachedScene && scene) {
     cachedScene = scene.clone()
     // Set up materials once
-    cachedScene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
+    cachedScene.traverse((child) => {
+      if (child instanceof Mesh && child.material) {
         // Preserve original colors but enhance material properties
         child.material = new MeshStandardMaterial({
           map: child.material.map, // Keep original texture

@@ -15,9 +15,7 @@ import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
 import { FlexColumnSection } from '@/components/case-study/FlexColumnSection';
 
-interface CaseStudyPageProps {}
-
-export function CaseStudyPage({}: CaseStudyPageProps) {
+export function CaseStudyPage() {
   const { id } = useParams();
   const project = projects.find((p: Project) => p.id === id);
   const { prev, next } = getAdjacentProjects(id || '');

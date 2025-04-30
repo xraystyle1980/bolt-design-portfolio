@@ -4,13 +4,48 @@ import { useTheme } from './ThemeProvider';
 import lottie from "lottie-web";
 import { cn } from "@/lib/utils";
 
+interface AnimationData {
+  v: string;
+  fr: number;
+  ip: number;
+  op: number;
+  w: number;
+  h: number;
+  nm: string;
+  ddd: number;
+  assets: Array<{
+    id: string;
+    w?: number;
+    h?: number;
+    u?: string;
+    p?: string;
+    e?: number;
+  }>;
+  layers: Array<{
+    ty: number;
+    nm: string;
+    sr: number;
+    ks: Record<string, unknown>;
+    ao: number;
+    shapes?: Array<{
+      ty: string;
+      nm: string;
+      d: number;
+      c?: {
+        a: number;
+        k: number[];
+      };
+    }>;
+  }>;
+}
+
 interface LottieLogoProps {
   className?: string;
 }
 
 export function LottieLogo({ className }: LottieLogoProps) {
-  const [logoData, setLogoData] = useState<any>(null);
-  const [blinkData, setBlinkData] = useState<any>(null);
+  const [logoData, setLogoData] = useState<AnimationData | null>(null);
+  const [blinkData, setBlinkData] = useState<AnimationData | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayedInitialAnimation, setHasPlayedInitialAnimation] = useState(false);
   const lottieRef = useRef<LottieRefCurrentProps>(null);

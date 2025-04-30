@@ -4,7 +4,7 @@ import { useLayoutEffect } from 'react';
  * Hook to scroll to the top of the page on component mount
  * @param dependencies - Optional array of dependencies to trigger scroll
  */
-export function useScrollToTop(dependencies: any[] = []) {
+export function useScrollToTop(dependencies: unknown[] = []) {
   // Use layoutEffect to ensure this runs before browser paint
   useLayoutEffect(() => {
     console.log('useScrollToTop - forcing scroll to top');
@@ -55,5 +55,5 @@ export function useScrollToTop(dependencies: any[] = []) {
     // Start the sequence
     scrollSequence();
     
-  }, dependencies);
+  }, [dependencies]);
 } 

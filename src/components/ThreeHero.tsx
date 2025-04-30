@@ -244,11 +244,15 @@ export function ThreeHero() {
     animate(lastTimeRef.current);
 
     return () => {
+      const container = containerRef.current;
+      const lines = linesRef.current;
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('click', handleClick);
-      containerRef.current?.removeChild(renderer.domElement);
-      linesRef.current.forEach(line => line.geometry.dispose());
+      if (container) {
+        container.removeChild(renderer.domElement);
+      }
+      lines.forEach(line => line.geometry.dispose());
       gradientMaterial.dispose();
       scene.clear();
       renderer.dispose();

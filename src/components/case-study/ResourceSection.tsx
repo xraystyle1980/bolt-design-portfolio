@@ -1,8 +1,16 @@
 import { Section } from '@/data/types';
 import { Github, ExternalLink, Figma } from 'lucide-react';
 
+interface Resource {
+  title: string;
+  url: string;
+  type: 'github' | 'external' | 'figma';
+  description?: string;
+  image?: string;
+}
+
 interface ResourceSectionProps {
-  section: Extract<Section, { type: 'resources' }> | { resources: any[] };
+  section: Extract<Section, { type: 'resources' }> | { resources: Resource[] };
 }
 
 export function ResourceSection({ section }: ResourceSectionProps) {

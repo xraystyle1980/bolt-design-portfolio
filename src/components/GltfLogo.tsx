@@ -176,10 +176,11 @@ export function GltfLogo() {
 
     // Cleanup
     return () => {
+      const container = containerRef.current;
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', onMouseMove);
-      if (containerRef.current) {
-        containerRef.current.removeChild(renderer.domElement);
+      if (container) {
+        container.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };
