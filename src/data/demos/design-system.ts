@@ -237,7 +237,7 @@ export const designSystemDemo = {
         },
         {
           videoUrl: '/figma-vars-to-json.mp4',
-          caption: 'Running the plugin and placing the JSON token file into your app\'s import folder'
+          caption: 'Running the plugin and placing the JSON token file into your app import folder'
         },
         {
           content: 'With the exported JSON file in your app directory, run the conversion script.',
