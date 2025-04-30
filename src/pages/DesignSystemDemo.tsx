@@ -83,6 +83,7 @@ export function DesignSystemDemo() {
                         title={section.title}
                         content={section.content}
                         items={section.items}
+                        className="col-span-1 w-full"
                       />
                     );
                   case 'grid-layout':
@@ -113,6 +114,24 @@ export function DesignSystemDemo() {
                           <p className="text-body-lg text-foreground">{section.content}</p>
                         </div>
                         <Lightbox images={section.images} />
+                      </div>
+                    );
+                  case 'videos':
+                    return (
+                      <div key={`${section.type}-${index}`} className="col-span-1 w-full">
+                        {section.videos?.map((video, index) => (
+                          <div key={index} className="relative w-full aspect-video mb-8">
+                            <video
+                              src={video.videoUrl}
+                              className="w-full h-full object-cover rounded-lg"
+                              controls
+                              playsInline
+                            />
+                            {video.caption && (
+                              <p className="mt-2 text-sm text-muted-foreground">{video.caption}</p>
+                            )}
+                          </div>
+                        ))}
                       </div>
                     );
                   default:

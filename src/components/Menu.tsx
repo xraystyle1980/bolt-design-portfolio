@@ -24,8 +24,8 @@ const menuSections = [
   {
     title: "Demos",
     items: [
-      { label: "Design System Demo", href: "/playground/design-system" },
-      { label: "3D Experiments", href: "/playground/threejs" },
+      { label: "Design System Demo", href: "/demo/design-system" },
+      { label: "3D Experiments", href: "/demo/threejs" },
     ]
   }
 ];

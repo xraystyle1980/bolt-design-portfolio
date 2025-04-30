@@ -1,7 +1,7 @@
 import { LottieLogo } from "./LottieLogo"
-import { Container } from "./ui/container"
+import { Container } from "@/components/ui/container"
 import { Link } from "react-router-dom"
-import { cn } from "../lib/utils"
+import { cn } from "@/lib/utils"
 import { Lightbox } from "./Lightbox"
 
 const menuSections = [
@@ -22,8 +22,8 @@ const menuSections = [
   {
     title: "Demos",
     items: [
-      { label: "Design System Demo", href: "/playground/design-system" },
-      { label: "3D Experiments", href: "/playground/threejs" },
+      { label: "Design System Demo", href: "/demo/design-system" },
+      { label: "3D Experiments", href: "/demo/threejs" },
     ]
   }
 ];
@@ -67,7 +67,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="flex flex-col space-y-2">
           <p className="max-w-[85%] caption text-foreground">
-            ©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit. 
+            ©2025 Trice Design, LLC. Built for learning and tinkering—fork it, remix it, build cool shit.&nbsp;
             <Lightbox
               images={[{
                 url: "/fuzzy-404.mp4",
@@ -77,7 +77,7 @@ export function Footer() {
               }]}
               containerHidden
             >
-              <span className="caption text-muted-foreground cursor-pointer hover:text-accent transition-colors"> Designed despite of tyrannical 🐈</span>
+              <span className="caption text-muted-foreground cursor-pointer hover:text-accent transition-colors inline-flex">Designed despite of tyrannical 🐈</span>
             </Lightbox>
           </p>
         </div>
@@ -85,3 +85,5 @@ export function Footer() {
     </footer>
   );
 }
+
+

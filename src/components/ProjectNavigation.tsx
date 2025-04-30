@@ -9,7 +9,7 @@ interface Project {
   title: string;
   subtitle: string;
   link: string;
-  projectType: 'playground' | 'case-study';
+  projectType: 'demo' | 'case-study';
 }
 
 interface ProjectNavigationProps {
@@ -18,12 +18,12 @@ interface ProjectNavigationProps {
 }
 
 export function ProjectNavigation({ prevProject, nextProject }: ProjectNavigationProps) {
-  const getBadgeVariant = (_type: 'playground' | 'case-study'): 'default' | 'secondary' | 'destructive' | 'outline' | 'muted' => {
+  const getBadgeVariant = (_type: 'demo' | 'case-study'): 'default' | 'secondary' | 'destructive' | 'outline' | 'muted' => {
     return 'default';
   };
 
-  const getBadgeLabel = (type: 'playground' | 'case-study') => {
-    return type === 'playground' ? 'Demos' : 'Case Study';
+  const getBadgeLabel = (type: 'demo' | 'case-study') => {
+    return type === 'demo' ? 'Demo' : 'Case Study';
   };
 
   return (

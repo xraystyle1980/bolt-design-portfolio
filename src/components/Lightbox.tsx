@@ -41,9 +41,9 @@ export function Lightbox({ src, alt, className, images, containerHidden, childre
   if (children) {
     return (
       <>
-        <div onClick={() => setIsOpen(true)}>
+        <span onClick={() => setIsOpen(true)} className="inline">
           {children}
-        </div>
+        </span>
         {isOpen && createPortal(
           <div 
             className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"

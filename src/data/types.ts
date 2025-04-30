@@ -2,7 +2,7 @@
 export type HtmlString = string;
 
 export interface BaseSection {
-  type: 'gallery' | 'resources' | 'flex-column' | 'grid-layout' | 'content' | 'process' | 'narrative' | 'instruction' | 'design-tokens' | 'component-library';
+  type: 'gallery' | 'resources' | 'flex-column' | 'grid-layout' | 'content' | 'process' | 'narrative' | 'instruction' | 'design-tokens' | 'component-library' | 'videos';
   layout?: '1-col' | '2-col' | '3-col';
 }
 
@@ -22,7 +22,7 @@ export interface Link {
 
 export interface Subsection {
   title?: string;
-  content?: string;
+  content?: string | JSX.Element;
   variant?: 'warning' | 'info' | 'default';
   titleVariant?: 'large' | 'default';
   image?: Image;
@@ -151,6 +151,14 @@ export interface ComponentLibrarySection extends BaseSection {
   }[];
 }
 
+export interface VideoSection extends BaseSection {
+  type: 'videos';
+  videos: {
+    videoUrl: string;
+    caption?: string;
+  }[];
+}
+
 // Combined section type
 export type Section = 
   | FlexColumnSection 
@@ -162,7 +170,8 @@ export type Section =
   | NarrativeSection
   | InstructionSection
   | DesignTokenSection
-  | ComponentLibrarySection;
+  | ComponentLibrarySection
+  | VideoSection;
 
 export interface Project {
   id: string;

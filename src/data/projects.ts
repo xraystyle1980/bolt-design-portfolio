@@ -12,13 +12,13 @@ export const projects: Project[] = [
     id: 'threejs-experiments',
     title: 'Three.js Experiments',
     subtitle: 'Interactive 3D experiments and visual experiences',
-    link: '/playground/threejs'
+    link: '/demo/threejs'
   },
   {
     id: 'design-system-demo',
     title: 'Design System Demo',
     subtitle: 'Live demonstration of design tokens and component libraries',
-    link: '/playground/design-system'
+    link: '/demo/design-system'
   }
 ];
 

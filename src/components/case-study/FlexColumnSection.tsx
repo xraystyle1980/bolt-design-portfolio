@@ -8,11 +8,12 @@ interface FlexColumnSectionProps {
   title: string;
   content: string;
   items?: Subsection[];
+  className?: string;
 }
 
-export function FlexColumnSection({ title, content, items = [] }: FlexColumnSectionProps) {
+export function FlexColumnSection({ title, content, items = [], className }: FlexColumnSectionProps) {
   return (
-    <section className="flex flex-col gap-8">
+    <section className={cn("flex flex-col gap-8", className)}>
       <div className="flex flex-col gap-2">
         <h3 className="text-display-md text-foreground">{title}</h3>
         <div 
@@ -80,6 +81,7 @@ export function FlexColumnSection({ title, content, items = [] }: FlexColumnSect
                       videoUrl: item.subsections[0].videoUrl,
                       aspectRatio: item.subsections[0].aspectRatio
                     }]}
+                    className="w-full col-span-1"
                   />
                   {item.subsections[0].caption && (
                     <p className="text-body-sm text-muted-foreground mt-2 text-center">{item.subsections[0].caption}</p>
@@ -117,6 +119,7 @@ export function FlexColumnSection({ title, content, items = [] }: FlexColumnSect
                   videoUrl: item.videoUrl,
                   aspectRatio: item.aspectRatio
                 }]}
+                className="w-full col-span-1"
               />
               {item.caption && (
                 <p className="text-body-sm text-muted-foreground text-center">{item.caption}</p>
