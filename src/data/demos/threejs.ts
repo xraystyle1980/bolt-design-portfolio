@@ -8,6 +8,12 @@ export const threeJsDemo: Demo = {
   role: 'Creative Developer',
   team: 'Solo Project',
   technologies: ['Three.js', 'WebGL', 'GLSL', 'JavaScript', 'React'],
+  meta: {
+    title: 'Three.js Experiments | Matt Trice Design',
+    description: 'Interactive 3D experiments and visual experiences built with Three.js',
+    ogImage: '/OG-scrolling-token.png',
+    ogUrl: 'https://trice.design/demo/threejs'
+  },
   projects: [
     {
       id: '3d-scrolling-token',

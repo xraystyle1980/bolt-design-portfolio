@@ -14,6 +14,12 @@ export const decentApp: Project = {
   heroSubTitle: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share.',
   role: 'Lead Product Designer',
   team: '1 Product Designer (me), 1 Brand Designer, 1 Creative Director, 4 Engineers, 1 Product Manager',
+  meta: {
+    title: 'Decent App Redesign | Matt Trice Design',
+    description: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
+    ogImage: '/OG-decent-app.png',
+    ogUrl: 'https://trice.design/case-study/decent-app'
+  },
 
 
   sections: [

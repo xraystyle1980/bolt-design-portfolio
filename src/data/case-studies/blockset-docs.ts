@@ -13,6 +13,12 @@ export const blocksetDocs: Project = {
   heroSubTitle: 'How I transformed complex technical documentation into a beautiful, intuitive information architecture that dramatically improved developer experience.',
   role: 'Lead Designer',
   team: '1 Designer (me), 1 Technical Writer, 2 Engineers',
+  meta: {
+    title: 'Blockset Docs Redesign | Matt Trice Design',
+    description: 'How I transformed complex technical documentation into a beautiful, intuitive information architecture that dramatically improved developer experience.',
+    ogImage: '/OG-blockset.png',
+    ogUrl: 'https://trice.design/case-study/blockset-docs'
+  },
 
 
   sections: [

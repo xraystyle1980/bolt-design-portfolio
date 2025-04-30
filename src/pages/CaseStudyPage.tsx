@@ -14,6 +14,7 @@ import { HeroSection } from '@/components/case-study/HeroSection';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
 import { FlexColumnSection } from '@/components/case-study/FlexColumnSection';
+import { MetaTags } from '@/components/MetaTags';
 
 export function CaseStudyPage() {
   const { id } = useParams();
@@ -26,6 +27,12 @@ export function CaseStudyPage() {
 
   return (
     <div id="top">
+      <MetaTags 
+        title={project.meta?.title || `${project.title} | Matt Trice Design`}
+        description={project.meta?.description || project.description}
+        ogUrl={project.meta?.ogUrl || `https://trice.design/case-study/${project.id}`}
+        ogImage={project.meta?.ogImage || project.heroImage}
+      />
       <section className="mt-20">
         <Container className="text-foreground mb-10 md:mb-16">
      

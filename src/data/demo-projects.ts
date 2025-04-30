@@ -9,7 +9,7 @@ export const demoProjects: Project[] = [
   {
     id: 'design-system-demo',
     title: 'Design System Demo',
-    subtitle: 'Live demonstration of design tokens and component libraries',
+    subtitle: 'Live demonstration of design tokens and component libraries.',
     link: '/demo/design-system'
   },
   {

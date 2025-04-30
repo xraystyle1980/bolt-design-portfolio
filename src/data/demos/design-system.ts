@@ -11,6 +11,12 @@ export const designSystemDemo = {
   leftImage: '/images/design-system/components-demo.png',
   rightImage: '/images/design-system/tokens-demo.png',
   layout: 'double',
+  meta: {
+    title: 'Design System Demo | Matt Trice Design',
+    description: 'A simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS',
+    ogImage: 'OG-ds-demo.png',
+    ogUrl: 'https://trice.design/demo/design-system'
+  },
   sections: [
 
 

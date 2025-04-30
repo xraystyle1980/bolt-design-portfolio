@@ -7,10 +7,12 @@ import { Playground } from '../components/Playground';
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { AnimatedHeroText } from '@/components/AnimatedHeroText';
+import { MetaTags } from '@/components/MetaTags';
 
 export function HomePage() {
   return (
     <div id="top">
+      <MetaTags />
       <ThreeHero />
       <Container>
         <div className="flex flex-col gap-8 md:gap-16 lg:gap-24">

@@ -198,6 +198,13 @@ export interface Project {
     role: string;
   };
   layout?: 'single' | 'split' | 'double';
+  meta?: {
+    title?: string;
+    description?: string;
+    ogImage?: string;
+    ogUrl?: string;
+  };
+  subtitle?: string;
 }
 
 export interface ProcessStep {

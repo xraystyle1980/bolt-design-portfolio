@@ -18,4 +18,10 @@ export interface Demo {
   team: string;
   technologies: string[];
   projects: Project[];
+  meta?: {
+    title?: string;
+    description?: string;
+    ogImage?: string;
+    ogUrl?: string;
+  };
 } 

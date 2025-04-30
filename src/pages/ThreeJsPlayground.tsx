@@ -11,12 +11,19 @@ import { buttonVariants } from '@/components/ui/button';
 import { TokenHero } from '@/components/TokenHero';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { Project } from '@/types/project';
+import { MetaTags } from '@/components/MetaTags';
 
 export function ThreeJsPlayground() {
   const { prev, next } = getAdjacentProjects('threejs-experiments');
 
   return (
     <div id="top">
+      <MetaTags 
+        title={`${threeJsDemo.title} | Matt Trice Design`}
+        description={threeJsDemo.subtitle}
+        ogUrl="https://trice.design/demo/threejs"
+        ogImage="/images/playground-3dtoken.png"
+      />
       <section className="mt-20">
         <Container className="text-foreground mb-16">
           {/* Back to Home */}
