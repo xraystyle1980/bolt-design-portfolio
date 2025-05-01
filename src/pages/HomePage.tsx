@@ -7,12 +7,21 @@ import { Playground } from '../components/Playground';
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { AnimatedHeroText } from '@/components/AnimatedHeroText';
-import { MetaTags } from '@/components/MetaTags';
+import MetaTags from '@/components/MetaTags';
 
 export function HomePage() {
   return (
     <div id="top">
-      <MetaTags />
+      <MetaTags 
+        title="Matt Trice Design | Senior Product Designer"
+        description="👋 Hello, I'm Matt Trice. I am a Senior Product Designer connecting UX, design systems, and front-end."
+        ogImage="https://trice.design/meta/OG-image.png"
+        ogUrl="https://trice.design"
+        ogType="website"
+        twitterCard="summary_large_image"
+        twitterSite="@tricedesign"
+        twitterCreator="@tricedesign"
+      />
       <ThreeHero />
       <Container>
         <div className="flex flex-col gap-8 md:gap-16 lg:gap-24">

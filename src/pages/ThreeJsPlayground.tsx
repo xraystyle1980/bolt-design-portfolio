@@ -11,7 +11,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { TokenHero } from '@/components/TokenHero';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { Project } from '@/types/project';
-import { MetaTags } from '@/components/MetaTags';
+import MetaTags from '@/components/MetaTags';
 
 export function ThreeJsPlayground() {
   const { prev, next } = getAdjacentProjects('threejs-experiments');

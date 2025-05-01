@@ -203,6 +203,10 @@ export interface Project {
     description?: string;
     ogImage?: string;
     ogUrl?: string;
+    ogType?: string;
+    twitterCard?: string;
+    twitterSite?: string;
+    twitterCreator?: string;
   };
   subtitle?: string;
 }
@@ -257,4 +261,15 @@ export interface DesignSystem {
       default?: string;
     }[];
   }[];
+}
+
+export interface Meta {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  ogType?: string;
+  twitterCard?: string;
+  twitterSite?: string;
+  twitterCreator?: string;
 } 

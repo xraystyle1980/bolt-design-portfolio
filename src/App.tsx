@@ -8,26 +8,29 @@ import { ScrollToTop } from '@/components/ScrollToTop';
 import { ThreeJsPlayground } from './pages/ThreeJsPlayground';
 import { DesignSystemDemo } from './pages/DesignSystemDemo';
 import NotFound from './pages/NotFound';
+import { HelmetProvider } from 'react-helmet-async';
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <Navigation />
-      <SmoothScroll>
-        <div id="top"></div>
-        <div className="flex flex-col min-h-screen">
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/case-study/:id" element={<CaseStudyPage />} />
-              <Route path="/demo/threejs" element={<ThreeJsPlayground />} />
-              <Route path="/demo/design-system" element={<DesignSystemDemo />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-        </div>
-      </SmoothScroll>
-      <ScrollToTop />
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <Navigation />
+        <SmoothScroll>
+          <div id="top"></div>
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/case-study/:id" element={<CaseStudyPage />} />
+                <Route path="/demo/threejs" element={<ThreeJsPlayground />} />
+                <Route path="/demo/design-system" element={<DesignSystemDemo />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+          </div>
+        </SmoothScroll>
+        <ScrollToTop />
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }

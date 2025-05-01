@@ -14,9 +14,9 @@ export const blocksetDocs: Project = {
   role: 'Lead Designer',
   team: '1 Designer (me), 1 Technical Writer, 2 Engineers',
   meta: {
-    title: 'Blockset Docs Redesign | Matt Trice Design',
-    description: 'How I transformed complex technical documentation into a beautiful, intuitive information architecture that dramatically improved developer experience.',
-    ogImage: '/OG-blockset.png',
+    title: 'Blockset Documentation | Matt Trice Design',
+    description: 'Designing and building a comprehensive documentation site for Blockset\'s blockchain infrastructure platform.',
+    ogImage: 'https://trice.design/meta/OG-blockset.png',
     ogUrl: 'https://trice.design/case-study/blockset-docs'
   },
 

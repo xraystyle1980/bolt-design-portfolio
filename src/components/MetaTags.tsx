@@ -1,44 +1,56 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface MetaTagsProps {
   title?: string;
   description?: string;
   ogImage?: string;
   ogUrl?: string;
+  ogType?: string;
+  twitterCard?: string;
+  twitterSite?: string;
+  twitterCreator?: string;
 }
 
-export function MetaTags({ 
+const MetaTags = ({
   title = "Matt Trice Design | Senior Product Designer",
   description = "👋 Hello, I'm Matt Trice. I am a Senior Product Designer connecting UX, design systems, and front-end.",
-  ogImage = "https://trice.design/OG-image.png",
-  ogUrl = "https://trice.design"
-}: MetaTagsProps) {
-  useEffect(() => {
-    // Update document title
-    document.title = title;
+  ogImage = "https://trice.design/meta/OG-image.png",
+  ogUrl = "https://trice.design",
+  ogType = 'website',
+  twitterCard = 'summary_large_image',
+  twitterSite = '@tricedesign',
+  twitterCreator = '@tricedesign',
+}: MetaTagsProps) => {
+  // Get the base URL from environment or use current origin
+  const baseUrl = import.meta.env.VITE_BASE_URL || window.location.origin;
+  
+  // Only construct full URL for images if it's a relative path
+  const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
 
-    // Update meta tags
-    const metaTags = [
-      { name: 'title', content: title },
-      { name: 'description', content: description },
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:image', content: ogImage },
-      { property: 'og:url', content: ogUrl },
-      { name: 'twitter:title', content: title },
-      { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: ogImage },
-      { name: 'twitter:url', content: ogUrl }
-    ];
+  return (
+    <Helmet>
+      {/* Primary Meta Tags */}
+      <title>{title}</title>
+      <meta name="title" content={title} />
+      <meta name="description" content={description} />
 
-    metaTags.forEach(({ name, property, content }) => {
-      const selector = property ? `meta[property="${property}"]` : `meta[name="${name}"]`;
-      const element = document.querySelector(selector);
-      if (element) {
-        element.setAttribute('content', content);
-      }
-    });
-  }, [title, description, ogImage, ogUrl]);
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content={ogType} />
+      <meta property="og:url" content={ogUrl} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={fullOgImage} />
 
-  return null;
-} 
+      {/* Twitter */}
+      <meta property="twitter:card" content={twitterCard} />
+      <meta property="twitter:url" content={ogUrl} />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:image" content={fullOgImage} />
+      {twitterSite && <meta property="twitter:site" content={twitterSite} />}
+      {twitterCreator && <meta property="twitter:creator" content={twitterCreator} />}
+    </Helmet>
+  );
+};
+
+export default MetaTags; 

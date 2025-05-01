@@ -13,8 +13,8 @@ export const designSystemDemo = {
   layout: 'double',
   meta: {
     title: 'Design System Demo | Matt Trice Design',
-    description: 'A simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS',
-    ogImage: 'OG-ds-demo.png',
+    description: 'A comprehensive design system built with React, Radix UI, and Tailwind CSS.',
+    ogImage: 'https://trice.design/meta/OG-ds-demo.png',
     ogUrl: 'https://trice.design/demo/design-system'
   },
   sections: [

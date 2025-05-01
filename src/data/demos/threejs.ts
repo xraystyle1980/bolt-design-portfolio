@@ -10,8 +10,8 @@ export const threeJsDemo: Demo = {
   technologies: ['Three.js', 'WebGL', 'GLSL', 'JavaScript', 'React'],
   meta: {
     title: 'Three.js Experiments | Matt Trice Design',
-    description: 'Interactive 3D experiments and visual experiences built with Three.js',
-    ogImage: '/OG-scrolling-token.png',
+    description: 'Exploring creative coding and 3D web experiences with Three.js and React Three Fiber.',
+    ogImage: 'https://trice.design/meta/OG-scrolling-token.png',
     ogUrl: 'https://trice.design/demo/threejs'
   },
   projects: [

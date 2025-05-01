@@ -12,7 +12,7 @@ import { DesignSystemHero } from '@/components/design-system/Hero';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
 import { FlexColumnSection, GridLayoutSection } from '@/components/case-study';
-import { MetaTags } from '@/components/MetaTags';
+import MetaTags from '@/components/MetaTags';
 
 export function DesignSystemDemo() {
   const { prev, next } = getAdjacentProjects('design-system-demo');

@@ -17,8 +17,12 @@ export const decentApp: Project = {
   meta: {
     title: 'Decent App Redesign | Matt Trice Design',
     description: 'Leading product design and execution to redesign a failing legacy app – driving growth, aligning with brand, and reclaiming market share',
-    ogImage: '/OG-decent-app.png',
-    ogUrl: 'https://trice.design/case-study/decent-app'
+    ogImage: 'https://trice.design/meta/OG-decent-app.png',
+    ogUrl: 'https://trice.design/case-study/decent-app',
+    ogType: 'article',
+    twitterCard: 'summary_large_image',
+    twitterSite: '@tricedesign',
+    twitterCreator: '@tricedesign'
   },
 
 

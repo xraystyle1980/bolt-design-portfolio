@@ -17,8 +17,8 @@ export const decentDesignSystem: Project = {
   team: 'Lead Product Designer (me), Front End Engineer',
   meta: {
     title: 'Decent Design System | Matt Trice Design',
-    description: 'Building a scalable design system to unify product experiences and streamline development workflows.',
-    ogImage: '/OG-dds.png',
+    description: 'Building a scalable design system to support rapid product development and maintain consistency across multiple platforms.',
+    ogImage: 'https://trice.design/meta/OG-dds.png',
     ogUrl: 'https://trice.design/case-study/decent-design-system'
   },
   

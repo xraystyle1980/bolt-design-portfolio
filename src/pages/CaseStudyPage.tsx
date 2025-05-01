@@ -14,7 +14,7 @@ import { HeroSection } from '@/components/case-study/HeroSection';
 import { ProjectNavigation } from '@/components/ProjectNavigation';
 import { getAdjacentProjects } from '@/data/navigation';
 import { FlexColumnSection } from '@/components/case-study/FlexColumnSection';
-import { MetaTags } from '@/components/MetaTags';
+import MetaTags from '@/components/MetaTags';
 
 export function CaseStudyPage() {
   const { id } = useParams();
