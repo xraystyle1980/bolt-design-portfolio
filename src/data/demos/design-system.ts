@@ -13,7 +13,7 @@ export const designSystemDemo = {
   layout: 'double',
   meta: {
     title: 'Design System Demo | Matt Trice Design',
-    description: 'A comprehensive design system built with React, Radix UI, and Tailwind CSS.',
+    description: 'This project showcases an efficient integration using Style Dictionary, highlighting a streamlined approach to managing design tokens across design and development.',
     ogImage: 'https://trice.design/meta/OG-ds-demo.png',
     ogUrl: 'https://trice.design/demo/design-system'
   },

@@ -20,10 +20,10 @@ export function DesignSystemDemo() {
   return (
     <div id="top">
       <MetaTags 
-        title={`${designSystemDemo.title} | Matt Trice Design`}
-        description={designSystemDemo.subtitle}
-        ogUrl="https://trice.design/demo/design-system"
-        ogImage="/images/decent-design-system-hero-single.png"
+        title={designSystemDemo.meta.title}
+        description={designSystemDemo.meta.description}
+        ogUrl={designSystemDemo.meta.ogUrl}
+        ogImage={designSystemDemo.meta.ogImage}
       />
       <section className="mt-20">
         <Container className="text-foreground mb-16">
