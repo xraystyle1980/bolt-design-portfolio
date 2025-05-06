@@ -21,11 +21,17 @@ export function ThreeHero() {
   const gridGroupRef = useRef<THREE.Group | null>(null);
   const linesRef = useRef<THREE.Line[]>([]);
   const lastTimeRef = useRef<number>(0);
-  
+  const gradientMaterialRef = useRef<THREE.ShaderMaterial | null>(null);
+
+  const LIGHT_COLOR = 0xE5ECE9; // light theme color
+  const DARK_COLOR = 0x8E8E8E;  // dark theme color (example)
+
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Scene setup
+    const isDark = document.documentElement.classList.contains('dark');
+    const gridColor = isDark ? DARK_COLOR : LIGHT_COLOR;
+
     const scene = new THREE.Scene();
     scene.background = null;
     sceneRef.current = scene;
@@ -45,17 +51,15 @@ export function ThreeHero() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    // Grid setup
     const gridSize = 80;
     const spacing = 2.0;
     const gridGroup = new THREE.Group();
     gridGroupRef.current = gridGroup;
     scene.add(gridGroup);
 
-    // Optimized shader
     const gradientMaterial = new THREE.ShaderMaterial({
       uniforms: {
-        color: { value: new THREE.Color(0xE5ECE9) },
+        color: { value: new THREE.Color(gridColor) },
         mousePos: { value: new THREE.Vector2(0, 0) }
       },
       vertexShader: `
@@ -86,11 +90,10 @@ export function ThreeHero() {
       transparent: true,
       side: THREE.DoubleSide,
     });
+    gradientMaterialRef.current = gradientMaterial;
 
-    // Reusable point pool for geometry creation
     const pointPool: THREE.Vector3[] = Array(gridSize).fill(0).map(() => new THREE.Vector3());
     
-    // Create horizontal and vertical lines
     const createLines = (isHorizontal: boolean) => {
       for (let j = 0; j < gridSize; j++) {
         for (let i = 0; i < gridSize; i++) {
@@ -165,10 +168,8 @@ export function ThreeHero() {
       const deltaTime = Math.min((currentTime - lastTimeRef.current) / 1000, 0.1);
       lastTimeRef.current = currentTime;
 
-      // Only update if visible in viewport
       const rect = containerRef.current?.getBoundingClientRect();
       if (rect && rect.bottom >= 0 && rect.top <= window.innerHeight) {
-      // Update ripples with time-based animation
       ripplesRef.current = ripplesRef.current.filter(ripple => {
         ripple.time += deltaTime * 0.24;
         ripple.strength *= Math.exp(-ripple.damping * ripple.time);
@@ -178,7 +179,6 @@ export function ThreeHero() {
       const mouseX = mousePosition.current.x * 25;
       const mouseY = mousePosition.current.y * 25;
 
-      // Batch geometry updates
       linesRef.current.forEach((line) => {
         const positions = line.geometry.attributes.position;
         const array = positions.array;
@@ -196,7 +196,6 @@ export function ThreeHero() {
           
           let targetZ = peakInfluence;
 
-          // Calculate wave interference
           for (const ripple of ripplesRef.current) {
             const rippleX = ripple.position.x * 25;
             const rippleY = ripple.position.y * 25;
@@ -243,6 +242,17 @@ export function ThreeHero() {
     lastTimeRef.current = performance.now();
     animate(lastTimeRef.current);
 
+    const updateTheme = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      const gridColor = isDark ? DARK_COLOR : LIGHT_COLOR;
+      if (gradientMaterialRef.current) {
+        gradientMaterialRef.current.uniforms.color.value.set(gridColor);
+      }
+    };
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    updateTheme();
+
     return () => {
       const container = containerRef.current;
       const lines = linesRef.current;
@@ -256,6 +266,7 @@ export function ThreeHero() {
       gradientMaterial.dispose();
       scene.clear();
       renderer.dispose();
+      observer.disconnect();
     };
   }, []);
 
