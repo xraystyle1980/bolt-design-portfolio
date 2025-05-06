@@ -112,7 +112,7 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
           {greetingText.join(' ')}
         </span>
         <div 
-          className="font-normal text-display-md md:text-display-3xl text-foreground pt-3 md:pt-4"
+          className="font-normal text-display-md sm:text-display-xl md:text-display-3xl lg:text-display-4xl text-foreground pt-3 md:pt-4"
           style={{
             wordBreak: 'keep-all',
             wordWrap: 'normal',
