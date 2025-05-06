@@ -28,7 +28,7 @@ export function HomePage() {
           <section className='flex flex-col justify-center h-screen gap-8 md:gap-12'>
             <AnimatedHeroText
               greeting="👋 Hello, I'm Matt Trice."
-              title="Senior Product Designer focused on UX, UI, design systems, and frontend craft."
+              title="I am a Senior Product Designer focused on UX, UI, design systems, and frontend craft."
             />
             <a 
               href="https://calendly.com/matt-trice/30min" 
