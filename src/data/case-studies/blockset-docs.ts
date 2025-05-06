@@ -6,11 +6,11 @@ export const blocksetDocs: Project = {
   category: 'Documentation',
   year: '2023',
   link: '/case-study/blockset-docs',
-  description: 'How I transformed complex technical documentation into a beautiful, intuitive information architecture that dramatically improved developer experience.',
+  description: 'How I transformed complex technical documentation into a beautiful, intuitive interface that dramatically improved developer experience.',
   imageUrl: '/images/blockset-docs-hero-single.png',
   heroImage: '/images/blockset-docs-hero-single.png?h=600&fit=cover',
   singleImage: '/images/blockset-docs-hero-single.png',
-  heroSubTitle: 'How I transformed complex technical documentation into a beautiful, intuitive information architecture that dramatically improved developer experience.',
+  heroSubTitle: 'How I transformed complex technical documentation into a beautiful, intuitive interface that dramatically improved developer experience.',
   role: 'Lead Designer',
   team: '1 Designer (me), 1 Technical Writer, 2 Engineers',
   meta: {

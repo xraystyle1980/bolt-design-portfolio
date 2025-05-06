@@ -23,7 +23,7 @@ const insights = [
   {
     id: 'threejs-experiments',
     title: 'Three.js Experiments',
-    description: 'Interactive 3D experiments and visual experiences',
+    description: 'I\'m experimenting with interactive 3D and visual experiences—more to come.',
     imageUrl: '/images/playground-3dtoken.png',
     link: '/demo/threejs',
     singleImage: '/images/playground-3dtoken.png',

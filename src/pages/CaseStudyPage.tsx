@@ -50,7 +50,7 @@ export function CaseStudyPage() {
           <h1 className="my-4 md:my-6">
             {project.title}
           </h1>
-          <div className="max-w-full md:max-w-[70%]">
+          <div className="max-w-full md:max-w-[80%]">
             <h2 className="text-display-sm md:text-display-lg mb-10 md:mb-12 text-foreground !font-normal">
               {project.heroSubTitle}
             </h2>

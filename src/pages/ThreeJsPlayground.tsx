@@ -41,7 +41,7 @@ export function ThreeJsPlayground() {
           <h1 className="text-display-2xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
             {threeJsDemo.title}
           </h1>
-          <div className="max-w-full md:max-w-[70%]">
+          <div className="max-w-full md:max-w-[80%]">
             <h2 className="text-display-sm md:text-display-md mb-10 md:mb-12 text-foreground !font-normal">
               {threeJsDemo.subtitle}
             </h2>

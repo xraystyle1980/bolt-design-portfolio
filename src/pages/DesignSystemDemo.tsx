@@ -35,14 +35,14 @@ export function DesignSystemDemo() {
               "rounded-full mt-20 w-fit group transition-all duration-300"
             )}
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
 
           <h1 className="text-display-xl md:text-display-4xl lg:text-display-5xl my-4 md:my-6 text-foreground">
             {designSystemDemo.title}
           </h1>
-          <div className="max-w-full md:max-w-[70%]">
+          <div className="max-w-full md:max-w-[80%]">
             <h2 className="text-display-sm md:text-display-md mb-10 md:mb-12 text-foreground !font-normal">
               {designSystemDemo.subtitle}
             </h2>

@@ -226,7 +226,7 @@ export function TokenHero() {
   return (
     <div className="relative w-full h-full">
       {/* Radial Gradient Background */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 w-full h-full" style={{
           background: 'radial-gradient(62.37% 58.17% at 48.63% 30.27%, #D2D4E0 0%, #A6B1BC 100%)'
         }} />
@@ -234,7 +234,7 @@ export function TokenHero() {
 
       <Canvas 
         camera={{ position: [0, 4, 8], fov: 32 }}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', zIndex: 10 }}
         gl={{ alpha: true }}  // Enable alpha channel
       >
         {/* Remove background color entirely since we have alpha: true */}

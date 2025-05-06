@@ -15,7 +15,7 @@ export const demoProjects: Project[] = [
   {
     id: 'threejs-experiments',
     title: 'Three.js Experiments',
-    subtitle: 'Interactive 3D experiments and visual experiences',
+    subtitle: 'I’m experimenting with interactive 3D and visual experiences—more to come.',
     link: '/demo/threejs'
   }
 ];

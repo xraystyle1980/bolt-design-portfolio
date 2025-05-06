@@ -3,7 +3,7 @@ import { Demo } from '@/types/project';
 export const threeJsDemo: Demo = {
   id: 'threejs-experiments',
   title: 'Three.js Experiments',
-  subtitle: 'Interactive 3D experiments and visual experiences',
+  subtitle: 'I\'m experimenting with interactive 3D and visual experiences—more to come.',
   description: 'A collection of interactive 3D experiments built with Three.js, exploring various techniques in real-time graphics and user interaction.',
   role: 'Creative Developer',
   team: 'Solo Project',

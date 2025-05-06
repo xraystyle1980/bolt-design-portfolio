@@ -1,18 +1,17 @@
-# Bolt Design Portfolio
+# Trice Design Portfolio
 
-A modern, interactive portfolio website built with React, Three.js, and Tailwind CSS. Features a dynamic 3D hero section, case studies, and a responsive design.
-
-<!-- ![Bolt Design Portfolio](https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=2000) -->
+A modern, interactive portfolio website built with React, Three.js, and Tailwind CSS. Features a dynamic 3D hero section, detailed case studies, a design system demo, and a responsive, accessible UI.
 
 ## Features
 
-- 🎨 Interactive 3D hero section with Three.js
-- 📱 Fully responsive design
-- 💼 Detailed case studies with modular components
+- 🎨 Interactive 3D hero section with Three.js, supporting light/dark theme grid colors
+- 📱 Fully responsive and accessible design
+- 💼 Detailed case studies with modular, reusable components
 - 🎯 Modern UI with shadcn/ui components
 - 🚀 Built with Vite for optimal performance
 - 🎭 Beautiful animations and transitions
 - 🔄 Design system demo showcasing Figma → shadcn/ui workflow
+- 🏷️ SEO and social sharing meta tags via React Helmet (with homepage fallback in `index.html`)
 
 ## Case Studies
 
@@ -30,6 +29,11 @@ Explore a simplified workflow for exporting design tokens from Figma to shadcn/u
 - Style Dictionary integration
 - Custom theme implementation
 - Live component previews
+
+## Meta Tags & SEO
+
+- Uses [react-helmet-async](https://github.com/staylor/react-helmet-async) for dynamic meta tags per page
+- Social platforms that do not execute JavaScript (e.g., Slack, Facebook) will use the homepage meta tags in `index.html` as a fallback
 
 ## Prerequisites
 
@@ -75,14 +79,14 @@ src/
 │   ├── ui/           # shadcn/ui components
 │   └── design-system/# Design system demo components
 ├── pages/            # Page components
-├── data/            # Data and type definitions
-├── lib/             # Utility functions
-└── hooks/           # Custom React hooks
+├── data/             # Data and type definitions
+├── lib/              # Utility functions
+└── hooks/            # Custom React hooks
 ```
 
 ## Technologies Used
 
-- React 18
+- React 18+
 - Vite
 - Three.js
 - Tailwind CSS

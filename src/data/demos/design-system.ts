@@ -3,7 +3,7 @@ import { Section } from '../types';
 export const designSystemDemo = {
   id: 'design-system-demo',
   title: 'Design System Demo',
-  subtitle: 'A simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS',
+  subtitle: 'A simplified workflow for exporting design tokens from Figma to shadcn/ui and TailwindCSS.',
   description: 'This project showcases an efficient integration using Style Dictionary, highlighting a streamlined approach to managing design tokens across design and development.',
   role: 'Design Systems Engineer',
   team: 'Solo Project',
