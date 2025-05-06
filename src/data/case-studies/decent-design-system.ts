@@ -66,7 +66,7 @@ export const decentDesignSystem: Project = {
         {
           title: 'What was the biggest challenge?',
           titleVariant: 'large',
-          content: 'Defining where and how the design system fit within the organization. What processes needed to change? What would become new? And most importantly, how do we make people want to use it? Adoption was a major hurdle, with myself and a front-end engineer as the primary advocates. Despite these challenges, the design system left a lasting impact, and I\'m eager to see how it continues to evolve.'
+          content: 'Defining where and how the design system fit within the organization. What processes needed to change? What would become new? And most importantly, how do we make people want to use it? Adoption was a major hurdle, with myself and a frontend engineer as the primary advocates. Despite these challenges, the design system left a lasting impact, and I\'m eager to see how it continues to evolve.'
         }
       ]
     },

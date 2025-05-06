@@ -13,7 +13,7 @@ interface MetaTagsProps {
 
 const MetaTags = ({
   title = "Matt Trice Design | Senior Product Designer",
-  description = "👋 Hello, I'm Matt Trice. I am a Senior Product Designer connecting UX, design systems, and front-end.",
+  description = "👋 Hello, I'm Matt Trice. I am a Senior Product Designer focused on UX, UI, design systems, and frontend craft.",
   ogImage = "https://trice.design/meta/OG-image.png",
   ogUrl = "https://trice.design",
   ogType = 'website',
