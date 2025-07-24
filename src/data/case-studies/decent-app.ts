@@ -248,12 +248,10 @@ export const decentApp: Project = {
   ],
 
 
-  technologies: ['Chakra UI', 'Figma', 'Design Tokens', 'Github', 'Notion']
-
-
-  // testimonial: {
-  //   quote: 'Matt was instrumental in translating our vision into a clear, intuitive product. His design execution and close collaboration with engineering made a huge impact on the final experience.',
-  //   author: 'Product Lead',
-  //   role: 'Decent'
-  // }
+  technologies: ['Chakra UI', 'Figma', 'Design Tokens', 'Github', 'Notion'],
+  testimonial: {
+    quote: 'Matt was instrumental in translating our vision into a clear, intuitive product. His design execution and close collaboration with engineering made a huge impact on the final experience.',
+    author: 'Nicolaus Sherrill',
+    role: 'Head of Design at Decent'
+  }
 }; 

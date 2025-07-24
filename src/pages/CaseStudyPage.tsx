@@ -192,9 +192,9 @@ export function CaseStudyPage() {
       {project.testimonial && (
         <Container className="relative max-w-4xl my-24 md:my-32">
           <blockquote className="border-l-4 border-primary p-4 my-6 rounded-r-lg max-w-none">
-            <p className="text-body-lg italic">{project.testimonial.quote}</p>
+            <p className="text-body-xl italic">{project.testimonial.quote}</p>
             <footer className="text-body-sm mt-2">
-              — <cite>{project.testimonial.author}</cite>, {project.testimonial.role}
+              — <cite className="not-italic">{project.testimonial.author}, {project.testimonial.role}</cite>
             </footer>
           </blockquote>
         </Container>

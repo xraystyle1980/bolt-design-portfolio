@@ -37,3 +37,5 @@ lerna-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 gsap-bonus.tgz
+bolt-design-portfolio.code-workspace
+CLAUDE.md
