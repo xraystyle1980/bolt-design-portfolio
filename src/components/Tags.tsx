@@ -6,9 +6,10 @@ interface TagsProps {
   className?: string;
   justify?: 'start' | 'center' | 'end';
   mobileJustify?: 'start' | 'center' | 'end';
+  size?: 'default' | 'sm' | 'lg';
 }
 
-export function Tags({ tags = [], className, justify = 'start', mobileJustify = 'center' }: TagsProps) {
+export function Tags({ tags = [], className, justify = 'start', mobileJustify = 'center', size = 'default' }: TagsProps) {
   if (!tags || tags.length === 0) return null;
 
   return (
@@ -21,7 +22,8 @@ export function Tags({ tags = [], className, justify = 'start', mobileJustify = 
         <Badge
           key={index}
           variant="muted"
-          className="px-2 md:px-3 py-1 md:py-2"
+          size={size}
+          className={size === 'default' ? "px-2 md:px-3 py-1 md:py-2" : ""}
         >
           {tag}
         </Badge>

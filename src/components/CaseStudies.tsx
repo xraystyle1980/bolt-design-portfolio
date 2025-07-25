@@ -33,7 +33,7 @@ export function CaseStudies() {
           scrollTrigger: {
             trigger: ref,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -73,11 +73,11 @@ export function CaseStudies() {
 
   return (
     <div className="flex flex-grow flex-col gap-12 md:gap-16">
-      <h2 className="text-display-md md:text-display-lg lg:text-display-xl mb-0 mt-4">
+      <h2 className="text-display-md md:text-display-lg lg:text-display-2xl mb-0 mt-4">
         Case Studies
       </h2>
       {projects.map((project, index) => (
-        <div key={project.id} ref={el => caseStudyRefs.current[index] = el}>
+        <div key={project.id} id={project.id} ref={el => caseStudyRefs.current[index] = el}>
           <div className="w-full pb-2">
             <Link to={project.link} className="group">
               <HeroSection 

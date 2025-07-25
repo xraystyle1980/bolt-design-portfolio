@@ -9,27 +9,7 @@ import { threeJsDemo } from "@/data/demos/threejs";
 import { designSystemDemo } from "@/data/demos/design-system";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-
-const insights = [
-  {
-    id: 'design-system-demo',
-    title: 'Design System Demo',
-    description: 'Live demonstration of design tokens and component libraries',
-    imageUrl: '/images/playground-3dtoken.png',
-    link: '/demo/design-system',
-    singleImage: '/images/decent-design-system-hero-single.png',
-    videoUrl: '/browser-console-side-by-side.mp4'
-  },
-  {
-    id: 'threejs-experiments',
-    title: 'Three.js Experiments',
-    description: 'I\'m experimenting with interactive 3D and visual experiences—more to come.',
-    imageUrl: '/images/playground-3dtoken.png',
-    link: '/demo/threejs',
-    singleImage: '/images/playground-3dtoken.png',
-    videoUrl: '/token.mp4'
-  }
-];
+import { demos } from "@/data/demos";
 
 export function Playground() {
   const playgroundRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -56,7 +36,7 @@ export function Playground() {
           scrollTrigger: {
             trigger: ref,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -69,7 +49,7 @@ export function Playground() {
 
   // Determine hero layout and images based on project
   const getHeroConfig = (projectId: string) => {
-    const project = insights.find(p => p.id === projectId);
+    const project = demos.find(p => p.id === projectId);
     if (!project) return {
       layout: 'single' as const,
       singleImage: ''
@@ -84,11 +64,11 @@ export function Playground() {
 
   return (
     <div className="flex flex-grow flex-col gap-12 md:gap-16 mb-12 md:mb-24">
-      <h4 className="text-display-xl mb-0 mt-4">
+      <h4 className="text-display-2xl mb-0 mt-4">
         Demos
       </h4>
-      {insights.map((project, index) => (
-        <div key={project.id} ref={el => playgroundRefs.current[index] = el}>
+      {demos.map((project, index) => (
+        <div key={project.id} id={project.id} ref={el => playgroundRefs.current[index] = el}>
           <div className="w-full pb-2">
             <Link to={project.link} className="group">
               {project.id === 'threejs-experiments' ? (

@@ -36,7 +36,8 @@ export default {
         'body-xl': ['24px', { lineHeight: '150%', letterSpacing: '-0.24px', fontWeight: '400' }],
         'body-lg': ['20px', { lineHeight: '150%', letterSpacing: '-0.20px', fontWeight: '400' }],
         'body-md': ['18px', { lineHeight: '150%', letterSpacing: '-0.18px', fontWeight: '400' }],
-        'body-sm': ['16px', { lineHeight: '150%', letterSpacing: '-0.16px', fontWeight: '400' }],
+        'body-sm': ['16px', { lineHeight: '150%', fontWeight: '400' }],
+        'body-xs': ['15px', { lineHeight: '150%', fontWeight: '400' }],
         'body-caption': ['14px', { lineHeight: '164%', fontWeight: '400' }],
       },
       letterSpacing: {
