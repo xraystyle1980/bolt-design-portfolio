@@ -15,8 +15,8 @@ export function HomePage() {
   return (
     <div id="top">
       <MetaTags 
-        title="Matt Trice Design | Senior Product Designer"
-        description="👋 Hello, I'm Matt Trice. I am a Senior Product Designer blending creative momentum with thoughtful UX, clean UI, and scalable design systems."
+        title="Matt Trice Design | Lead Product Designer"
+        description="👋 Hello, I'm Matt Trice. I am a Lead Product Designer blending creative momentum with thoughtful UX, clean UI, and scalable design systems."
         ogImage="https://trice.design/meta/OG-image.png"
         ogUrl="https://trice.design"
         ogType="website"
@@ -31,7 +31,7 @@ export function HomePage() {
         <section id="about" className='flex flex-col justify-center h-screen gap-8 md:gap-12'>
           <AnimatedHeroText
             greeting="👋 Hello, I'm Matt Trice."
-            title="I am a Senior Product Designer blending creative momentum with thoughtful UX, clean UI, and scalable design systems."
+            title="I am a Lead Product Designer blending creative momentum with thoughtful UX, clean UI, and scalable design systems."
           />
           <a 
             href="https://calendly.com/matt-trice/30min" 
