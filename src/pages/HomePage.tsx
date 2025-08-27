@@ -15,14 +15,7 @@ export function HomePage() {
   return (
     <div id="top">
       <MetaTags 
-        title="Matt Trice Design | Lead Product Designer"
-        description="👋 Hello, I'm Matt Trice. I am a Lead Product Designer blending creative momentum with thoughtful UX, clean UI, and scalable design systems."
-        ogImage="https://trice.design/meta/OG-image.png"
-        ogUrl="https://trice.design"
-        ogType="website"
-        twitterCard="summary_large_image"
-        twitterSite="@tricedesign"
-        twitterCreator="@tricedesign"
+        canonical="https://www.trice.design"
       />
       <ThreeHero />
       

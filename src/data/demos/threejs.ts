@@ -11,8 +11,8 @@ export const threeJsDemo: Demo = {
   meta: {
     title: 'Three.js Experiments | Matt Trice Design',
     description: 'Exploring creative coding and 3D web experiences with Three.js and React Three Fiber.',
-    ogImage: 'https://trice.design/meta/OG-scrolling-token.png',
-    ogUrl: 'https://trice.design/demo/threejs'
+    ogImage: 'https://www.trice.design/meta/OG-scrolling-token.png',
+    ogUrl: 'https://www.trice.design/demo/threejs'
   },
   projects: [
     {

@@ -18,8 +18,8 @@ export const decentDesignSystem: Project = {
   meta: {
     title: 'Decent Design System | Matt Trice Design',
     description: 'Building a scalable design system to support rapid product development and maintain consistency across multiple platforms.',
-    ogImage: 'https://trice.design/meta/OG-dds.png',
-    ogUrl: 'https://trice.design/case-study/decent-design-system'
+    ogImage: 'https://www.trice.design/meta/OG-dds.png',
+    ogUrl: 'https://www.trice.design/case-study/decent-design-system'
   },
   
   

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.trice.design/sitemap.xml
+
+# Disallow non-canonical hosts and common bot targets
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-content/

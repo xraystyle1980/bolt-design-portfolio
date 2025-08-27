@@ -16,8 +16,8 @@ export const blocksetDocs: Project = {
   meta: {
     title: 'Blockset Documentation | Matt Trice Design',
     description: 'Designing and building a comprehensive documentation site for Blockset\'s blockchain infrastructure platform.',
-    ogImage: 'https://trice.design/meta/OG-blockset.png',
-    ogUrl: 'https://trice.design/case-study/blockset-docs'
+    ogImage: 'https://www.trice.design/meta/OG-blockset.png',
+    ogUrl: 'https://www.trice.design/case-study/blockset-docs'
   },
 
 

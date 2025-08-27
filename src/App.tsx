@@ -9,8 +9,11 @@ import { ThreeJsPlayground } from './pages/ThreeJsPlayground';
 import { DesignSystemDemo } from './pages/DesignSystemDemo';
 import NotFound from './pages/NotFound';
 import { HelmetProvider } from 'react-helmet-async';
+import { useCanonicalRedirect } from '@/hooks/useCanonicalRedirect';
 
 export default function App() {
+  useCanonicalRedirect();
+  
   return (
     <HelmetProvider>
       <ThemeProvider>

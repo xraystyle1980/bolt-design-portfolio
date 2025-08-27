@@ -1,10 +1,22 @@
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { Link } from "react-router-dom"
+import MetaTags from '@/components/MetaTags'
+import { useEffect } from 'react'
 
 export default function NotFound() {
+  // Set proper 404 status for production (this works for SPA when served with proper server config)
+  useEffect(() => {
+    // This sets the document title to indicate 404 to crawlers
+    document.title = "404 - Page Not Found | Matt Trice Design";
+  }, []);
   return (
     <div className="relative w-full h-screen overflow-hidden">
+      <MetaTags 
+        title="404 - Page Not Found | Matt Trice Design"
+        description="The page you're looking for doesn't exist."
+        noindex={true}
+      />
       {/* Background Video */}
       <video
         autoPlay

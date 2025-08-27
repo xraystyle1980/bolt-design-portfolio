@@ -22,7 +22,7 @@ export function DesignSystemDemo() {
       <MetaTags 
         title={designSystemDemo.meta.title}
         description={designSystemDemo.meta.description}
-        ogUrl={designSystemDemo.meta.ogUrl}
+        canonical="https://www.trice.design/demo/design-system"
         ogImage={designSystemDemo.meta.ogImage}
       />
       <section className="mt-20">

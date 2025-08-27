@@ -21,7 +21,7 @@ export function ThreeJsPlayground() {
       <MetaTags 
         title={`${threeJsDemo.title} | Matt Trice Design`}
         description={threeJsDemo.subtitle}
-        ogUrl="https://trice.design/demo/threejs"
+        canonical="https://www.trice.design/demo/threejs"
         ogImage="/images/playground-3dtoken.png"
       />
       <section className="mt-20">

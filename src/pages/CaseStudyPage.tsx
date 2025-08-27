@@ -30,7 +30,7 @@ export function CaseStudyPage() {
       <MetaTags 
         title={project.meta?.title || `${project.title} | Matt Trice Design`}
         description={project.meta?.description || project.description}
-        ogUrl={project.meta?.ogUrl || `https://trice.design/case-study/${project.id}`}
+        canonical={`https://www.trice.design/case-study/${project.id}`}
         ogImage={project.meta?.ogImage || project.heroImage}
       />
       <section className="mt-20">
