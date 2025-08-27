@@ -1,0 +1,15 @@
+# Set proper MIME types for XML files
+<Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=utf-8"
+</Files>
+
+<Files "robots.txt">
+    Header set Content-Type "text/plain; charset=utf-8"
+</Files>
+
+# Enable gzip compression for XML files
+<IfModule mod_deflate.c>
+    <FilesMatch "\.(xml)$">
+        SetOutputFilter DEFLATE
+    </FilesMatch>
+</IfModule>
