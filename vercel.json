@@ -25,42 +25,16 @@
   ],
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/sitemap-trice-2025.xml",
+      "destination": "/sitemap-trice-2025.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/sitemap-trice-2025.xml",
-      "dest": "/sitemap-trice-2025.xml"
-    },
-    {
-      "src": "/robots.txt", 
-      "dest": "/robots.txt"
-    },
-    {
-      "src": "/favicon.(.*)",
-      "dest": "/favicon.$1"
-    },
-    {
-      "src": "/meta/(.*)",
-      "dest": "/meta/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
-    },
-    {
-      "src": "/models/(.*)",
-      "dest": "/models/$1"
-    },
-    {
-      "src": "/animations/(.*)",
-      "dest": "/animations/$1"
-    },
-    {
-      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|mp4|glb|json))",
-      "dest": "/$1"
     }
   ]
 } 
