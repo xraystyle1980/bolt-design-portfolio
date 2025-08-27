@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/sitemap-v2.xml",
+      "source": "/sitemap-trice-2025.xml",
       "headers": [
         {
           "key": "Content-Type", 
@@ -25,7 +25,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!sitemap-v2\\.xml|robots\\.txt|favicon\\.|meta/|images/|models/|animations/|.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|mp4|glb|json)).*)",
+      "source": "/((?!sitemap-trice-2025\\.xml|robots\\.txt|favicon\\.|meta/|images/|models/|animations/|.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|mp4|glb|json)).*)",
       "destination": "/index.html"
     }
   ]

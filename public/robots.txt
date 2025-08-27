@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.trice.design/sitemap-v2.xml
+Sitemap: https://www.trice.design/sitemap-trice-2025.xml
 
 # Disallow non-canonical hosts and common bot targets
 Disallow: /api/
