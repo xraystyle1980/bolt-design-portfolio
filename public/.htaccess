@@ -1,5 +1,5 @@
 # Set proper MIME types for XML files
-<Files "sitemap.xml">
+<Files "sitemap-v2.xml">
     Header set Content-Type "application/xml; charset=utf-8"
 </Files>
 
