@@ -1,8 +1,5 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface AnimatedHeroTextProps {
   greeting: string;
@@ -15,40 +12,25 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
   const emojiRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Set initial states
+    // Set initial states - greeting shows immediately
     gsap.set(greetingRef.current, {
-      opacity: 0,
-      y: 20
+      opacity: 1,
+      y: 0
     });
     
     gsap.set(titleWordsRef.current, {
-      opacity: 0,
-      y: 20
+      opacity: 0
     });
 
-    // Create timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: greetingRef.current,
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      }
-    });
+    // Create timeline - animate immediately on mount
+    const tl = gsap.timeline({ delay: 0.1 });
 
-    // Add animations
-    tl.to(greetingRef.current, {
+    // Add animations - only animate title words
+    tl.to(titleWordsRef.current, {
       opacity: 1,
-      y: 0,
       duration: 0.8,
-      ease: 'power3.out'
-    })
-    .to(titleWordsRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.05,
-      ease: 'power4.out'
-    }, '-=0.4');
+      ease: 'ease'
+    });
 
     // Add hover animation for the emoji
     if (emojiRef.current) {
@@ -101,6 +83,7 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
         <span 
           ref={greetingRef}
           className="font-normal block text-display-sm md:text-display-lg text-muted-foreground whitespace-nowrap"
+          style={{ willChange: 'transform, opacity' }}
         >
           <span 
             ref={emojiRef} 
@@ -117,7 +100,8 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
             wordBreak: 'keep-all',
             wordWrap: 'normal',
             whiteSpace: 'normal',
-            hyphens: 'none'
+            hyphens: 'none',
+            willChange: 'transform, opacity'
           }}
         >
           {titleWords.map((word, i) => (
@@ -125,7 +109,7 @@ export function AnimatedHeroText({ greeting, title }: AnimatedHeroTextProps) {
               key={i}
               ref={el => titleWordsRef.current[i] = el}
               className="inline-block"
-              style={{ marginRight: '0.25em' }}
+              style={{ marginRight: '0.25em', opacity: 0, willChange: 'opacity' }}
             >
               {word}
             </span>
